@@ -1,0 +1,3 @@
+1) Clean holo page
+3) Improve home page look
+4) Make buttons bigger
