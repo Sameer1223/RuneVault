@@ -44,15 +44,15 @@ export default function Decks() {
       {/* Header with background image */}
       <div className="relative flex items-center justify-center h-64 w-full bg-[url('/leagueworld.jpg')] bg-cover bg-center">
         <div className="absolute inset-0 bg-black/50" />
-        <h1 className="relative text-white text-4xl font-bold z-10">Decks</h1>
+        <h1 className="relative text-white text-8xl font-semibold z-10">Decks</h1>
       </div>
 
       {/* Layout */}
       <div className="flex flex-1 overflow-hidden">
-        {/* LEFT: Filters */}
+        {/* Filters */}
         <DeckFilterSidebar onFiltersChange={setFilters} filters={filters} />
 
-        {/* CENTER: Deck List */}
+        {/* Deck Lists */}
         <div className="flex-1 flex flex-col px-8 py-4 overflow-y-auto gap-3 border-x border-zinc-800">
           <div className="flex justify-between items-center mb-2">
             <h2 className="text-xl font-semibold">My Decks</h2>

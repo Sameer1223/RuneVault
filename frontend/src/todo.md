@@ -5,6 +5,22 @@
 - Oct 31st- Project Refined and Hosted
 
 
+### TODO
+1) Create test deck
+2) View test deck in deck builder
+3) Edit look of deck builder
+
+4) Fix create deck button
+5) Figure out use for empty space on right
+6) Update and polish look
+
+7) Figure out button things
+8) Start flask applicatoin
+9) Build Deck CRUD Endpoints
+
+10) Hook up endpoints
+
+
 
 ### Tasks
 
@@ -13,9 +29,17 @@
 
 #### Card Data
 1) Extract all legend card data into a json and pull values from there
+2) Database migration
+3) Card filtering
+4) ID, Name, Type, Energy, Power, Colour(s)
+
+#### Deck Viewer
+1) Deck Stats
+2) Have battlefields shown sideways
+
 
 #### Deck Builder
-1) Fix sizing for panels and cards
+1) Fix sizing for panels and cards especially for side deck and runes deck
 2) Responsive or no responsive?
 
 #### Cards
@@ -25,3 +49,11 @@
 #### Home Page
 1) Clean holo page
 2) Improve home page look
+
+
+### Backend
+1) Database migrations! Probably important
+2) Frontend with backend integration figure out how it will work
+3) Card filtering probably with my own database?
+4) CRUD Operations for deck and collection with auth
+5) Sync database and collection

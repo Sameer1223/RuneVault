@@ -2,6 +2,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom"
 import Home from "./pages/Home"
 import Decks from "./pages/Decks"
 import DeckBuilder from "./pages/DeckBuilder"
+import DeckViewer from "./pages/DeckViewer"
 import CardsPage from "./pages/CardsPage"
 import Layout from "./components/layout/Layout"
 
@@ -14,6 +15,7 @@ function App() {
           <Route path="/decks" element={<Decks/>} />
           <Route path="/deckbuilder" element={<DeckBuilder/>} />
           <Route path="/cards" element={<CardsPage/>} />
+          <Route path="/tournaments" element={<DeckViewer/>} />
         </Route>
 
         {/* Fallback for unknown URLs */}

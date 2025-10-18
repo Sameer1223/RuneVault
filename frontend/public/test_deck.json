@@ -1,0 +1,36 @@
+{
+    "deckId": 1,
+    "userId": 1,
+    "name": "Darius Baited Hook",
+    "last-updated": "2024-06-12",
+    "format": "Competitive",
+    "Legend": "OGN-253",
+    "Battlefields": ["OGN-294", "OGN-291", "OGN-290"],
+    "ChosenChampion": "OGN-027a",
+    "Main": {
+        "OGN-245": 3,
+        "OGN-004": 2,
+        "OGN-213": 3,
+        "OGN-210": 3,
+        "OGN-217": 3,
+        "OGN-211": 3,
+        "OGN-242": 3,
+        "OGN-206": 1,
+        "OGN-218": 3,
+        "OGN-226": 3,
+        "OGN-035": 3,
+        "OGN-039": 3,
+        "OGN-028": 3,
+        "OGN-233": 3
+    },
+    "Side": {
+        "OGN-224": 3,
+        "OGN-209": 2,
+        "OGN-243": 1,
+        "OGN-026": 2
+    },
+    "Runes": {
+        "OGN-007a": 5,
+        "OGN-214a": 7
+    }
+}
