@@ -7,6 +7,7 @@ interface MainDeckProps {
     main: Record<string, number>;
     onHoverCard?: (cardId: string) => void;
     onLeaveCard?: () => void;
+    onRemoveCard?: (cardId: string) => void;
 }
 
 export default function MainDeck({
@@ -15,7 +16,8 @@ export default function MainDeck({
     chosenChampion,
     main,
     onHoverCard,
-    onLeaveCard
+    onLeaveCard,
+    onRemoveCard,
 }: MainDeckProps) {
     const mainDeck = Object.entries(main ?? {}).flatMap(([cardId, count]) =>
         Array(count).fill(cardId)
@@ -36,7 +38,7 @@ export default function MainDeck({
             <div className="grid grid-cols-10 grid-rows-4 gap-2">
                 {mainDeck.map((cardId, index) => (
                     <div key={index} onMouseEnter={() => onHoverCard?.(cardId)} onMouseLeave={onLeaveCard}>
-                        <Card cardId={cardId} className="h-[130px] w-[93px]" />
+                        <Card cardId={cardId} className="h-[130px] w-[93px]" onRightClick={onRemoveCard} />
                     </div>
                 ))}
 
@@ -50,7 +52,7 @@ export default function MainDeck({
             <div className="h-full flex flex-col justify-center items-center flex-1 gap-1">
                 {legend ? (
                     <div onMouseEnter={() => onHoverCard?.(legend)} onMouseLeave={onLeaveCard}>
-                        <Card cardId={legend} className="h-[251px] w-[180px]" />
+                        <Card cardId={legend} className="h-[251px] w-[180px]" onRightClick={onRemoveCard}/>
                     </div>
                 ) : (
                     <Card key={`placeholder-legend`} className="h-[251px] w-[180px]" />
@@ -59,7 +61,7 @@ export default function MainDeck({
                 <div className="flex flex-col gap-1">
                     {battlefields.map((cardId, index) => (
                         <div key={index} onMouseEnter={() => onHoverCard?.(cardId)} onMouseLeave={onLeaveCard}>
-                            <Card cardId={cardId} className="h-[93px] w-[130px]" />
+                            <Card cardId={cardId} className="h-[93px] w-[130px]" onRightClick={onRemoveCard}/>
                         </div>
                     ))}
 

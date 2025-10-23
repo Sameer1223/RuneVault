@@ -1,19 +1,41 @@
-export default function DeckRequirements() {
+import { useMemo } from "react";
+
+interface DeckRequirementProps {
+    deck : DeckData;
+}
+
+export default function DeckRequirements({ deck }: DeckRequirementProps) {
+    const counts = useMemo(() => {
+        return {
+            mainDeckCount: Object.values(deck.Main).reduce((sum, count) => sum + count, 0),
+            legendCount: deck.Legend ? 1 : 0,
+            chosenCount: deck.ChosenChampion ? 1 : 0,
+            battlefieldCount: Object.values(deck.Battlefields).length,
+            sideDeckCount: Object.values(deck.Side).reduce((sum, count) => sum + count, 0),
+            runesCount: Object.values(deck.Runes).reduce((sum, count) => sum + count, 0)
+        }
+    });
+
     const deckRequirements = [
-        { label: "Deck", value: 40, requirement: 40},
-        { label: "Legend", value: 1, requirement: 1},
-        { label: "Chosen Champion", value: 1, requirement: 11},
-        { label: "Battlefields", value: 3, requirement: 3},
-        { label: "Side Deck", value: 8, requirement: 8},
-        { label: "Runes", value: 12, requirement: 12},
+        { label: "Deck", value: counts.mainDeckCount + counts.chosenCount, requirement: 40},
+        { label: "Legend", value: counts.legendCount, requirement: 1},
+        { label: "Chosen Champion", value: counts.chosenCount, requirement: 1},
+        { label: "Battlefields", value: counts.battlefieldCount, requirement: 3},
+        { label: "Side Deck", value: counts.sideDeckCount, requirement: 8},
+        { label: "Runes", value: counts.runesCount, requirement: 12},
     ];
 
     return (
         <div>
             {deckRequirements.map((req) => (
                 <div key={req.label} className="flex justify-between">
-                    <span className="text-sm font-medium text-gray-800">{req.label}</span>
-                    <span className="text-sm font-semibold text-gray-900">{req.value} / {req.requirement}</span>
+                    <span className="text-sm font-semibold text-white">{req.label}</span>
+                    <span className={`text-sm font-semibold 
+                    ${req.value === req.requirement ? 
+                        "text-green-300" : 
+                        req.label === "Side Deck" ? "text-yellow-200" : "text-red-400"}`}>
+                        {req.value} / {req.requirement}
+                    </span>
                 </div>
             ))}
         </div>

@@ -66,7 +66,7 @@ export default function DeckViewer() {
                     <div className="flex items-center justify-center w-[70%] aspect-[1/1.4] bg-zinc-900 rounded-lg shadow-lg">
                         {hoveredCard ? (
                             <img
-                                src={`TempCards/${hoveredCard}.webp`}
+                                src={`TempCards/${hoveredCard}.avif`}
                                 alt={hoveredCard}
                                 className="w-full h-full object-cover rounded-lg"
                             />

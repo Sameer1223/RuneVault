@@ -1,42 +1,41 @@
-import * as React from "react"
-import { Input } from "@/components/ui/input"
-import { Search } from "lucide-react"
+import * as React from "react";
+import { Input } from "@/components/ui/input";
+import { Search } from "lucide-react";
+import cardData from "../../data/cards.json";
 
-export default function CardSearchBar() {
-  const [query, setQuery] = React.useState("")
-  const [focused, setFocused] = React.useState(false)
+interface CardSearchBarProps {
+  onSearch: (query: string) => void;
+}
 
-  const cards = [
-    "Stalwart Poro",
-    "Daring Poro",
-    "Hidden Blade",
-    "Viktor",
-    "Heimerdinger",
-    "Void Seeker",
-    "Stormbringer",
-    "Defy",
-  ]
+export default function CardSearchBar({ onSearch }: CardSearchBarProps) {
+  const [query, setQuery] = React.useState("");
+  const [isFocused, setIsFocused] = React.useState(false);
 
-  const filtered = query
-    ? cards.filter((card) => card.toLowerCase().includes(query.toLowerCase()))
-    : cards
+  const normalizedQuery = query.trim().toLowerCase();
+
+  // Dynamic filtering as user types
+  const filtered = React.useMemo(() => {
+    if (!normalizedQuery) return [];
+    return cardData.filter((card) => {
+      const name = card.name?.toLowerCase() ?? "";
+      const id = card.id?.toLowerCase() ?? "";
+      return name.includes(normalizedQuery) || id.includes(normalizedQuery);
+    });
+  }, [normalizedQuery]);
+
+  const handleSelect = (name: string) => {
+    setQuery(name);
+    onSearch(name);
+    setIsFocused(false);
+  };
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === "Enter") {
-      e.preventDefault()
-
-      if (filtered.length > 0) {
-        // Select the first suggestion if available
-        setQuery(filtered[0])
-      }
-
-      // Hide suggestions
-      setFocused(false)
-
-      // Trigger search logic here
-      console.log("Searching for:", query || filtered[0])
+      e.preventDefault();
+      onSearch(query);
+      setIsFocused(false);
     }
-  }
+  };
 
   return (
     <div className="relative w-full">
@@ -45,38 +44,43 @@ export default function CardSearchBar() {
         <Input
           placeholder="Search cards..."
           value={query}
-          onChange={(e) => setQuery(e.target.value)}
-          onFocus={() => setFocused(true)}
-          onBlur={() => setTimeout(() => setFocused(false), 150)} // allow click on item
+          onChange={(e) => {
+            const value = e.target.value;
+            setQuery(value);
+            onSearch(value); // keeps external filter live
+            if (value.trim() !== "") setIsFocused(true);
+          }}
+          onFocus={() => {
+            if (query.trim() !== "") setIsFocused(true);
+          }}
+          onBlur={() => setTimeout(() => setIsFocused(false), 150)}
           onKeyDown={handleKeyDown}
           className="pl-9 bg-zinc-900 border border-zinc-700 text-white 
                      placeholder:text-gray-500 focus:border-amber-400 focus:ring-amber-400 w-full"
         />
       </div>
 
-      {focused && filtered.length > 0 && (
+      {/* Suggestions dropdown */}
+      {isFocused && filtered.length > 0 && (
         <div className="absolute z-10 mt-2 w-full bg-zinc-900 border border-zinc-700 rounded-md shadow-lg max-h-60 overflow-y-auto scrollbar-thin scrollbar-thumb-zinc-700 scrollbar-track-zinc-900">
           {filtered.map((card) => (
             <div
-              key={card}
-              onMouseDown={() => {
-                setQuery(card)
-                setFocused(false)
-                console.log("Selected card:", card)
-              }}
+              key={card.id}
+              onMouseDown={() => handleSelect(card.name)}
               className="px-3 py-2 cursor-pointer hover:bg-amber-500/20 text-sm text-gray-200"
             >
-              {card}
+              {card.name}
             </div>
           ))}
         </div>
       )}
 
-      {focused && filtered.length === 0 && (
+      {/* No results message */}
+      {isFocused && query.trim() !== "" && filtered.length === 0 && (
         <div className="absolute z-10 mt-2 w-full bg-zinc-900 border border-zinc-700 rounded-md shadow-lg p-2 text-gray-400 text-sm">
           No results found
         </div>
       )}
     </div>
-  )
+  );
 }

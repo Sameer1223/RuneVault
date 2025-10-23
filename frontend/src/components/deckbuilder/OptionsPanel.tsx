@@ -20,8 +20,8 @@ export default function OptionsPanel() {
             <div className="flex gap-10">
                 {stats.map((stat) => (
                     <div key={stat.label} className="flex gap-4">
-                        <span className="text-base font-medium text-gray-800">{stat.label}</span>
-                        <span className="text-base font-semibold text-gray-900">{stat.value}</span>
+                        <span className="text-base font-medium text-[#caa368]">{stat.label}</span>
+                        <span className="text-base font-semibold text-white">{stat.value}</span>
                     </div>
                 ))}
             </div>

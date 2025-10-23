@@ -4,9 +4,10 @@ interface SideDeckProps {
     side: Record<string, number>;
     onHoverCard?: (cardId: string) => void;
     onLeaveCard?: () => void;
+    onRemoveCard?: (cardId: string) => void;
 }
 
-export default function SideDeck ({ side, onHoverCard, onLeaveCard }: MainDeckProps) {
+export default function SideDeck ({ side, onHoverCard, onLeaveCard, onRemoveCard }: MainDeckProps) {
     const sideDeck = Object.entries(side ?? {}).flatMap(([cardId, count]) => Array(count).fill(cardId));
     
     const deckLength = sideDeck.length;
@@ -18,7 +19,7 @@ export default function SideDeck ({ side, onHoverCard, onLeaveCard }: MainDeckPr
             <div className="grid grid-cols-8 grid-rows-1 gap-2">
                 {sideDeck.map((cardId, index) => (
                     <div key={index} onMouseEnter={() => onHoverCard?.(cardId)} onMouseLeave={onLeaveCard}>
-                        <Card cardId={cardId} className="h-[130px] w-[93px]" />
+                        <Card cardId={cardId} className="h-[130px] w-[93px]" onRightClick={onRemoveCard}/>
                     </div>
                 ))} 
 

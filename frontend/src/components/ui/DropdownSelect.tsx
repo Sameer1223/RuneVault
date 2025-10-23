@@ -1,19 +1,19 @@
-import { useState } from "react"
+import { useState } from "react";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"
-import { Button } from "@/components/ui/button"
-import { LucideIcon } from "lucide-react"
+} from "@/components/ui/dropdown-menu";
+import { Button } from "@/components/ui/button";
+import { LucideIcon } from "lucide-react";
 
 interface DropdownSelectProps {
-  label: string
-  icon?: LucideIcon
-  options: string[]
-  defaultValue?: string
-  onSelect?: (value: string) => void
+  label: string;
+  icon?: LucideIcon;
+  options: string[];
+  defaultValue?: string;
+  onChange?: (value: string) => void; // ✅ Renamed to match your parent component usage
 }
 
 export default function DropdownSelect({
@@ -21,18 +21,18 @@ export default function DropdownSelect({
   icon: Icon,
   options,
   defaultValue,
-  onSelect,
+  onChange,
 }: DropdownSelectProps) {
-  const [selected, setSelected] = useState(defaultValue || options[0])
+  const [selected, setSelected] = useState(defaultValue || options[0]);
 
   const handleSelect = (value: string) => {
-    setSelected(value)
-    onSelect?.(value)
-  }
+    setSelected(value);
+    onChange?.(value); // ✅ Call the unified prop
+  };
 
   return (
     <div className="flex flex-col gap-1 w-fit">
-      <label className="text-sm font-medium text-neutral-50s">{label}</label>
+      <label className="text-sm font-medium text-neutral-50">{label}</label>
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
           <Button
@@ -63,5 +63,5 @@ export default function DropdownSelect({
         </DropdownMenuContent>
       </DropdownMenu>
     </div>
-  )
+  );
 }

@@ -24,6 +24,8 @@
 
 ### Tasks
 
+1) Hackerrank colour scheme?
+
 #### Deck Component
 1) Add tags
 
@@ -32,6 +34,7 @@
 2) Database migration
 3) Card filtering
 4) ID, Name, Type, Energy, Power, Colour(s)
+5) Optimize card data lookup
 
 #### Deck Viewer
 1) Deck Stats
@@ -40,7 +43,8 @@
 
 #### Deck Builder
 1) Fix sizing for panels and cards especially for side deck and runes deck
-2) Responsive or no responsive?
+2) Deck builder utils - optimize instead of searching json everytime
+3) Responsive or no responsive?
 
 #### Cards
 1) Remove cards from public folder that are being used for testing
