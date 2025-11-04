@@ -30,7 +30,7 @@ export default function MainDeck({
 
     const deckLength = mainDeck.length;
     const deckPlaceholderCount = Math.max(0, 40 - deckLength);
-    const bfPlaceholderCount = Math.max(0, 3 - battlefields.length);
+    const bfPlaceholderCount = Math.max(0, 3 - battlefields?.length);
 
     return (
         <div className="flex items-center justify-between w-full h-full p-5 gap-5 overflow-hidden">
@@ -59,7 +59,7 @@ export default function MainDeck({
                 )}
 
                 <div className="flex flex-col gap-1">
-                    {battlefields.map((cardId, index) => (
+                    {battlefields?.map((cardId, index) => (
                         <div key={index} onMouseEnter={() => onHoverCard?.(cardId)} onMouseLeave={onLeaveCard}>
                             <Card cardId={cardId} className="h-[93px] w-[130px]" onRightClick={onRemoveCard}/>
                         </div>

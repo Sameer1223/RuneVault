@@ -24,17 +24,17 @@ export default function Deck({
   const [fromColor, toColor] = colors;
 
   const legendCover = {
-    Kaisa: 12,
-    Ahri: 27,
-    Sett: 3,
-    Jinx: 3,
-    Teemo: 20,
+    kaisa: 12,
+    ahri: 27,
+    sett: 3,
+    jinx: 3,
+    teemo: 20,
   };
 
   return (
     <div
       onClick={onClick}
-      className={`relative w-[800px] rounded-md p-[1px] cursor-pointer transition-all duration-200 
+      className={`relative w-[750px] rounded-md p-[1px] cursor-pointer transition-all duration-200 
         hover:scale-[1.01] ${isSelected ? "ring-2 ring-amber-400" : ""}`}
       style={{
         background: `linear-gradient(to right, ${fromColor}, ${toColor})`,
@@ -45,7 +45,7 @@ export default function Deck({
         style={{
           backgroundImage: backgroundImage ? `url(${backgroundImage})` : undefined,
           backgroundSize: "cover",
-          backgroundPosition: `50% ${legendCover[legend] || 15}%`,
+          backgroundPosition: `50% ${legendCover[legend.toLowerCase()] || 12}%`,
         }}
       >
         <div className="absolute inset-0 bg-black/40 rounded-md pointer-events-none" />

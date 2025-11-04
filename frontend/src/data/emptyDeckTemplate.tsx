@@ -8,12 +8,15 @@ export interface DeckData {
     Runes: Record<string, number>;
 }
 
-export const emptyDeckTemplate: DeckData = {
+export const emptyDeckTemplate = {
+    user_id: 1,            // or set dynamically when user is logged in
     name: "Untitled Deck",
-    Legend: "",
-    ChosenChampion: "",
-    Battlefields: [],
-    Main: {},
-    Side: {},
-    Runes: {},
+    deck_data: {
+        Legend: "",
+        Battlefields: [],
+        ChosenChampion: "",
+        Main: {},
+        Side: {},
+        Runes: {},
+    },
 };

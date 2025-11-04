@@ -137,4 +137,30 @@ dist
 # Vite logs files
 vite.config.js.timestamp-*
 vite.config.ts.timestamp-*
+
+# =========================
+# Card Images
+# =========================
 /frontend/public/TempCards
+
+# =========================
+# Python / Flask (Backend)
+# =========================
+# virtual environments
+backend/venv/
+backend/.venv/
+venv/
+.env/
+.venv/
+
+# Python cache
+backend/__pycache__/
+backend/**/*.pyc
+backend/**/*.pyo
+backend/**/*.pyd
+
+# Flask-specific
+instance/
+*.db
+*.sqlite
+*.sqlite3

@@ -16,13 +16,13 @@ export default function SearchPanel({ onFilterChange, selectedLegend }: SearchPa
   const defaultFilters = {
     query: "",
     selectedType: null as string | null,
-    setFilter: "All",
+    rarityFilter: "All",
     cardType: "All",
     energyRange: [0, 12] as [number, number],
     powerRange: [0, 4] as [number, number],
     mightRange: [0, 10] as [number, number],
-    colorFilter: null as string | null,
-  };
+    colorFilter: [] as string[],
+  };  
 
   const [filters, setFilters] = useState(defaultFilters);
   const [legendColors, setLegendColors] = useState<string[]>([]);
@@ -40,7 +40,7 @@ export default function SearchPanel({ onFilterChange, selectedLegend }: SearchPa
       setLegendColors(legendCard?.colors ?? []);
     } else {
       setLegendColors([]);
-      updateFilters({ colorFilter: null });
+      updateFilters({ colorFilter: [] });
     }
   }, [selectedLegend]);
 
@@ -52,8 +52,11 @@ export default function SearchPanel({ onFilterChange, selectedLegend }: SearchPa
   );
 
   const handleColorClick = (color: string) => {
+    console.log(filters.colorFilter);
     updateFilters({
-      colorFilter: filters.colorFilter === color ? null : color,
+      colorFilter: filters.colorFilter?.includes(color)
+        ? filters.colorFilter.filter((c) => c !== color)
+        : [...filters.colorFilter, color],
     });
   };
 
@@ -83,12 +86,12 @@ export default function SearchPanel({ onFilterChange, selectedLegend }: SearchPa
         <div className="flex items-center gap-5">
           <div className="flex flex-col gap-4">
             <DropdownSelect
-              key={`set-${dropdownKeys}`} // forces re-render on reset
-              label="Set"
+              key={`rarity-${dropdownKeys}`} // forces re-render on reset
+              label="Rarity"
               icon={Filter}
-              options={["All", "Origins", "Proving Grounds"]}
+              options={["All", "Common", "Uncommon", "Rare", "Epic", "Overnumbered"]}
               defaultValue="All"
-              onChange={(val) => updateFilters({ setFilter: val })}
+              onChange={(val) => updateFilters({ rarityFilter: val })}
             />
             <DropdownSelect
               key={`type-${dropdownKeys}`} // forces re-render on reset
@@ -107,10 +110,11 @@ export default function SearchPanel({ onFilterChange, selectedLegend }: SearchPa
                     key={i}
                     variant="outline"
                     size="icon"
-                    disabled={!legendColors.length}
                     onClick={() => handleColorClick(color)}
                     className={`rounded-full w-8 h-8 border-2 transition-all
-                      ${filters.colorFilter === color ? "scale-110 border-white" : "opacity-80 hover:opacity-100"}
+                      ${filters.colorFilter?.includes(color)
+                        ? "scale-110 border-white"
+                        : "opacity-80 hover:opacity-100"}
                     `}
                     style={{
                       backgroundColor: legendColors.length ? color : "#333",

@@ -1,6 +1,11 @@
 import { Button } from '../ui/button';
 
-export default function OptionsPanel() {
+interface OptionsPanelProps {
+    onSave: () => void;
+    onClear?: () => void;
+}
+    
+export default function OptionsPanel({ onSave, onClear }: OptionsPanelProps) {
     const stats = [
         { label: "Avg Energy", value: 3.5 },
         { label: "Avg Power", value: 0.78 },
@@ -11,8 +16,8 @@ export default function OptionsPanel() {
     return (
         <div className="flex gap-20 items-center">
             <div className="flex gap-5">
-                <Button>Save</Button>
-                <Button>Clear</Button>
+                <Button onClick={onSave}>Save</Button>
+                <Button onClick={onClear}>Clear</Button>
                 <Button>Import</Button>
                 <Button>Export</Button>
             </div>

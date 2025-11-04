@@ -1,12 +1,12 @@
 export interface CardFilters {
     query?: string;
     selectedType?: string | null;
-    setFilter?: string;
+    rarityFilter?: string;
     cardType?: string;
     energyRange?: [number, number];
     powerRange?: [number, number];
     mightRange?: [number, number];
-    colorFilter?: string | null;
+    colorFilter?: string[] | null;
 }
   
   export function filterCards(cardData: any[], filters: CardFilters) {
@@ -19,14 +19,15 @@ export interface CardFilters {
         if (filters.cardType && filters.cardType !== "All" && card.type !== filters.cardType)
             return false;
     
-        if (filters.setFilter && filters.setFilter !== "All" && card.set !== filters.setFilter)
+        if (filters.rarityFilter && filters.rarityFilter !== "All" && card.rarity !== filters.rarityFilter)
             return false;
 
-        if (filters.colorFilter) {
-            if (!card.colors || !card.colors.includes(filters.colorFilter)) {
+        if (filters.colorFilter && filters.colorFilter.length > 0) {
+            if (!card.colors || !card.colors.some((c) => filters.colorFilter.includes(c))) {
                 return false;
             }
         }
+              
         
         const isCostFilterChanged =
             filters.energyRange?.[0] !== 0 ||
