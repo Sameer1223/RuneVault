@@ -141,7 +141,7 @@ vite.config.ts.timestamp-*
 # =========================
 # Card Images
 # =========================
-/frontend/public/TempCards
+# /frontend/public/TempCards
 
 # =========================
 # Python / Flask (Backend)
