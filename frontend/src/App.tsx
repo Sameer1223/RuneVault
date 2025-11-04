@@ -4,6 +4,8 @@ import Decks from "./pages/Decks"
 import DeckBuilder from "./pages/DeckBuilder"
 import DeckViewer from "./pages/DeckViewer"
 import CardsPage from "./pages/CardsPage"
+import CardCollection from "./pages/CardCollection"
+import CollectionDetail from "./pages/CollectionDetail"
 import Layout from "./components/layout/Layout"
 
 function App() {
@@ -16,6 +18,8 @@ function App() {
           <Route path="/deckbuilder" element={<DeckBuilder/>} />
           <Route path="/cards" element={<CardsPage/>} />
           <Route path="/tournaments" element={<DeckViewer/>} />
+          <Route path="/collection" element={<CardCollection/>} />
+          <Route path="/collection/:setId" element={<CollectionDetail />} />
         </Route>
 
         {/* Fallback for unknown URLs */}
