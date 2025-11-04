@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 // Shared data that both components can access
@@ -110,6 +110,21 @@ export const updateCardQuantity = (setId, cardId, quantity) => {
   }
 };
 
+// Function to update foil quantity
+export const updateFoilQuantity = (setId, cardId, foilQuantity) => {
+  const set = setData[setId];
+  if (set && set.cards) {
+    const card = set.cards.find(c => c.id === cardId);
+    if (card) {
+      // Initialize foilQuantity if it doesn't exist
+      if (card.foilQuantity === undefined) {
+        card.foilQuantity = 0;
+      }
+      card.foilQuantity = Math.max(0, foilQuantity);
+    }
+  }
+};
+
 // Calculate collected counts from the actual card data
 const calculateCollectedStats = (set) => {
   if (set.stats.totalCards === "Coming Soon") {
@@ -133,6 +148,16 @@ export default function Collections() {
   const [filterBy, setFilterBy] = useState("Release Date");
   const [sortOrder, setSortOrder] = useState("asc");
   const navigate = useNavigate();
+  const [refresh, setRefresh] = useState(0); // Add refresh state for synchronization
+
+  // Force periodic refresh to sync with global state
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setRefresh(prev => prev + 1);
+    }, 1000); // Refresh every second to catch external changes
+    
+    return () => clearInterval(interval);
+  }, []);
 
   // Create sets with calculated collected counts
   const sets = Object.values(setData).map(set => ({
