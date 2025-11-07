@@ -1,84 +1,112 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import cardData from "../data/cards.json";
 
-// Shared data that both components can access
-export let setData = {
-  origins: {
-    id: "origins",
-    name: "Riftbound Origins",
-    stats: { 
-      totalCards: 310, 
-      totalLegendaries: 20, 
-      release: "October 31, 2025" 
+// Function to organize cards by set
+const organizeCardsBySet = () => {
+  const sets = {
+    origins: {
+      id: "origins",
+      name: "Riftbound Origins",
+      stats: { 
+        totalCards: 0, 
+        totalLegendaries: 0, 
+        release: "October 31, 2025" 
+      },
+      backgroundImage: "/origins.webp",
+      cards: []
     },
-    backgroundImage: "/origins.webp",
-    cards: [
-      { id: 1, name: "Ancient Dragon", rarity: "Legendary", collected: true, quantity: 1, image: "/card1.jpg" },
-      { id: 2, name: "Fire Elemental", rarity: "Rare", collected: true, quantity: 2, image: "/card2.jpg" },
-      { id: 3, name: "Water Spirit", rarity: "Common", collected: true, quantity: 3, image: "/card3.jpg" },
-      { id: 4, name: "Earth Golem", rarity: "Epic", collected: false, quantity: 0, image: "/card4.jpg" },
-      { id: 5, name: "Wind Warrior", rarity: "Common", collected: false, quantity: 0, image: "/card5.jpg" },
-      { id: 6, name: "Lightning Mage", rarity: "Rare", collected: false, quantity: 0, image: "/card6.jpg" },
-      { id: 7, name: "Forest Guardian", rarity: "Common", collected: true, quantity: 1, image: "/card17.jpg" },
-      { id: 8, name: "Mountain Giant", rarity: "Epic", collected: true, quantity: 1, image: "/card18.jpg" },
-      { id: 9, name: "Ocean Tempest", rarity: "Rare", collected: false, quantity: 0, image: "/card19.jpg" },
-      { id: 10, name: "Solar Phoenix", rarity: "Legendary", collected: false, quantity: 0, image: "/card20.jpg" },
-    ]
-  },
-  "proving-grounds": {
-    id: "proving-grounds",
-    name: "Riftbound Proving Grounds",
-    stats: { 
-      totalCards: 24, 
-      totalLegendaries: 18, 
-      release: "October 31, 2025" 
+    "proving-grounds": {
+      id: "proving-grounds",
+      name: "Riftbound Proving Grounds",
+      stats: { 
+        totalCards: 0, 
+        totalLegendaries: 0, 
+        release: "October 31, 2025" 
+      },
+      backgroundImage: "/proving-grounds.webp",
+      cards: []
     },
-    backgroundImage: "/proving-grounds.webp",
-    cards: [
-      { id: 1, name: "Arena Champion", rarity: "Legendary", collected: true, quantity: 1, image: "/card7.jpg" },
-      { id: 2, name: "Training Dummy", rarity: "Common", collected: true, quantity: 4, image: "/card8.jpg" },
-      { id: 3, name: "Weapon Master", rarity: "Rare", collected: true, quantity: 2, image: "/card9.jpg" },
-      { id: 4, name: "Battle Mage", rarity: "Epic", collected: true, quantity: 1, image: "/card10.jpg" },
-      { id: 5, name: "Swift Archer", rarity: "Common", collected: true, quantity: 3, image: "/card11.jpg" },
-      { id: 6, name: "Mighty Warrior", rarity: "Rare", collected: true, quantity: 2, image: "/card12.jpg" },
-      { id: 7, name: "Shadow Rogue", rarity: "Common", collected: true, quantity: 4, image: "/card13.jpg" },
-      { id: 8, name: "Divine Healer", rarity: "Epic", collected: true, quantity: 1, image: "/card14.jpg" },
-      { id: 9, name: "Iron Defender", rarity: "Common", collected: false, quantity: 0, image: "/card21.jpg" },
-      { id: 10, name: "Spectral Assassin", rarity: "Rare", collected: false, quantity: 0, image: "/card22.jpg" },
-    ]
-  },
-  spiritforged: {
-    id: "spiritforged",
-    name: "Riftbound Spiritforged",
-    stats: { 
-      totalCards: "Coming Soon", 
-      totalLegendaries: "Coming Soon", 
-      release: "February 2026" 
+    spiritforged: {
+      id: "spiritforged",
+      name: "Riftbound Spiritforged",
+      stats: { 
+        totalCards: "Coming Soon", 
+        totalLegendaries: "Coming Soon", 
+        release: "February 2026" 
+      },
+      backgroundImage: "/spiritforged.avif",
+      cards: []
     },
-    backgroundImage: "/spiritforged.avif",
-    cards: []
-  },
-  "new-horizons": {
-    id: "new-horizons",
-    name: "Riftbound New Horizons",
-    stats: { 
-      totalCards: 280, 
-      totalLegendaries: 15, 
-      release: "June 2026" 
-    },
-    backgroundImage: "/spiritforged.avif",
-    cards: [
-      { id: 1, name: "Cosmic Explorer", rarity: "Legendary", collected: false, quantity: 0, image: "/card15.jpg" },
-      { id: 2, name: "Stellar Knight", rarity: "Epic", collected: false, quantity: 0, image: "/card16.jpg" },
-      { id: 3, name: "Nebula Weaver", rarity: "Rare", collected: true, quantity: 1, image: "/card23.jpg" },
-      { id: 4, name: "Void Walker", rarity: "Common", collected: true, quantity: 2, image: "/card24.jpg" },
-      { id: 5, name: "Galaxy Dragon", rarity: "Legendary", collected: false, quantity: 0, image: "/card25.jpg" },
-      { id: 6, name: "Starfall Mage", rarity: "Epic", collected: true, quantity: 1, image: "/card26.jpg" },
-      { id: 7, name: "Comet Chaser", rarity: "Common", collected: false, quantity: 0, image: "/card27.jpg" },
-      { id: 8, name: "Quantum Scholar", rarity: "Rare", collected: false, quantity: 0, image: "/card28.jpg" },
-    ]
-  }
+    "new-horizons": {
+      id: "new-horizons",
+      name: "Riftbound New Horizons",
+      stats: { 
+        totalCards: 280, 
+        totalLegendaries: 15, 
+        release: "June 2026" 
+      },
+      backgroundImage: "/spiritforged.avif",
+      cards: []
+    }
+  };
+
+  // Filter cards for each set and count legendaries
+  const originsCards = cardData.filter(card => 
+    card.set === "Origins" && 
+    !card.cardId.includes('s') && // Exclude special variants
+    card.rarity !== "Alternate Art"
+  );
+  
+  const provingGroundsCards = cardData.filter(card => 
+    card.set === "Proving Grounds" && 
+    !card.cardId.includes('s') // Exclude special variants
+  );
+
+  // Count legendaries for Origins (Overnumbered rarity)
+  const originsLegendaries = originsCards.filter(card => 
+    card.rarity === "Overnumbered"
+  ).length;
+
+  // Count legendaries for Proving Grounds (assuming Overnumbered rarity)
+  const provingGroundsLegendaries = provingGroundsCards.filter(card => 
+    card.rarity === "Overnumbered"
+  ).length;
+
+  // Update sets with actual data
+  sets.origins.stats.totalCards = originsCards.length;
+  sets.origins.stats.totalLegendaries = originsLegendaries;
+  sets.origins.cards = originsCards.map(card => ({
+    id: card.cardId,
+    name: card.name,
+    rarity: card.rarity === "Overnumbered" ? "Legendary" : 
+            card.rarity === "Uncommon" ? "Rare" : card.rarity,
+    collected: false,
+    quantity: 0,
+    foilQuantity: 0,
+    image: `/TempCards/${card.cardId}.avif`,
+    cardData: card // Include full card data for detail page
+  }));
+
+  sets["proving-grounds"].stats.totalCards = provingGroundsCards.length;
+  sets["proving-grounds"].stats.totalLegendaries = provingGroundsLegendaries;
+  sets["proving-grounds"].cards = provingGroundsCards.map(card => ({
+    id: card.cardId,
+    name: card.name,
+    rarity: card.rarity === "Overnumbered" ? "Legendary" : 
+            card.rarity === "Uncommon" ? "Rare" : card.rarity,
+    collected: false,
+    quantity: 0,
+    foilQuantity: 0,
+    image: `/TempCards/${card.cardId}.avif`,
+    cardData: card
+  }));
+
+  return sets;
 };
+
+// Initialize setData with actual card data
+export let setData = organizeCardsBySet();
 
 // Function to update card collection status
 export const updateCardCollection = (setId, cardId, collected) => {
