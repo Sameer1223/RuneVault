@@ -160,10 +160,14 @@ export default function DeckBuilder() {
                         <div id="Runes-Deck" className="bg-[#1E1E1E] p-2 overflow-auto">
                             <RunesDeck runes={deck.deck_data.Runes} onRemoveCard={removeCardFromDeck}/>
                         </div>
-                        <div id="Deck-Stats" className="bg-[#1E1E1E] flex-[2] p-2"><DeckRequirements deck={deck.deck_data}/></div>
+                        <div id="Deck-Stats" className="bg-[#1E1E1E] flex-[2] p-2">
+                            <DeckRequirements deck={deck.deck_data}/>
+                        </div>
                     </div>
 
-                    <div id="Options-Panel" className="bg-[#121212] flex-[1] p-3"><OptionsPanel onSave={saveDeck} onClear={clearDeck}/></div>
+                    <div id="Options-Panel" className="bg-[#121212] flex-[1] p-3">
+                        <OptionsPanel onSave={saveDeck} onClear={clearDeck} mainDeck={deck.deck_data.Main}/>
+                    </div>
                 </div>
 
                 <div id="Search-Panel" className="flex flex-col flex-[1.3] gap-3 min-h-0">
@@ -171,7 +175,12 @@ export default function DeckBuilder() {
                         <SearchPanel onFilterChange={setFilters} selectedLegend={deck.deck_data.Legend}/>
                     </div>
                     <div id="Card-List" className="flex-[2] bg-stone-900 p-2 overflow-y-auto scroll-inside">
-                        <CardSearchPanel cards={filteredCards} onAddCard={addCardToDeck} onRemoveCard={removeCardFromDeck}/>
+                        <CardSearchPanel 
+                            cards={filteredCards} 
+                            deckCards={{...deck.deck_data.Main, ...deck.deck_data.Side}} 
+                            onAddCard={addCardToDeck} 
+                            onRemoveCard={removeCardFromDeck}
+                        />
                     </div>
                 </div>
             </div>

@@ -6,23 +6,29 @@ import OptionsPanel from "../components/deckbuilder/OptionsPanel";
 import SearchPanel from "../components/deckbuilder/SearchPanel";
 import CardSearchPanel from "../components/deckbuilder/CardSearchPanel";
 import { Button } from "../components/ui/button";
+import { useLocation } from "react-router-dom";
 
 import { useEffect, useState } from "react";
 
 export default function DeckViewer() {
-    const [deck, setDeck] = useState<any | null>(null);
+    const location = useLocation();
+    const incomingDeck = location.state?.deck;
+
+    const [deck, setDeck] = useState<DeckData | null>(null);
     const [loading, setLoading] = useState(true);
     const [hoveredCard, setHoveredCard] = useState<string | null>(null);
-    
-    // Fetch deck list
-    useEffect(() => {
-        fetch("/test_deck.json")
-            .then((res) => res.json())
-            .then((data) => setDeck(data))
-            .catch((err) => console.error("Error fetching deck data:", err))
-            .finally(() => setLoading(false));
-    }, []);
 
+    console.log("Deck Viewer - deck:", deck);
+    useEffect(() => {
+        const incomingDeck = location.state?.deck as DeckData;
+    
+        if (incomingDeck) {
+          setDeck(incomingDeck);
+        }
+        // After checking for incoming data, loading is complete
+        setLoading(false);
+      }, [location.state]);
+      
     if (loading) return <div className="text-white p-4">Loading deck...</div>;
     if (!deck) return <div className="text-white p-4">No deck data found.</div>;
 
@@ -34,10 +40,10 @@ export default function DeckViewer() {
                 <div id="Cards-Panel" className="flex flex-col flex-[3] gap-3 min-h-0">
                     <div id="Main-Deck" className="bg-[#1E1E1E] flex-[16] min-h-0 overflow-hidden">
                         <MainDeck 
-                            legend={deck.Legend} 
-                            battlefields={deck.Battlefields} 
-                            chosenChampion={deck.ChosenChampion} 
-                            main={deck.Main}
+                            legend={deck.deck_data.Legend} 
+                            battlefields={deck.deck_data.Battlefields} 
+                            chosenChampion={deck.deck_data.ChosenChampion} 
+                            main={deck.deck_data.Main}
                             onHoverCard={setHoveredCard}
                             onLeaveCard={() => {}}
                         />
@@ -45,10 +51,10 @@ export default function DeckViewer() {
 
                     <div id="Side-Deck-Stats" className="flex flex-[4] gap-3 min-h-0">
                         <div id="Side-Deck" className="bg-[#1E1E1E] p-2 overflow-auto">
-                            <SideDeck side={deck.Side} onHoverCard={setHoveredCard} onLeaveCard={() => {}}/>
+                            <SideDeck side={deck.deck_data.Side} onHoverCard={setHoveredCard} onLeaveCard={() => {}}/>
                         </div>
                         <div id="Runes-Deck" className="bg-[#1E1E1E] p-2 overflow-auto">
-                            <RunesDeck runes={deck.Runes}/>
+                            <RunesDeck runes={deck.deck_data.Runes}/>
                         </div>
                     </div>
 

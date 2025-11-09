@@ -17,7 +17,7 @@ function App() {
           <Route path="/decks" element={<Decks/>} />
           <Route path="/deckbuilder" element={<DeckBuilder/>} />
           <Route path="/cards" element={<CardsPage/>} />
-          <Route path="/tournaments" element={<DeckViewer/>} />
+          <Route path="/deckviewer" element={<DeckViewer/>} />
           <Route path="/collection" element={<CardCollection/>} />
           <Route path="/collection/:setId" element={<CollectionDetail />} />
         </Route>

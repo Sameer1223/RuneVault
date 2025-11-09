@@ -25,6 +25,12 @@
 ### Tasks
 
 1) Hackerrank colour scheme?
+2) Wishlist
+
+### Overall Code
+Refactoring
+Commenting
+Cleaning up and formatting
 
 #### Deck Component
 1) Add tags
@@ -34,6 +40,7 @@
 2) Database migration
 3) Card filtering
 4) ID, Name, Type, Energy, Power, Colour(s)
+DONE
 5) Optimize card data lookup
 
 #### Deck Viewer

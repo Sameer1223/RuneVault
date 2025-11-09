@@ -19,8 +19,16 @@ export interface CardFilters {
         if (filters.cardType && filters.cardType !== "All" && card.type !== filters.cardType)
             return false;
     
-        if (filters.rarityFilter && filters.rarityFilter !== "All" && card.rarity !== filters.rarityFilter)
-            return false;
+            if (filters.rarityFilter && filters.rarityFilter !== "All") {
+                if (filters.rarityFilter === "Alternate Art") {
+                    if (card.rarity !== "Alternate Art" && card.rarity !== "Overnumbered") {
+                        return false;
+                    }
+                }
+                else if (card.rarity !== filters.rarityFilter) {
+                    return false;
+                }
+            }            
 
         if (filters.colorFilter && filters.colorFilter.length > 0) {
             if (!card.colors || !card.colors.some((c) => filters.colorFilter.includes(c))) {

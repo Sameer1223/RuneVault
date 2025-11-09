@@ -56,6 +56,11 @@ export default function DeckDetailsPanel({ deck, onClose }: DeckDetailsPanelProp
     navigate("/deckbuilder", { state: { deck } });
   };
 
+  const handleViewDeck = () => {
+    // Navigate to deck viewer with full deck object
+    navigate("/deckviewer", { state: { deck } });
+  };
+
   const handleDeleteDeck = async () => {
     if (!deck?.id) {
       alert("This deck has not been saved yet.");
@@ -188,6 +193,14 @@ export default function DeckDetailsPanel({ deck, onClose }: DeckDetailsPanelProp
                   </div>
                 </div>
               </div>
+              <Button
+                  variant="secondary"
+                  size="sm"
+                  onClick={handleViewDeck}
+                  className="flex items-center gap-1 mt-3 w-full bg-emerald-400 hover:bg-emerald-700 text-white text-sm"
+              >
+                View
+              </Button>
             </div>
           </div>
 
