@@ -1,6 +1,7 @@
-import { useMemo } from "react";
+import { useMemo, useState } from "react";
 import { Button } from "../ui/button";
 import cardData from "../../data/cards.json";
+import ExportModal from "../common/ExportModal";
 
 interface CardData {
   id: string;
@@ -13,13 +14,13 @@ interface CardData {
 interface OptionsPanelProps {
   onSave: () => void;
   onClear?: () => void;
-  mainDeck: Record<string, number>;
+  deck: Record<string, number>;
 }
 
 export default function OptionsPanel({
   onSave,
   onClear,
-  mainDeck,
+  deck,
 }: OptionsPanelProps) {
   // 🔹 Build lookup map once
   const cardLookup = useMemo(() => {
@@ -36,7 +37,7 @@ export default function OptionsPanel({
     // track total power per color
     const colorPower: Record<string, number> = {};
 
-    for (const [id, count] of Object.entries(mainDeck)) {
+    for (const [id, count] of Object.entries(deck.Main)) {
       const card = cardLookup[id];
       if (!card) continue;
 
@@ -86,7 +87,7 @@ const betterColors = {
   }
 
     // Count 2-cost units/champions
-    const twoCostCount = Object.entries(mainDeck).reduce((acc, [id, count]) => {
+    const twoCostCount = Object.entries(deck.Main).reduce((acc, [id, count]) => {
         const card = cardLookup[id];
         if (!card) return acc;
         if (card.energy === 2 && (card.type === "Unit" || card.type === "Champion")) {
@@ -115,7 +116,6 @@ const betterColors = {
     // Compute probability for 39-card deck, 7 drawn
     const twoDropProbValue = hypergeomAtLeastOne(twoCostCount, 39, 7);
     const twoDropProb = `${(twoDropProbValue * 100).toFixed(1)}%`;
-  
 
     return [
       { label: "Avg Energy", value: avgEnergy },
@@ -123,7 +123,59 @@ const betterColors = {
       { label: "Power Breakdown", value: powerBreakdown },
       { label: "2-Drop Probability", value: twoDropProb },
     ];
-  }, [mainDeck, cardLookup]);
+  }, [deck.Main, cardLookup]);
+
+  const [exportOpen, setExportOpen] = useState(false);
+
+  const handleExport = (format: string) => {
+    let output = "";
+
+    if (format === "text") {
+      output += '1 ' + cardLookup[deck.Legend].name + '\n\n';
+      output += '1 ' + cardLookup[deck.ChosenChampion].name + '\n\n';
+      for (const [id, count] of Object.entries(deck.Main)) {
+        output += count + ' ' + cardLookup[id].name + '\n';
+      }
+      output += '\n';
+      for (const bf of deck.Battlefields || {}) {
+        output += '1 ' + cardLookup[bf].name + '\n';
+      }
+      output += '\n';
+      for (const [id, count] of Object.entries(deck.Runes || {})) {
+        output += count + ' ' +  cardLookup[id].name + '\n';
+      }
+      output += '\nSideboard:\n';
+      for (const [id, count] of Object.entries(deck.Side || {})) {
+        output += count + ' ' + cardLookup[id].name + '\n';
+      }
+    }
+
+    if (format === "tts") {
+      output += deck.Legend + '-1 ' + deck.ChosenChampion + '-1 ';
+      for (const [id, count] of Object.entries(deck.Main)) {
+        output += `${id}-1 `.repeat(count);
+      }
+      for (const [id, count] of Object.entries(deck.Side || {})) {
+        output += `${id}-1 `.repeat(count);
+      }
+      for (const bf of deck.Battlefields || {}) {
+        output += `${bf}-1 `;
+      }
+      for (const [id, count] of Object.entries(deck.Runes || {})) {
+        if (cardLookup[id].rarity === "Alternate Art") {
+          output += `${id.slice(0, -1)}-2 `.repeat(count);
+          continue;
+        }
+        output += `${id}-1 `.repeat(count);
+      }
+    }
+
+    // Copy to clipboard
+    navigator.clipboard.writeText(output);
+
+    setExportOpen(false);
+  };
+
 
   return (
     <div className="flex gap-20 items-center">
@@ -131,7 +183,7 @@ const betterColors = {
         <Button onClick={onSave}>Save</Button>
         <Button onClick={onClear}>Clear</Button>
         <Button>Import</Button>
-        <Button>Export</Button>
+        <Button onClick={() => setExportOpen(true)}>Export</Button>
       </div>
 
       <div className="flex gap-10">
@@ -142,6 +194,13 @@ const betterColors = {
           </div>
         ))}
       </div>
+
+      {/* NEW → modal */}
+      <ExportModal
+        isOpen={exportOpen}
+        onClose={() => setExportOpen(false)}
+        onSelectFormat={handleExport}
+      />
     </div>
   );
 }

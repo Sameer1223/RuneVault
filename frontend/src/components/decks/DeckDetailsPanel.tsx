@@ -16,10 +16,11 @@ interface DeckDetailsPanelProps {
     deckData?: any;
   } | null;
   onClose: () => void;
+  onDeleteClick(): () => void;
 }
 
-export default function DeckDetailsPanel({ deck, onClose }: DeckDetailsPanelProps) {
-  const navigate = useNavigate(); // ✅ ADD THIS
+export default function DeckDetailsPanel({ deck, onClose, onDeleteClick }: DeckDetailsPanelProps) {
+  const navigate = useNavigate();
 
   function getCardNames(section: Record<string, number> | string[] | undefined) {
     if (!section) return [];
@@ -61,34 +62,6 @@ export default function DeckDetailsPanel({ deck, onClose }: DeckDetailsPanelProp
     navigate("/deckviewer", { state: { deck } });
   };
 
-  const handleDeleteDeck = async () => {
-    if (!deck?.id) {
-      alert("This deck has not been saved yet.");
-      return;
-    }
-  
-    const confirmDelete = window.confirm(`Are you sure you want to delete "${deck.name}"?`);
-    if (!confirmDelete) return;
-  
-    try {
-      const res = await fetch(`http://127.0.0.1:5000/api/decks/${deck.id}`, {
-        method: "DELETE",
-      });
-  
-      if (!res.ok) {
-        const error = await res.json();
-        throw new Error(error.message || "Failed to delete deck");
-      }
-  
-      alert("Deck deleted successfully.");
-      onClose(); // close the panel
-      window.location.reload(); // optional — refresh deck list
-    } catch (error: any) {
-      console.error("Error deleting deck:", error);
-      alert(`Failed to delete deck: ${error.message}`);
-    }
-  };
-
   return (
     <AnimatePresence>
       {deck && (
@@ -121,7 +94,7 @@ export default function DeckDetailsPanel({ deck, onClose }: DeckDetailsPanelProp
                 <Button
                   variant="destructive"
                   size="sm"
-                  onClick={handleDeleteDeck}
+                  onClick={onDeleteClick}
                   className="flex items-center gap-1 bg-red-500 hover:bg-red-600 text-white text-xs"
                 >
                   <X className="w-3.5 h-3.5" />
