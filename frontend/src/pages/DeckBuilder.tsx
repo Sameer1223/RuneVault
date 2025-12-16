@@ -66,16 +66,9 @@ export default function DeckBuilder() {
   };
 
   const removeCardFromDeck = (cardId) => {
-    openModal({
-      type: "confirm",
-      title: "Remove Card?",
-      message: "Are you sure you want to remove this card?",
-      onConfirm: () => {
-        setDeck((prev) => removeCardFromDeckUtil(prev, cardId));
-        setHoveredCard((prev) => (prev === cardId ? null : prev));
-        closeModal();
-      },
-    });
+      setDeck((prev) => removeCardFromDeckUtil(prev, cardId));
+      setHoveredCard((prev) => (prev === cardId ? null : prev));
+      closeModal();
   };
 
   useEffect(() => {
