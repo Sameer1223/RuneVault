@@ -1,6 +1,18 @@
 import { useParams, useNavigate } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback, useRef } from "react";
 import { setData, updateCardQuantity, updateFoilQuantity } from "../pages/CardCollection";
+
+// Throttle function to limit how often hover events fire
+const throttle = (func, limit) => {
+  let inThrottle;
+  return function(...args) {
+    if (!inThrottle) {
+      func.apply(this, args);
+      inThrottle = true;
+      setTimeout(() => inThrottle = false, limit);
+    }
+  };
+};
 
 export default function CollectionDetail() {
   const { setId } = useParams();
@@ -9,6 +21,9 @@ export default function CollectionDetail() {
   const [rarityFilter, setRarityFilter] = useState("All");
   const [localSetData, setLocalSetData] = useState(null);
   const [refresh, setRefresh] = useState(0);
+  const [hoveredCard, setHoveredCard] = useState(null);
+  const [previewStyle, setPreviewStyle] = useState({});
+  const previewRef = useRef(null);
 
   useEffect(() => {
     // Create a deep copy of the set data to avoid mutating the original directly
@@ -30,6 +45,78 @@ export default function CollectionDetail() {
     
     return () => clearInterval(interval);
   }, []);
+
+  // Calculate optimal preview position - FIXED VERSION
+  const calculatePreviewPosition = useCallback((mouseX, mouseY) => {
+    const previewWidth = 384; // w-96 = 384px
+    const previewHeight = 536; // h-[536px]
+    const viewportWidth = window.innerWidth;
+    const viewportHeight = window.innerHeight;
+    const offset = 20; // Distance from cursor
+    
+    let left = mouseX + offset;
+    let top = mouseY;
+    
+    // Check if preview would go off the right edge
+    if (left + previewWidth > viewportWidth) {
+      left = mouseX - previewWidth - offset;
+    }
+    
+    // Check if preview would go off the left edge
+    if (left < 0) {
+      left = offset;
+    }
+    
+    // Check if preview would go off the bottom edge
+    if (top + previewHeight > viewportHeight) {
+      top = viewportHeight - previewHeight - offset;
+    }
+    
+    // Check if preview would go off the top edge
+    if (top < 0) {
+      top = offset;
+    }
+    
+    return {
+      position: 'fixed',
+      left: `${left}px`,
+      top: `${top}px`,
+      zIndex: 50,
+      pointerEvents: 'none'
+    };
+  }, []);
+
+  // Throttled hover handler with consistent positioning
+  const throttledHoverHandler = useCallback(
+    throttle((card, e) => {
+      const style = calculatePreviewPosition(e.clientX, e.clientY);
+      setHoveredCard(card);
+      setPreviewStyle(style);
+    }, 50),
+    [calculatePreviewPosition]
+  );
+
+  const handleCardHover = (card, e) => {
+    throttledHoverHandler(card, e);
+  };
+
+  const handleCardLeave = () => {
+    setHoveredCard(null);
+  };
+
+  // Handle window resize to recalculate positions
+  useEffect(() => {
+    const handleResize = () => {
+      if (hoveredCard) {
+        // Force recalculation of preview position on resize
+        const currentStyle = { ...previewStyle };
+        setPreviewStyle({ ...currentStyle });
+      }
+    };
+
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, [hoveredCard, previewStyle]);
 
   if (!localSetData) {
     return <div>Loading...</div>;
@@ -104,6 +191,21 @@ export default function CollectionDetail() {
 
   const handleBackToCollections = () => {
     navigate("/collection");
+  };
+
+  // Helper function to display card stats
+  const renderCardStats = (card) => {
+    if (!card.cardData) return null;
+    
+    const { energy, power, might, type } = card.cardData;
+    
+    return (
+      <div className="text-xs text-gray-400 mt-1">
+        {type} • {energy !== undefined ? `⚡${energy}` : ''} 
+        {power !== undefined ? ` • 🎯${power}` : ''}
+        {might !== undefined ? ` • 💪${might}` : ''}
+      </div>
+    );
   };
 
   return (
@@ -249,54 +351,24 @@ export default function CollectionDetail() {
                       : 'border-gray-600 bg-gradient-to-br from-gray-700/50 to-gray-800/50 grayscale hover:grayscale-0'
                   }`}
                 >
-                  {/* Card Image */}
+                  {/* Card Image - Clean without overlays */}
                   <div 
-                    className="aspect-[3/4] bg-cover bg-center relative" 
+                    className="aspect-[3/4] bg-cover bg-center relative"
                     style={{ backgroundImage: `url(${card.image})` }}
+                    onMouseEnter={(e) => handleCardHover(card, e)}
+                    onMouseLeave={handleCardLeave}
+                    onClick={() => handleCardClick(card.id)}
                   >
-                    <div 
-                      className="absolute inset-0 cursor-pointer"
-                      onClick={() => handleCardClick(card.id)}
-                    >
-                      <div className={`absolute inset-0 transition-all duration-300 ${!card.collected ? 'bg-black/70 hover:bg-black/50' : ''}`} />
-                      
-                      {/* Collection Status Indicator (Right side only) */}
-                      <div className={`absolute top-2 right-2 w-6 h-6 rounded-full border-2 transition-all duration-300 ${
-                        card.collected 
-                          ? 'bg-amber-400 border-amber-400' 
-                          : 'bg-transparent border-gray-400'
-                      }`}>
-                        {card.collected && (
-                          <svg className="w-4 h-4 text-white mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
-                          </svg>
-                        )}
-                      </div>
-
-                      {/* Quantity Indicator */}
-                      {card.collected && card.quantity > 0 && (
-                        <div className={`absolute top-2 left-2 text-white text-xs font-bold px-2 py-1 rounded-full ${
-                          card.quantity >= 10 ? 'bg-green-500' : 
-                          card.quantity >= 5 ? 'bg-blue-500' : 
-                          card.quantity >= 2 ? 'bg-purple-500' : 
-                          'bg-amber-500'
-                        }`}>
-                          {card.quantity > 1 ? `x${card.quantity}` : ''}
-                        </div>
-                      )}
-
-                      {/* Foil Indicator */}
-                      {card.collected && (card.rarity === "Common" || card.rarity === "Rare") && (card.foilQuantity || 0) > 0 && (
-                        <div className="absolute bottom-2 left-2 text-white text-xs font-bold px-2 py-1 rounded-full bg-cyan-500/80 backdrop-blur-sm">
-                          ✨ x{card.foilQuantity}
-                        </div>
-                      )}
-                    </div>
+                    {/* Only show the dark overlay for uncollected cards */}
+                    {!card.collected && (
+                      <div className="absolute inset-0 bg-black/70 transition-all duration-300 hover:bg-black/50" />
+                    )}
                   </div>
                   
                   {/* Card Info */}
                   <div className="p-3">
                     <h3 className="font-semibold text-sm truncate">{card.name}</h3>
+                    {renderCardStats(card)}
                     <div className="flex justify-between items-center mt-2">
                       <span className={`text-xs px-2 py-1 rounded-full ${
                         card.rarity === 'Legendary' ? 'bg-purple-500/20 text-purple-300' :
@@ -375,6 +447,23 @@ export default function CollectionDetail() {
           </>
         )}
       </div>
+
+      {/* Hover Card Preview - FIXED POSITIONING */}
+      {hoveredCard && (
+        <div 
+          ref={previewRef}
+          style={previewStyle}
+          className="transition-all duration-150"
+        >
+          <div 
+            className="w-96 h-[536px] bg-contain bg-no-repeat bg-center rounded-xl shadow-2xl border-2 border-amber-400 bg-black"
+            style={{ 
+              backgroundImage: `url(${hoveredCard.image})`,
+              aspectRatio: '3/4'
+            }}
+          />
+        </div>
+      )}
     </div>
   );
 }
