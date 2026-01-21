@@ -1,11 +1,13 @@
 from flask import Blueprint, request, jsonify
 from database.db import db
 from models.deck import Deck
+from auth.auth import require_auth
 
 decks_routes = Blueprint("decks", __name__, url_prefix="/api/decks")
 
 # Create a new deck
 @decks_routes.route("/", methods=["POST"])
+@require_auth
 def create_deck():
     data = request.get_json()
     try:
@@ -41,11 +43,17 @@ def get_deck(deck_id):
 
 # Update a deck
 @decks_routes.route("/<int:deck_id>", methods=["PUT"])
+@require_auth
 def update_deck(deck_id):
     data = request.get_json()
     deck = Deck.query.get(deck_id)
     if not deck:
         return jsonify({"error": "Deck not found."}), 404
+    
+    # Verify ownership
+    if deck.user_id != request.user.get('user_id'):
+        return jsonify({"error": "Unauthorized. You can only edit your own decks."}), 403
+    
     try:
         deck.name = data.get("name", deck.name)
         deck.format = data.get("format", deck.format)
@@ -58,10 +66,15 @@ def update_deck(deck_id):
     
 # Delete a deck
 @decks_routes.route("/<int:deck_id>", methods=["DELETE"])
+@require_auth
 def delete_deck(deck_id):
     deck = Deck.query.get(deck_id)
     if not deck:
         return jsonify({"error": "Deck not found."}), 404
+    
+    # Verify ownership
+    if deck.user_id != request.user.get('user_id'):
+        return jsonify({"error": "Unauthorized. You can only delete your own decks."}), 403
     
     try:
         db.session.delete(deck)
