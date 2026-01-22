@@ -15,7 +15,7 @@ export default function Home() {
             </h1>
 
             <div className="flex gap-5">
-                <Link to="/deckbuilder">
+                <Link to="/decks">
                     <Holo name="Deck Builder" texture="ON-Volibear.avif" className="w-64 h-64"/>
                 </Link>
                 <Link to="/cards">
