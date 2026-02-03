@@ -1,7 +1,6 @@
 from functools import wraps
 from flask import request, jsonify
-import jwt
-from jwt import PyJWTError
+from jose import jwt
 import os
 
 # Custom Exceptions

@@ -8,11 +8,16 @@
 Update Navbar
 Deck list scrollbar
 
+1) Highkey setup a trello for the project
+
 2) Deck Viewer Export and Buttons
-0) Update cards panel on home page
 3) Authorization Login Page
 4) Authorization w/ Backend
 5) Authorization with Frontend 
+6) Blind 1st / 2nd battlefield
+7) Update cards panel on home page
+8) Change bars for energy filters to inputs
+9) Set filter
 
 
 ### Overall Code
