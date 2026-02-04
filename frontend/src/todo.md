@@ -37,6 +37,7 @@ Cleaning up and formatting
 1) Deck Stats
 2) Have battlefields shown sideways
 3) Export
+4) Side board swap feature
 
 
 #### Deck Builder

@@ -6,6 +6,7 @@ import DeckDetailsPanel from "../components/decks/DeckDetailsPanel";
 import cardData from "../data/cards.json";
 import { emptyDeckTemplate } from "../data/emptyDeckTemplate";
 import ConfirmationModal from "../components/common/ConfirmationModal";
+import { useUserId } from "../hooks/useUserId";
 
 export default function Decks() {
   // const decks = [
@@ -16,8 +17,7 @@ export default function Decks() {
   //   { name: "Teemo Hidden", dateModified: "Oct 13, 2025", colors: ["#3b82f6", "#8b5cf6"], backgroundImage: "/teemo.jpg", legend: "Teemo" },
   // ];
 
-    // @TODO: Replace with real user data
-    const userId = 1;
+    const { userId, loading: userLoading } = useUserId();
     const [decks, setDecks] = useState<any[]>([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
@@ -61,6 +61,8 @@ export default function Decks() {
 
     useEffect(() => {
       const fetchDecks = async () => {
+        if (!userId) return; // Don't fetch if userId is not loaded yet
+        
         try {
           const res = await fetch(`http://127.0.0.1:5000/api/decks/user/${userId}`);
           if (!res.ok) throw new Error("Failed to fetch decks");

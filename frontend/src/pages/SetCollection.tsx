@@ -3,6 +3,7 @@ import { useMemo, useState, useEffect } from "react";
 import cards from "@/data/cards.json";
 import setData from "../data/sets.json";
 import CardTile from "@/components/collection/CardTile";
+import { useUserId } from "@/hooks/useUserId";
 
 export default function SetCollection() {
     const { setId } = useParams();
@@ -11,7 +12,7 @@ export default function SetCollection() {
     const { name, releaseDate, backgroundImage, totalCards } = setDetails;
     const navigate = useNavigate();
 
-    const userId = 1; // TODO: Get from auth context
+    const { userId, loading: userLoading } = useUserId();
 
     // fallback: if the navigation state didn't provide the set name, try to look it up
     let displayName = name;
@@ -36,6 +37,8 @@ export default function SetCollection() {
     // Fetch initial user collection
     useEffect(() => {
         const fetchCollection = async () => {
+            if (!userId) return; // Don't fetch if userId is not loaded yet
+            
             try {
                 const res = await fetch(`http://127.0.0.1:5000/api/collection/${userId}`);
                 if (res.ok) {

@@ -13,15 +13,17 @@ import { DeckData, emptyDeckTemplate } from "../data/emptyDeckTemplate";
 import { addCardToDeckUtil, removeCardFromDeckUtil, setDeckNameUtil } from "@/utils/deckBuilderUtils";
 import { filterCards } from "@/utils/filterCardsUtil";
 import ConfirmationModal from "../components/common/ConfirmationModal";
+import { useUserId } from "@/hooks/useUserId";
 
 export default function DeckBuilder() {
   const location = useLocation();
   const incomingDeck = location.state?.deck;
+  const { userId } = useUserId();
 
   const [deck, setDeck] = useState(() => {
     if (incomingDeck) return incomingDeck;
     const saved = localStorage.getItem("deckData");
-    return saved ? JSON.parse(saved) : emptyDeckTemplate;
+    return saved ? JSON.parse(saved) : { ...emptyDeckTemplate, user_id: userId };
   });
 
   const [hoveredCard, setHoveredCard] = useState(null);
@@ -145,7 +147,7 @@ export default function DeckBuilder() {
       title: "Clear Deck?",
       message: "Are you sure you want to remove all cards from your deck?",
       onConfirm: () => {
-        setDeck(emptyDeckTemplate);
+        setDeck({ ...emptyDeckTemplate, user_id: userId });
         closeModal();
       },
     });
