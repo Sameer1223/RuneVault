@@ -1,4 +1,5 @@
 import Card from "./Card";
+import cardData from "../../data/cards.json";
 
 interface SideDeckProps {
     side: Record<string, number>;
@@ -7,8 +8,19 @@ interface SideDeckProps {
     onRemoveCard?: (cardId: string) => void;
 }
 
-export default function SideDeck ({ side, onHoverCard, onLeaveCard, onRemoveCard }: MainDeckProps) {
-    const sideDeck = Object.entries(side ?? {}).flatMap(([cardId, count]) => Array(count).fill(cardId));
+function sortCardIds(cardIds: [string, number][]): [string, number][] {
+    return cardIds.sort(([a], [b]) => {
+        const cardA = cardData.find((c) => c.cardId === a);
+        const cardB = cardData.find((c) => c.cardId === b);
+        const energyA = cardA?.energy ?? 0;
+        const energyB = cardB?.energy ?? 0;
+        if (energyA !== energyB) return energyA - energyB;
+        return (cardA?.name ?? a).localeCompare(cardB?.name ?? b);
+    });
+}
+
+export default function SideDeck ({ side, onHoverCard, onLeaveCard, onRemoveCard }: SideDeckProps) {
+    const sideDeck = sortCardIds(Object.entries(side ?? {})).flatMap(([cardId, count]) => Array(count).fill(cardId));
     
     const deckLength = sideDeck.length;
     const placeholderCount = Math.max(0, 8 - deckLength);

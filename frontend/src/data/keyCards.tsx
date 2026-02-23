@@ -7,7 +7,7 @@ export const legends:string[] = cardData.filter(card => card.type === "Legend").
 export const battlefields:string[] = cardData.filter(card => card.type === "Battlefield").map(card => card.cardId);
 export const tokens:string[] = cardData.filter(card => card.type === "Token").map(card => card.cardId);
 export const runes:string[] = cardData.filter(card => card.type === "Rune").map(card => card.cardId);
-export const sigSpells:string[] = cardData.filter(card => (card.type === "Spell" || card.type === "Unit") && card.colors.length === 2).map(card => card.cardId);
+export const sigSpells:string[] = cardData.filter(card => (card.type === "Spell" || card.type === "Unit" || card.type === "Gear") && card.colors.length === 2).map(card => card.cardId);
 
 const legendNameToId: Record<string, string[]> = {};
 

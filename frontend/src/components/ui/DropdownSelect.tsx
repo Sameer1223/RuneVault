@@ -27,26 +27,26 @@ export default function DropdownSelect({
 
   const handleSelect = (value: string) => {
     setSelected(value);
-    onChange?.(value); // ✅ Call the unified prop
+    onChange?.(value); // Call the unified prop
   };
 
   return (
-    <div className="flex flex-col gap-1 w-fit">
-      <label className="text-sm font-medium text-neutral-50">{label}</label>
+    <div className="flex flex-col gap-0.5 w-fit">
+      <label className="text-xs font-medium text-neutral-50">{label}</label>
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
           <Button
             variant="outline"
-            className="flex items-center justify-between w-40 bg-zinc-900 border-zinc-700 text-gray-200 hover:bg-zinc-800"
+            className="flex items-center justify-between w-40 h-7 px-2 text-xs bg-zinc-900 border-zinc-700 text-gray-200 hover:bg-zinc-800"
           >
-            <span className="flex items-center gap-2">
-              {Icon && <Icon className="w-4 h-4 text-amber-400" />}
-              {selected}
+            <span className="flex items-center gap-1.5 truncate">
+              {Icon && <Icon className="w-3 h-3 text-amber-400 shrink-0" />}
+              <span className="truncate">{selected}</span>
             </span>
           </Button>
         </DropdownMenuTrigger>
         <DropdownMenuContent
-          className="w-40 bg-zinc-900 border border-zinc-700 text-gray-200"
+          className="w-40 bg-zinc-900 border border-zinc-700 text-gray-200 text-xs"
           align="start"
         >
           {options.map((option) => (

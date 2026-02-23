@@ -1,4 +1,10 @@
-## Project Timeline
+### New Set Procedure
+1) Scrape web data
+2) Fix errors
+3) Download images
+4) Add mapped signature spells
+5) Update chosen champions
+6) Add decks page images and update legend cover percentage
 
 
 

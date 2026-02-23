@@ -4,6 +4,7 @@ import cards from "@/data/cards.json";
 import setData from "../data/sets.json";
 import CardTile from "@/components/collection/CardTile";
 import { useUserId } from "@/hooks/useUserId";
+import { useAuthFetch } from "@/hooks/useAuthFetch";
 
 export default function SetCollection() {
     const { setId } = useParams();
@@ -13,6 +14,7 @@ export default function SetCollection() {
     const navigate = useNavigate();
 
     const { userId, loading: userLoading } = useUserId();
+    const authFetch = useAuthFetch();
 
     // fallback: if the navigation state didn't provide the set name, try to look it up
     let displayName = name;
@@ -40,7 +42,7 @@ export default function SetCollection() {
             if (!userId) return; // Don't fetch if userId is not loaded yet
             
             try {
-                const res = await fetch(`http://127.0.0.1:5000/api/collection/${userId}`);
+                const res = await authFetch(`http://127.0.0.1:5000/api/collection/${userId}`);
                 if (res.ok) {
                     const data = await res.json();
                     setUserCollection(data);
@@ -86,11 +88,8 @@ export default function SetCollection() {
 
     async function sendUpdate(cardId: string, delta: number) {
         try {
-            const res = await fetch(`http://127.0.0.1:5000/api/collection/${userId}`, {
+            const res = await authFetch(`http://127.0.0.1:5000/api/collection/${userId}`, {
                 method: "PATCH",
-                headers: {
-                    "Content-Type": "application/json"
-                },
                 body: JSON.stringify({ card_id: cardId, delta })
             });
 

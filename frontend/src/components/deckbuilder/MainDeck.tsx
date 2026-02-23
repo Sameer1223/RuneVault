@@ -1,4 +1,5 @@
 import Card from "./Card";
+import cardData from "../../data/cards.json";
 
 interface MainDeckProps {
     legend: string;
@@ -10,6 +11,17 @@ interface MainDeckProps {
     onRemoveCard?: (cardId: string) => void;
 }
 
+function sortCardIds(cardIds: [string, number][]): [string, number][] {
+    return cardIds.sort(([a], [b]) => {
+        const cardA = cardData.find((c) => c.cardId === a);
+        const cardB = cardData.find((c) => c.cardId === b);
+        const energyA = cardA?.energy ?? 0;
+        const energyB = cardB?.energy ?? 0;
+        if (energyA !== energyB) return energyA - energyB;
+        return (cardA?.name ?? a).localeCompare(cardB?.name ?? b);
+    });
+}
+
 export default function MainDeck({
     legend,
     battlefields,
@@ -19,7 +31,7 @@ export default function MainDeck({
     onLeaveCard,
     onRemoveCard,
 }: MainDeckProps) {
-    const mainDeck = Object.entries(main ?? {}).flatMap(([cardId, count]) =>
+    const mainDeck = sortCardIds(Object.entries(main ?? {})).flatMap(([cardId, count]) =>
         Array(count).fill(cardId)
     );
 

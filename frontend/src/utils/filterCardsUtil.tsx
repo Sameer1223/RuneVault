@@ -3,6 +3,7 @@ export interface CardFilters {
     selectedType?: string | null;
     rarityFilter?: string;
     cardType?: string;
+    setFilter?: string;
     energyRange?: [number, number];
     powerRange?: [number, number];
     mightRange?: [number, number];
@@ -30,8 +31,11 @@ export interface CardFilters {
                 }
             }            
 
+        if (filters.setFilter && filters.setFilter !== "All" && card.set !== filters.setFilter)
+            return false;
+
         if (filters.colorFilter && filters.colorFilter.length > 0) {
-            if (!card.colors || !card.colors.some((c) => filters.colorFilter.includes(c))) {
+            if (!card.colors || !card.colors.every((c) => filters.colorFilter.includes(c))) {
                 return false;
             }
         }

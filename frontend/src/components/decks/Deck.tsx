@@ -38,7 +38,19 @@ export default function Deck({
     annie: 25,
     masteryi: 25,
     lux: 12,
-    garen: 20
+    garen: 20,
+    irelia: 18,
+    draven: 5,
+    rumble: 12,
+    lucian: 5,
+    reksai: 45,
+    ornn: 15,
+    jax: 40,
+    azir: 16,
+    ezreal: 25,
+    renata: 6,
+    sivir: 15,
+    fiora: 15
   };
 
   return (
@@ -55,7 +67,7 @@ export default function Deck({
         style={{
           backgroundImage: backgroundImage ? `url(${backgroundImage})` : undefined,
           backgroundSize: "cover",
-          backgroundPosition: `50% ${legendCover[legend.toLowerCase().replace(/\s/g, '')] || 12}%`,
+          backgroundPosition: `50% ${legendCover[legend.toLowerCase().replace(/[^a-zA-Z]/g, '')] || 12}%`,
         }}
       >
         <div className="absolute inset-0 bg-black/40 rounded-md pointer-events-none" />

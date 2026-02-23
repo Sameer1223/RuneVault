@@ -1,11 +1,12 @@
 from flask import Blueprint, request, jsonify
 from database.db import db
 from models.user import User
-from auth.auth import require_auth
+from auth.auth import requires_auth
 
 user_routes = Blueprint("auth", __name__, url_prefix="/api/user")
 
 @user_routes.route("/sync-user", methods=["POST"])
+@requires_auth
 def sync_user():
     """
     Create or update user in database on first login.
@@ -13,32 +14,25 @@ def sync_user():
     Expects email in request body.
     """
     try:
-        data = request.get_json()
-        email = data.get("email")
-        
-        if not email:
-            return jsonify({"error": "Missing email in request"}), 400
-        
+        auth0_id = request.user["sub"]
+
         # Check if user already exists
-        existing_user = User.query.filter_by(email=email).first()
-        
+        existing_user = User.query.filter_by(auth0_id=auth0_id).first()
         if existing_user:
-            # User already exists, return their data
             return jsonify({
-                "user_id": existing_user.id,
+                "auth0_id": existing_user.auth0_id,
                 "username": existing_user.username,
-                "email": existing_user.email,
                 "is_new": False
             }), 200
-        
-        # Generate username from email
-        username = email.split("@")[0]
-        
-        # Create new user
+
+        # Generate a username from the Auth0 sub
+        # Example: google-oauth2|123456789 → google_123456789
+        provider, unique_id = auth0_id.split("|", 1)
+        username = f"{provider}_{unique_id[:8]}"
+
         new_user = User(
-            username=username,
-            email=email,
-            collection={}
+            auth0_id=auth0_id,
+            username=username
         )
         
         try:
@@ -46,9 +40,8 @@ def sync_user():
             db.session.commit()
             
             return jsonify({
-                "user_id": new_user.id,
+                "auth0_id": new_user.auth0_id,
                 "username": new_user.username,
-                "email": new_user.email,
                 "is_new": True
             }), 201
             
@@ -60,7 +53,7 @@ def sync_user():
         return jsonify({"error": f"Error syncing user: {str(e)}"}), 500
 
 @user_routes.route("/user/<int:user_id>", methods=["GET"])
-@require_auth
+@requires_auth
 def get_user(user_id):
     """Get user information"""
     user = User.query.get(user_id)

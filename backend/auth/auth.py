@@ -1,6 +1,10 @@
 from functools import wraps
+import json
+from urllib.request import urlopen
+from functools import wraps
 from flask import request, jsonify
 from jose import jwt
+from jose.exceptions import JWTError
 import os
 
 # Custom Exceptions
@@ -10,88 +14,103 @@ class AuthError(Exception):
         self.error = error
         self.status_code = status_code
 
-class InvalidTokenError(AuthError):
-    """Raised when token is invalid or expired"""
-    pass
-
-class InsufficientPermissionsError(AuthError):
-    """Raised when user lacks required permissions"""
-    pass
-
 # Auth0 Configuration
 AUTH0_DOMAIN = os.getenv('AUTH0_DOMAIN')
 AUTH0_AUDIENCE = os.getenv('AUTH0_AUDIENCE')
+ALGORITHMS = ["RS256"]
 
-def get_token_from_header():
-    """Extract JWT token from Authorization header"""
-    auth_header = request.headers.get('Authorization')
+## Auth Header
+def get_token_auth_header():
+    if 'Authorization' not in request.headers:
+       raise AuthError({
+            'code': 'invalid_header',
+            'description': 'Authorization malformed.'
+        }, 401)
     
-    if not auth_header:
-        raise AuthError({'message': 'Authorization header missing'}, 401)
-    
-    parts = auth_header.split()
-    if len(parts) != 2 or parts[0].lower() != 'bearer':
-        raise AuthError({'message': 'Invalid authorization header format'}, 401)
-    
-    return parts[1]
+    header = request.headers['Authorization']
+    headerWords = header.split()
 
-def verify_auth0_token(token):
-    """Verify and decode Auth0 JWT token"""
-    try:
-        # Get the public key from Auth0
-        from auth0.authentication import GetToken
-        from requests import get as requests_get
-        
-        jwks_url = f'https://{AUTH0_DOMAIN}/.well-known/jwks.json'
-        jwks_response = requests_get(jwks_url)
-        jwks = jwks_response.json()
-        
-        # Decode and verify token
-        payload = jwt.decode(
-            token,
-            options={"verify_signature": False}  # Will verify with key below
-        )
-        
-        # For production, properly validate against JWKS
-        unverified_header = jwt.get_unverified_header(token)
-        kid = unverified_header.get('kid')
-        
-        # Find the key in JWKS
-        key = next((key for key in jwks['keys'] if key['kid'] == kid), None)
-        if not key:
-            raise InvalidTokenError({'message': 'Unable to find signing key'}, 401)
-        
-        # Properly decode with verification
-        payload = jwt.decode(
-            token,
-            key=jwt.algorithms.RSAAlgorithm.from_jwk(key),
-            algorithms=['RS256'],
-            audience=AUTH0_AUDIENCE,
-            issuer=f'https://{AUTH0_DOMAIN}/'
-        )
-        
-        return payload
+    if len(headerWords) != 2 or headerWords[0].lower() != 'bearer':
+        raise AuthError({
+            'code': 'invalid_header',
+            'description': 'Authorization malformed.'
+        }, 401)
     
-    except PyJWTError as e:
-        raise InvalidTokenError({'message': f'Invalid token: {str(e)}'}, 401)
-    except Exception as e:
-        raise InvalidTokenError({'message': f'Token verification failed: {str(e)}'}, 401)
+    return headerWords[1]
 
-def require_auth(f):
-    """
-    Decorator to require authentication via Auth0 token in Authorization header.
-    Does not check specific permissions, only validates token.
-    """
-    @wraps(f)
-    def decorated_function(*args, **kwargs):
+def verify_decode_jwt(token):
+    # NOTE: Code from the provided Udacity authorization boilerplate
+    jsonurl = urlopen(f'https://{AUTH0_DOMAIN}/.well-known/jwks.json')
+    jwks = json.loads(jsonurl.read())
+    # GET THE DATA IN THE HEADER
+    unverified_header = jwt.get_unverified_header(token)
+    
+    # CHOOSE OUR KEY
+    rsa_key = {}
+    if 'kid' not in unverified_header:
+        raise AuthError({
+            'code': 'invalid_header',
+            'description': 'Authorization malformed.'
+        }, 401)
+
+    for key in jwks['keys']:
+        if key['kid'] == unverified_header['kid']:
+            rsa_key = {
+                'kty': key['kty'],
+                'kid': key['kid'],
+                'use': key['use'],
+                'n': key['n'],
+                'e': key['e']
+            }
+    
+    # Verify key
+    if rsa_key:
         try:
-            token = get_token_from_header()
-            payload = verify_auth0_token(token)
+            # USE THE KEY TO VALIDATE THE JWT
+            payload = jwt.decode(
+                token,
+                rsa_key,
+                algorithms=ALGORITHMS,
+                audience=AUTH0_AUDIENCE,
+                issuer='https://' + AUTH0_DOMAIN + '/'
+            )
+
+            return payload
+
+        except jwt.ExpiredSignatureError:
+            raise AuthError({
+                'code': 'token_expired',
+                'description': 'Token expired.'
+            }, 401)
+
+        except jwt.JWTClaimsError:
+            raise AuthError({
+                'code': 'invalid_claims',
+                'description': 'Incorrect claims. Please, check the audience and issuer.'
+            }, 401)
+        except Exception:
+            raise AuthError({
+                'code': 'invalid_header',
+                'description': 'Unable to parse authentication token.'
+            }, 400)
+    raise AuthError({
+                'code': 'invalid_header',
+                'description': 'Unable to find the appropriate key.'
+            }, 400)
+
+
+def requires_auth(f):
+    @wraps(f)
+    def wrapper(*args, **kwargs):
+        token = get_token_auth_header()
+        try:
+            payload = verify_decode_jwt(token)
             request.user = payload
-            
-        except AuthError as e:
-            return jsonify(e.error), e.status_code
-        
+        except:
+            raise AuthError({
+            'code': 'forbidden',
+            'description': 'Authorization failed'
+            }, 403)
         return f(*args, **kwargs)
-    
-    return decorated_function
+
+    return wrapper

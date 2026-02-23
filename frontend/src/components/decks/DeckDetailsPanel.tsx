@@ -74,7 +74,7 @@ export default function DeckDetailsPanel({ deck, onClose, onDeleteClick }: DeckD
           className="relative flex h-full"
         >
           {/* Left: Deck info panel */}
-          <div className="flex-1 h-full bg-zinc-900 border-l border-zinc-800 p-6 flex flex-col shadow-xl">
+          <div className="w-[400px] h-full bg-zinc-900 border-l border-zinc-800 p-6 flex flex-col shadow-xl">
             {/* Header */}
             <div className="flex justify-between items-center mb-6">
               <h2 className="text-lg font-semibold text-white truncate">{deck.name}</h2>
@@ -178,7 +178,7 @@ export default function DeckDetailsPanel({ deck, onClose, onDeleteClick }: DeckD
           </div>
 
           {/* Right: Deck cards panel */}
-          <div className="flex-1 h-full bg-zinc-900 border-l border-zinc-800 p-6 flex flex-col shadow-lg">
+          <div className="w-[350px] h-full bg-zinc-900 border-l border-zinc-800 p-6 flex flex-col shadow-lg">
             <div className="flex justify-between items-center mb-4">
               <h3 className="text-lg font-semibold text-white">Deck List</h3>
               <Button

@@ -14,11 +14,13 @@ import { addCardToDeckUtil, removeCardFromDeckUtil, setDeckNameUtil } from "@/ut
 import { filterCards } from "@/utils/filterCardsUtil";
 import ConfirmationModal from "../components/common/ConfirmationModal";
 import { useUserId } from "@/hooks/useUserId";
+import { useAuthFetch } from "@/hooks/useAuthFetch";
 
 export default function DeckBuilder() {
   const location = useLocation();
   const incomingDeck = location.state?.deck;
   const { userId } = useUserId();
+  const authFetch = useAuthFetch();
 
   const [deck, setDeck] = useState(() => {
     if (incomingDeck) return incomingDeck;
@@ -108,9 +110,8 @@ export default function DeckBuilder() {
 
       const deckToSave = { ...deck, lastUpdated: new Date().toISOString() };
 
-      const response = await fetch(url, {
+      const response = await authFetch(url, {
         method,
-        headers: { "Content-Type": "application/json" },
         body: JSON.stringify(deckToSave),
       });
 
@@ -213,7 +214,10 @@ export default function DeckBuilder() {
           <div id="Card-List" className="flex-[2] bg-stone-900 p-2 overflow-y-auto scroll-inside">
             <CardSearchPanel
               cards={filteredCards}
-              deckCards={{ ...deck.deck_data.Main, ...deck.deck_data.Side }}
+              deckCards={Object.entries({ ...deck.deck_data.Main, ...deck.deck_data.Side }).reduce((acc, [id, count]) => {
+                acc[id] = (deck.deck_data.Main[id] ?? 0) + (deck.deck_data.Side[id] ?? 0);
+                return acc;
+              }, {} as Record<string, number>)}
               onAddCard={addCardToDeck}
               onRemoveCard={removeCardFromDeck}
               isBattlefieldsSelected={filters.selectedType === "Battlefields"}

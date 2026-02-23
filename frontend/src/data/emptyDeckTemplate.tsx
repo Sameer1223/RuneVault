@@ -9,7 +9,7 @@ export interface DeckData {
 }
 
 export const emptyDeckTemplate = {
-    user_id: parseInt(localStorage.getItem('userId') || '0', 10), // Get from localStorage or fallback to 1
+    user_id: localStorage.getItem('userId'),
     name: "Untitled Deck",
     deck_data: {
         Legend: "",

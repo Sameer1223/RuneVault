@@ -7,6 +7,7 @@ import cardData from "../data/cards.json";
 import { emptyDeckTemplate } from "../data/emptyDeckTemplate";
 import ConfirmationModal from "../components/common/ConfirmationModal";
 import { useUserId } from "../hooks/useUserId";
+import { useAuthFetch } from "../hooks/useAuthFetch";
 
 export default function Decks() {
   // const decks = [
@@ -22,6 +23,7 @@ export default function Decks() {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
     const navigate = useNavigate();
+    const authFetch = useAuthFetch();
 
     const dateOptions = { year: 'numeric', month: 'short', day: 'numeric' };
     
@@ -37,7 +39,7 @@ export default function Decks() {
       if (!deckToDelete?.id) return;
     
       try {
-        const res = await fetch(`http://127.0.0.1:5000/api/decks/${deckToDelete.id}`, {
+        const res = await authFetch(`http://127.0.0.1:5000/api/decks/${deckToDelete.id}`, {
           method: "DELETE",
         });
     
@@ -59,24 +61,30 @@ export default function Decks() {
     
 
 
-    useEffect(() => {
-      const fetchDecks = async () => {
-        if (!userId) return; // Don't fetch if userId is not loaded yet
-        
-        try {
-          const res = await fetch(`http://127.0.0.1:5000/api/decks/user/${userId}`);
-          if (!res.ok) throw new Error("Failed to fetch decks");
-          const data = await res.json();
-          setDecks(data);
-        } catch (err: any) {
-          setError(err.message);
-        } finally {
-          setLoading(false);
-        }
-      };
-  
-      fetchDecks();
-    }, [userId]);
+  useEffect(() => {
+    if (!userId) return;
+
+    const fetchDecks = async () => {
+      try {
+        setLoading(true);
+
+        const res = await authFetch(
+          `http://127.0.0.1:5000/api/decks/user/${userId}`
+        );
+
+        if (!res.ok) throw new Error("Failed to fetch decks");
+
+        const data = await res.json();
+        setDecks(data);
+      } catch (err: any) {
+        setError(err.message);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchDecks();
+  }, [userId]);
 
   const [filters, setFilters] = useState({
     sortBy: "date" as "name" | "date",
@@ -156,7 +164,6 @@ export default function Decks() {
                 const legend = cardData.find((card) => card.cardId === deck.deck_data?.Legend);
                 const legendName = legend ? legend.name.split(',')[0] : null;
                 const imageUrl = legend ? `/Banners/${legendName.toLowerCase().replace(/[^a-zA-Z]/g, "")}.jpg` : null;
-                console.log(imageUrl);
                 return (
                   <Deck
                     key={index}

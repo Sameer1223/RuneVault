@@ -21,6 +21,7 @@ export default function SearchPanel({
     selectedType: "Legends" as string,
     rarityFilter: "All",
     cardType: "All",
+    setFilter: "All",
     energyRange: [0, 12] as [number, number],
     powerRange: [0, 4] as [number, number],
     mightRange: [0, 10] as [number, number],
@@ -31,6 +32,10 @@ export default function SearchPanel({
   const [legendColors, setLegendColors] = useState<string[]>([]);
   const [dropdownKeys, setDropdownKeys] = useState(0);
   const [sliderKeys, setSliderKeys] = useState(0);
+  const [availableSets] = useState(() => {
+    const sets = Array.from(new Set(cardData.map((card) => card.set)));
+    return ["All", ...sets.sort()] as string[];
+  });
 
   const updateFilters = useCallback(
     (updates: Partial<typeof filters>) => {
@@ -84,9 +89,9 @@ export default function SearchPanel({
       />
 
       {/* Dropdowns + Sliders */}
-      <div className="flex gap-10">
-        <div className="flex items-center gap-5">
-          <div className="flex flex-col gap-4">
+      <div className="flex gap-6">
+        <div className="flex items-center gap-2">
+          <div className="flex flex-col gap-2">
             {/* Rarity Dropdown */}
             <div className={isBattlefield ? "opacity-50 pointer-events-none" : ""}>
               <DropdownSelect
@@ -96,6 +101,18 @@ export default function SearchPanel({
                 options={["All", "Common", "Uncommon", "Rare", "Epic", "Alternate Art"]}
                 defaultValue={isBattlefield ? "Uncommon" : "All"}
                 onChange={(val) => updateFilters({ rarityFilter: val })}
+              />
+            </div>
+
+            {/* Set Dropdown */}
+            <div>
+              <DropdownSelect
+                key={`set-${dropdownKeys}`}
+                label="Set"
+                icon={Filter}
+                options={availableSets}
+                defaultValue="All"
+                onChange={(val) => updateFilters({ setFilter: val })}
               />
             </div>
 
@@ -112,7 +129,7 @@ export default function SearchPanel({
             </div>
 
             {/* Color Buttons + Reset */}
-            <div className="flex items-center justify-between w-full gap-2">
+            <div className="flex items-center justify-between w-full gap-2 mt-2">
               <div className="flex gap-2">
                 {legendColors.map((color, i) => {
                   const disabled = isBattlefield;

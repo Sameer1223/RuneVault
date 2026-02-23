@@ -3,10 +3,10 @@ import { useAuth0 } from '@auth0/auth0-react';
 
 /**
  * Custom hook to sync user with backend on Auth0 login
- * Creates/updates user in database on first login
+ * Uses Auth0 `sub` as the user identifier
  */
 export const useUserSync = () => {
-  const { isAuthenticated, user } = useAuth0();
+  const { isAuthenticated, user, getAccessTokenSilently } = useAuth0();
 
   useEffect(() => {
     const syncUser = async () => {
@@ -16,16 +16,13 @@ export const useUserSync = () => {
       }
 
       try {
-        // Get the access token from user's cache or request a new one
+        const token = await getAccessTokenSilently();
+
         const res = await fetch('http://localhost:5000/api/user/sync-user', {
           method: 'POST',
           headers: {
-            'Content-Type': 'application/json',
+            Authorization: `Bearer ${token}`,
           },
-          // Send user email as identifier - backend can verify with public Auth0 endpoint
-          body: JSON.stringify({
-            email: user.email,
-          }),
         });
 
         if (!res.ok) {
@@ -36,11 +33,11 @@ export const useUserSync = () => {
 
         const data = await res.json();
         console.log('User synced successfully:', data);
-        
-        // Store user ID in localStorage for later use
-        localStorage.setItem('userId', data.user_id.toString());
-        localStorage.setItem('userEmail', data.email);
-        
+
+        // Store Auth0 ID (sub) as the user ID
+        localStorage.setItem('userId', data.auth0_id);
+        localStorage.setItem('username', data.username);
+
         if (data.is_new) {
           console.log('New user created:', data);
         }
@@ -51,5 +48,5 @@ export const useUserSync = () => {
     };
 
     syncUser();
-  }, [isAuthenticated, user]);
+  }, [isAuthenticated, user, getAccessTokenSilently]);
 };
