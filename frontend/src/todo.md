@@ -1,50 +1,54 @@
-## Project Timeline
+### New Set Procedure
+1) Scrape web data
+2) Fix errors
+3) Download images
+4) Add mapped signature spells
+5) Update chosen champions
+6) Add decks page images and update legend cover percentage
 
-- Oct 17th - Frontend Complete
-- Oct 24th - Backend Complete
-- Oct 31st- Project Refined and Hosted
 
-
-### TODO
-1) Create test deck
-2) View test deck in deck builder
-3) Edit look of deck builder
-
-4) Fix create deck button
-5) Figure out use for empty space on right
-6) Update and polish look
-
-7) Figure out button things
-8) Start flask applicatoin
-9) Build Deck CRUD Endpoints
-
-10) Hook up endpoints
 
 
 
 ### Tasks
+Update Navbar
+Deck list scrollbar
 
-1) Hackerrank colour scheme?
+1) Highkey setup a trello for the project
+
+2) Deck Viewer Export and Buttons
+3) Authorization Login Page
+4) Authorization w/ Backend
+5) Authorization with Frontend 
+6) Blind 1st / 2nd battlefield
+7) Update cards panel on home page
+8) Change bars for energy filters to inputs
+9) Set filter
+
+
+### Overall Code
+Refactoring
+Commenting
+Cleaning up and formatting
 
 #### Deck Component
 1) Add tags
 
 #### Card Data
-1) Extract all legend card data into a json and pull values from there
-2) Database migration
-3) Card filtering
-4) ID, Name, Type, Energy, Power, Colour(s)
-5) Optimize card data lookup
+
+### Decks List
+1) Scroll Bar
 
 #### Deck Viewer
 1) Deck Stats
 2) Have battlefields shown sideways
+3) Export
+4) Side board swap feature
 
 
 #### Deck Builder
-1) Fix sizing for panels and cards especially for side deck and runes deck
-2) Deck builder utils - optimize instead of searching json everytime
-3) Responsive or no responsive?
+1) Deck builder utils - optimize instead of searching json everytime
+2) Responsive or no responsive?
 
 #### Cards
 1) Remove cards from public folder that are being used for testing
@@ -54,10 +58,9 @@
 1) Clean holo page
 2) Improve home page look
 
+### Collection 
+1) Wishlist
+
 
 ### Backend
-1) Database migrations! Probably important
-2) Frontend with backend integration figure out how it will work
-3) Card filtering probably with my own database?
-4) CRUD Operations for deck and collection with auth
-5) Sync database and collection
+1) Authorization

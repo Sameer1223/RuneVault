@@ -5,6 +5,9 @@ import DeckFilterSidebar from "../components/decks/DeckFilterSidebar";
 import DeckDetailsPanel from "../components/decks/DeckDetailsPanel";
 import cardData from "../data/cards.json";
 import { emptyDeckTemplate } from "../data/emptyDeckTemplate";
+import ConfirmationModal from "../components/common/ConfirmationModal";
+import { useUserId } from "../hooks/useUserId";
+import { useAuthFetch } from "../hooks/useAuthFetch";
 
 export default function Decks() {
   // const decks = [
@@ -15,33 +18,73 @@ export default function Decks() {
   //   { name: "Teemo Hidden", dateModified: "Oct 13, 2025", colors: ["#3b82f6", "#8b5cf6"], backgroundImage: "/teemo.jpg", legend: "Teemo" },
   // ];
 
-    // @TODO: Replace with real user data
-    const userId = 1;
+    const { userId, loading: userLoading } = useUserId();
     const [decks, setDecks] = useState<any[]>([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
     const navigate = useNavigate();
+    const authFetch = useAuthFetch();
 
     const dateOptions = { year: 'numeric', month: 'short', day: 'numeric' };
+    
+    const [deleteModalOpen, setDeleteModalOpen] = useState(false);
+    const [deckToDelete, setDeckToDelete] = useState<any>(null);
 
-    useEffect(() => {
-      const fetchDecks = async () => {
-        try {
-          const res = await fetch(`http://127.0.0.1:5000/api/decks/user/${userId}`);
-          if (!res.ok) throw new Error("Failed to fetch decks");
-          const data = await res.json();
-          setDecks(data);
-        } catch (err: any) {
-          setError(err.message);
-        } finally {
-          setLoading(false);
+    const onRequestDelete = (deck: any) => {
+      setDeckToDelete(deck);
+      setDeleteModalOpen(true);
+    };
+    
+    const confirmDelete = async () => {
+      if (!deckToDelete?.id) return;
+    
+      try {
+        const res = await authFetch(`http://127.0.0.1:5000/api/decks/${deckToDelete.id}`, {
+          method: "DELETE",
+        });
+    
+        if (!res.ok) {
+          const error = await res.json();
+          throw new Error(error.message);
         }
-      };
-  
-      fetchDecks();
-    }, [userId]);
+    
+        // close panel + modal
+        setDeleteModalOpen(false);
+        setSelectedDeck(null);
+    
+        // refresh list
+        setDecks((prev) => prev.filter((d) => d.id !== deckToDelete.id));
+      } catch (err) {
+        alert("Failed to delete deck.");
+      }
+    };
+    
 
 
+  useEffect(() => {
+    if (!userId) return;
+
+    const fetchDecks = async () => {
+      try {
+        setLoading(true);
+
+        const res = await authFetch(
+          `http://127.0.0.1:5000/api/decks/user/${userId}`
+        );
+
+        if (!res.ok) throw new Error("Failed to fetch decks");
+
+        const data = await res.json();
+        setDecks(data);
+      } catch (err: any) {
+        setError(err.message);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchDecks();
+  }, [userId]);
 
   const [filters, setFilters] = useState({
     sortBy: "date" as "name" | "date",
@@ -100,39 +143,41 @@ export default function Decks() {
             selectedDeck ? "mr-[40%]" : "mr-0"
           }`}
         >
-          <div className="flex justify-between items-center mb-2">
-            <h2 className="text-xl font-semibold">My Decks</h2>
-            <button
-              className="bg-amber-500 hover:bg-amber-600 text-white font-medium px-3 py-1.5 rounded-md text-sm transition-all duration-200 shadow"
-              onClick={() => navigate("/deckbuilder", { state: { deck: emptyDeckTemplate } })}
-            >
-              + Create Deck
-            </button>
-          </div>
+          <div className="scroll-inside flex-1 pr-2 -mr-8">
+            <div className="flex justify-between items-center mb-2">
+              <h2 className="text-xl font-semibold">My Decks</h2>
+              <button
+                className="bg-amber-500 hover:bg-amber-600 text-white font-medium px-3 py-1.5 rounded-md text-sm transition-all duration-200 shadow"
+                onClick={() => navigate("/deckbuilder", { state: { deck: emptyDeckTemplate } })}
+              >
+                + Create Deck
+              </button>
+            </div>
 
-          {/* Deck grid (2 columns until a deck is selected) */}
-          <div
-            className={`grid gap-3 transition-all duration-300 ease-in-out ${
-              selectedDeck ? "grid-cols-1" : "grid-cols-2"
-            }`}
-          >
-            {filteredDecks.map((deck, index) => {
-              const legend = cardData.find((card) => card.cardId === deck.deck_data?.Legend);
-              const legendName = legend ? legend.name.split(',')[0] : null;
-              const imageUrl = legend ? `/${legendName.toLowerCase().replace(/[^a-zA-Z]/g, "")}.jpg` : null;
-              
-              return (
-                <Deck
-                  key={index}
-                  name={deck.name}
-                  dateModified={new Date(deck.lastUpdated).toLocaleDateString('en-US', dateOptions)}
-                  colors={legend.colors ?? []}
-                  backgroundImage={imageUrl}
-                  legend={legendName}
-                  onClick={() => handleDeckClick(deck)}
-                />
-              );
-            })}
+            {/* Deck grid (2 columns until a deck is selected) */}
+            <div
+              className={`grid gap-3 transition-all duration-300 ease-in-out ${
+                selectedDeck ? "grid-cols-1" : "grid-cols-2"
+              }`}
+            >
+              {filteredDecks.map((deck, index) => {
+                const legend = cardData.find((card) => card.cardId === deck.deck_data?.Legend);
+                const legendName = legend ? legend.name.split(',')[0] : null;
+                const imageUrl = legend ? `/Banners/${legendName.toLowerCase().replace(/[^a-zA-Z]/g, "")}.jpg` : null;
+                return (
+                  <Deck
+                    key={index}
+                    name={deck.name}
+                    dateModified={new Date(deck.lastUpdated).toLocaleDateString('en-US', dateOptions)}
+                    colors={legend.colors ?? []}
+                    backgroundImage={imageUrl}
+                    legend={legendName}
+                    onClick={() => handleDeckClick(deck)}
+                    onEdit={() => navigate("/deckbuilder", { state: { deck } })}
+                  />
+                );
+              })}
+            </div>
           </div>
         </div>
 
@@ -142,9 +187,21 @@ export default function Decks() {
             selectedDeck ? "translate-x-0" : "translate-x-full"
           }`}
         >
-          <DeckDetailsPanel deck={selectedDeck} onClose={() => setSelectedDeck(null)} />
+          <DeckDetailsPanel
+            deck={selectedDeck}
+            onClose={() => setSelectedDeck(null)}
+            onDeleteClick={() => onRequestDelete(selectedDeck)}
+          />
         </div>
       </div>
+      <ConfirmationModal
+        isOpen={deleteModalOpen}
+        mode="delete"
+        message={`Are you sure you want to delete "${deckToDelete?.name}"?`}
+        onConfirm={confirmDelete}
+        onCancel={() => setDeleteModalOpen(false)}
+      />
+
     </div>
   );
 }

@@ -885,7 +885,7 @@
         "cardId": "OGN-077",
         "name": "Zhonya's Hourglass",
         "set": "Origins",
-        "type": "Spell",
+        "type": "Gear",
         "rarity": "Rare",
         "energy": 2,
         "power": 0,
@@ -3748,5 +3748,3365 @@
         "energy": 5,
         "power": 1,
         "colors": ["Orange","Yellow"]
+    },
+    {
+      "cardId": "SFD-001",
+      "name": "Against the Odds",
+      "set": "Spiritforged",
+      "type": "Spell",
+      "energy": 2,
+      "power": 0,
+      "colors": [
+        "Red"
+      ]
+    },
+    {
+      "cardId": "SFD-002",
+      "name": "Armed Assailant",
+      "set": "Spiritforged",
+      "type": "Unit",
+      "rarity": "Common",
+      "energy": 6,
+      "power": 1,
+      "might": 6,
+      "colors": [
+        "Red"
+      ]
+    },
+    {
+      "cardId": "SFD-003",
+      "name": "Blood Rush",
+      "set": "Spiritforged",
+      "type": "Spell",
+      "energy": 1,
+      "power": 0,
+      "colors": [
+        "Red"
+      ]
+    },
+    {
+      "cardId": "SFD-TO3",
+      "name": "Gold",
+      "set": "Spiritforged",
+      "type": "Token"
+    },
+    {
+      "cardId": "SFD-004",
+      "name": "Bushwhack",
+      "set": "Spiritforged",
+      "type": "Spell",
+      "energy": 2,
+      "power": 1,
+      "colors": [
+        "Red"
+      ]
+    },
+    {
+      "cardId": "SFD-005",
+      "name": "Detonate",
+      "set": "Spiritforged",
+      "type": "Spell",
+      "energy": 1,
+      "power": 1,
+      "colors": [
+        "Red"
+      ]
+    },
+    {
+      "cardId": "SFD-006",
+      "name": "Eager Drakehound",
+      "set": "Spiritforged",
+      "type": "Unit",
+      "rarity": "Common",
+      "energy": 3,
+      "power": 1,
+      "might": 3,
+      "colors": [
+        "Red"
+      ]
+    },
+    {
+      "cardId": "SFD-007",
+      "name": "Gem Jammer",
+      "set": "Spiritforged",
+      "type": "Unit",
+      "rarity": "Common",
+      "energy": 2,
+      "power": 0,
+      "might": 2,
+      "colors": [
+        "Red"
+      ]
+    },
+    {
+      "cardId": "SFD-008",
+      "name": "Sentinel Adept",
+      "set": "Spiritforged",
+      "type": "Unit",
+      "rarity": "Common",
+      "energy": 3,
+      "power": 0,
+      "might": 3,
+      "colors": [
+        "Red"
+      ]
+    },
+    {
+      "cardId": "SFD-009",
+      "name": "Serrated Dirk",
+      "set": "Spiritforged",
+      "type": "Gear",
+      "rarity": "Common",
+      "energy": 1,
+      "power": 0,
+      "colors": [
+        "Red"
+      ]
+    },
+    {
+      "cardId": "SFD-010",
+      "name": "Void Drone",
+      "set": "Spiritforged",
+      "type": "Unit",
+      "rarity": "Common",
+      "energy": 3,
+      "power": 0,
+      "might": 3,
+      "colors": [
+        "Red"
+      ]
+    },
+    {
+      "cardId": "SFD-011",
+      "name": "Angle Shot",
+      "set": "Spiritforged",
+      "type": "Spell",
+      "energy": 2,
+      "power": 0,
+      "colors": [
+        "Red"
+      ]
+    },
+    {
+      "cardId": "SFD-012",
+      "name": "Battering Ram",
+      "set": "Spiritforged",
+      "type": "Unit",
+      "rarity": "Uncommon",
+      "energy": 5,
+      "power": 0,
+      "might": 5,
+      "colors": [
+        "Red"
+      ]
+    },
+    {
+      "cardId": "SFD-013",
+      "name": "Blast Corps Cadet",
+      "set": "Spiritforged",
+      "type": "Unit",
+      "rarity": "Uncommon",
+      "energy": 2,
+      "power": 0,
+      "might": 2,
+      "colors": [
+        "Red"
+      ]
+    },
+    {
+      "cardId": "SFD-014",
+      "name": "Minotaur Reckoner",
+      "set": "Spiritforged",
+      "type": "Unit",
+      "rarity": "Uncommon",
+      "energy": 5,
+      "power": 0,
+      "might": 5,
+      "colors": [
+        "Red"
+      ]
+    },
+    {
+      "cardId": "SFD-015",
+      "name": "Perched Grimwyrm",
+      "set": "Spiritforged",
+      "type": "Unit",
+      "rarity": "Uncommon",
+      "energy": 4,
+      "power": 0,
+      "might": 5,
+      "colors": [
+        "Red"
+      ]
+    },
+    {
+      "cardId": "SFD-016",
+      "name": "Recurve Bow",
+      "set": "Spiritforged",
+      "type": "Gear",
+      "rarity": "Uncommon",
+      "energy": 2,
+      "power": 0,
+      "colors": [
+        "Red"
+      ]
+    },
+    {
+      "cardId": "SFD-017",
+      "name": "Sudden Storm",
+      "set": "Spiritforged",
+      "type": "Spell",
+      "energy": 3,
+      "power": 0,
+      "colors": [
+        "Red"
+      ]
+    },
+    {
+      "cardId": "SFD-018",
+      "name": "Void Hatchling",
+      "set": "Spiritforged",
+      "type": "Unit",
+      "rarity": "Uncommon",
+      "energy": 2,
+      "power": 0,
+      "might": 2,
+      "colors": [
+        "Red"
+      ]
+    },
+    {
+      "cardId": "SFD-019",
+      "name": "Assembly Rig",
+      "set": "Spiritforged",
+      "type": "Gear",
+      "energy": 4,
+      "power": 0,
+      "colors": [
+        "Red"
+      ]
+    },
+    {
+      "cardId": "SFD-020",
+      "name": "Draven, Vanquisher",
+      "set": "Spiritforged",
+      "type": "Champion",
+      "rarity": "Rare",
+      "energy": 4,
+      "power": 0,
+      "might": 4,
+      "colors": [
+        "Red"
+      ]
+    },
+    {
+      "cardId": "SFD-020a",
+      "name": "Draven, Vanquisher",
+      "set": "Spiritforged",
+      "type": "Champion",
+      "rarity": "Alternate Art",
+      "energy": 4,
+      "power": 0,
+      "might": 4,
+      "colors": [
+        "Red"
+      ]
+    },
+    {
+      "cardId": "SFD-021",
+      "name": "Ferrous Forerunner",
+      "set": "Spiritforged",
+      "type": "Unit",
+      "rarity": "Rare",
+      "energy": 6,
+      "power": 1,
+      "might": 6,
+      "colors": [
+        "Red"
+      ]
+    },
+    {
+      "cardId": "SFD-022",
+      "name": "Long Sword",
+      "set": "Spiritforged",
+      "type": "Gear",
+      "rarity": "Rare",
+      "energy": 2,
+      "power": 1,
+      "colors": [
+        "Red"
+      ]
+    },
+    {
+      "cardId": "SFD-023",
+      "name": "Piercing Light",
+      "set": "Spiritforged",
+      "type": "Spell",
+      "energy": 2,
+      "power": 1,
+      "colors": [
+        "Red"
+      ]
+    },
+    {
+      "cardId": "SFD-024",
+      "name": "Rell, Magnetic",
+      "set": "Spiritforged",
+      "type": "Champion",
+      "rarity": "Rare",
+      "energy": 4,
+      "power": 0,
+      "might": 4,
+      "colors": [
+        "Red"
+      ]
+    },
+    {
+      "cardId": "SFD-025",
+      "name": "Rengar, Pouncing",
+      "set": "Spiritforged",
+      "type": "Champion",
+      "rarity": "Rare",
+      "energy": 3,
+      "power": 1,
+      "might": 3,
+      "colors": [
+        "Red"
+      ]
+    },
+    {
+      "cardId": "SFD-026",
+      "name": "Rumble, Hotheaded",
+      "set": "Spiritforged",
+      "type": "Champion",
+      "rarity": "Rare",
+      "energy": 4,
+      "power": 0,
+      "might": 4,
+      "colors": [
+        "Red"
+      ]
+    },
+    {
+      "cardId": "SFD-026a",
+      "name": "Rumble, Hotheaded",
+      "set": "Spiritforged",
+      "type": "Champion",
+      "rarity": "Alternate Art",
+      "energy": 4,
+      "power": 0,
+      "might": 4,
+      "colors": [
+        "Red"
+      ]
+    },
+    {
+      "cardId": "SFD-027",
+      "name": "Dunebreaker",
+      "set": "Spiritforged",
+      "type": "Unit",
+      "rarity": "Epic",
+      "energy": 7,
+      "power": 1,
+      "might": 7,
+      "colors": [
+        "Red"
+      ]
+    },
+    {
+      "cardId": "SFD-028a",
+      "name": "Lucian, Gunslinger",
+      "set": "Spiritforged",
+      "type": "Champion",
+      "rarity": "Alternate Art",
+      "energy": 3,
+      "power": 0,
+      "might": 2,
+      "colors": [
+        "Red"
+      ]
+    },
+    {
+      "cardId": "SFD-028",
+      "name": "Lucian, Gunslinger",
+      "set": "Spiritforged",
+      "type": "Champion",
+      "rarity": "Epic",
+      "energy": 3,
+      "power": 0,
+      "might": 2,
+      "colors": [
+        "Red"
+      ]
+    },
+    {
+      "cardId": "SFD-029",
+      "name": "Rek'Sai, Breacher",
+      "set": "Spiritforged",
+      "type": "Champion",
+      "rarity": "Epic",
+      "energy": 3,
+      "power": 0,
+      "might": 3,
+      "colors": [
+        "Red"
+      ]
+    },
+    {
+      "cardId": "SFD-029a",
+      "name": "Rek'Sai, Breacher",
+      "set": "Spiritforged",
+      "type": "Champion",
+      "rarity": "Alternate Art",
+      "energy": 3,
+      "power": 0,
+      "might": 3,
+      "colors": [
+        "Red"
+      ]
+    },
+    {
+      "cardId": "SFD-030",
+      "name": "Skyfall of Areion",
+      "set": "Spiritforged",
+      "type": "Gear",
+      "rarity": "Epic",
+      "energy": 3,
+      "power": 0,
+      "colors": [
+        "Red"
+      ]
+    },
+    {
+      "cardId": "SFD-031",
+      "name": "Desert's Call",
+      "set": "Spiritforged",
+      "type": "Spell",
+      "energy": 2,
+      "power": 0,
+      "colors": [
+        "Green"
+      ]
+    },
+    {
+      "cardId": "SFD-032",
+      "name": "Disarming Rake",
+      "set": "Spiritforged",
+      "type": "Unit",
+      "rarity": "Common",
+      "energy": 3,
+      "power": 1,
+      "might": 2,
+      "colors": [
+        "Green"
+      ]
+    },
+    {
+      "cardId": "SFD-033",
+      "name": "Doran's Shield",
+      "set": "Spiritforged",
+      "type": "Gear",
+      "rarity": "Common",
+      "energy": 1,
+      "power": 0,
+      "colors": [
+        "Green"
+      ]
+    },
+    {
+      "cardId": "SFD-034",
+      "name": "Feral Strength",
+      "set": "Spiritforged",
+      "type": "Spell",
+      "energy": 2,
+      "power": 0,
+      "colors": [
+        "Green"
+      ]
+    },
+    {
+      "cardId": "SFD-035",
+      "name": "Guardian of the Passage",
+      "set": "Spiritforged",
+      "type": "Unit",
+      "rarity": "Common",
+      "energy": 6,
+      "power": 0,
+      "might": 6,
+      "colors": [
+        "Green"
+      ]
+    },
+    {
+      "cardId": "SFD-036",
+      "name": "Lonely Poro",
+      "set": "Spiritforged",
+      "type": "Unit",
+      "rarity": "Common",
+      "energy": 2,
+      "power": 0,
+      "might": 2,
+      "colors": [
+        "Green"
+      ]
+    },
+    {
+      "cardId": "SFD-037",
+      "name": "Navori Scout",
+      "set": "Spiritforged",
+      "type": "Unit",
+      "rarity": "Common",
+      "energy": 4,
+      "power": 0,
+      "might": 4,
+      "colors": [
+        "Green"
+      ]
+    },
+    {
+      "cardId": "SFD-038",
+      "name": "Ribbon Dancer",
+      "set": "Spiritforged",
+      "type": "Unit",
+      "rarity": "Common",
+      "energy": 3,
+      "power": 0,
+      "might": 3,
+      "colors": [
+        "Green"
+      ]
+    },
+    {
+      "cardId": "SFD-039",
+      "name": "Royal Entourage",
+      "set": "Spiritforged",
+      "type": "Unit",
+      "rarity": "Common",
+      "energy": 3,
+      "power": 1,
+      "might": 4,
+      "colors": [
+        "Green"
+      ]
+    },
+    {
+      "cardId": "SFD-040",
+      "name": "Thwonk!",
+      "set": "Spiritforged",
+      "type": "Spell",
+      "energy": 2,
+      "power": 0,
+      "colors": [
+        "Green"
+      ]
+    },
+    {
+      "cardId": "SFD-041",
+      "name": "Apprentice Smith",
+      "set": "Spiritforged",
+      "type": "Unit",
+      "rarity": "Uncommon",
+      "energy": 2,
+      "power": 0,
+      "might": 2,
+      "colors": [
+        "Green"
+      ]
+    },
+    {
+      "cardId": "SFD-042",
+      "name": "Brutalizer",
+      "set": "Spiritforged",
+      "type": "Gear",
+      "rarity": "Uncommon",
+      "energy": 2,
+      "power": 0,
+      "colors": [
+        "Green"
+      ]
+    },
+    {
+      "cardId": "SFD-043",
+      "name": "Emperor's Divide",
+      "set": "Spiritforged",
+      "type": "Spell",
+      "energy": 2,
+      "power": 0,
+      "colors": [
+        "Green"
+      ]
+    },
+    {
+      "cardId": "SFD-044",
+      "name": "Legion Quartermaster",
+      "set": "Spiritforged",
+      "type": "Unit",
+      "rarity": "Uncommon",
+      "energy": 3,
+      "power": 0,
+      "might": 4,
+      "colors": [
+        "Green"
+      ]
+    },
+    {
+      "cardId": "SFD-045",
+      "name": "Not So Fast",
+      "set": "Spiritforged",
+      "type": "Spell",
+      "energy": 2,
+      "power": 1,
+      "colors": [
+        "Green"
+      ]
+    },
+    {
+      "cardId": "SFD-046",
+      "name": "Poro Snax",
+      "set": "Spiritforged",
+      "type": "Gear",
+      "energy": 1,
+      "power": 1,
+      "colors": [
+        "Green"
+      ]
+    },
+    {
+      "cardId": "SFD-047",
+      "name": "Simian Ancestor",
+      "set": "Spiritforged",
+      "type": "Unit",
+      "rarity": "Uncommon",
+      "energy": 5,
+      "power": 1,
+      "might": 5,
+      "colors": [
+        "Green"
+      ]
+    },
+    {
+      "cardId": "SFD-048",
+      "name": "Stellacorn Herder",
+      "set": "Spiritforged",
+      "type": "Unit",
+      "rarity": "Uncommon",
+      "energy": 4,
+      "power": 0,
+      "might": 3,
+      "colors": [
+        "Green"
+      ]
+    },
+    {
+      "cardId": "SFD-049",
+      "name": "Aphelios, Exalted",
+      "set": "Spiritforged",
+      "type": "Champion",
+      "rarity": "Rare",
+      "energy": 4,
+      "power": 1,
+      "might": 4,
+      "colors": [
+        "Green"
+      ]
+    },
+    {
+      "cardId": "SFD-050a",
+      "name": "Azir, Ascendant",
+      "set": "Spiritforged",
+      "type": "Champion",
+      "rarity": "Alternate Art",
+      "energy": 6,
+      "power": 1,
+      "might": 6,
+      "colors": [
+        "Green"
+      ]
+    },
+    {
+      "cardId": "SFD-050",
+      "name": "Azir, Ascendant",
+      "set": "Spiritforged",
+      "type": "Champion",
+      "rarity": "Rare",
+      "energy": 6,
+      "power": 1,
+      "might": 6,
+      "colors": [
+        "Green"
+      ]
+    },
+    {
+      "cardId": "SFD-051",
+      "name": "Guardian Angel",
+      "set": "Spiritforged",
+      "type": "Gear",
+      "rarity": "Rare",
+      "energy": 2,
+      "power": 0,
+      "colors": [
+        "Green"
+      ]
+    },
+    {
+      "cardId": "SFD-052",
+      "name": "Heart of Dark Ice",
+      "set": "Spiritforged",
+      "type": "Gear",
+      "energy": 3,
+      "power": 1,
+      "colors": [
+        "Green"
+      ]
+    },
+    {
+      "cardId": "SFD-053",
+      "name": "Janna, Savior",
+      "set": "Spiritforged",
+      "type": "Champion",
+      "rarity": "Rare",
+      "energy": 3,
+      "power": 1,
+      "might": 3,
+      "colors": [
+        "Green"
+      ]
+    },
+    {
+      "cardId": "SFD-054",
+      "name": "Jax, Unmatched",
+      "set": "Spiritforged",
+      "type": "Champion",
+      "rarity": "Rare",
+      "energy": 5,
+      "power": 1,
+      "might": 5,
+      "colors": [
+        "Green"
+      ]
+    },
+    {
+      "cardId": "SFD-054a",
+      "name": "Jax, Unmatched",
+      "set": "Spiritforged",
+      "type": "Champion",
+      "rarity": "Alternate Art",
+      "energy": 5,
+      "power": 1,
+      "might": 5,
+      "colors": [
+        "Green"
+      ]
+    },
+    {
+      "cardId": "SFD-055",
+      "name": "Needlessly Large Yordle",
+      "set": "Spiritforged",
+      "type": "Unit",
+      "rarity": "Rare",
+      "energy": 10,
+      "power": 3,
+      "might": 5,
+      "colors": [
+        "Green"
+      ]
+    },
+    {
+      "cardId": "SFD-056",
+      "name": "Sterak's Gage",
+      "set": "Spiritforged",
+      "type": "Gear",
+      "rarity": "Rare",
+      "energy": 3,
+      "power": 2,
+      "colors": [
+        "Green"
+      ]
+    },
+    {
+      "cardId": "SFD-057",
+      "name": "Irelia, Fervent",
+      "set": "Spiritforged",
+      "type": "Champion",
+      "rarity": "Epic",
+      "energy": 5,
+      "power": 0,
+      "might": 4,
+      "colors": [
+        "Green"
+      ]
+    },
+    {
+      "cardId": "SFD-057a",
+      "name": "Irelia, Fervent",
+      "set": "Spiritforged",
+      "type": "Champion",
+      "rarity": "Alternate Art",
+      "energy": 5,
+      "power": 0,
+      "might": 4,
+      "colors": [
+        "Green"
+      ]
+    },
+    {
+      "cardId": "SFD-058",
+      "name": "Ornn, Blacksmith",
+      "set": "Spiritforged",
+      "type": "Champion",
+      "rarity": "Epic",
+      "energy": 5,
+      "power": 1,
+      "might": 5,
+      "colors": [
+        "Green"
+      ]
+    },
+    {
+      "cardId": "SFD-058a",
+      "name": "Ornn, Blacksmith",
+      "set": "Spiritforged",
+      "type": "Champion",
+      "rarity": "Alternate Art",
+      "energy": 5,
+      "power": 1,
+      "might": 5,
+      "colors": [
+        "Green"
+      ]
+    },
+    {
+      "cardId": "SFD-059",
+      "name": "Svellsongur",
+      "set": "Spiritforged",
+      "type": "Gear",
+      "rarity": "Epic",
+      "energy": 3,
+      "power": 1,
+      "colors": [
+        "Green"
+      ]
+    },
+    {
+      "cardId": "SFD-060",
+      "name": "Tianna Crownguard",
+      "set": "Spiritforged",
+      "type": "Unit",
+      "rarity": "Epic",
+      "energy": 7,
+      "power": 2,
+      "might": 4,
+      "colors": [
+        "Green"
+      ]
+    },
+    {
+      "cardId": "SFD-061",
+      "name": "Aspiring Engineer",
+      "set": "Spiritforged",
+      "type": "Unit",
+      "rarity": "Common",
+      "energy": 3,
+      "power": 1,
+      "might": 3,
+      "colors": [
+        "Blue"
+      ]
+    },
+    {
+      "cardId": "SFD-062",
+      "name": "Bubble Bot",
+      "set": "Spiritforged",
+      "type": "Unit",
+      "rarity": "Common",
+      "energy": 3,
+      "power": 0,
+      "might": 3,
+      "colors": [
+        "Blue"
+      ]
+    },
+    {
+      "cardId": "SFD-063",
+      "name": "Chemtech Cask",
+      "set": "Spiritforged",
+      "type": "Gear",
+      "energy": 1,
+      "power": 0,
+      "colors": [
+        "Blue"
+      ]
+    },
+    {
+      "cardId": "SFD-064",
+      "name": "Cloth Armor",
+      "set": "Spiritforged",
+      "type": "Gear",
+      "rarity": "Common",
+      "energy": 1,
+      "power": 0,
+      "colors": [
+        "Blue"
+      ]
+    },
+    {
+      "cardId": "SFD-065",
+      "name": "Forecaster",
+      "set": "Spiritforged",
+      "type": "Unit",
+      "rarity": "Common",
+      "energy": 2,
+      "power": 0,
+      "might": 2,
+      "colors": [
+        "Blue"
+      ]
+    },
+    {
+      "cardId": "SFD-066",
+      "name": "Frigid Touch",
+      "set": "Spiritforged",
+      "type": "Spell",
+      "energy": 2,
+      "power": 0,
+      "colors": [
+        "Blue"
+      ]
+    },
+    {
+      "cardId": "SFD-067",
+      "name": "Frostcoat Cub",
+      "set": "Spiritforged",
+      "type": "Unit",
+      "rarity": "Common",
+      "energy": 3,
+      "power": 0,
+      "might": 3,
+      "colors": [
+        "Blue"
+      ]
+    },
+    {
+      "cardId": "SFD-068",
+      "name": "Gearhead",
+      "set": "Spiritforged",
+      "type": "Unit",
+      "rarity": "Common",
+      "energy": 5,
+      "power": 0,
+      "might": 3,
+      "colors": [
+        "Blue"
+      ]
+    },
+    {
+      "cardId": "SFD-069",
+      "name": "Plundering Poro",
+      "set": "Spiritforged",
+      "type": "Unit",
+      "rarity": "Common",
+      "energy": 2,
+      "power": 0,
+      "might": 2,
+      "colors": [
+        "Blue"
+      ]
+    },
+    {
+      "cardId": "SFD-070",
+      "name": "Wages of Pain",
+      "set": "Spiritforged",
+      "type": "Spell",
+      "energy": 3,
+      "power": 0,
+      "colors": [
+        "Blue"
+      ]
+    },
+    {
+      "cardId": "SFD-071",
+      "name": "Breakneck Mech",
+      "set": "Spiritforged",
+      "type": "Unit",
+      "rarity": "Uncommon",
+      "energy": 8,
+      "power": 2,
+      "might": 7,
+      "colors": [
+        "Blue"
+      ]
+    },
+    {
+      "cardId": "SFD-072",
+      "name": "Dropboarder",
+      "set": "Spiritforged",
+      "type": "Unit",
+      "rarity": "Uncommon",
+      "energy": 4,
+      "power": 0,
+      "might": 4,
+      "colors": [
+        "Blue"
+      ]
+    },
+    {
+      "cardId": "SFD-073",
+      "name": "Experimental Hexplate",
+      "set": "Spiritforged",
+      "type": "Gear",
+      "rarity": "Uncommon",
+      "energy": 1,
+      "power": 0,
+      "colors": [
+        "Blue"
+      ]
+    },
+    {
+      "cardId": "SFD-074",
+      "name": "Pickpocket",
+      "set": "Spiritforged",
+      "type": "Unit",
+      "rarity": "Uncommon",
+      "energy": 3,
+      "power": 0,
+      "might": 3,
+      "colors": [
+        "Blue"
+      ]
+    },
+    {
+      "cardId": "SFD-075",
+      "name": "Prize of Progress",
+      "set": "Spiritforged",
+      "type": "Unit",
+      "rarity": "Uncommon",
+      "energy": 4,
+      "power": 1,
+      "might": 3,
+      "colors": [
+        "Blue"
+      ]
+    },
+    {
+      "cardId": "SFD-076",
+      "name": "Production Surge",
+      "set": "Spiritforged",
+      "type": "Spell",
+      "energy": 4,
+      "power": 1,
+      "colors": [
+        "Blue"
+      ]
+    },
+    {
+      "cardId": "SFD-077",
+      "name": "Rocket Barrage",
+      "set": "Spiritforged",
+      "type": "Spell",
+      "energy": 4,
+      "power": 1,
+      "colors": [
+        "Blue"
+      ]
+    },
+    {
+      "cardId": "SFD-078",
+      "name": "Temporal Portal",
+      "set": "Spiritforged",
+      "type": "Gear",
+      "energy": 3,
+      "power": 0,
+      "colors": [
+        "Blue"
+      ]
+    },
+    {
+      "cardId": "SFD-079",
+      "name": "Bard, Mercurial",
+      "set": "Spiritforged",
+      "type": "Champion",
+      "rarity": "Rare",
+      "energy": 4,
+      "power": 1,
+      "might": 4,
+      "colors": [
+        "Blue"
+      ]
+    },
+    {
+      "cardId": "SFD-080",
+      "name": "Bellows Breath",
+      "set": "Spiritforged",
+      "type": "Spell",
+      "energy": 1,
+      "power": 1,
+      "colors": [
+        "Blue"
+      ]
+    },
+    {
+      "cardId": "SFD-081",
+      "name": "Card Sharp",
+      "set": "Spiritforged",
+      "type": "Unit",
+      "rarity": "Rare",
+      "energy": 3,
+      "power": 0,
+      "might": 3,
+      "colors": [
+        "Blue"
+      ]
+    },
+    {
+      "cardId": "SFD-082a",
+      "name": "Ezreal, Dashing",
+      "set": "Spiritforged",
+      "type": "Champion",
+      "rarity": "Alternate Art",
+      "energy": 4,
+      "power": 1,
+      "might": 3,
+      "colors": [
+        "Blue"
+      ]
+    },
+    {
+      "cardId": "SFD-082",
+      "name": "Ezreal, Dashing",
+      "set": "Spiritforged",
+      "type": "Champion",
+      "rarity": "Rare",
+      "energy": 4,
+      "power": 1,
+      "might": 3,
+      "colors": [
+        "Blue"
+      ]
+    },
+    {
+      "cardId": "SFD-083",
+      "name": "Hextech Anomaly",
+      "set": "Spiritforged",
+      "type": "Gear",
+      "energy": 3,
+      "power": 1,
+      "colors": [
+        "Blue"
+      ]
+    },
+    {
+      "cardId": "SFD-084",
+      "name": "Jayce, Man of Progress",
+      "set": "Spiritforged",
+      "type": "Champion",
+      "rarity": "Rare",
+      "energy": 4,
+      "power": 0,
+      "might": 4,
+      "colors": [
+        "Blue"
+      ]
+    },
+    {
+      "cardId": "SFD-085a",
+      "name": "Ornn, Forge God",
+      "set": "Spiritforged",
+      "type": "Champion",
+      "rarity": "Alternate Art",
+      "energy": 6,
+      "power": 0,
+      "might": 4,
+      "colors": [
+        "Blue"
+      ]
+    },
+    {
+      "cardId": "SFD-085",
+      "name": "Ornn, Forge God",
+      "set": "Spiritforged",
+      "type": "Champion",
+      "rarity": "Rare",
+      "energy": 6,
+      "power": 0,
+      "might": 4,
+      "colors": [
+        "Blue"
+      ]
+    },
+    {
+      "cardId": "SFD-086",
+      "name": "World Atlas",
+      "set": "Spiritforged",
+      "type": "Gear",
+      "rarity": "Rare",
+      "energy": 3,
+      "power": 0,
+      "colors": [
+        "Blue"
+      ]
+    },
+    {
+      "cardId": "SFD-087",
+      "name": "Premonition",
+      "set": "Spiritforged",
+      "type": "Spell",
+      "energy": 2,
+      "power": 3,
+      "colors": [
+        "Blue"
+      ]
+    },
+    {
+      "cardId": "SFD-088a",
+      "name": "Renata Glasc, Mastermind",
+      "set": "Spiritforged",
+      "type": "Champion",
+      "rarity": "Alternate Art",
+      "energy": 5,
+      "power": 0,
+      "might": 4,
+      "colors": [
+        "Blue"
+      ]
+    },
+    {
+      "cardId": "SFD-088",
+      "name": "Renata Glasc, Mastermind",
+      "set": "Spiritforged",
+      "type": "Champion",
+      "rarity": "Epic",
+      "energy": 5,
+      "power": 0,
+      "might": 4,
+      "colors": [
+        "Blue"
+      ]
+    },
+    {
+      "cardId": "SFD-089",
+      "name": "Rumble, Scrapper",
+      "set": "Spiritforged",
+      "type": "Champion",
+      "rarity": "Epic",
+      "energy": 5,
+      "power": 1,
+      "might": 4,
+      "colors": [
+        "Blue"
+      ]
+    },
+    {
+      "cardId": "SFD-089a",
+      "name": "Rumble, Scrapper",
+      "set": "Spiritforged",
+      "type": "Champion",
+      "rarity": "Alternate Art",
+      "energy": 5,
+      "power": 1,
+      "might": 4,
+      "colors": [
+        "Blue"
+      ]
+    },
+    {
+      "cardId": "SFD-090",
+      "name": "The Zero Drive",
+      "set": "Spiritforged",
+      "type": "Gear",
+      "rarity": "Epic",
+      "energy": 3,
+      "power": 0,
+      "colors": [
+        "Blue"
+      ]
+    },
+    {
+      "cardId": "SFD-091",
+      "name": "Buhru Captain",
+      "set": "Spiritforged",
+      "type": "Unit",
+      "rarity": "Common",
+      "energy": 3,
+      "power": 1,
+      "might": 3,
+      "colors": [
+        "Orange"
+      ]
+    },
+    {
+      "cardId": "SFD-092",
+      "name": "Combat Chef",
+      "set": "Spiritforged",
+      "type": "Unit",
+      "rarity": "Common",
+      "energy": 5,
+      "power": 0,
+      "might": 5,
+      "colors": [
+        "Orange"
+      ]
+    },
+    {
+      "cardId": "SFD-093",
+      "name": "Dauntless Vanguard",
+      "set": "Spiritforged",
+      "type": "Unit",
+      "rarity": "Common",
+      "energy": 4,
+      "power": 1,
+      "might": 4,
+      "colors": [
+        "Orange"
+      ]
+    },
+    {
+      "cardId": "SFD-094",
+      "name": "Direwing",
+      "set": "Spiritforged",
+      "type": "Unit",
+      "rarity": "Common",
+      "energy": 7,
+      "power": 0,
+      "might": 7,
+      "colors": [
+        "Orange"
+      ]
+    },
+    {
+      "cardId": "SFD-095",
+      "name": "Doran's Blade",
+      "set": "Spiritforged",
+      "type": "Gear",
+      "rarity": "Common",
+      "energy": 2,
+      "power": 0,
+      "colors": [
+        "Orange"
+      ]
+    },
+    {
+      "cardId": "SFD-096",
+      "name": "Laurent Bladekeeper",
+      "set": "Spiritforged",
+      "type": "Unit",
+      "rarity": "Common",
+      "energy": 3,
+      "power": 0,
+      "might": 3,
+      "colors": [
+        "Orange"
+      ]
+    },
+    {
+      "cardId": "SFD-097",
+      "name": "Punch First",
+      "set": "Spiritforged",
+      "type": "Spell",
+      "energy": 1,
+      "power": 2,
+      "colors": [
+        "Orange"
+      ]
+    },
+    {
+      "cardId": "SFD-098",
+      "name": "Sea Monkey",
+      "set": "Spiritforged",
+      "type": "Unit",
+      "rarity": "Common",
+      "energy": 2,
+      "power": 0,
+      "might": 2,
+      "colors": [
+        "Orange"
+      ]
+    },
+    {
+      "cardId": "SFD-099",
+      "name": "Veteran Poro",
+      "set": "Spiritforged",
+      "type": "Unit",
+      "rarity": "Common",
+      "energy": 2,
+      "power": 0,
+      "might": 2,
+      "colors": [
+        "Orange"
+      ]
+    },
+    {
+      "cardId": "SFD-100",
+      "name": "Yordle Explorer",
+      "set": "Spiritforged",
+      "type": "Unit",
+      "rarity": "Common",
+      "energy": 4,
+      "power": 0,
+      "might": 4,
+      "colors": [
+        "Orange"
+      ]
+    },
+    {
+      "cardId": "SFD-101",
+      "name": "Fae Dragon",
+      "set": "Spiritforged",
+      "type": "Unit",
+      "rarity": "Uncommon",
+      "energy": 7,
+      "power": 1,
+      "might": 7,
+      "colors": [
+        "Orange"
+      ]
+    },
+    {
+      "cardId": "SFD-102",
+      "name": "Hexdrinker",
+      "set": "Spiritforged",
+      "type": "Gear",
+      "rarity": "Uncommon",
+      "energy": 2,
+      "power": 0,
+      "colors": [
+        "Orange"
+      ]
+    },
+    {
+      "cardId": "SFD-103",
+      "name": "Jaull-Fish",
+      "set": "Spiritforged",
+      "type": "Unit",
+      "rarity": "Uncommon",
+      "energy": 7,
+      "power": 2,
+      "might": 6,
+      "colors": [
+        "Orange"
+      ]
+    },
+    {
+      "cardId": "SFD-104",
+      "name": "Petricite Monument",
+      "set": "Spiritforged",
+      "type": "Gear",
+      "energy": 2,
+      "power": 0,
+      "colors": [
+        "Orange"
+      ]
+    },
+    {
+      "cardId": "SFD-105",
+      "name": "Ruin Runner",
+      "set": "Spiritforged",
+      "type": "Unit",
+      "rarity": "Uncommon",
+      "energy": 6,
+      "power": 0,
+      "might": 5,
+      "colors": [
+        "Orange"
+      ]
+    },
+    {
+      "cardId": "SFD-106",
+      "name": "Show of Strength",
+      "set": "Spiritforged",
+      "type": "Spell",
+      "energy": 2,
+      "power": 1,
+      "colors": [
+        "Orange"
+      ]
+    },
+    {
+      "cardId": "SFD-107",
+      "name": "Strike Down",
+      "set": "Spiritforged",
+      "type": "Spell",
+      "energy": 3,
+      "power": 1,
+      "colors": [
+        "Orange"
+      ]
+    },
+    {
+      "cardId": "SFD-108",
+      "name": "Warmog's Armor",
+      "set": "Spiritforged",
+      "type": "Gear",
+      "rarity": "Uncommon",
+      "energy": 1,
+      "power": 0,
+      "colors": [
+        "Orange"
+      ]
+    },
+    {
+      "cardId": "SFD-109",
+      "name": "Akshan, Mischievous",
+      "set": "Spiritforged",
+      "type": "Unit",
+      "rarity": "Rare",
+      "energy": 4,
+      "power": 0,
+      "might": 4,
+      "colors": [
+        "Orange"
+      ]
+    },
+    {
+      "cardId": "SFD-110a",
+      "name": "Fiora, Peerless",
+      "set": "Spiritforged",
+      "type": "Champion",
+      "rarity": "Alternate Art",
+      "energy": 3,
+      "power": 1,
+      "might": 3,
+      "colors": [
+        "Orange"
+      ]
+    },
+    {
+      "cardId": "SFD-110",
+      "name": "Fiora, Peerless",
+      "set": "Spiritforged",
+      "type": "Champion",
+      "rarity": "Rare",
+      "energy": 3,
+      "power": 1,
+      "might": 3,
+      "colors": [
+        "Orange"
+      ]
+    },
+    {
+      "cardId": "SFD-111",
+      "name": "Here to Help",
+      "set": "Spiritforged",
+      "type": "Spell",
+      "energy": 2,
+      "power": 1,
+      "colors": [
+        "Orange"
+      ]
+    },
+    {
+      "cardId": "SFD-112",
+      "name": "Kato the Arm",
+      "set": "Spiritforged",
+      "type": "Unit",
+      "rarity": "Rare",
+      "energy": 4,
+      "power": 1,
+      "might": 3,
+      "colors": [
+        "Orange"
+      ]
+    },
+    {
+      "cardId": "SFD-113",
+      "name": "Lucian, Merciless",
+      "set": "Spiritforged",
+      "type": "Champion",
+      "rarity": "Rare",
+      "energy": 3,
+      "power": 0,
+      "might": 3,
+      "colors": [
+        "Orange"
+      ]
+    },
+    {
+      "cardId": "SFD-113a",
+      "name": "Lucian, Merciless",
+      "set": "Spiritforged",
+      "type": "Champion",
+      "rarity": "Alternate Art",
+      "energy": 3,
+      "power": 0,
+      "might": 3,
+      "colors": [
+        "Orange"
+      ]
+    },
+    {
+      "cardId": "SFD-114",
+      "name": "Marching Orders",
+      "set": "Spiritforged",
+      "type": "Spell",
+      "energy": 3,
+      "power": 0,
+      "colors": [
+        "Orange"
+      ]
+    },
+    {
+      "cardId": "SFD-115",
+      "name": "Trinity Force",
+      "set": "Spiritforged",
+      "type": "Gear",
+      "rarity": "Rare",
+      "energy": 4,
+      "power": 0,
+      "colors": [
+        "Orange"
+      ]
+    },
+    {
+      "cardId": "SFD-116",
+      "name": "Yone, Blademaster",
+      "set": "Spiritforged",
+      "type": "Champion",
+      "rarity": "Rare",
+      "energy": 5,
+      "power": 1,
+      "might": 5,
+      "colors": [
+        "Orange"
+      ]
+    },
+    {
+      "cardId": "SFD-117",
+      "name": "Ancient Henge",
+      "set": "Spiritforged",
+      "type": "Gear",
+      "energy": 2,
+      "power": 1,
+      "colors": [
+        "Orange"
+      ]
+    },
+    {
+      "cardId": "SFD-118",
+      "name": "Boneshiver",
+      "set": "Spiritforged",
+      "type": "Gear",
+      "rarity": "Epic",
+      "energy": 3,
+      "power": 0,
+      "colors": [
+        "Orange"
+      ]
+    },
+    {
+      "cardId": "SFD-119",
+      "name": "Jax, Unrelenting",
+      "set": "Spiritforged",
+      "type": "Champion",
+      "rarity": "Epic",
+      "energy": 4,
+      "power": 1,
+      "might": 3,
+      "colors": [
+        "Orange"
+      ]
+    },
+    {
+      "cardId": "SFD-119a",
+      "name": "Jax, Unrelenting",
+      "set": "Spiritforged",
+      "type": "Champion",
+      "rarity": "Alternate Art",
+      "energy": 4,
+      "power": 1,
+      "might": 3,
+      "colors": [
+        "Orange"
+      ]
+    },
+    {
+      "cardId": "SFD-120",
+      "name": "Sivir, Ambitious",
+      "set": "Spiritforged",
+      "type": "Champion",
+      "rarity": "Epic",
+      "energy": 6,
+      "power": 3,
+      "might": 7,
+      "colors": [
+        "Orange"
+      ]
+    },
+    {
+      "cardId": "SFD-120a",
+      "name": "Sivir, Ambitious",
+      "set": "Spiritforged",
+      "type": "Champion",
+      "rarity": "Alternate Art",
+      "energy": 6,
+      "power": 3,
+      "might": 7,
+      "colors": [
+        "Orange"
+      ]
+    },
+    {
+      "cardId": "SFD-121",
+      "name": "Black Market Broker",
+      "set": "Spiritforged",
+      "type": "Unit",
+      "rarity": "Common",
+      "energy": 3,
+      "power": 0,
+      "might": 3,
+      "colors": [
+        "Purple"
+      ]
+    },
+    {
+      "cardId": "SFD-122",
+      "name": "Called Shot",
+      "set": "Spiritforged",
+      "type": "Spell",
+      "energy": 0,
+      "power": 1,
+      "colors": [
+        "Purple"
+      ]
+    },
+    {
+      "cardId": "SFD-123",
+      "name": "Corrupt Enforcer",
+      "set": "Spiritforged",
+      "type": "Unit",
+      "rarity": "Common",
+      "energy": 3,
+      "power": 1,
+      "might": 4,
+      "colors": [
+        "Purple"
+      ]
+    },
+    {
+      "cardId": "SFD-124",
+      "name": "Doran's Ring",
+      "set": "Spiritforged",
+      "type": "Gear",
+      "rarity": "Common",
+      "energy": 1,
+      "power": 0,
+      "colors": [
+        "Purple"
+      ]
+    },
+    {
+      "cardId": "SFD-125",
+      "name": "Fae Porter",
+      "set": "Spiritforged",
+      "type": "Unit",
+      "rarity": "Common",
+      "energy": 4,
+      "power": 0,
+      "might": 4,
+      "colors": [
+        "Purple"
+      ]
+    },
+    {
+      "cardId": "SFD-126",
+      "name": "Loyal Pup",
+      "set": "Spiritforged",
+      "type": "Unit",
+      "rarity": "Common",
+      "energy": 3,
+      "power": 0,
+      "might": 3,
+      "colors": [
+        "Purple"
+      ]
+    },
+    {
+      "cardId": "SFD-127",
+      "name": "Master Bingwen",
+      "set": "Spiritforged",
+      "type": "Unit",
+      "rarity": "Common",
+      "energy": 6,
+      "power": 0,
+      "might": 6,
+      "colors": [
+        "Purple"
+      ]
+    },
+    {
+      "cardId": "SFD-128",
+      "name": "Overzealous Fan",
+      "set": "Spiritforged",
+      "type": "Unit",
+      "rarity": "Common",
+      "energy": 2,
+      "power": 0,
+      "might": 2,
+      "colors": [
+        "Purple"
+      ]
+    },
+    {
+      "cardId": "SFD-129",
+      "name": "Temptation",
+      "set": "Spiritforged",
+      "type": "Spell",
+      "energy": 2,
+      "power": 0,
+      "colors": [
+        "Purple"
+      ]
+    },
+    {
+      "cardId": "SFD-130",
+      "name": "Treasure Hunter",
+      "set": "Spiritforged",
+      "type": "Unit",
+      "rarity": "Common",
+      "energy": 2,
+      "power": 0,
+      "might": 1,
+      "colors": [
+        "Purple"
+      ]
+    },
+    {
+      "cardId": "SFD-131",
+      "name": "Ancient Warmonger",
+      "set": "Spiritforged",
+      "type": "Unit",
+      "rarity": "Uncommon",
+      "energy": 5,
+      "power": 0,
+      "might": 4,
+      "colors": [
+        "Purple"
+      ]
+    },
+    {
+      "cardId": "SFD-132",
+      "name": "Beast Below",
+      "set": "Spiritforged",
+      "type": "Unit",
+      "rarity": "Uncommon",
+      "energy": 7,
+      "power": 2,
+      "might": 8,
+      "colors": [
+        "Purple"
+      ]
+    },
+    {
+      "cardId": "SFD-133",
+      "name": "Boots of Swiftness",
+      "set": "Spiritforged",
+      "type": "Gear",
+      "rarity": "Uncommon",
+      "energy": 3,
+      "power": 0,
+      "colors": [
+        "Purple"
+      ]
+    },
+    {
+      "cardId": "SFD-134",
+      "name": "Cull",
+      "set": "Spiritforged",
+      "type": "Gear",
+      "rarity": "Uncommon",
+      "energy": 1,
+      "power": 0,
+      "colors": [
+        "Purple"
+      ]
+    },
+    {
+      "cardId": "SFD-135",
+      "name": "Factory Recall",
+      "set": "Spiritforged",
+      "type": "Spell",
+      "energy": 1,
+      "power": 0,
+      "colors": [
+        "Purple"
+      ]
+    },
+    {
+      "cardId": "SFD-136",
+      "name": "Hard Bargain",
+      "set": "Spiritforged",
+      "type": "Spell",
+      "energy": 2,
+      "power": 0,
+      "colors": [
+        "Purple"
+      ]
+    },
+    {
+      "cardId": "SFD-137",
+      "name": "Harpoon Squad",
+      "set": "Spiritforged",
+      "type": "Unit",
+      "rarity": "Uncommon",
+      "energy": 4,
+      "power": 0,
+      "might": 4,
+      "colors": [
+        "Purple"
+      ]
+    },
+    {
+      "cardId": "SFD-138",
+      "name": "Windsinger",
+      "set": "Spiritforged",
+      "type": "Unit",
+      "rarity": "Uncommon",
+      "energy": 2,
+      "power": 0,
+      "might": 1,
+      "colors": [
+        "Purple"
+      ]
+    },
+    {
+      "cardId": "SFD-139",
+      "name": "Edge of Night",
+      "set": "Spiritforged",
+      "type": "Gear",
+      "rarity": "Rare",
+      "energy": 3,
+      "power": 0,
+      "colors": [
+        "Purple"
+      ]
+    },
+    {
+      "cardId": "SFD-140",
+      "name": "Fizz, Trickster",
+      "set": "Spiritforged",
+      "type": "Champion",
+      "rarity": "Rare",
+      "energy": 3,
+      "power": 1,
+      "might": 3,
+      "colors": [
+        "Purple"
+      ]
+    },
+    {
+      "cardId": "SFD-141a",
+      "name": "Irelia, Graceful",
+      "set": "Spiritforged",
+      "type": "Champion",
+      "rarity": "Alternate Art",
+      "energy": 4,
+      "power": 1,
+      "might": 4,
+      "colors": [
+        "Purple"
+      ]
+    },
+    {
+      "cardId": "SFD-141",
+      "name": "Irelia, Graceful",
+      "set": "Spiritforged",
+      "type": "Champion",
+      "rarity": "Rare",
+      "energy": 4,
+      "power": 1,
+      "might": 4,
+      "colors": [
+        "Purple"
+      ]
+    },
+    {
+      "cardId": "SFD-142",
+      "name": "Jae Medarda",
+      "set": "Spiritforged",
+      "type": "Unit",
+      "rarity": "Rare",
+      "energy": 5,
+      "power": 2,
+      "might": 5,
+      "colors": [
+        "Purple"
+      ]
+    },
+    {
+      "cardId": "SFD-143",
+      "name": "Sivir, Mercenary",
+      "set": "Spiritforged",
+      "type": "Champion",
+      "rarity": "Rare",
+      "energy": 4,
+      "power": 1,
+      "might": 4,
+      "colors": [
+        "Purple"
+      ]
+    },
+    {
+      "cardId": "SFD-143a",
+      "name": "Sivir, Mercenary",
+      "set": "Spiritforged",
+      "type": "Champion",
+      "rarity": "Alternate Art",
+      "energy": 4,
+      "power": 1,
+      "might": 4,
+      "colors": [
+        "Purple"
+      ]
+    },
+    {
+      "cardId": "SFD-144",
+      "name": "Spirit Wheel",
+      "set": "Spiritforged",
+      "type": "Gear",
+      "energy": 2,
+      "power": 0,
+      "colors": [
+        "Purple"
+      ]
+    },
+    {
+      "cardId": "SFD-145",
+      "name": "Switcheroo",
+      "set": "Spiritforged",
+      "type": "Spell",
+      "energy": 2,
+      "power": 2,
+      "colors": [
+        "Purple"
+      ]
+    },
+    {
+      "cardId": "SFD-146",
+      "name": "Vex, Cheerless",
+      "set": "Spiritforged",
+      "type": "Champion",
+      "rarity": "Rare",
+      "energy": 5,
+      "power": 1,
+      "might": 5,
+      "colors": [
+        "Purple"
+      ]
+    },
+    {
+      "cardId": "SFD-147",
+      "name": "Downwell",
+      "set": "Spiritforged",
+      "type": "Spell",
+      "energy": 8,
+      "power": 2,
+      "colors": [
+        "Purple"
+      ]
+    },
+    {
+      "cardId": "SFD-148",
+      "name": "Draven, Audacious",
+      "set": "Spiritforged",
+      "type": "Champion",
+      "rarity": "Epic",
+      "energy": 6,
+      "power": 1,
+      "might": 6,
+      "colors": [
+        "Purple"
+      ]
+    },
+    {
+      "cardId": "SFD-148a",
+      "name": "Draven, Audacious",
+      "set": "Spiritforged",
+      "type": "Champion",
+      "rarity": "Alternate Art",
+      "energy": 6,
+      "power": 1,
+      "might": 6,
+      "colors": [
+        "Purple"
+      ]
+    },
+    {
+      "cardId": "SFD-149a",
+      "name": "Ezreal, Prodigy",
+      "set": "Spiritforged",
+      "type": "Champion",
+      "rarity": "Alternate Art",
+      "energy": 3,
+      "power": 1,
+      "might": 3,
+      "colors": [
+        "Purple"
+      ]
+    },
+    {
+      "cardId": "SFD-149",
+      "name": "Ezreal, Prodigy",
+      "set": "Spiritforged",
+      "type": "Champion",
+      "rarity": "Epic",
+      "energy": 3,
+      "power": 1,
+      "might": 3,
+      "colors": [
+        "Purple"
+      ]
+    },
+    {
+      "cardId": "SFD-150",
+      "name": "Last Rites",
+      "set": "Spiritforged",
+      "type": "Gear",
+      "rarity": "Epic",
+      "energy": 3,
+      "power": 0,
+      "colors": [
+        "Purple"
+      ]
+    },
+    {
+      "cardId": "SFD-151",
+      "name": "Bonds of Strength",
+      "set": "Spiritforged",
+      "type": "Spell",
+      "energy": 2,
+      "power": 0,
+      "colors": [
+        "Yellow"
+      ]
+    },
+    {
+      "cardId": "SFD-152",
+      "name": "Eminent Benefactor",
+      "set": "Spiritforged",
+      "type": "Unit",
+      "rarity": "Common",
+      "energy": 6,
+      "power": 0,
+      "might": 5,
+      "colors": [
+        "Yellow"
+      ]
+    },
+    {
+      "cardId": "SFD-153",
+      "name": "Eye of the Herald",
+      "set": "Spiritforged",
+      "type": "Gear",
+      "rarity": "Common",
+      "energy": 1,
+      "power": 0,
+      "colors": [
+        "Yellow"
+      ]
+    },
+    {
+      "cardId": "SFD-154",
+      "name": "Guards!",
+      "set": "Spiritforged",
+      "type": "Spell",
+      "energy": 3,
+      "power": 0,
+      "colors": [
+        "Yellow"
+      ]
+    },
+    {
+      "cardId": "SFD-155",
+      "name": "Honest Broker",
+      "set": "Spiritforged",
+      "type": "Unit",
+      "rarity": "Common",
+      "energy": 2,
+      "power": 0,
+      "might": 2,
+      "colors": [
+        "Yellow"
+      ]
+    },
+    {
+      "cardId": "SFD-156",
+      "name": "Laurent Duelist",
+      "set": "Spiritforged",
+      "type": "Unit",
+      "rarity": "Common",
+      "energy": 4,
+      "power": 0,
+      "might": 3,
+      "colors": [
+        "Yellow"
+      ]
+    },
+    {
+      "cardId": "SFD-157",
+      "name": "Royal Guard",
+      "set": "Spiritforged",
+      "type": "Unit",
+      "rarity": "Common",
+      "energy": 4,
+      "power": 0,
+      "might": 2,
+      "colors": [
+        "Yellow"
+      ]
+    },
+    {
+      "cardId": "SFD-158",
+      "name": "Sandshifter",
+      "set": "Spiritforged",
+      "type": "Unit",
+      "rarity": "Common",
+      "energy": 5,
+      "power": 2,
+      "might": 6,
+      "colors": [
+        "Yellow"
+      ]
+    },
+    {
+      "cardId": "SFD-159",
+      "name": "Trusty Ramhound",
+      "set": "Spiritforged",
+      "type": "Unit",
+      "rarity": "Common",
+      "energy": 2,
+      "power": 0,
+      "might": 2,
+      "colors": [
+        "Yellow"
+      ]
+    },
+    {
+      "cardId": "SFD-160",
+      "name": "Zaun Punk",
+      "set": "Spiritforged",
+      "type": "Unit",
+      "rarity": "Common",
+      "energy": 3,
+      "power": 0,
+      "might": 3,
+      "colors": [
+        "Yellow"
+      ]
+    },
+    {
+      "cardId": "SFD-161",
+      "name": "B.F. Sword",
+      "set": "Spiritforged",
+      "type": "Gear",
+      "rarity": "Uncommon",
+      "energy": 4,
+      "power": 0,
+      "colors": [
+        "Yellow"
+      ]
+    },
+    {
+      "cardId": "SFD-162",
+      "name": "Blood Money",
+      "set": "Spiritforged",
+      "type": "Spell",
+      "energy": 2,
+      "power": 0,
+      "colors": [
+        "Yellow"
+      ]
+    },
+    {
+      "cardId": "SFD-163",
+      "name": "Deathgrip",
+      "set": "Spiritforged",
+      "type": "Spell",
+      "energy": 2,
+      "power": 0,
+      "colors": [
+        "Yellow"
+      ]
+    },
+    {
+      "cardId": "SFD-164",
+      "name": "Drag Under",
+      "set": "Spiritforged",
+      "type": "Spell",
+      "energy": 5,
+      "power": 1,
+      "colors": [
+        "Yellow"
+      ]
+    },
+    {
+      "cardId": "SFD-165",
+      "name": "Glasc Mixologist",
+      "set": "Spiritforged",
+      "type": "Unit",
+      "rarity": "Uncommon",
+      "energy": 5,
+      "power": 1,
+      "might": 5,
+      "colors": [
+        "Yellow"
+      ]
+    },
+    {
+      "cardId": "SFD-166",
+      "name": "Rally the Troops",
+      "set": "Spiritforged",
+      "type": "Spell",
+      "energy": 2,
+      "power": 0,
+      "colors": [
+        "Yellow"
+      ]
+    },
+    {
+      "cardId": "SFD-167",
+      "name": "Unsung Hero",
+      "set": "Spiritforged",
+      "type": "Unit",
+      "rarity": "Uncommon",
+      "energy": 2,
+      "power": 0,
+      "might": 2,
+      "colors": [
+        "Yellow"
+      ]
+    },
+    {
+      "cardId": "SFD-168",
+      "name": "Vanguard Armory",
+      "set": "Spiritforged",
+      "type": "Gear",
+      "energy": 7,
+      "power": 1,
+      "colors": [
+        "Yellow"
+      ]
+    },
+    {
+      "cardId": "SFD-169",
+      "name": "Altar of Memories",
+      "set": "Spiritforged",
+      "type": "Gear",
+      "energy": 2,
+      "power": 0,
+      "colors": [
+        "Yellow"
+      ]
+    },
+    {
+      "cardId": "SFD-170a",
+      "name": "Rek'Sai, Swarm Queen",
+      "set": "Spiritforged",
+      "type": "Champion",
+      "rarity": "Alternate Art",
+      "energy": 5,
+      "power": 1,
+      "might": 5,
+      "colors": [
+        "Yellow"
+      ]
+    },
+    {
+      "cardId": "SFD-170",
+      "name": "Rek'Sai, Swarm Queen",
+      "set": "Spiritforged",
+      "type": "Champion",
+      "rarity": "Rare",
+      "energy": 5,
+      "power": 1,
+      "might": 5,
+      "colors": [
+        "Yellow"
+      ]
+    },
+    {
+      "cardId": "SFD-171a",
+      "name": "Renata Glasc, Industrialist",
+      "set": "Spiritforged",
+      "type": "Unit",
+      "rarity": "Alternate Art",
+      "energy": 4,
+      "power": 1,
+      "might": 4,
+      "colors": [
+        "Yellow"
+      ]
+    },
+    {
+      "cardId": "SFD-171",
+      "name": "Renata Glasc, Industrialist",
+      "set": "Spiritforged",
+      "type": "Unit",
+      "rarity": "Rare",
+      "energy": 4,
+      "power": 1,
+      "might": 4,
+      "colors": [
+        "Yellow"
+      ]
+    },
+    {
+      "cardId": "SFD-172",
+      "name": "Sacred Shears",
+      "set": "Spiritforged",
+      "type": "Gear",
+      "rarity": "Rare",
+      "energy": 2,
+      "power": 1,
+      "colors": [
+        "Yellow"
+      ]
+    },
+    {
+      "cardId": "SFD-173",
+      "name": "Soraka, Wanderer",
+      "set": "Spiritforged",
+      "type": "Champion",
+      "rarity": "Rare",
+      "energy": 4,
+      "power": 1,
+      "might": 4,
+      "colors": [
+        "Yellow"
+      ]
+    },
+    {
+      "cardId": "SFD-174",
+      "name": "Trove Golem",
+      "set": "Spiritforged",
+      "type": "Unit",
+      "rarity": "Rare",
+      "energy": 8,
+      "power": 2,
+      "might": 9,
+      "colors": [
+        "Yellow"
+      ]
+    },
+    {
+      "cardId": "SFD-175",
+      "name": "Undertitan",
+      "set": "Spiritforged",
+      "type": "Unit",
+      "rarity": "Rare",
+      "energy": 6,
+      "power": 1,
+      "might": 5,
+      "colors": [
+        "Yellow"
+      ]
+    },
+    {
+      "cardId": "SFD-176",
+      "name": "Xin Zhao, Vigilant",
+      "set": "Spiritforged",
+      "type": "Champion",
+      "rarity": "Rare",
+      "energy": 3,
+      "power": 1,
+      "might": 4,
+      "colors": [
+        "Yellow"
+      ]
+    },
+    {
+      "cardId": "SFD-177a",
+      "name": "Azir, Sovereign",
+      "set": "Spiritforged",
+      "type": "Champion",
+      "rarity": "Alternate Art",
+      "energy": 4,
+      "power": 0,
+      "might": 4,
+      "colors": [
+        "Yellow"
+      ]
+    },
+    {
+      "cardId": "SFD-177",
+      "name": "Azir, Sovereign",
+      "set": "Spiritforged",
+      "type": "Champion",
+      "rarity": "Epic",
+      "energy": 4,
+      "power": 0,
+      "might": 4,
+      "colors": [
+        "Yellow"
+      ]
+    },
+    {
+      "cardId": "SFD-178",
+      "name": "Blade of the Ruined King",
+      "set": "Spiritforged",
+      "type": "Gear",
+      "rarity": "Epic",
+      "energy": 3,
+      "power": 1,
+      "colors": [
+        "Yellow"
+      ]
+    },
+    {
+      "cardId": "SFD-179",
+      "name": "Corina Veraza",
+      "set": "Spiritforged",
+      "type": "Unit",
+      "rarity": "Epic",
+      "energy": 7,
+      "power": 1,
+      "might": 6,
+      "colors": [
+        "Yellow"
+      ]
+    },
+    {
+      "cardId": "SFD-180a",
+      "name": "Fiora, Worthy",
+      "set": "Spiritforged",
+      "type": "Champion",
+      "rarity": "Alternate Art",
+      "energy": 3,
+      "power": 0,
+      "might": 3,
+      "colors": [
+        "Yellow"
+      ]
+    },
+    {
+      "cardId": "SFD-180",
+      "name": "Fiora, Worthy",
+      "set": "Spiritforged",
+      "type": "Champion",
+      "rarity": "Epic",
+      "energy": 3,
+      "power": 0,
+      "might": 3,
+      "colors": [
+        "Yellow"
+      ]
+    },
+    {
+      "cardId": "SFD-181",
+      "name": "Rumble, Mechanized Menace",
+      "set": "Spiritforged",
+      "type": "Legend",
+      "rarity": "Rare",
+      "colors": ["Red", "Blue"]
+    },
+    {
+      "cardId": "SFD-182",
+      "name": "Danger Zone",
+      "set": "Spiritforged",
+      "type": "Spell",
+      "rarity": "Epic",
+      "energy": 1,
+      "power": 1,
+      "colors": ["Red", "Blue"]
+    },
+    {
+      "cardId": "SFD-183",
+      "name": "Lucian, Purifier",
+      "set": "Spiritforged",
+      "type": "Legend",
+      "rarity": "Rare",
+      "colors": ["Red", "Orange"]
+    },
+    {
+      "cardId": "SFD-184",
+      "name": "Relentless Pursuit",
+      "set": "Spiritforged",
+      "type": "Spell",
+      "rarity": "Epic",
+      "energy": 2,
+      "power": 1,
+      "colors": ["Red", "Orange"]
+    },
+    {
+      "cardId": "SFD-185",
+      "name": "Draven, Glorious Executioner",
+      "set": "Spiritforged",
+      "type": "Legend",
+      "rarity": "Rare",
+      "colors": ["Red", "Purple"]
+    },
+    {
+      "cardId": "SFD-186",
+      "name": "Spinning Axe",
+      "set": "Spiritforged",
+      "type": "Gear",
+      "rarity": "Epic",
+      "energy": 2,
+      "power": 1,
+      "colors": ["Red", "Purple"]
+    },
+    {
+      "cardId": "SFD-187",
+      "name": "Rek'Sai, Void Burrower",
+      "set": "Spiritforged",
+      "type": "Legend",
+      "rarity": "Rare",
+      "colors": ["Red", "Yellow"]
+    },
+    {
+      "cardId": "SFD-188",
+      "name": "Void Rush",
+      "set": "Spiritforged",
+      "type": "Spell",
+      "rarity": "Epic",
+      "energy": 2,
+      "power": 1,
+      "colors": ["Red", "Yellow"]
+    },
+    {
+      "cardId": "SFD-189",
+      "name": "Ornn, Fire Below the Mountain",
+      "set": "Spiritforged",
+      "type": "Legend",
+      "rarity": "Rare",
+      "colors": ["Green", "Blue"]
+    },
+    {
+      "cardId": "SFD-190",
+      "name": "Forgefire Cape",
+      "set": "Spiritforged",
+      "type": "Gear",
+      "rarity": "Epic",
+      "energy": 4,
+      "power": 2,
+      "colors": ["Green", "Blue"]
+    },
+    {
+      "cardId": "SFD-191",
+      "name": "Rabadon's Deathcrown",
+      "set": "Spiritforged",
+      "type": "Gear",
+      "rarity": "Epic",
+      "energy": 4,
+      "power": 2,
+      "colors": ["Green", "Blue"]
+    },
+    {
+      "cardId": "SFD-192",
+      "name": "Shurelya's Requiem",
+      "set": "Spiritforged",
+      "type": "Gear",
+      "rarity": "Epic",
+      "energy": 4,
+      "power": 2,
+      "colors": ["Green", "Blue"]
+    },
+    {
+      "cardId": "SFD-193",
+      "name": "Jax, Grandmaster at Arms",
+      "set": "Spiritforged",
+      "type": "Legend",
+      "rarity": "Rare",
+      "colors": ["Green", "Orange"]
+    },
+    {
+      "cardId": "SFD-194",
+      "name": "Counter Strike",
+      "set": "Spiritforged",
+      "type": "Spell",
+      "rarity": "Epic",
+      "energy": 2,
+      "power": 1,
+      "colors": ["Green", "Orange"]
+    },
+    {
+      "cardId": "SFD-195",
+      "name": "Irelia, Blade Dancer",
+      "set": "Spiritforged",
+      "type": "Legend",
+      "rarity": "Rare",
+      "colors": ["Green", "Purple"]
+    },
+    {
+      "cardId": "SFD-196",
+      "name": "Defiant Dance",
+      "set": "Spiritforged",
+      "type": "Spell",
+      "rarity": "Epic",
+      "energy": 1,
+      "power": 1,
+      "colors": ["Green", "Purple"]
+    },
+    {
+      "cardId": "SFD-197",
+      "name": "Azir, Emperor of the Sands",
+      "set": "Spiritforged",
+      "type": "Legend",
+      "rarity": "Rare",
+      "colors": ["Green", "Yellow"]
+    },
+    {
+      "cardId": "SFD-198",
+      "name": "Arise!",
+      "set": "Spiritforged",
+      "type": "Spell",
+      "rarity": "Epic",
+      "energy": 6,
+      "power": 1,
+      "colors": ["Green", "Yellow"]
+    },
+    {
+      "cardId": "SFD-199",
+      "name": "Ezreal, Prodigal Explorer",
+      "set": "Spiritforged",
+      "type": "Legend",
+      "rarity": "Rare",
+      "colors": ["Blue", "Purple"]
+    },
+    {
+      "cardId": "SFD-200",
+      "name": "Arcane Shift",
+      "set": "Spiritforged",
+      "type": "Spell",
+      "rarity": "Epic",
+      "energy": 3,
+      "power": 1,
+      "colors": ["Blue", "Purple"]
+    },
+    {
+      "cardId": "SFD-201",
+      "name": "Renata, Chem-Baroness",
+      "set": "Spiritforged",
+      "type": "Legend",
+      "rarity": "Rare",
+      "colors": ["Blue", "Yellow"]
+    },
+    {
+      "cardId": "SFD-202",
+      "name": "Hostile Takeover",
+      "set": "Spiritforged",
+      "type": "Spell",
+      "rarity": "Epic",
+      "energy": 5,
+      "power": 2,
+      "colors": ["Blue", "Yellow"]
+    },
+    {
+      "cardId": "SFD-203",
+      "name": "Sivir, Battle Mistress",
+      "set": "Spiritforged",
+      "type": "Legend",
+      "rarity": "Rare",
+      "colors": ["Orange", "Purple"]
+    },
+    {
+      "cardId": "SFD-204",
+      "name": "On the Hunt",
+      "set": "Spiritforged",
+      "type": "Spell",
+      "rarity": "Epic",
+      "energy": 1,
+      "power": 2,
+      "colors": ["Orange", "Purple"]
+    },
+    {
+      "cardId": "SFD-205",
+      "name": "Fiora, Grand Duelist",
+      "set": "Spiritforged",
+      "type": "Legend",
+      "rarity": "Rare",
+      "colors": ["Orange", "Yellow"]
+    },
+    {
+      "cardId": "SFD-206",
+      "name": "Riposte",
+      "set": "Spiritforged",
+      "type": "Spell",
+      "rarity": "Epic",
+      "energy": 2,
+      "power": 2,
+      "colors": ["Orange", "Yellow"]
+    },
+    {
+      "cardId": "SFD-207",
+      "name": "Emperor's Dais",
+      "set": "Spiritforged",
+      "type": "Battlefield",
+      "rarity": "Uncommon"
+    },
+    {
+      "cardId": "SFD-208",
+      "name": "Forge of the Fluft",
+      "set": "Spiritforged",
+      "type": "Battlefield",
+      "rarity": "Uncommon"
+    },
+    {
+      "cardId": "SFD-209",
+      "name": "Forgotten Monument",
+      "set": "Spiritforged",
+      "type": "Battlefield",
+      "rarity": "Uncommon"
+    },
+    {
+      "cardId": "SFD-210",
+      "name": "Hall of Legends",
+      "set": "Spiritforged",
+      "type": "Battlefield",
+      "rarity": "Uncommon"
+    },
+    {
+      "cardId": "SFD-211",
+      "name": "Marai Spire",
+      "set": "Spiritforged",
+      "type": "Battlefield",
+      "rarity": "Uncommon"
+    },
+    {
+      "cardId": "SFD-212",
+      "name": "Minefield",
+      "set": "Spiritforged",
+      "type": "Battlefield",
+      "rarity": "Uncommon"
+    },
+    {
+      "cardId": "SFD-213",
+      "name": "Ornn's Forge",
+      "set": "Spiritforged",
+      "type": "Battlefield",
+      "rarity": "Uncommon"
+    },
+    {
+      "cardId": "SFD-214",
+      "name": "Power Nexus",
+      "set": "Spiritforged",
+      "type": "Battlefield",
+      "rarity": "Uncommon"
+    },
+    {
+      "cardId": "SFD-215",
+      "name": "Ravenbloom Conservatory",
+      "set": "Spiritforged",
+      "type": "Battlefield",
+      "rarity": "Uncommon"
+    },
+    {
+      "cardId": "SFD-216",
+      "name": "Rockfall Path",
+      "set": "Spiritforged",
+      "type": "Battlefield",
+      "rarity": "Uncommon"
+    },
+    {
+      "cardId": "SFD-217",
+      "name": "Seat of Power",
+      "set": "Spiritforged",
+      "type": "Battlefield",
+      "rarity": "Uncommon"
+    },
+    {
+      "cardId": "SFD-218",
+      "name": "Sunken Temple",
+      "set": "Spiritforged",
+      "type": "Battlefield",
+      "rarity": "Uncommon"
+    },
+    {
+      "cardId": "SFD-219",
+      "name": "The Papertree",
+      "set": "Spiritforged",
+      "type": "Battlefield",
+      "rarity": "Uncommon"
+    },
+    {
+      "cardId": "SFD-220",
+      "name": "Treasure Hoard",
+      "set": "Spiritforged",
+      "type": "Battlefield",
+      "rarity": "Uncommon"
+    },
+    {
+      "cardId": "SFD-221",
+      "name": "Veiled Temple",
+      "set": "Spiritforged",
+      "type": "Battlefield",
+      "rarity": "Uncommon"
+    },
+    {
+      "cardId": "SFD-222",
+      "name": "Seal of Rage",
+      "set": "Spiritforged",
+      "type": "Gear",
+      "rarity": "Overnumbered",
+      "energy": 0,
+      "power": 1,
+      "colors": [
+        "Red"
+      ]
+    },
+    {
+      "cardId": "SFD-223s",
+      "name": "Vayne, Hunter",
+      "set": "Spiritforged",
+      "type": "Champion",
+      "rarity": "Signature",
+      "energy": 4,
+      "power": 1,
+      "might": 2,
+      "colors": [
+        "Red"
+      ]
+    },
+    {
+      "cardId": "SFD-223",
+      "name": "Vayne, Hunter",
+      "set": "Spiritforged",
+      "type": "Champion",
+      "rarity": "Overnumbered",
+      "energy": 4,
+      "power": 1,
+      "might": 2,
+      "colors": [
+        "Red"
+      ]
+    },
+    {
+      "cardId": "SFD-224s",
+      "name": "Aphelios, Exalted",
+      "set": "Spiritforged",
+      "type": "Champion",
+      "rarity": "Signature",
+      "energy": 4,
+      "power": 1,
+      "might": 4,
+      "colors": [
+        "Green"
+      ]
+    },
+    {
+      "cardId": "SFD-224",
+      "name": "Aphelios, Exalted",
+      "set": "Spiritforged",
+      "type": "Champion",
+      "rarity": "Overnumbered",
+      "energy": 4,
+      "power": 1,
+      "might": 4,
+      "colors": [
+        "Green"
+      ]
+    },
+    {
+      "cardId": "SFD-225",
+      "name": "Irelia, Fervent",
+      "set": "Spiritforged",
+      "type": "Champion",
+      "rarity": "Overnumbered",
+      "energy": 5,
+      "power": 0,
+      "might": 4,
+      "colors": [
+        "Green"
+      ]
+    },
+    {
+      "cardId": "SFD-225s",
+      "name": "Irelia, Fervent",
+      "set": "Spiritforged",
+      "type": "Champion",
+      "rarity": "Signature",
+      "energy": 5,
+      "power": 0,
+      "might": 4,
+      "colors": [
+        "Green"
+      ]
+    },
+    {
+      "cardId": "SFD-226",
+      "name": "Seal of Focus",
+      "set": "Spiritforged",
+      "type": "Gear",
+      "rarity": "Overnumbered",
+      "energy": 0,
+      "power": 1,
+      "colors": [
+        "Green"
+      ]
+    },
+    {
+      "cardId": "SFD-227s",
+      "name": "Ahri, Inquisitive",
+      "set": "Spiritforged",
+      "type": "Champion",
+      "rarity": "Signature",
+      "energy": 3,
+      "power": 1,
+      "might": 3,
+      "colors": [
+        "Blue"
+      ]
+    },
+    {
+      "cardId": "SFD-227",
+      "name": "Ahri, Inquisitive",
+      "set": "Spiritforged",
+      "type": "Champion",
+      "rarity": "Overnumbered",
+      "energy": 3,
+      "power": 1,
+      "might": 3,
+      "colors": [
+        "Blue"
+      ]
+    },
+    {
+      "cardId": "SFD-228s",
+      "name": "Bard, Mercurial",
+      "set": "Spiritforged",
+      "type": "Champion",
+      "rarity": "Signature",
+      "energy": 4,
+      "power": 1,
+      "might": 4,
+      "colors": [
+        "Blue"
+      ]
+    },
+    {
+      "cardId": "SFD-228",
+      "name": "Bard, Mercurial",
+      "set": "Spiritforged",
+      "type": "Champion",
+      "rarity": "Overnumbered",
+      "energy": 4,
+      "power": 1,
+      "might": 4,
+      "colors": [
+        "Blue"
+      ]
+    },
+    {
+      "cardId": "SFD-229",
+      "name": "Seal of Insight",
+      "set": "Spiritforged",
+      "type": "Gear",
+      "rarity": "Overnumbered",
+      "energy": 0,
+      "power": 1,
+      "colors": [
+        "Blue"
+      ]
+    },
+    {
+      "cardId": "SFD-230",
+      "name": "Teemo, Strategist",
+      "set": "Spiritforged",
+      "type": "Champion",
+      "rarity": "Overnumbered",
+      "energy": 2,
+      "power": 1,
+      "might": 2,
+      "colors": [
+        "Blue"
+      ]
+    },
+    {
+      "cardId": "SFD-230s",
+      "name": "Teemo, Strategist",
+      "set": "Spiritforged",
+      "type": "Champion",
+      "rarity": "Signature",
+      "energy": 2,
+      "power": 1,
+      "might": 2,
+      "colors": [
+        "Blue"
+      ]
+    },
+    {
+      "cardId": "SFD-231",
+      "name": "Seal of Strength",
+      "set": "Spiritforged",
+      "type": "Gear",
+      "rarity": "Overnumbered",
+      "energy": 0,
+      "power": 1,
+      "colors": [
+        "Orange"
+      ]
+    },
+    {
+      "cardId": "SFD-232",
+      "name": "Sett, Brawler",
+      "set": "Spiritforged",
+      "type": "Champion",
+      "rarity": "Overnumbered",
+      "energy": 5,
+      "power": 1,
+      "might": 4,
+      "colors": [
+        "Orange"
+      ]
+    },
+    {
+      "cardId": "SFD-232s",
+      "name": "Sett, Brawler",
+      "set": "Spiritforged",
+      "type": "Champion",
+      "rarity": "Signature",
+      "energy": 5,
+      "power": 1,
+      "might": 4,
+      "colors": [
+        "Orange"
+      ]
+    },
+    {
+      "cardId": "SFD-233",
+      "name": "Yone, Blademaster",
+      "set": "Spiritforged",
+      "type": "Champion",
+      "rarity": "Overnumbered",
+      "energy": 5,
+      "power": 1,
+      "might": 5,
+      "colors": [
+        "Orange"
+      ]
+    },
+    {
+      "cardId": "SFD-233s",
+      "name": "Yone, Blademaster",
+      "set": "Spiritforged",
+      "type": "Champion",
+      "rarity": "Signature",
+      "energy": 5,
+      "power": 1,
+      "might": 5,
+      "colors": [
+        "Orange"
+      ]
+    },
+    {
+      "cardId": "SFD-234",
+      "name": "Seal of Discord",
+      "set": "Spiritforged",
+      "type": "Gear",
+      "rarity": "Overnumbered",
+      "energy": 0,
+      "power": 1,
+      "colors": [
+        "Purple"
+      ]
+    },
+    {
+      "cardId": "SFD-235",
+      "name": "Yasuo, Windrider",
+      "set": "Spiritforged",
+      "type": "Champion",
+      "rarity": "Overnumbered",
+      "energy": 5,
+      "power": 1,
+      "might": 4,
+      "colors": [
+        "Purple"
+      ]
+    },
+    {
+      "cardId": "SFD-235s",
+      "name": "Yasuo, Windrider",
+      "set": "Spiritforged",
+      "type": "Champion",
+      "rarity": "Signature",
+      "energy": 5,
+      "power": 1,
+      "might": 4,
+      "colors": [
+        "Purple"
+      ]
+    },
+    {
+      "cardId": "SFD-236",
+      "name": "Darius, Executioner",
+      "set": "Spiritforged",
+      "type": "Champion",
+      "rarity": "Overnumbered",
+      "energy": 6,
+      "power": 1,
+      "might": 6,
+      "colors": [
+        "Yellow"
+      ]
+    },
+    {
+      "cardId": "SFD-236s",
+      "name": "Darius, Executioner",
+      "set": "Spiritforged",
+      "type": "Champion",
+      "rarity": "Signature",
+      "energy": 6,
+      "power": 1,
+      "might": 6,
+      "colors": [
+        "Yellow"
+      ]
+    },
+    {
+      "cardId": "SFD-237",
+      "name": "Karma, Channeler",
+      "set": "Spiritforged",
+      "type": "Champion",
+      "rarity": "Overnumbered",
+      "energy": 6,
+      "power": 1,
+      "might": 6,
+      "colors": [
+        "Yellow"
+      ]
+    },
+    {
+      "cardId": "SFD-237s",
+      "name": "Karma, Channeler",
+      "set": "Spiritforged",
+      "type": "Champion",
+      "rarity": "Signature",
+      "energy": 6,
+      "power": 1,
+      "might": 6,
+      "colors": [
+        "Yellow"
+      ]
+    },
+    {
+      "cardId": "SFD-238",
+      "name": "Seal of Unity",
+      "set": "Spiritforged",
+      "type": "Gear",
+      "rarity": "Overnumbered",
+      "energy": 0,
+      "power": 1,
+      "colors": [
+        "Yellow"
+      ]
+    },
+    {
+      "cardId": "SFD-239",
+      "name": "Soraka, Wanderer",
+      "set": "Spiritforged",
+      "type": "Champion",
+      "rarity": "Overnumbered",
+      "energy": 4,
+      "power": 1,
+      "might": 4,
+      "colors": [
+        "Yellow"
+      ]
+    },
+    {
+      "cardId": "SFD-239s",
+      "name": "Soraka, Wanderer",
+      "set": "Spiritforged",
+      "type": "Champion",
+      "rarity": "Signature",
+      "energy": 4,
+      "power": 1,
+      "might": 4,
+      "colors": [
+        "Yellow"
+      ]
+    },
+    {
+      "cardId": "SFD-240",
+      "name": "Rumble, Mechanized Menace",
+      "set": "Spiritforged",
+      "type": "Legend",
+      "rarity": "Overnumbered",
+      "colors": ["Red", "Blue"]
+    },
+    {
+      "cardId": "SFD-241",
+      "name": "Lucian, Purifier",
+      "set": "Spiritforged",
+      "type": "Legend",
+      "rarity": "Overnumbered",
+      "colors": ["Red", "Orange"]
+    },
+    {
+      "cardId": "SFD-242",
+      "name": "Draven, Glorious Executioner",
+      "set": "Spiritforged",
+      "type": "Legend",
+      "rarity": "Overnumbered",
+      "colors": ["Red", "Purple"]
+    },
+    {
+      "cardId": "SFD-243",
+      "name": "Rek'Sai, Void Burrower",
+      "set": "Spiritforged",
+      "type": "Legend",
+      "rarity": "Overnumbered",
+      "colors": ["Red", "Yellow"]
+    },
+    {
+      "cardId": "SFD-244",
+      "name": "Ornn, Fire Below the Mountain",
+      "set": "Spiritforged",
+      "type": "Legend",
+      "rarity": "Overnumbered",
+      "colors": ["Green", "Blue"]
+    },
+    {
+      "cardId": "SFD-245",
+      "name": "Jax, Grandmaster at Arms",
+      "set": "Spiritforged",
+      "type": "Legend",
+      "rarity": "Overnumbered",
+      "colors": ["Green", "Orange"]
+    },
+    {
+      "cardId": "SFD-246",
+      "name": "Irelia, Blade Dancer",
+      "set": "Spiritforged",
+      "type": "Legend",
+      "rarity": "Overnumbered",
+      "colors": ["Green", "Purple"]
+    },
+    {
+      "cardId": "SFD-247",
+      "name": "Azir, Emperor of the Sands",
+      "set": "Spiritforged",
+      "type": "Legend",
+      "rarity": "Overnumbered",
+      "colors": ["Green", "Yellow"]
+    },
+    {
+      "cardId": "SFD-248",
+      "name": "Ezreal, Prodigal Explorer",
+      "set": "Spiritforged",
+      "type": "Legend",
+      "rarity": "Overnumbered",
+      "colors": ["Blue", "Purple"]
+    },
+    {
+      "cardId": "SFD-249",
+      "name": "Renata, Chem-Baroness",
+      "set": "Spiritforged",
+      "type": "Legend",
+      "rarity": "Overnumbered",
+      "colors": ["Blue", "Yellow"]
+    },
+    {
+      "cardId": "SFD-250",
+      "name": "Sivir, Battle Mistress",
+      "set": "Spiritforged",
+      "type": "Legend",
+      "rarity": "Overnumbered",
+      "colors": ["Orange", "Purple"]
+    },
+    {
+      "cardId": "SFD-251",
+      "name": "Fiora, Grand Duelist",
+      "set": "Spiritforged",
+      "type": "Legend",
+      "rarity": "Overnumbered",
+      "colors": ["Orange", "Yellow"]
     }
 ]

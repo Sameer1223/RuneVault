@@ -99,9 +99,7 @@ export function addCardToDeckUtil(deck: DeckData, cardId: string) {
     }
 
     // Signature Spell Check
-    const cardDetails = cardId.split("-");
-    const matchingLegend = cardDetails[0] + '-' + parseInt(cardDetails[1] - 1).toString().padStart(3, '0');
-    if (sigSpells.includes(cardId) && newDeck.deck_data.Legend !== matchingLegend) {
+    if (sigSpells.includes(cardId) && !isValidSignature(newDeck.deck_data.Legend, cardId)) {
         return newDeck;
     }
 
@@ -152,6 +150,8 @@ export function removeCardFromDeckUtil(deck: DeckData, cardId: string) {
     return newDeck;
 }
 
+// Helpers
+
 function removeCard(deck: any, cardId: string, deckSection: 'Main' | 'Side' | 'Runes'){
     const newDeckSection = { ...deck[deckSection] };
     newDeckSection[cardId] -= 1;
@@ -159,4 +159,44 @@ function removeCard(deck: any, cardId: string, deckSection: 'Main' | 'Side' | 'R
         delete newDeckSection[cardId];
     }
     return newDeckSection;
+}
+
+function isValidSignature(legendCardId: string, cardToAddId: string) {
+    const legendToSignatureMap = {
+        "Kai'Sa": ["OGN-248"],
+        "Volibear": ["OGN-250"],
+        "Jinx": ["OGN-252"],
+        "Darius": ["OGN-254"],
+        "Ahri": ["OGN-256"],
+        "Lee Sin": ["OGN-258"],
+        "Yasuo": ["OGN-260"],
+        "Leona": ["OGN-262"],
+        "Teemo": ["OGN-264"],
+        "Viktor": ["OGN-266"],
+        "Miss Fortune": ["OGN-268"],
+        "Sett": ["OGN-270"],
+        "Annie": ["OGS-018"],
+        "Master Yi": ["OGS-020"],
+        "Lux": ["OGS-020"],
+        "Garen": ["OGS-024"],
+        "Rumble": ["SFD-182"],
+        "Lucian": ["SFD-184"],
+        "Draven": ["SFD-186"],
+        "Rek'Sai": ["SFD-188"],
+        "Ornn": ["SFD-190", "SFD-191", "SFD-192"],
+        "Jax": ["SFD-194"],
+        "Irelia": ["SFD-196"],
+        "Azir": ["SFD-198"],
+        "Ezreal": ["SFD-200"],
+        "Renata": ["SFD-202"],
+        "Sivir": ["SFD-204"],
+        "Fiora": ["SFD-206"]
+    }
+
+
+    const legendCard = cardData.find(card => card.cardId === legendCardId);
+    const legendName = legendCard?.name.split(',')[0] || "";
+    // Check if matching signature spell exists for this legend
+    console.log(`Checking if card ${cardToAddId} is a valid signature spell for legend ${legendName}`);
+    return legendToSignatureMap[legendName]?.includes(cardToAddId) ?? false;
 }

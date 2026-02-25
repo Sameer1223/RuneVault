@@ -1,0 +1,30 @@
+{
+  "origins": {
+    "id": "origins",
+    "name": "Origins",
+    "releaseDate": "2025-10-31",
+    "backgroundImage": "/origins.webp",
+    "totalCards": 289
+  },
+  "provingGrounds": {
+    "id": "provingGrounds",
+    "name": "Proving Grounds",
+    "releaseDate": "2025-10-31",
+    "backgroundImage": "/proving-grounds.webp",
+    "totalCards": 24
+  },
+  "spiritforged": {
+    "id": "spiritforged",
+    "name": "Spiritforged",
+    "releaseDate": "2026-02-01",
+    "backgroundImage": "/spiritforged.avif",
+    "totalCards": 0
+  },
+  "unleashed": {
+    "id": "unleashed",
+    "name": "Unleashed",
+    "releaseDate": "2026-06-01",
+    "backgroundImage": "/spiritforged.avif",
+    "totalCards": 0
+  }
+}

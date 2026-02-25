@@ -1,0 +1,67 @@
+import { memo } from "react";
+import QuantityControl from "./QuantityControl";
+
+function CardTile({
+    card,
+    owned,
+    foil,
+    onChangeOwned,
+    onChangeFoil
+}) {
+    const isOwned = owned > 0;
+
+    const handleLeftClick = (e) => {
+        onChangeOwned?.(1);
+    };
+
+    const handleRightClick = (e) => {
+        e.preventDefault();
+        onChangeOwned?.(-1);
+    };
+
+    return (
+        <div
+            onClick={handleLeftClick}
+            onContextMenu={handleRightClick}
+            className="rounded-xl bg-black/40 border border-white/10 overflow-hidden transition hover:scale-[1.03] cursor-pointer"
+        >
+            <div
+                className={`aspect-[3/4] bg-cover bg-center ${!isOwned ? "grayscale brightness-75" : ""}`}
+                style={{
+                    backgroundImage: `url(/TempCards/${card.cardId}.avif)`
+                }}
+            />
+
+            <div className="p-3 flex flex-col justify-between">
+                <h3 className="text-sm font-medium truncate min-h-[1.4rem]">
+                    {card.name}
+                </h3>
+
+                <div className="flex justify-between items-center h-10 mt-2">
+                    <div className="flex-shrink-0">
+                        <QuantityControl
+                            value={owned}
+                            onChange={onChangeOwned}
+                        />
+                    </div>
+
+                    <div className="flex items-center justify-end min-w-[96px]">
+                        {(card.rarity === "Common" || card.rarity === "Uncommon") ? (
+                            <div className="flex items-center gap-2" onClick={(e) => e.stopPropagation()} onContextMenu={(e) => e.stopPropagation()}>
+                                <span className="text-lg">✨</span>
+                                <QuantityControl
+                                    value={foil}
+                                    onChange={onChangeFoil}
+                                />
+                            </div>
+                        ) : (
+                            <div className="w-[96px] h-10 flex items-center justify-center" aria-hidden />
+                        )}
+                    </div>
+                </div>
+            </div>
+        </div>
+    );
+}
+
+export default memo(CardTile);

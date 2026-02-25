@@ -1,4 +1,6 @@
 import { Link } from 'react-router-dom'
+import { Button } from '../ui/button'
+import LoginButton from '../common/LoginButton'
 
 export default function Navbar() {
   return (
@@ -7,11 +9,10 @@ export default function Navbar() {
             <Link to="/" className="font-semibold text-lg">RuneVault</Link>
             <div className="flex gap-7">
             <Link to="/decks">Decks</Link>
-            <Link to="/deckbuilder">Deck Builder</Link>
             <Link to="/tournaments">Tournaments</Link>
-            <Link to="/cards">Cards</Link>
             <Link to="/collection">Collection</Link>
             <Link to="/rules">Rules</Link>
+            <LoginButton />
         </div>
       </div>
     </nav>

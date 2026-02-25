@@ -16,10 +16,11 @@ interface DeckDetailsPanelProps {
     deckData?: any;
   } | null;
   onClose: () => void;
+  onDeleteClick(): () => void;
 }
 
-export default function DeckDetailsPanel({ deck, onClose }: DeckDetailsPanelProps) {
-  const navigate = useNavigate(); // ✅ ADD THIS
+export default function DeckDetailsPanel({ deck, onClose, onDeleteClick }: DeckDetailsPanelProps) {
+  const navigate = useNavigate();
 
   function getCardNames(section: Record<string, number> | string[] | undefined) {
     if (!section) return [];
@@ -56,32 +57,9 @@ export default function DeckDetailsPanel({ deck, onClose }: DeckDetailsPanelProp
     navigate("/deckbuilder", { state: { deck } });
   };
 
-  const handleDeleteDeck = async () => {
-    if (!deck?.id) {
-      alert("This deck has not been saved yet.");
-      return;
-    }
-  
-    const confirmDelete = window.confirm(`Are you sure you want to delete "${deck.name}"?`);
-    if (!confirmDelete) return;
-  
-    try {
-      const res = await fetch(`http://127.0.0.1:5000/api/decks/${deck.id}`, {
-        method: "DELETE",
-      });
-  
-      if (!res.ok) {
-        const error = await res.json();
-        throw new Error(error.message || "Failed to delete deck");
-      }
-  
-      alert("Deck deleted successfully.");
-      onClose(); // close the panel
-      window.location.reload(); // optional — refresh deck list
-    } catch (error: any) {
-      console.error("Error deleting deck:", error);
-      alert(`Failed to delete deck: ${error.message}`);
-    }
+  const handleViewDeck = () => {
+    // Navigate to deck viewer with full deck object
+    navigate("/deckviewer", { state: { deck } });
   };
 
   return (
@@ -116,7 +94,7 @@ export default function DeckDetailsPanel({ deck, onClose }: DeckDetailsPanelProp
                 <Button
                   variant="destructive"
                   size="sm"
-                  onClick={handleDeleteDeck}
+                  onClick={onDeleteClick}
                   className="flex items-center gap-1 bg-red-500 hover:bg-red-600 text-white text-xs"
                 >
                   <X className="w-3.5 h-3.5" />
@@ -142,7 +120,7 @@ export default function DeckDetailsPanel({ deck, onClose }: DeckDetailsPanelProp
             </div>
 
             {/* Scrollable info */}
-            <div className="flex-1 overflow-y-auto pr-1">
+            <div className="flex-1 overflow-y-auto pr-1 scroll-styled">
               <div className="flex flex-col gap-4 text-sm text-zinc-300">
                 <div className="flex items-center gap-2">
                   <Info className="w-4 h-4 text-amber-400" />
@@ -188,6 +166,14 @@ export default function DeckDetailsPanel({ deck, onClose }: DeckDetailsPanelProp
                   </div>
                 </div>
               </div>
+              <Button
+                  variant="secondary"
+                  size="sm"
+                  onClick={handleViewDeck}
+                  className="flex items-center gap-1 mt-3 w-full bg-emerald-400 hover:bg-emerald-700 text-white text-sm"
+              >
+                View
+              </Button>
             </div>
           </div>
 
@@ -205,7 +191,7 @@ export default function DeckDetailsPanel({ deck, onClose }: DeckDetailsPanelProp
               </Button>
             </div>
 
-            <div className="flex-1 overflow-y-auto pr-1 flex flex-col gap-5">
+            <div className="flex-1 overflow-y-auto pr-1 scroll-styled flex flex-col gap-5">
               {[
                 { title: "Runes", cards: runesCards },
                 { title: "Battlefields", cards: battlefieldCards },

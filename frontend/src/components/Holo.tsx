@@ -52,7 +52,7 @@ export default function Holo({
         }}
       />
 
-      {/* 🌈 Rainbow highlight — localized & soft */}
+      {/* Rainbow highlight — localized & soft */}
       <div
         className="
           absolute inset-0 pointer-events-none
@@ -61,7 +61,7 @@ export default function Holo({
           mix-blend-overlay
         "
         style={{
-          background: `
+          backgroundImage: `
             radial-gradient(
               circle at ${pos.x}% ${pos.y}%,
               rgba(255,255,255,0.15) 0%,

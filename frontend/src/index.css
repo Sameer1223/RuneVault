@@ -136,6 +136,33 @@
   background: rgba(255, 255, 255, 0.05);
 }
 
+/* style the scrollbar without overlay */
+.scroll-styled::-webkit-scrollbar {
+  width: 8px;
+}
+
+.scroll-styled::-webkit-scrollbar-thumb {
+  background-color: rgba(255, 255, 255, 0.15);
+  border-radius: 9999px;
+  transition: background-color 0.2s;
+}
+
+.scroll-styled::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(255, 255, 255, 0.5);
+}
+
+.scroll-styled::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.96); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.18s ease-out;
+}
 
 @layer base {
   * {

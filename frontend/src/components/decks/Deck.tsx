@@ -29,6 +29,28 @@ export default function Deck({
     sett: 3,
     jinx: 3,
     teemo: 20,
+    volibear: 8,
+    darius: 6,
+    leesin: 12,
+    viktor: 15,
+    leona: 12,
+    missfortune: 20,
+    annie: 25,
+    masteryi: 25,
+    lux: 12,
+    garen: 20,
+    irelia: 18,
+    draven: 5,
+    rumble: 12,
+    lucian: 5,
+    reksai: 45,
+    ornn: 15,
+    jax: 40,
+    azir: 16,
+    ezreal: 25,
+    renata: 6,
+    sivir: 15,
+    fiora: 15
   };
 
   return (
@@ -45,7 +67,7 @@ export default function Deck({
         style={{
           backgroundImage: backgroundImage ? `url(${backgroundImage})` : undefined,
           backgroundSize: "cover",
-          backgroundPosition: `50% ${legendCover[legend.toLowerCase()] || 12}%`,
+          backgroundPosition: `50% ${legendCover[legend.toLowerCase().replace(/[^a-zA-Z]/g, '')] || 12}%`,
         }}
       >
         <div className="absolute inset-0 bg-black/40 rounded-md pointer-events-none" />
@@ -64,7 +86,13 @@ export default function Deck({
             className="p-1 rounded hover:bg-zinc-800 transition"
             title="Edit deck"
           >
-            <Pencil size={16} />
+            <Pencil
+              size={16}
+              onClick={(e) => {
+                e.stopPropagation();
+                onEdit();
+              }}
+            />
           </button>
           <span className="text-sm">{dateModified}</span>
         </div>
