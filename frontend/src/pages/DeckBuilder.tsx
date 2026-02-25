@@ -1,4 +1,4 @@
-import { useEffect, useState, useMemo } from "react";
+import { useEffect, useState, useMemo, useCallback } from "react";
 import { useLocation } from "react-router-dom";
 import cardData from "../data/cards.json";
 import EditableDeckTitle from "../components/deckbuilder/EditableDeckTitle";
@@ -10,9 +10,10 @@ import OptionsPanel from "../components/deckbuilder/OptionsPanel";
 import SearchPanel from "../components/deckbuilder/SearchPanel";
 import CardSearchPanel from "../components/deckbuilder/CardSearchPanel";
 import { DeckData, emptyDeckTemplate } from "../data/emptyDeckTemplate";
-import { addCardToDeckUtil, removeCardFromDeckUtil, setDeckNameUtil } from "@/utils/deckBuilderUtils";
+import { addCardToDeckUtil, removeCardFromDeckUtil, setDeckNameUtil, swapCardsUtil } from "@/utils/deckBuilderUtils";
 import { filterCards } from "@/utils/filterCardsUtil";
 import ConfirmationModal from "../components/common/ConfirmationModal";
+import SwapBar from "../components/deckbuilder/SwapBar";
 import { useUserId } from "@/hooks/useUserId";
 import { useAuthFetch } from "@/hooks/useAuthFetch";
 
@@ -31,6 +32,68 @@ export default function DeckBuilder() {
   const [hoveredCard, setHoveredCard] = useState(null);
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
   const [filters, setFilters] = useState({});
+  const [activeZone, setActiveZone] = useState<'main' | 'side'>('main');
+  const [mainSelections, setMainSelections] = useState<Record<string, number>>({});
+  const [sideSelections, setSideSelections] = useState<Record<string, number>>({});
+
+  const mainSelCount = Object.values(mainSelections).reduce((a, b) => a + b, 0);
+  const sideSelCount = Object.values(sideSelections).reduce((a, b) => a + b, 0);
+
+  const clearSelections = useCallback(() => {
+    setMainSelections({});
+    setSideSelections({});
+  }, []);
+
+  const handleSelectMain = useCallback((cardId: string) => {
+    setMainSelections((prev) => {
+      const current = prev[cardId] ?? 0;
+      const max = deck.deck_data.Main[cardId] ?? 0;
+      if (current >= max) {
+        const { [cardId]: _, ...rest } = prev;
+        return rest;
+      }
+      return { ...prev, [cardId]: current + 1 };
+    });
+  }, [deck.deck_data.Main]);
+
+  const handleSelectSide = useCallback((cardId: string) => {
+    setSideSelections((prev) => {
+      const current = prev[cardId] ?? 0;
+      const max = deck.deck_data.Side[cardId] ?? 0;
+      if (current >= max) {
+        const { [cardId]: _, ...rest } = prev;
+        return rest;
+      }
+      return { ...prev, [cardId]: current + 1 };
+    });
+  }, [deck.deck_data.Side]);
+
+  const mainTotal = Object.values(deck.deck_data.Main ?? {}).reduce((a, b) => a + b, 0);
+  const sideTotal = Object.values(deck.deck_data.Side ?? {}).reduce((a, b) => a + b, 0);
+
+  const canMoveToSide = mainSelCount > 0 && (sideTotal + mainSelCount - sideSelCount) <= 8;
+  const canMoveToMain = sideSelCount > 0 && (mainTotal + sideSelCount - mainSelCount) <= 39;
+  const canSwap = mainSelCount > 0 && sideSelCount > 0
+    && (mainTotal - mainSelCount + sideSelCount) <= 39
+    && (sideTotal - sideSelCount + mainSelCount) <= 8;
+
+  const handleSwap = useCallback(() => {
+    if (!canSwap) return;
+    setDeck((prev) => swapCardsUtil(prev, mainSelections, sideSelections));
+    clearSelections();
+  }, [mainSelections, sideSelections, clearSelections, canSwap]);
+
+  const handleMoveToSide = useCallback(() => {
+    if (!canMoveToSide) return;
+    setDeck((prev) => swapCardsUtil(prev, mainSelections, {}));
+    clearSelections();
+  }, [mainSelections, clearSelections, canMoveToSide]);
+
+  const handleMoveToMain = useCallback(() => {
+    if (!canMoveToMain) return;
+    setDeck((prev) => swapCardsUtil(prev, {}, sideSelections));
+    clearSelections();
+  }, [sideSelections, clearSelections, canMoveToMain]);
 
   // Modal state
   const [modalState, setModalState] = useState({
@@ -66,7 +129,7 @@ export default function DeckBuilder() {
   const filteredCards = useMemo(() => filterCards(cardData, filters), [filters]);
 
   const addCardToDeck = (cardId) => {
-    setDeck((prev) => addCardToDeckUtil(prev, cardId));
+    setDeck((prev) => addCardToDeckUtil(prev, cardId, activeZone));
   };
 
   const removeCardFromDeck = (cardId) => {
@@ -165,15 +228,23 @@ export default function DeckBuilder() {
 
       <div id="Deck-Builder" className="flex flex-1 gap-3 min-h-0 relative">
         <div id="Cards-Panel" className="flex flex-col flex-[3] gap-3 min-h-0">
-          <div id="Main-Deck" className="bg-[#1E1E1E] flex-[16] min-h-0 overflow-hidden relative">
+          <div
+            id="Main-Deck"
+            className={`bg-[#1E1E1E] flex-[16] min-h-0 overflow-hidden relative cursor-pointer ring-inset ${
+              activeZone === 'main' ? 'ring-1 ring-gray-700' : ''
+            }`}
+            onClick={() => setActiveZone('main')}
+          >
             <MainDeck
               legend={deck.deck_data.Legend}
               battlefields={deck.deck_data.Battlefields}
               chosenChampion={deck.deck_data.ChosenChampion}
               main={deck.deck_data.Main}
+              selectedCards={mainSelections}
               onHoverCard={(id) => setHoveredCard(id)}
               onLeaveCard={() => setHoveredCard(null)}
               onRemoveCard={removeCardFromDeck}
+              onSelectCard={handleSelectMain}
             />
 
             {hoveredCard && (
@@ -191,8 +262,14 @@ export default function DeckBuilder() {
           </div>
 
           <div id="Side-Deck-Stats" className="flex flex-[4] gap-3 min-h-0">
-            <div id="Side-Deck" className="bg-[#1E1E1E] p-2 overflow-auto">
-              <SideDeck side={deck.deck_data.Side} onRemoveCard={removeCardFromDeck} />
+            <div
+              id="Side-Deck"
+              className={`bg-[#1E1E1E] p-2 overflow-auto cursor-pointer ring-inset ${
+                activeZone === 'side' ? 'ring-1 ring-gray-700' : ''
+              }`}
+              onClick={() => setActiveZone('side')}
+            >
+              <SideDeck side={deck.deck_data.Side} selectedCards={sideSelections} onRemoveCard={removeCardFromDeck} onSelectCard={handleSelectSide} />
             </div>
             <div id="Runes-Deck" className="bg-[#1E1E1E] p-2 overflow-auto">
               <RunesDeck runes={deck.deck_data.Runes} onRemoveCard={removeCardFromDeck} />
@@ -225,6 +302,18 @@ export default function DeckBuilder() {
           </div>
         </div>
       </div>
+
+      <SwapBar
+        mainCount={mainSelCount}
+        sideCount={sideSelCount}
+        onMoveToSide={handleMoveToSide}
+        onMoveToMain={handleMoveToMain}
+        onSwap={handleSwap}
+        onCancel={clearSelections}
+        canMoveToSide={canMoveToSide}
+        canMoveToMain={canMoveToMain}
+        canSwap={canSwap}
+      />
 
       <ConfirmationModal
         isOpen={modalState.isOpen}
