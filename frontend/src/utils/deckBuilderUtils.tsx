@@ -7,7 +7,7 @@ export function setDeckNameUtil(deck: DeckData, name: string) {
     return newDeck;
 }
 
-export function addCardToDeckUtil(deck: DeckData, cardId: string) {
+export function addCardToDeckUtil(deck: DeckData, cardId: string, target: 'main' | 'side' = 'main') {
     const newDeck: DeckData = JSON.parse(JSON.stringify(deck));
 
     // Legend Check
@@ -72,8 +72,8 @@ export function addCardToDeckUtil(deck: DeckData, cardId: string) {
 
     // Do not add more than 3 copies of the same card But also do not add if side deck and main deck exceeds 3 copies
     // Also do not add if colour does not match legend colours
-    const mainDeckCount = mainDeck[cardId] ?? 0;
-    const sideDeckCount = sideDeck[cardId] ?? 0;
+    const mainDeckCount = (mainDeck[cardId] ?? 0) + (mainDeck[cardId + "a"] ?? 0);
+    const sideDeckCount = (sideDeck[cardId] ?? 0) + (sideDeck[cardId + "a"] ?? 0);
     const legendColors = cardData.find(card => card.cardId === newDeck.deck_data.Legend)?.colors || [];
     const cardColor = cardData.find(card => card.cardId === cardId)?.colors[0] || [];
     if (mainDeckCount + sideDeckCount >= 3 || !legendColors.includes(cardColor)) {
@@ -103,21 +103,39 @@ export function addCardToDeckUtil(deck: DeckData, cardId: string) {
         return newDeck;
     }
 
-    // Add to main deck if no other checks triggered
-    if (Object.values(mainDeck).reduce((a, b) => a + b, 0) < 39 ){
-        mainDeck[cardId] = (mainDeck[cardId] ?? 0) + 1;
-        newDeck.deck_data.Main = mainDeck;
-        return newDeck;
+    // Try target zone first, then overflow to the other (only from main → side)
+    const zones = target === 'side'
+        ? [{ deck: sideDeck, key: 'Side', max: 8 }]
+        : [{ deck: mainDeck, key: 'Main', max: 39 }, { deck: sideDeck, key: 'Side', max: 8 }];
+
+    for (const zone of zones) {
+        if (Object.values(zone.deck).reduce((a, b) => a + b, 0) < zone.max) {
+            zone.deck[cardId] = (zone.deck[cardId] ?? 0) + 1;
+            newDeck.deck_data[zone.key] = zone.deck;
+            return newDeck;
+        }
     }
 
+    return newDeck;
+}
 
-    // Add to side deck if main deck is full
-    if (Object.values(mainDeck).reduce((a, b) => a + b, 0) >= 39 
-            && Object.values(sideDeck).reduce((a, b) => a + b, 0) < 8) {
-        sideDeck[cardId] = (sideDeck[cardId] ?? 0) + 1;
-        newDeck.deck_data.Side = sideDeck;
-        return newDeck;
-    }
+export function swapCardsUtil(
+    deck: DeckData,
+    mainSelections: Record<string, number>,
+    sideSelections: Record<string, number>
+) {
+    const newDeck: DeckData = JSON.parse(JSON.stringify(deck));
+
+    const transfer = (from: Record<string, number>, to: Record<string, number>, selections: Record<string, number>) => {
+        for (const [cardId, count] of Object.entries(selections)) {
+            from[cardId] = (from[cardId] ?? 0) - count;
+            if (from[cardId] <= 0) delete from[cardId];
+            to[cardId] = (to[cardId] ?? 0) + count;
+        }
+    };
+
+    transfer(newDeck.deck_data.Main, newDeck.deck_data.Side, mainSelections);
+    transfer(newDeck.deck_data.Side, newDeck.deck_data.Main, sideSelections);
 
     return newDeck;
 }

@@ -68,7 +68,7 @@ const betterColors = {
   let powerBreakdown = "-";
   const colorEntries = Object.entries(colorPower).sort((a, b) => b[1] - a[1]);
   
-  if (colorEntries.length >= 2) {
+  if (colorEntries.length >= 2 && totalPower > 0) {
     const [c1, p1] = colorEntries[0];
     const [c2, p2] = colorEntries[1];
     const total = p1 + p2;
@@ -81,7 +81,7 @@ const betterColors = {
         <span style={{ color: betterColors[c2] || c2 }}>{pct2}%</span>
       </>
     );
-  } else if (colorEntries.length === 1) {
+  } else if (colorEntries.length === 1 && totalPower > 0) {
     const [c1, p1] = colorEntries[0];
     powerBreakdown = <span style={{ color: betterColors[c1] || c1 }}>100%</span>;
   }

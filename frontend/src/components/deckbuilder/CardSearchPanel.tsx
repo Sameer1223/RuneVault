@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef, useCallback } from "react";
 import Card from "./Card";
 import cardData from "../../data/cards.json";
 
@@ -19,6 +19,18 @@ export default function CardSearchPanel({
 }: CardSearchPanelProps) {
   const [hoveredCard, setHoveredCard] = useState<string | null>(null);
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
+  const hoverTimeout = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const timeoutDuration = 175; // ms
+
+  const handleHover = useCallback((cardId: string) => {
+    if (hoverTimeout.current) clearTimeout(hoverTimeout.current);
+    hoverTimeout.current = setTimeout(() => setHoveredCard(cardId), timeoutDuration);
+  }, []);
+
+  const handleLeave = useCallback(() => {
+    if (hoverTimeout.current) clearTimeout(hoverTimeout.current);
+    setHoveredCard(null);
+  }, []);
 
   const handleMouseMove = (e: React.MouseEvent) => {
     setMousePos({ x: e.clientX, y: e.clientY });
@@ -77,8 +89,8 @@ export default function CardSearchPanel({
             onClick={() => {
               if (!isMaxed) onAddCard?.(card.cardId);
             }}
-            onMouseEnter={() => setHoveredCard(card.cardId)}
-            onMouseLeave={() => setHoveredCard(null)}
+            onMouseEnter={() => handleHover(card.cardId)}
+            onMouseLeave={handleLeave}
           >
             <Card
               cardId={card.cardId}
