@@ -1,4 +1,5 @@
 import { useMemo } from "react";
+import type { DeckData } from "@/data/emptyDeckTemplate";
 
 interface DeckRequirementProps {
     deck : DeckData;
@@ -7,14 +8,14 @@ interface DeckRequirementProps {
 export default function DeckRequirements({ deck }: DeckRequirementProps) {
     const counts = useMemo(() => {
         return {
-            mainDeckCount: Object.values(deck.Main).reduce((sum, count) => sum + count, 0),
+            mainDeckCount: Object.values(deck.Main).reduce((sum: number, count: number) => sum + count, 0),
             legendCount: deck.Legend ? 1 : 0,
             chosenCount: deck.ChosenChampion ? 1 : 0,
             battlefieldCount: Object.values(deck.Battlefields).length,
-            sideDeckCount: Object.values(deck.Side).reduce((sum, count) => sum + count, 0),
-            runesCount: Object.values(deck.Runes).reduce((sum, count) => sum + count, 0)
+            sideDeckCount: Object.values(deck.Side).reduce((sum: number, count: number) => sum + count, 0),
+            runesCount: Object.values(deck.Runes).reduce((sum: number, count: number) => sum + count, 0)
         }
-    });
+    }, [deck]);
 
     const deckRequirements = [
         { label: "Deck", value: counts.mainDeckCount + counts.chosenCount, requirement: 40},

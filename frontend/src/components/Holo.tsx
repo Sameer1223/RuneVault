@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState, type MouseEvent } from "react";
 
 import { ArrowRight } from "lucide-react";
 
@@ -15,7 +15,7 @@ export default function Holo({
 }: HoloProps) {
   const [pos, setPos] = useState({ x: 50, y: 50 });
 
-  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+  const handleMouseMove = (e: MouseEvent<HTMLDivElement>) => {
     const rect = e.currentTarget.getBoundingClientRect();
     const x = ((e.clientX - rect.left) / rect.width) * 100;
     const y = ((e.clientY - rect.top) / rect.height) * 100;

@@ -23,7 +23,7 @@ export default function Deck({
 }: DeckProps) {
   const [fromColor, toColor] = colors;
 
-  const legendCover = {
+  const legendCover: Record<string, number> = {
     kaisa: 12,
     ahri: 27,
     sett: 3,
@@ -90,7 +90,7 @@ export default function Deck({
               size={16}
               onClick={(e) => {
                 e.stopPropagation();
-                onEdit();
+                onEdit?.();
               }}
             />
           </button>

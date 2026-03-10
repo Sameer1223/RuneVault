@@ -1,5 +1,4 @@
 import { Link } from 'react-router-dom'
-import { Button } from '../ui/button'
 import LoginButton from '../common/LoginButton'
 
 export default function Navbar() {

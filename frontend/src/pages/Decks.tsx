@@ -8,29 +8,23 @@ import { emptyDeckTemplate } from "../data/emptyDeckTemplate";
 import ConfirmationModal from "../components/common/ConfirmationModal";
 import { useUserId } from "../hooks/useUserId";
 import { useAuthFetch } from "../hooks/useAuthFetch";
+import { API_BASE_URL } from "@/lib/constants";
+import type { FullDeck } from "@/types/deck";
 
 export default function Decks() {
-  // const decks = [
-  //   { name: "Silver Kai'sa", dateModified: "Oct 13, 2025", colors: ["#3b82f6", "#ef4444"], backgroundImage: "/kaisa.jpg", legend: "Kaisa" },
-  //   { name: "Ahri Control", dateModified: "Oct 13, 2025", colors: ["#3b82f6", "#22c55e"], backgroundImage: "/ahri.jpg", legend: "Ahri" },
-  //   { name: "Anti-Spell Sett", dateModified: "Oct 13, 2025", colors: ["#f97316", "#facc15"], backgroundImage: "/sett.jpg", legend: "Sett" },
-  //   { name: "Jinx Discard", dateModified: "Oct 13, 2025", colors: ["#8b5cf6", "#ef4444"], backgroundImage: "/jinx.jpg", legend: "Jinx" },
-  //   { name: "Teemo Hidden", dateModified: "Oct 13, 2025", colors: ["#3b82f6", "#8b5cf6"], backgroundImage: "/teemo.jpg", legend: "Teemo" },
-  // ];
-
-    const { userId, loading: userLoading } = useUserId();
-    const [decks, setDecks] = useState<any[]>([]);
+    const { userId } = useUserId();
+    const [decks, setDecks] = useState<FullDeck[]>([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
     const navigate = useNavigate();
     const authFetch = useAuthFetch();
 
-    const dateOptions = { year: 'numeric', month: 'short', day: 'numeric' };
+    const dateOptions = { year: 'numeric', month: 'short', day: 'numeric' } as const;
     
     const [deleteModalOpen, setDeleteModalOpen] = useState(false);
-    const [deckToDelete, setDeckToDelete] = useState<any>(null);
+    const [deckToDelete, setDeckToDelete] = useState<FullDeck | null>(null);
 
-    const onRequestDelete = (deck: any) => {
+    const onRequestDelete = (deck: FullDeck) => {
       setDeckToDelete(deck);
       setDeleteModalOpen(true);
     };
@@ -39,7 +33,7 @@ export default function Decks() {
       if (!deckToDelete?.id) return;
     
       try {
-        const res = await authFetch(`http://127.0.0.1:5000/api/decks/${deckToDelete.id}`, {
+        const res = await authFetch(`${API_BASE_URL}/api/decks/${deckToDelete.id}`, {
           method: "DELETE",
         });
     
@@ -69,15 +63,15 @@ export default function Decks() {
         setLoading(true);
 
         const res = await authFetch(
-          `http://127.0.0.1:5000/api/decks/user/${userId}`
+          `${API_BASE_URL}/api/decks/user/${userId}`
         );
 
         if (!res.ok) throw new Error("Failed to fetch decks");
 
         const data = await res.json();
         setDecks(data);
-      } catch (err: any) {
-        setError(err.message);
+      } catch (err: unknown) {
+        setError(err instanceof Error ? err.message : "Unknown error");
       } finally {
         setLoading(false);
       }
@@ -103,7 +97,7 @@ export default function Decks() {
     .filter(
       (deck) =>
         filters.selectedColors.length === 0 ||
-        filters.selectedColors.some((color) => deck.colors.includes(color))
+        filters.selectedColors.some((color) => Array.isArray(deck.colors) && (deck.colors as string[]).includes(color))
     )
     .filter(
       (deck) =>
@@ -113,7 +107,7 @@ export default function Decks() {
       const order = filters.sortOrder === "asc" ? 1 : -1;
       return filters.sortBy === "name"
         ? order * a.name.localeCompare(b.name)
-        : order * (new Date(b.dateModified).getTime() - new Date(a.dateModified).getTime());
+        : order * (new Date(b.lastUpdated ?? 0).getTime() - new Date(a.lastUpdated ?? 0).getTime());
     });
 
   const handleDeckClick = (deck: typeof decks[0]) => {
@@ -163,15 +157,15 @@ export default function Decks() {
               {filteredDecks.map((deck, index) => {
                 const legend = cardData.find((card) => card.cardId === deck.deck_data?.Legend);
                 const legendName = legend ? legend.name.split(',')[0] : null;
-                const imageUrl = legend ? `/Banners/${legendName.toLowerCase().replace(/[^a-zA-Z]/g, "")}.jpg` : null;
+                const imageUrl = legendName ? `/Banners/${legendName.toLowerCase().replace(/[^a-zA-Z]/g, "")}.jpg` : undefined;
                 return (
                   <Deck
                     key={index}
                     name={deck.name}
-                    dateModified={new Date(deck.lastUpdated).toLocaleDateString('en-US', dateOptions)}
-                    colors={legend.colors ?? []}
+                    dateModified={deck.lastUpdated ? new Date(deck.lastUpdated).toLocaleDateString('en-US', dateOptions) : "Unknown"}
+                    colors={(legend?.colors ?? ['#333', '#333']) as [string, string]}
                     backgroundImage={imageUrl}
-                    legend={legendName}
+                    legend={legendName ?? "Unknown"}
                     onClick={() => handleDeckClick(deck)}
                     onEdit={() => navigate("/deckbuilder", { state: { deck } })}
                   />
@@ -190,7 +184,7 @@ export default function Decks() {
           <DeckDetailsPanel
             deck={selectedDeck}
             onClose={() => setSelectedDeck(null)}
-            onDeleteClick={() => onRequestDelete(selectedDeck)}
+            onDeleteClick={() => { if (selectedDeck) onRequestDelete(selectedDeck); }}
           />
         </div>
       </div>

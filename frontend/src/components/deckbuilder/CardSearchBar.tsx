@@ -18,7 +18,7 @@ export default function CardSearchBar({ onSearch }: CardSearchBarProps) {
     if (!normalizedQuery) return [];
     return cardData.filter((card) => {
       const name = card.name?.toLowerCase() ?? "";
-      const id = card.id?.toLowerCase() ?? "";
+      const id = card.cardId?.toLowerCase() ?? "";
       return name.includes(normalizedQuery) || id.includes(normalizedQuery);
     });
   }, [normalizedQuery]);
@@ -65,7 +65,7 @@ export default function CardSearchBar({ onSearch }: CardSearchBarProps) {
         <div className="absolute z-10 mt-2 w-full bg-zinc-900 border border-zinc-700 rounded-md shadow-lg max-h-60 overflow-y-auto scrollbar-thin scrollbar-thumb-zinc-700 scrollbar-track-zinc-900">
           {filtered.map((card) => (
             <div
-              key={card.id}
+              key={card.cardId}
               onMouseDown={() => handleSelect(card.name)}
               className="px-3 py-2 cursor-pointer hover:bg-amber-500/20 text-sm text-gray-200"
             >

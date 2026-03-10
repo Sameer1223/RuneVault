@@ -11,11 +11,11 @@ export default function Sets() {
     const [sortOrder, setSortOrder] = useState("asc");
 
     // @TODO: Replace with real user API data
-    const userSetProgress = {
-        origins: { collected: 42, alts: 3 },
+    const userSetProgress: Record<string, { collected: number; alts: number }> = {
+        "origins": { collected: 42, alts: 3 },
         "proving-grounds": { collected: 12, alts: 1 },
-        spiritforged: { collected: 0, alts: 0 },
-        unleashed: { collected: 0, alts: 0 }
+        "spiritforged": { collected: 0, alts: 0 },
+        "unleashed": { collected: 0, alts: 0 }
     };
 
     const sets = useMemo(() => {
@@ -54,8 +54,8 @@ export default function Sets() {
                     case "release":
                     default:
                         result =
-                            new Date(a.releaseDate) -
-                            new Date(b.releaseDate);
+                            new Date(a.releaseDate).getTime() -
+                            new Date(b.releaseDate).getTime();
                         break;
                 }
 

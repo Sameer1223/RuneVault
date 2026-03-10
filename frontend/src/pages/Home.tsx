@@ -1,6 +1,4 @@
 import { Link } from 'react-router-dom'
-
-import { Button } from "@/components/ui/button"
 import { Progress } from "@/components/ui/progress"
 import Holo from "@/components/Holo"
 

@@ -1,20 +1,15 @@
-import { useMemo, useState } from "react";
+import { useMemo, useState, type ReactNode } from "react";
 import { Button } from "../ui/button";
 import cardData from "../../data/cards.json";
 import ExportModal from "../common/ExportModal";
+import type { DeckData } from "@/data/emptyDeckTemplate";
 
-interface CardData {
-  id: string;
-  name: string;
-  energy: number;
-  power: number;
-  colors: string[];
-}
+type CardEntry = (typeof cardData)[number];
 
 interface OptionsPanelProps {
   onSave: () => void;
   onClear?: () => void;
-  deck: Record<string, number>;
+  deck: DeckData;
 }
 
 export default function OptionsPanel({
@@ -24,7 +19,7 @@ export default function OptionsPanel({
 }: OptionsPanelProps) {
   // 🔹 Build lookup map once
   const cardLookup = useMemo(() => {
-    const map: Record<string, CardData> = {};
+    const map: Record<string, CardEntry> = {};
     for (const c of cardData) map[c.cardId] = c;
     return map;
   }, []);
@@ -41,10 +36,10 @@ export default function OptionsPanel({
       const card = cardLookup[id];
       if (!card) continue;
 
-      const powerValue = card.power * count;
+      const powerValue = (card.power ?? 0) * count;
 
       totalCards += count;
-      totalEnergy += card.energy * count;
+      totalEnergy += (card.energy ?? 0) * count;
       totalPower += powerValue;
 
       // accumulate power by color
@@ -58,14 +53,14 @@ export default function OptionsPanel({
     const avgEnergy = totalCards ? (totalEnergy / totalCards).toFixed(2) : "-";
     const avgPower = totalCards ? (totalPower / totalCards).toFixed(2) : "-";
 
-const betterColors = {
+const betterColors: Record<string, string> = {
     "Red": "#ff6666", // Lighter red
     "Blue": "#66a3ff", // Lighter blue
     "Green": "#99ff99", // Lighter green
   };
   
   // Compute power breakdown ratio
-  let powerBreakdown = "-";
+  let powerBreakdown: ReactNode = "-";
   const colorEntries = Object.entries(colorPower).sort((a, b) => b[1] - a[1]);
   
   if (colorEntries.length >= 2 && totalPower > 0) {
@@ -82,7 +77,7 @@ const betterColors = {
       </>
     );
   } else if (colorEntries.length === 1 && totalPower > 0) {
-    const [c1, p1] = colorEntries[0];
+    const [c1] = colorEntries[0];
     powerBreakdown = <span style={{ color: betterColors[c1] || c1 }}>100%</span>;
   }
 
@@ -137,7 +132,7 @@ const betterColors = {
         output += count + ' ' + cardLookup[id].name + '\n';
       }
       output += '\n';
-      for (const bf of deck.Battlefields || {}) {
+      for (const bf of deck.Battlefields || []) {
         output += '1 ' + cardLookup[bf].name + '\n';
       }
       output += '\n';
@@ -158,7 +153,7 @@ const betterColors = {
       for (const [id, count] of Object.entries(deck.Side || {})) {
         output += `${id}-1 `.repeat(count);
       }
-      for (const bf of deck.Battlefields || {}) {
+      for (const bf of deck.Battlefields || []) {
         output += `${bf}-1 `;
       }
       for (const [id, count] of Object.entries(deck.Runes || {})) {

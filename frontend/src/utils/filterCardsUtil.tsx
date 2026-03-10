@@ -1,3 +1,5 @@
+import type { CardData } from "@/types/deck";
+
 export interface CardFilters {
     query?: string;
     selectedType?: string | null;
@@ -10,7 +12,7 @@ export interface CardFilters {
     colorFilter?: string[] | null;
 }
   
-  export function filterCards(cardData: any[], filters: CardFilters) {
+  export function filterCards(cardData: CardData[], filters: CardFilters) {
     return cardData.filter((card) => {
         const q = filters.query?.toLowerCase() ?? "";
     
@@ -35,7 +37,7 @@ export interface CardFilters {
             return false;
 
         if (filters.colorFilter && filters.colorFilter.length > 0) {
-            if (!card.colors || !card.colors.every((c) => filters.colorFilter.includes(c))) {
+            if (!card.colors || !card.colors.every((c: string) => filters.colorFilter!.includes(c))) {
                 return false;
             }
         }
@@ -50,11 +52,11 @@ export interface CardFilters {
         // If cost filters have changed exclude any cards without energy (this means no power as well)
         if (isCostFilterChanged) {
             if (card.energy === undefined ||
-                (card.energy !== undefined && (card.energy < filters.energyRange?.[0] || card.energy > filters.energyRange?.[1]))) {
+                (card.energy !== undefined && (card.energy < (filters.energyRange?.[0] ?? 0) || card.energy > (filters.energyRange?.[1] ?? 12)))) {
                 return false;
             }
 
-            if (card.power !== undefined && (card.power < filters.powerRange?.[0] || card.power > filters.powerRange?.[1])){
+            if (card.power !== undefined && (card.power < (filters.powerRange?.[0] ?? 0) || card.power > (filters.powerRange?.[1] ?? 4))){
                 return false;
             }
         }
@@ -62,7 +64,7 @@ export interface CardFilters {
         const isMightFilterChanged = filters.mightRange?.[0] !== 0 || filters.mightRange?.[1] !== 10;
         if (isMightFilterChanged)
             if (card.might === undefined || 
-                (card.might !== undefined && (card.might < filters.mightRange?.[0] || card.might > filters.mightRange?.[1]))) {
+                (card.might !== undefined && (card.might < (filters.mightRange?.[0] ?? 0) || card.might > (filters.mightRange?.[1] ?? 10)))) {
                 return false;
             }
     

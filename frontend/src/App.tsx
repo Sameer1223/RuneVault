@@ -4,8 +4,8 @@ import Home from "./pages/Home"
 import Decks from "./pages/Decks"
 import DeckBuilder from "./pages/DeckBuilder"
 import DeckViewer from "./pages/DeckViewer"
-import CardsPage from "./pages/CardsPage"
 import SetsPage from "./pages/SetsPage"
+import DailyGamePage from "./pages/DailyGamePage"
 import SetCollection from "./pages/SetCollection"
 import Layout from "./components/layout/Layout"
 
@@ -29,10 +29,10 @@ function App() {
             <Route path="/" element={<Home/>} />
             <Route path="/decks" element={<Decks/>} />
             <Route path="/deckbuilder" element={<DeckBuilder/>} />
-            {/* <Route path="/cards" element={<CardsPage/>} /> */}
             <Route path="/deckviewer" element={<DeckViewer/>} />
             <Route path="/collection" element={<SetsPage/>} />
             <Route path="/collection/:setId" element={<SetCollection />} />
+            <Route path="/riftboundle" element={<DailyGamePage/>} />
           </Route>
 
           {/* Fallback for unknown URLs */}

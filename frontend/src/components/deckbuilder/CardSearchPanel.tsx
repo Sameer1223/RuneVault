@@ -1,9 +1,10 @@
 import { useState, useRef, useCallback } from "react";
 import Card from "./Card";
 import cardData from "../../data/cards.json";
+import type { CardData } from "@/types/deck";
 
 interface CardSearchPanelProps {
-  cards?: any[];
+  cards?: CardData[];
   onAddCard?: (card: string) => void;
   onRemoveCard?: (cardId: string) => void;
   deckCards?: Record<string, number>;

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect, type ChangeEvent, type KeyboardEvent } from "react";
 
 interface EditableDeckTitleProps {
   initialTitle?: string;
@@ -20,7 +20,7 @@ export default function EditableDeckTitle({
     setIsEditing(true);
   };
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     setTitle(e.target.value);
   };
 
@@ -29,7 +29,7 @@ export default function EditableDeckTitle({
     onTitleChange(title.trim() || "Untitled Deck");
   };
 
-  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+  const handleKeyDown = (e: KeyboardEvent<HTMLInputElement>) => {
     if (e.key === "Enter") {
       setIsEditing(false);
       onTitleChange(title.trim() || "Untitled Deck");

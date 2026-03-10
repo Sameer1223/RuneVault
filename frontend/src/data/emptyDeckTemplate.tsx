@@ -1,12 +1,5 @@
-export interface DeckData {
-    name: string;
-    Legend: string;
-    ChosenChampion: string;
-    Battlefields: string[];
-    Main: Record<string, number>;
-    Side: Record<string, number>;
-    Runes: Record<string, number>;
-}
+export type { DeckInnerData as DeckData } from "@/types/deck";
+export type { FullDeck } from "@/types/deck";
 
 export const emptyDeckTemplate = {
     user_id: localStorage.getItem('userId'),

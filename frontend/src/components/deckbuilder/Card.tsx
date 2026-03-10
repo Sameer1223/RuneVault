@@ -1,7 +1,5 @@
-import cardData from "../../data/cards.json";
-
 interface CardProps {
-    cardId: string;
+    cardId?: string;
     className?: string;
     onHover?: (cardId: string) => void;
     onLeave?: () => void;
@@ -13,7 +11,7 @@ export default function Card({ cardId, className = "", onHover, onLeave, onRight
 
     const handleContextMenu = (e: React.MouseEvent) => {
         e.preventDefault();
-        onRightClick?.(cardId);
+        if (cardId) onRightClick?.(cardId);
     };
   
     return (
@@ -26,7 +24,7 @@ export default function Card({ cardId, className = "", onHover, onLeave, onRight
             relative
             ${className}
             `}
-            onMouseEnter={() => onHover?.(cardId)}
+            onMouseEnter={() => cardId && onHover?.(cardId)}
             onMouseLeave={onLeave}
             onContextMenu={handleContextMenu}
         >

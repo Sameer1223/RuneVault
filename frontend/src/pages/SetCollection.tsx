@@ -5,6 +5,7 @@ import setData from "../data/sets.json";
 import CardTile from "@/components/collection/CardTile";
 import { useUserId } from "@/hooks/useUserId";
 import { useAuthFetch } from "@/hooks/useAuthFetch";
+import { API_BASE_URL, RARITY_TYPES } from "@/lib/constants";
 
 export default function SetCollection() {
     const { setId } = useParams();
@@ -13,14 +14,15 @@ export default function SetCollection() {
     const { name, releaseDate, backgroundImage, totalCards } = setDetails;
     const navigate = useNavigate();
 
-    const { userId, loading: userLoading } = useUserId();
+    const { userId } = useUserId();
     const authFetch = useAuthFetch();
 
     // fallback: if the navigation state didn't provide the set name, try to look it up
     let displayName = name;
     if (!displayName && setId) {
-        const matchKey = Object.keys(setData).find(k => {
-            const s = setData[k];
+        const sData = setData as Record<string, { id: string; name: string; releaseDate: string; backgroundImage: string; totalCards: number }>;
+        const matchKey = Object.keys(sData).find(k => {
+            const s = sData[k];
             if (!s) return false;
             return (
                 (s.id && s.id.toLowerCase() === setId.toLowerCase()) ||
@@ -29,7 +31,7 @@ export default function SetCollection() {
             );
         });
 
-        if (matchKey) displayName = setData[matchKey].name;
+        if (matchKey) displayName = sData[matchKey].name;
     }
     const [search, setSearch] = useState("");
 
@@ -42,7 +44,7 @@ export default function SetCollection() {
             if (!userId) return; // Don't fetch if userId is not loaded yet
             
             try {
-                const res = await authFetch(`http://127.0.0.1:5000/api/collection/${userId}`);
+                const res = await authFetch(`${API_BASE_URL}/api/collection/${userId}`);
                 if (res.ok) {
                     const data = await res.json();
                     setUserCollection(data);
@@ -88,7 +90,7 @@ export default function SetCollection() {
 
     async function sendUpdate(cardId: string, delta: number) {
         try {
-            const res = await authFetch(`http://127.0.0.1:5000/api/collection/${userId}`, {
+            const res = await authFetch(`${API_BASE_URL}/api/collection/${userId}`, {
                 method: "PATCH",
                 body: JSON.stringify({ card_id: cardId, delta })
             });
@@ -121,11 +123,11 @@ export default function SetCollection() {
         });
     }, [setCards, userCollection]);
 
-    const rarityTypes = ["Common", "Uncommon", "Rare", "Epic", "Alternate Art"];
+    const rarityTypes = RARITY_TYPES;
 
     const rarityStats = useMemo(() => {
-        const totals = {};
-        const collectedCounts = {};
+        const totals: Record<string, number> = {};
+        const collectedCounts: Record<string, number> = {};
         rarityTypes.forEach(r => {
             totals[r] = 0;
             collectedCounts[r] = 0;
@@ -234,10 +236,10 @@ export default function SetCollection() {
                             card={card}
                             owned={card.collected}
                             foil={card.foilCollected}
-                            onChangeOwned={delta =>
+                            onChangeOwned={(delta: number) =>
                                 updateCollection(card.cardId, delta)
                             }
-                            onChangeFoil={delta =>
+                            onChangeFoil={(delta: number) =>
                                 updateCollection(card.cardId, delta)
                             }
                         />
