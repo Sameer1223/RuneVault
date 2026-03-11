@@ -12,7 +12,7 @@ def create_app():
         r"/api/*": {
             "origins": "http://localhost:5173",
             "allow_headers": ["Authorization", "Content-Type"],
-            "methods": ["GET", "POST", "PUT", "DELETE", "OPTIONS"]
+            "methods": ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"]
         }
     })
 

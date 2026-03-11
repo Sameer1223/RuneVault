@@ -6,5 +6,6 @@ class User(db.Model):
     auth0_id = db.Column(db.String(120), unique=True, nullable=False)
     username = db.Column(db.String(80), unique=True, nullable=False)
     collection = db.Column(db.JSON, nullable=False, default=dict)
+    foil_collection = db.Column(db.JSON, nullable=False, default=dict)
 
     decks = db.relationship("Deck", backref="user", lazy=True)

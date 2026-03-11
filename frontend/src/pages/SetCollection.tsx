@@ -35,6 +35,7 @@ export default function SetCollection() {
 
     // User collection from API
     const [userCollection, setUserCollection] = useState<Record<string, number>>({});
+    const [foilCollection, setFoilCollection] = useState<Record<string, number>>({});
 
     // Fetch initial user collection
     useEffect(() => {
@@ -42,10 +43,11 @@ export default function SetCollection() {
             if (!userId) return; // Don't fetch if userId is not loaded yet
             
             try {
-                const res = await authFetch(`http://127.0.0.1:5000/api/collection/${userId}`);
+                const res = await authFetch(`http://127.0.0.1:5000/api/collection/${encodeURIComponent(userId)}`);
                 if (res.ok) {
                     const data = await res.json();
-                    setUserCollection(data);
+                    setUserCollection(data.collection || {});
+                    setFoilCollection(data.foil_collection || {});
                 } else {
                     console.error("Failed to fetch collection");
                 }
@@ -66,9 +68,10 @@ export default function SetCollection() {
     }, [setId]);
 
 
-    function updateCollection(cardId: string, delta: number) {
+    function updateCollection(cardId: string, delta: number, isFoil: boolean = false) {
         // 1. Optimistically update UI
-        setUserCollection(prev => {
+        const setter = isFoil ? setFoilCollection : setUserCollection;
+        setter(prev => {
             const next = { ...prev };
             const current = next[cardId] ?? 0;
             const updated = Math.max(0, current + delta);
@@ -83,28 +86,27 @@ export default function SetCollection() {
         });
 
         // 2. Fire-and-forget server update
-        sendUpdate(cardId, delta);
+        sendUpdate(cardId, delta, isFoil);
     }
 
-    async function sendUpdate(cardId: string, delta: number) {
+    async function sendUpdate(cardId: string, delta: number, isFoil: boolean = false) {
         try {
-            const res = await authFetch(`http://127.0.0.1:5000/api/collection/${userId}`, {
+            const res = await authFetch(`http://127.0.0.1:5000/api/collection/${encodeURIComponent(userId!)}`, {
                 method: "PATCH",
-                body: JSON.stringify({ card_id: cardId, delta })
+                body: JSON.stringify({ card_id: cardId, delta, is_foil: isFoil })
             });
 
             if (!res.ok) {
                 throw new Error("Failed to sync collection");
             }
 
-            // Optional: reconcile with server
-            const serverCollection = await res.json();
-            setUserCollection(serverCollection);
+            // Reconcile with server
+            const serverData = await res.json();
+            setUserCollection(serverData.collection || {});
+            setFoilCollection(serverData.foil_collection || {});
 
         } catch (err) {
             console.error(err);
-
-            // Optional rollback logic (usually unnecessary for this use case)
         }
     }
 
@@ -113,13 +115,15 @@ export default function SetCollection() {
         return setCards.map(card => {
             const owned = userCollection[card.cardId] ?? 0;
 
+            const foilOwned = foilCollection[card.cardId] ?? 0;
+
             return {
                 ...card,
                 collected: owned,
-                foilCollected: 0 // TODO: Add foil support to backend
+                foilCollected: foilOwned
             };
         });
-    }, [setCards, userCollection]);
+    }, [setCards, userCollection, foilCollection]);
 
     const rarityTypes = ["Common", "Uncommon", "Rare", "Epic", "Alternate Art"];
 
@@ -238,7 +242,7 @@ export default function SetCollection() {
                                 updateCollection(card.cardId, delta)
                             }
                             onChangeFoil={delta =>
-                                updateCollection(card.cardId, delta)
+                                updateCollection(card.cardId, delta, true)
                             }
                         />
                     ))}

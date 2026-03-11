@@ -18,7 +18,6 @@ export default function DeckViewer() {
     const [loading, setLoading] = useState(true);
     const [hoveredCard, setHoveredCard] = useState<string | null>(null);
 
-    console.log("Deck Viewer - deck:", deck);
     useEffect(() => {
         const incomingDeck = location.state?.deck as DeckData;
     

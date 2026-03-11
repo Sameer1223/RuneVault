@@ -16,7 +16,6 @@ export function addCardToDeckUtil(deck: DeckData, cardId: string, target: 'main'
             // For each card in main deck, side deck, runes, check if color matches new legend colors and if not remove them
             const sections: (keyof DeckData)[] = ["Main", "Side", "Runes"];
             const legendColors = cardData.find(card => card.cardId === cardId)?.colors || [];
-            console.log(legendColors);
             for (const section of sections) {
                 for (const c in newDeck.deck_data[section]) {
                     const card = cardData.find(card => card.cardId === c);
@@ -215,6 +214,5 @@ function isValidSignature(legendCardId: string, cardToAddId: string) {
     const legendCard = cardData.find(card => card.cardId === legendCardId);
     const legendName = legendCard?.name.split(',')[0] || "";
     // Check if matching signature spell exists for this legend
-    console.log(`Checking if card ${cardToAddId} is a valid signature spell for legend ${legendName}`);
     return legendToSignatureMap[legendName]?.includes(cardToAddId) ?? false;
 }

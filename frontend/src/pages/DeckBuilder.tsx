@@ -33,40 +33,34 @@ export default function DeckBuilder() {
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
   const [filters, setFilters] = useState({});
   const [activeZone, setActiveZone] = useState<'main' | 'side'>('main');
-  const [mainSelections, setMainSelections] = useState<Record<string, number>>({});
-  const [sideSelections, setSideSelections] = useState<Record<string, number>>({});
+  const [mainSelections, setMainSelections] = useState<Record<number, string>>({});
+  const [sideSelections, setSideSelections] = useState<Record<number, string>>({});
 
-  const mainSelCount = Object.values(mainSelections).reduce((a, b) => a + b, 0);
-  const sideSelCount = Object.values(sideSelections).reduce((a, b) => a + b, 0);
+  const mainSelCount = Object.keys(mainSelections).length;
+  const sideSelCount = Object.keys(sideSelections).length;
 
   const clearSelections = useCallback(() => {
     setMainSelections({});
     setSideSelections({});
   }, []);
 
-  const handleSelectMain = useCallback((cardId: string) => {
-    setMainSelections((prev) => {
-      const current = prev[cardId] ?? 0;
-      const max = deck.deck_data.Main[cardId] ?? 0;
-      if (current >= max) {
-        const { [cardId]: _, ...rest } = prev;
-        return rest;
-      }
-      return { ...prev, [cardId]: current + 1 };
+  const handleSelectMain = useCallback((index: number, cardId: string) => {
+    setMainSelections(prev => {
+      const next = { ...prev };
+      if (index in next) delete next[index];
+      else next[index] = cardId;
+      return next;
     });
-  }, [deck.deck_data.Main]);
+  }, []);
 
-  const handleSelectSide = useCallback((cardId: string) => {
-    setSideSelections((prev) => {
-      const current = prev[cardId] ?? 0;
-      const max = deck.deck_data.Side[cardId] ?? 0;
-      if (current >= max) {
-        const { [cardId]: _, ...rest } = prev;
-        return rest;
-      }
-      return { ...prev, [cardId]: current + 1 };
+  const handleSelectSide = useCallback((index: number, cardId: string) => {
+    setSideSelections(prev => {
+      const next = { ...prev };
+      if (index in next) delete next[index];
+      else next[index] = cardId;
+      return next;
     });
-  }, [deck.deck_data.Side]);
+  }, []);
 
   const mainTotal = Object.values(deck.deck_data.Main ?? {}).reduce((a, b) => a + b, 0);
   const sideTotal = Object.values(deck.deck_data.Side ?? {}).reduce((a, b) => a + b, 0);
@@ -77,21 +71,30 @@ export default function DeckBuilder() {
     && (mainTotal - mainSelCount + sideSelCount) <= 39
     && (sideTotal - sideSelCount + mainSelCount) <= 8;
 
+  // Convert index-based selections to cardId counts for swap util
+  function toCounts(selections: Record<number, string>): Record<string, number> {
+    const counts: Record<string, number> = {};
+    for (const cardId of Object.values(selections)) {
+      counts[cardId] = (counts[cardId] ?? 0) + 1;
+    }
+    return counts;
+  }
+
   const handleSwap = useCallback(() => {
     if (!canSwap) return;
-    setDeck((prev) => swapCardsUtil(prev, mainSelections, sideSelections));
+    setDeck((prev) => swapCardsUtil(prev, toCounts(mainSelections), toCounts(sideSelections)));
     clearSelections();
   }, [mainSelections, sideSelections, clearSelections, canSwap]);
 
   const handleMoveToSide = useCallback(() => {
     if (!canMoveToSide) return;
-    setDeck((prev) => swapCardsUtil(prev, mainSelections, {}));
+    setDeck((prev) => swapCardsUtil(prev, toCounts(mainSelections), {}));
     clearSelections();
   }, [mainSelections, clearSelections, canMoveToSide]);
 
   const handleMoveToMain = useCallback(() => {
     if (!canMoveToMain) return;
-    setDeck((prev) => swapCardsUtil(prev, {}, sideSelections));
+    setDeck((prev) => swapCardsUtil(prev, {}, toCounts(sideSelections)));
     clearSelections();
   }, [sideSelections, clearSelections, canMoveToMain]);
 
