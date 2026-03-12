@@ -3,11 +3,11 @@ import cardData from "../../data/cards.json";
 
 interface SideDeckProps {
     side: Record<string, number>;
-    selectedCards?: Record<string, number>;
+    selectedCards?: Record<number, string>;
     onHoverCard?: (cardId: string) => void;
     onLeaveCard?: () => void;
     onRemoveCard?: (cardId: string) => void;
-    onSelectCard?: (cardId: string) => void;
+    onSelectCard?: (index: number, cardId: string) => void;
 }
 
 function sortCardIds(cardIds: [string, number][]): [string, number][] {
@@ -27,27 +27,25 @@ export default function SideDeck ({ side, selectedCards = {}, onHoverCard, onLea
     const deckLength = sideDeck.length;
     const placeholderCount = Math.max(0, 8 - deckLength);
 
-    const renderedCount: Record<string, number> = {};
-
     return (
         <div className="flex items-center w-full h-full gap-5 overflow-hidden">
             {/* Side Deck */}
             <div className="grid grid-cols-8 grid-rows-1 gap-2">
                 {sideDeck.map((cardId, index) => {
-                    renderedCount[cardId] = (renderedCount[cardId] ?? 0) + 1;
-                    const copyIndex = renderedCount[cardId];
-                    const isSelected = copyIndex <= (selectedCards[cardId] ?? 0);
+                    const isSelected = index in selectedCards;
 
                     return (
-                        <div
+                        <Card
                             key={index}
-                            className={isSelected ? "ring-2 ring-blue-500 rounded-sm" : ""}
-                            onMouseEnter={() => onHoverCard?.(cardId)}
-                            onMouseLeave={onLeaveCard}
-                            onClick={() => onSelectCard?.(cardId)}
-                        >
-                            <Card cardId={cardId} className="h-[130px] w-[93px]" onRightClick={onRemoveCard}/>
-                        </div>
+                            cardId={cardId}
+                            className="h-[130px] w-[93px]"
+                            isSelected={isSelected}
+                            disableHoverScale
+                            onHover={(id) => onHoverCard?.(id)}
+                            onLeave={onLeaveCard}
+                            onClick={() => onSelectCard?.(index, cardId)}
+                            onRightClick={onRemoveCard}
+                        />
                     );
                 })} 
 

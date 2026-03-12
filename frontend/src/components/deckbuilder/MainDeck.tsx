@@ -6,11 +6,11 @@ interface MainDeckProps {
     battlefields: string[];
     chosenChampion: string;
     main: Record<string, number>;
-    selectedCards?: Record<string, number>;
+    selectedCards?: Record<number, string>;
     onHoverCard?: (cardId: string) => void;
     onLeaveCard?: () => void;
     onRemoveCard?: (cardId: string) => void;
-    onSelectCard?: (cardId: string) => void;
+    onSelectCard?: (index: number, cardId: string) => void;
 }
 
 function sortCardIds(cardIds: [string, number][]): [string, number][] {
@@ -47,29 +47,26 @@ export default function MainDeck({
     const deckLength = mainDeck.length;
     const deckPlaceholderCount = Math.max(0, 40 - deckLength);
 
-    // Track how many of each card we've rendered to determine which copies are selected
-    const renderedCount: Record<string, number> = {};
-
     return (
         <div className="flex items-center justify-between w-full h-full p-5 gap-5 overflow-hidden">
             {/* Deck */}
             <div className="grid grid-cols-10 grid-rows-4 gap-2">
                 {mainDeck.map((cardId, index) => {
                     const isChampion = index === 0 && chosenChampion;
-                    renderedCount[cardId] = (renderedCount[cardId] ?? 0) + 1;
-                    const copyIndex = renderedCount[cardId];
-                    const isSelected = !isChampion && copyIndex <= (selectedCards[cardId] ?? 0);
+                    const isSelected = !isChampion && index in selectedCards;
 
                     return (
-                        <div
+                        <Card
                             key={index}
-                            className={isSelected ? "ring-2 ring-blue-500 rounded-sm" : ""}
-                            onMouseEnter={() => onHoverCard?.(cardId)}
-                            onMouseLeave={onLeaveCard}
-                            onClick={() => !isChampion && onSelectCard?.(cardId)}
-                        >
-                            <Card cardId={cardId} className="h-[130px] w-[93px]" onRightClick={onRemoveCard} />
-                        </div>
+                            cardId={cardId}
+                            className="h-[130px] w-[93px]"
+                            isSelected={isSelected}
+                            disableHoverScale
+                            onHover={(id) => onHoverCard?.(id)}
+                            onLeave={onLeaveCard}
+                            onClick={() => !isChampion && onSelectCard?.(index, cardId)}
+                            onRightClick={onRemoveCard}
+                        />
                     );
                 })}
 
