@@ -1,5 +1,16 @@
 import ProgressWheel from "@/components/common/ProgressWheel";
 
+interface SetPanelProps {
+    name: string;
+    backgroundImage: string;
+    releaseDate: string;
+    collected: number;
+    total: number;
+    altCollected: number;
+    altTotal: number;
+    onClick?: () => void;
+}
+
 export default function SetPanel({
     name,
     backgroundImage,
@@ -9,7 +20,7 @@ export default function SetPanel({
     altCollected,
     altTotal,
     onClick
-}) {
+}: SetPanelProps) {
     return (
         <div
             onClick={onClick}
@@ -85,7 +96,14 @@ export default function SetPanel({
     );
 }
 
-function Stat({ label, collected, total, accent }) {
+interface StatProps {
+    label: string;
+    collected: number;
+    total: number;
+    accent?: boolean;
+}
+
+function Stat({ label, collected, total, accent = false }: StatProps) {
     return (
         <div className="flex flex-col items-center gap-3">
             <ProgressWheel

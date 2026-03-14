@@ -1,10 +1,15 @@
-export default function QuantityControl({ value, onChange }) {
+interface QuantityControlProps {
+    value: number;
+    onChange?: (delta: number) => void;
+}
+
+export default function QuantityControl({ value, onChange }: QuantityControlProps) {
     return (
         <div className="flex items-center gap-1" onClick={e => e.stopPropagation()}>
             <button
                 onClick={(e) => {
                     e.stopPropagation();
-                    onChange(-1);
+                    onChange?.(-1);
                 }}
                 disabled={value <= 0}
                 className="w-6 h-6 bg-zinc-700 rounded disabled:opacity-40"
@@ -19,7 +24,7 @@ export default function QuantityControl({ value, onChange }) {
             <button
                 onClick={(e) => {
                     e.stopPropagation();
-                    onChange(1);
+                    onChange?.(1);
                 }}
                 className="w-6 h-6 bg-zinc-700 rounded"
             >

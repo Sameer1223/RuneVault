@@ -90,7 +90,7 @@ export default function DeckBuilder() {
 
   const handleMoveToSide = useCallback(() => {
     if (!canMoveToSide) return;
-    setDeck((prev: FullDeck) => swapCardsUtil(prev, mainSelections, {}) as FullDeck);
+    setDeck((prev: FullDeck) => swapCardsUtil(prev, toCounts(mainSelections), {}) as FullDeck);
     clearSelections();
   }, [mainSelections, clearSelections, canMoveToSide]);
 

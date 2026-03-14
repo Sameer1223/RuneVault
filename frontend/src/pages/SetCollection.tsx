@@ -92,6 +92,8 @@ export default function SetCollection() {
     }
 
     async function sendUpdate(cardId: string, delta: number, isFoil: boolean = false) {
+        if (!userId) return;
+
         try {
             const res = await authFetch(`${API_BASE_URL}/api/collection/${encodeURIComponent(userId)}`, {
                 method: "PATCH",

@@ -27,7 +27,7 @@ export default function SideDeck ({ side, selectedCards = {}, onHoverCard, onLea
     const deckLength = sideDeck.length;
     const placeholderCount = Math.max(0, 8 - deckLength);
 
-    return (
+    return ( 
         <div className="flex items-center w-full h-full gap-5 overflow-hidden">
             {/* Side Deck */}
             <div className="grid grid-cols-8 grid-rows-1 gap-2">
@@ -35,17 +35,15 @@ export default function SideDeck ({ side, selectedCards = {}, onHoverCard, onLea
                     const isSelected = index in selectedCards;
 
                     return (
-                        <Card
+                        <div
                             key={index}
-                            cardId={cardId}
-                            className="h-[130px] w-[93px]"
-                            isSelected={isSelected}
-                            disableHoverScale
-                            onHover={(id) => onHoverCard?.(id)}
-                            onLeave={onLeaveCard}
+                            className={isSelected ? "ring-2 ring-blue-500 rounded-sm" : ""}
+                            onMouseEnter={() => onHoverCard?.(cardId)}
+                            onMouseLeave={onLeaveCard}
                             onClick={() => onSelectCard?.(index, cardId)}
-                            onRightClick={onRemoveCard}
-                        />
+                        >
+                            <Card cardId={cardId} className="h-[130px] w-[93px]" onRightClick={onRemoveCard}/>
+                        </div>
                     );
                 })} 
 

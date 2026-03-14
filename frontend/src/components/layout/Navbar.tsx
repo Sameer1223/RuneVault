@@ -10,7 +10,7 @@ export default function Navbar() {
             <Link to="/decks">Decks</Link>
             <Link to="/tournaments">Tournaments</Link>
             <Link to="/collection">Collection</Link>
-            <Link to="/rules">Rules</Link>
+            <Link to="/riftboundle">Games</Link>
             <LoginButton />
         </div>
       </div>
