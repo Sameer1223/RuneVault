@@ -5,16 +5,26 @@ import CardSearch from "@/components/cardle/CardSearch";
 import GuessResult from "@/components/cardle/GuessResult";
 import { compareCards, getDailySeed, getRandomCardBySeed } from "@/utils/cardleGameUtils";
 
+const EXCLUDED_CARD_TYPES = new Set(["battlefield", "token", "legend", "rune"]);
+
 export default function DailyGamePage() {
   const [answerCard, setAnswerCard] = useState<CardData | null>(null);
   const [guesses, setGuesses] = useState<CardData[]>([]);
   const [gameWon, setGameWon] = useState(false);
   const [gameLost, setGameLost] = useState(false);
 
+  const playableCardPool = useMemo(
+    () =>
+      (cardData as CardData[]).filter(
+        (card) => !EXCLUDED_CARD_TYPES.has((card.type ?? "").toLowerCase())
+      ),
+    []
+  );
+
   useEffect(() => {
     // Initialize daily card
     const seed = getDailySeed();
-    const card = getRandomCardBySeed(cardData as CardData[], seed);
+    const card = getRandomCardBySeed(playableCardPool, seed);
     setAnswerCard(card);
 
     // Load saved game state
@@ -25,7 +35,7 @@ export default function DailyGamePage() {
       setGameWon(won);
       setGameLost(lost);
     }
-  }, []);
+  }, [playableCardPool]);
 
   const guessedCardIds = useMemo(() => new Set(guesses.map(g => g.cardId)), [guesses]);
 
@@ -104,7 +114,7 @@ export default function DailyGamePage() {
               Guesses: {guesses.length} / 6
             </p>
             <CardSearch
-              cards={cardData as CardData[]}
+              cards={playableCardPool}
               onSelect={handleGuess}
               guessedCardIds={guessedCardIds}
             />
