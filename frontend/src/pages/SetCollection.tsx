@@ -131,6 +131,22 @@ export default function SetCollection() {
 
     const rarityTypes = RARITY_TYPES;
 
+    const rarityIconMap: Record<string, string> = {
+        Common: "/Rarities/common.avif",
+        Uncommon: "/Rarities/uncommon.avif",
+        Rare: "/Rarities/rare.avif",
+        Epic: "/Rarities/epic.avif",
+        "Alternate Art": "/Rarities/alternate-art.avif",
+    };
+
+    const normalizeRarity = (rarity?: string) => {
+        if (!rarity) return "Common";
+        if (rarity === "Overnumbered" || rarity === "Signature" || rarity === "Alternate Art") {
+            return "Alternate Art";
+        }
+        return rarity;
+    };
+
     const rarityStats = useMemo(() => {
         const totals: Record<string, number> = {};
         const collectedCounts: Record<string, number> = {};
@@ -140,7 +156,7 @@ export default function SetCollection() {
         });
 
         viewCards.forEach(card => {
-            const r = card.rarity || "Common";
+            const r = normalizeRarity(card.rarity);
             if (totals[r] === undefined) {
                 totals[r] = 0;
                 collectedCounts[r] = 0;
@@ -210,21 +226,18 @@ export default function SetCollection() {
                                         r === "Epic" ? "text-purple-400" :
                                         "text-pink-400";
 
-                                    const emoji =
-                                        r === "Common" ? "⚪" :
-                                        r === "Uncommon" ? "🟢" :
-                                        r === "Rare" ? "🔵" :
-                                        r === "Epic" ? "🟣" :
-                                        "⭐";
-
                                     const collectedNum = rarityStats.collectedCounts[r] ?? 0;
                                     const totalNum = rarityStats.totals[r] ?? 0;
 
                                     return (
                                         <div key={r} className="flex items-center gap-2 bg-black/30 px-3 py-2 rounded-lg border border-white/6">
-                                            <span className={`${colorClass} text-lg`}>{emoji}</span>
+                                            <img
+                                                src={rarityIconMap[r]}
+                                                alt={`${r} rarity icon`}
+                                                className="h-5 w-5 rounded-sm object-cover"
+                                            />
                                             <div className="text-sm text-gray-200">
-                                                <div className="font-semibold">{r}</div>
+                                                <div className={`font-semibold ${colorClass}`}>{r}</div>
                                                 <div className="text-gray-400">{collectedNum}/{totalNum}</div>
                                             </div>
                                         </div>

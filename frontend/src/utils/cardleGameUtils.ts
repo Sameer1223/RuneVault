@@ -58,7 +58,61 @@ function compareColors(
 
 export function getDailySeed(): string {
   const today = new Date();
-  return `${today.getFullYear()}-${today.getMonth() + 1}-${today.getDate()}`;
+  return `${today.getFullYear()}-${today.getMonth()+1}-${today.getDate()}`;
+}
+
+export interface CareerStats {
+  currentStreak: number;
+  totalWins: number;
+  totalGuessesTaken: number;
+  lastPlayedSeed?: string;
+}
+
+const STATS_KEY = 'cardle_stats';
+
+export function loadCareerStats(): CareerStats {
+  try {
+    const saved = localStorage.getItem(STATS_KEY);
+    return saved ? JSON.parse(saved) : {
+      currentStreak: 0,
+      totalWins: 0,
+      totalGuessesTaken: 0,
+      lastPlayedSeed: undefined,
+    };
+  } catch {
+    return {
+      currentStreak: 0,
+      totalWins: 0,
+      totalGuessesTaken: 0,
+      lastPlayedSeed: undefined,
+    };
+  }
+}
+
+export function updateCareerStats(won: boolean, guessCount: number, currentSeed: string): CareerStats {
+  const stats = loadCareerStats();
+  const previousSeed = stats.lastPlayedSeed;
+  const isSameDay = previousSeed === currentSeed;
+
+  // Only update once per day
+  if (isSameDay) return stats;
+
+  if (won) {
+    stats.currentStreak += 1;
+    stats.totalWins += 1;
+    stats.totalGuessesTaken += guessCount;
+  } else {
+    stats.currentStreak = 0;
+  }
+
+  stats.lastPlayedSeed = currentSeed;
+  localStorage.setItem(STATS_KEY, JSON.stringify(stats));
+  return stats;
+}
+
+export function getAverageGuesses(): number {
+  const stats = loadCareerStats();
+  return stats.totalWins > 0 ? Math.round((stats.totalGuessesTaken / stats.totalWins) * 10) / 10 : 0;
 }
 
 export function getRandomCardBySeed(cards: CardData[], seed: string): CardData {
