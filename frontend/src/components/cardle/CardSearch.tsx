@@ -1,4 +1,4 @@
-import { useState, useMemo } from "react";
+import { useState, useMemo, useRef, useEffect } from "react";
 import type { CardData } from "@/types/deck";
 
 interface CardSearchProps {
@@ -11,6 +11,18 @@ interface CardSearchProps {
 export default function CardSearch({ cards, onSelect, guessedCardIds, disabled = false }: CardSearchProps) {
   const [search, setSearch] = useState("");
   const [isOpen, setIsOpen] = useState(false);
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (containerRef.current && !containerRef.current.contains(event.target as Node)) {
+        setIsOpen(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
 
   const availableCards = useMemo(() => {
     return cards.filter(
@@ -25,7 +37,7 @@ export default function CardSearch({ cards, onSelect, guessedCardIds, disabled =
   };
 
   return (
-    <div className="relative w-full">
+    <div ref={containerRef} className="relative w-full">
       <div className="relative">
         <span className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-slate-400">⌕</span>
         <input
@@ -54,7 +66,7 @@ export default function CardSearch({ cards, onSelect, guessedCardIds, disabled =
       </div>
 
       {isOpen && availableCards.length > 0 && (
-        <div className="mt-2 max-h-80 overflow-y-auto rounded-xl border border-white/15 bg-slate-900/95 p-1 shadow-2xl shadow-black/40 backdrop-blur-xl">
+        <div className="absolute left-0 right-0 top-full z-[90] mt-2 max-h-80 overflow-y-auto rounded-xl border border-white/15 bg-slate-900/95 p-1 shadow-2xl shadow-black/40 backdrop-blur-xl">
           {availableCards.slice(0, 15).map((card) => (
             <button
               key={card.cardId}
@@ -77,7 +89,7 @@ export default function CardSearch({ cards, onSelect, guessedCardIds, disabled =
       )}
 
       {isOpen && search.trim().length > 0 && availableCards.length === 0 && (
-        <div className="mt-2 rounded-xl border border-white/15 bg-slate-900/95 px-4 py-3 text-sm text-slate-400 shadow-2xl shadow-black/40 backdrop-blur-xl">
+        <div className="absolute left-0 right-0 top-full z-[90] mt-2 rounded-xl border border-white/15 bg-slate-900/95 px-4 py-3 text-sm text-slate-400 shadow-2xl shadow-black/40 backdrop-blur-xl">
           No matching cards.
         </div>
       )}

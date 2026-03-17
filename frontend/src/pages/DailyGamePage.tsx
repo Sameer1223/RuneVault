@@ -4,7 +4,7 @@ import type { CardData } from "@/types/deck";
 import CardSearch from "@/components/cardle/CardSearch";
 import GuessResult, { GUESS_GRID_TEMPLATE } from "@/components/cardle/GuessResult";
 import VictoryModal from "@/components/cardle/VictoryModal";
-import { compareCards, getDailySeed, getRandomCardBySeed, updateCareerStats, loadCareerStats, getAverageGuesses } from "@/utils/cardleGameUtils";
+import { compareCards, getDailySeed, getRandomCardBySeed, updateCareerStats, loadCareerStats, loadTodayProgress, saveTodayProgress } from "@/utils/cardleGameUtils";
 
 const EXCLUDED_CARD_TYPES = new Set(["battlefield", "token", "legend", "rune"]);
 
@@ -30,12 +30,28 @@ export default function DailyGamePage() {
     const card = getRandomCardBySeed(playableCardPool, seed);
     setAnswerCard(card);
 
+    // Restore today's progress (guesses + status)
+    const progress = loadTodayProgress(seed);
+    if (progress) {
+      const cardsById = new Map(playableCardPool.map((c) => [c.cardId, c] as const));
+      const restoredGuesses = progress.guessIds
+        .map((id) => cardsById.get(id))
+        .filter((c): c is CardData => Boolean(c));
+
+      setGuesses(restoredGuesses);
+      setGameWon(progress.won);
+      setGameLost(progress.lost);
+    }
+
     // Load career stats (no per-game state restored)
-    loadCareerStats();
+    setCareerStats(loadCareerStats());
   }, [playableCardPool]);
 
   const guessedCardIds = useMemo(() => new Set(guesses.map(g => g.cardId)), [guesses]);
   const guessesRemaining = Math.max(0, maxGuesses - guesses.length);
+  const averageGuesses = careerStats.totalWins > 0
+    ? Math.round((careerStats.totalGuessesTaken / careerStats.totalWins) * 10) / 10
+    : 0;
 
   const handleGuess = (card: CardData) => {
     if (!answerCard || gameWon || gameLost) return;
@@ -49,10 +65,19 @@ export default function DailyGamePage() {
     setGameWon(isWin);
     setGameLost(isLoss && !isWin);
 
-    // Update career stats
     const seed = getDailySeed();
-    const updatedStats = updateCareerStats(isWin, newGuesses.length, seed);
-    setCareerStats(updatedStats);
+    saveTodayProgress(
+      seed,
+      newGuesses.map((g) => g.cardId),
+      isWin,
+      isLoss && !isWin
+    );
+
+    if (isWin || isLoss) {
+      // Update career stats only when the game is finished
+      const updatedStats = updateCareerStats(isWin, newGuesses.length, seed, maxGuesses);
+      setCareerStats(updatedStats);
+    }
   };
 
   if (!answerCard) {
@@ -76,7 +101,8 @@ export default function DailyGamePage() {
             guessCount={guesses.length}
             maxGuesses={maxGuesses}
             streak={careerStats.currentStreak}
-            averageGuesses={getAverageGuesses()}
+            averageGuesses={averageGuesses}
+            guessDistribution={careerStats.guessDistribution}
           />
         )}
 
@@ -134,7 +160,7 @@ export default function DailyGamePage() {
 
         {/* Input */}
         {!gameWon && !gameLost && (
-          <div className="mb-6 rounded-2xl border border-white/10 bg-white/5 p-4 backdrop-blur-md">
+          <div className="relative z-40 mb-6 rounded-2xl border border-white/10 bg-white/5 p-4 backdrop-blur-md">
             <p className="mb-2 text-sm text-slate-300">
               Choose your next guess
             </p>

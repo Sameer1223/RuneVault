@@ -65,47 +65,91 @@ export interface CareerStats {
   currentStreak: number;
   totalWins: number;
   totalGuessesTaken: number;
+  guessDistribution: Record<string, number>;
   lastPlayedSeed?: string;
+  lastResultBucket?: string;
 }
 
 const STATS_KEY = 'cardle_stats';
+const DAILY_PROGRESS_KEY = 'cardle_today_progress';
+
+export interface DailyProgress {
+  seed: string;
+  guessIds: string[];
+  won: boolean;
+  lost: boolean;
+}
+
+function getDefaultCareerStats(): CareerStats {
+  return {
+    currentStreak: 0,
+    totalWins: 0,
+    totalGuessesTaken: 0,
+    guessDistribution: {},
+    lastPlayedSeed: undefined,
+    lastResultBucket: undefined,
+  };
+}
 
 export function loadCareerStats(): CareerStats {
   try {
     const saved = localStorage.getItem(STATS_KEY);
-    return saved ? JSON.parse(saved) : {
-      currentStreak: 0,
-      totalWins: 0,
-      totalGuessesTaken: 0,
-      lastPlayedSeed: undefined,
+    if (!saved) return getDefaultCareerStats();
+
+    const parsed = JSON.parse(saved) as Partial<CareerStats>;
+    return {
+      ...getDefaultCareerStats(),
+      ...parsed,
+      guessDistribution: parsed.guessDistribution ?? {},
     };
   } catch {
-    return {
-      currentStreak: 0,
-      totalWins: 0,
-      totalGuessesTaken: 0,
-      lastPlayedSeed: undefined,
-    };
+    return getDefaultCareerStats();
   }
 }
 
-export function updateCareerStats(won: boolean, guessCount: number, currentSeed: string): CareerStats {
+export function updateCareerStats(
+  won: boolean,
+  guessCount: number,
+  currentSeed: string,
+  maxGuesses: number
+): CareerStats {
   const stats = loadCareerStats();
   const previousSeed = stats.lastPlayedSeed;
   const isSameDay = previousSeed === currentSeed;
+  const currentBucket = won
+    ? String(Math.min(Math.max(guessCount, 1), maxGuesses))
+    : "fail";
 
-  // Only update once per day
-  if (isSameDay) return stats;
+  if (isSameDay) {
+    // If this day was already recorded, replace previous bucket with current bucket.
+    // This keeps distribution accurate and avoids duplicate inflation.
+    if (stats.lastResultBucket === currentBucket) {
+      return stats;
+    }
+
+    if (stats.lastResultBucket) {
+      const prevCount = stats.guessDistribution[stats.lastResultBucket] ?? 0;
+      stats.guessDistribution[stats.lastResultBucket] = Math.max(0, prevCount - 1);
+    }
+
+    stats.guessDistribution[currentBucket] = (stats.guessDistribution[currentBucket] ?? 0) + 1;
+    stats.lastResultBucket = currentBucket;
+    localStorage.setItem(STATS_KEY, JSON.stringify(stats));
+    return stats;
+  }
 
   if (won) {
     stats.currentStreak += 1;
     stats.totalWins += 1;
     stats.totalGuessesTaken += guessCount;
+    stats.guessDistribution[currentBucket] = (stats.guessDistribution[currentBucket] ?? 0) + 1;
   } else {
     stats.currentStreak = 0;
+    stats.guessDistribution[currentBucket] = (stats.guessDistribution[currentBucket] ?? 0) + 1;
   }
 
   stats.lastPlayedSeed = currentSeed;
+  stats.lastResultBucket = currentBucket;
   localStorage.setItem(STATS_KEY, JSON.stringify(stats));
   return stats;
 }
@@ -113,6 +157,30 @@ export function updateCareerStats(won: boolean, guessCount: number, currentSeed:
 export function getAverageGuesses(): number {
   const stats = loadCareerStats();
   return stats.totalWins > 0 ? Math.round((stats.totalGuessesTaken / stats.totalWins) * 10) / 10 : 0;
+}
+
+export function saveTodayProgress(seed: string, guessIds: string[], won: boolean, lost: boolean): void {
+  const payload: DailyProgress = { seed, guessIds, won, lost };
+  localStorage.setItem(DAILY_PROGRESS_KEY, JSON.stringify(payload));
+}
+
+export function loadTodayProgress(seed: string): DailyProgress | null {
+  try {
+    const raw = localStorage.getItem(DAILY_PROGRESS_KEY);
+    if (!raw) return null;
+
+    const parsed = JSON.parse(raw) as DailyProgress;
+    if (parsed.seed !== seed) {
+      // Day rolled over: remove stale temporary progress
+      localStorage.removeItem(DAILY_PROGRESS_KEY);
+      return null;
+    }
+    return parsed;
+  } catch {
+    // Corrupt payload should not linger
+    localStorage.removeItem(DAILY_PROGRESS_KEY);
+    return null;
+  }
 }
 
 export function getRandomCardBySeed(cards: CardData[], seed: string): CardData {
