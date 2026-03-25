@@ -1115,8 +1115,8 @@
         "type": "Unit",
         "rarity": "Common",
         "energy": 2,
-        "power": 1,
-        "might": 0,
+        "power": 0,
+        "might": 1,
         "colors": ["Blue"]
     },
     {

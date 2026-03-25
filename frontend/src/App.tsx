@@ -8,6 +8,7 @@ import SetsPage from "./pages/SetsPage"
 import DailyGamePage from "./pages/DailyGamePage"
 import SetCollection from "./pages/SetCollection"
 import Layout from "./components/layout/Layout"
+import RequireAuth from "./components/auth/RequireAuth"
 
 const AUTH_DOMAIN = import.meta.env.VITE_AUTH0_DOMAIN || "";
 const AUTH_CLIENTID = import.meta.env.VITE_AUTH0_CLIENTID || "";
@@ -27,7 +28,7 @@ function App() {
         <Routes>
           <Route element={<Layout />}>
             <Route path="/" element={<Home/>} />
-            <Route path="/decks" element={<Decks/>} />
+            <Route path="/decks" element={<RequireAuth><Decks/></RequireAuth>} />
             <Route path="/deckbuilder" element={<DeckBuilder/>} />
             <Route path="/deckviewer" element={<DeckViewer/>} />
             <Route path="/collection" element={<SetsPage/>} />
