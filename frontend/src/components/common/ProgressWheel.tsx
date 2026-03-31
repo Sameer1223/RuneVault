@@ -1,10 +1,20 @@
+interface ProgressWheelProps {
+    collected: number;
+    total: number;
+    size?: number;
+    strokeWidth?: number;
+    color?: string;
+    trackColor?: string;
+}
+
 export default function ProgressWheel({
     collected,
     total,
     size = 48,
     strokeWidth = 6,
-    color = "#f59e0b" // amber-500
-}) {
+    color = "#f59e0b", // amber-500
+    trackColor = "rgba(255,255,255,0.15)"
+}: ProgressWheelProps) {
     const radius = (size - strokeWidth) / 2;
     const circumference = 2 * Math.PI * radius;
 
@@ -24,7 +34,7 @@ export default function ProgressWheel({
                     cy={size / 2}
                     r={radius}
                     fill="none"
-                    stroke="rgba(255,255,255,0.15)"
+                    stroke={trackColor}
                     strokeWidth={strokeWidth}
                 />
 

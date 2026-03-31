@@ -1,30 +1,96 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import setData from "../data/sets.json";
 import SetPanel from "../components/collection/SetPanel";
+import cards from "@/data/cards.json";
+import { useUserId } from "@/hooks/useUserId";
+import { useAuthFetch } from "@/hooks/useAuthFetch";
+import { API_BASE_URL } from "@/lib/constants";
 
 export default function Sets() {
     const navigate = useNavigate();
+    const { userId } = useUserId();
+    const authFetch = useAuthFetch();
 
     const [search, setSearch] = useState("");
     const [sortBy, setSortBy] = useState("release");
     const [sortOrder, setSortOrder] = useState("asc");
+    const [userCollection, setUserCollection] = useState<Record<string, number>>({});
+    const [foilCollection, setFoilCollection] = useState<Record<string, number>>({});
 
-    // @TODO: Replace with real user API data
-    const userSetProgress = {
-        origins: { collected: 42, alts: 3 },
-        "proving-grounds": { collected: 12, alts: 1 },
-        spiritforged: { collected: 0, alts: 0 },
-        unleashed: { collected: 0, alts: 0 }
+    const isAltArtRarity = (rarity?: string) => {
+        return rarity === "Alternate Art" || rarity === "Overnumbered" || rarity === "Signature";
     };
 
+    useEffect(() => {
+        const fetchCollection = async () => {
+            if (!userId) return;
+
+            try {
+                const res = await authFetch(`${API_BASE_URL}/api/collection/${encodeURIComponent(userId)}`);
+                if (!res.ok) return;
+
+                const data = await res.json();
+                setUserCollection(data.collection || {});
+                setFoilCollection(data.foil_collection || {});
+            } catch (error) {
+                console.error("Failed to fetch user collection for sets page:", error);
+            }
+        };
+
+        fetchCollection();
+    }, [userId]);
+
+    const userSetProgress = useMemo(() => {
+        const setsByName = Object.values(setData).reduce<Record<string, string>>((acc, set) => {
+            acc[set.name] = set.id;
+            return acc;
+        }, {});
+
+        return (cards as Array<{ cardId: string; set?: string; rarity?: string }>).reduce<Record<string, { collected: number; alts: number }>>((acc, card) => {
+            const setName = card.set;
+            if (!setName) return acc;
+
+            const setId = setsByName[setName];
+            if (!setId) return acc;
+
+            const owned = (userCollection[card.cardId] ?? 0) + (foilCollection[card.cardId] ?? 0);
+            if (owned <= 0) return acc;
+
+            if (!acc[setId]) {
+                acc[setId] = { collected: 0, alts: 0 };
+            }
+
+            if (isAltArtRarity(card.rarity)) {
+                acc[setId].alts += 1;
+            } else {
+                // Primary completion should exclude alternate-art cards
+                acc[setId].collected += 1;
+            }
+
+            return acc;
+        }, {});
+    }, [userCollection, foilCollection]);
+
     const sets = useMemo(() => {
+        const altTotalsBySetName = (cards as Array<{ set?: string; rarity?: string }>).reduce<Record<string, number>>((acc, card) => {
+            const setName = card.set;
+            if (!setName) return acc;
+            if (isAltArtRarity(card.rarity)) {
+                acc[setName] = (acc[setName] ?? 0) + 1;
+            }
+            return acc;
+        }, {});
+
         return Object.entries(setData)
             .map(([id, set]) => {
-                const progress = userSetProgress[id] ?? {
+                const progress = userSetProgress[set.id] ?? {
                     collected: 0,
                     alts: 0
                 };
+
+                const altTotal = altTotalsBySetName[set.name] ?? 0;
+                const isComingSoon = set.totalCards === 0 || new Date(set.releaseDate).getTime() > Date.now();
 
                 return {
                     id,
@@ -33,7 +99,9 @@ export default function Sets() {
                     backgroundImage: set.backgroundImage,
                     totalCards: set.totalCards,
                     collected: progress.collected,
-                    alts: progress.alts
+                    alts: progress.alts,
+                    altTotal,
+                    isComingSoon,
                 };
             })
             .filter((set) =>
@@ -54,14 +122,14 @@ export default function Sets() {
                     case "release":
                     default:
                         result =
-                            new Date(a.releaseDate) -
-                            new Date(b.releaseDate);
+                            new Date(a.releaseDate).getTime() -
+                            new Date(b.releaseDate).getTime();
                         break;
                 }
 
                 return sortOrder === "asc" ? result : -result;
             });
-    }, [search, sortBy, sortOrder]);
+    }, [search, sortBy, sortOrder, userSetProgress]);
 
     return (
         <div className="h-[calc(100vh-4rem)] mt-16 flex flex-col bg-[#121212] text-white">
@@ -161,7 +229,8 @@ export default function Sets() {
                             collected={set.collected}
                             total={set.totalCards}
                             altCollected={set.alts}
-                            altTotal={10}
+                            altTotal={set.altTotal}
+                            isComingSoon={set.isComingSoon}
                             onClick={() =>
                                 navigate(`/collection/${set.id}`, {
                                     state: {

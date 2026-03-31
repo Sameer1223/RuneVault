@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import { useAuth0 } from '@auth0/auth0-react';
+import { API_BASE_URL } from '@/lib/constants';
 
 /**
  * Custom hook to sync user with backend on Auth0 login
@@ -11,14 +12,13 @@ export const useUserSync = () => {
   useEffect(() => {
     const syncUser = async () => {
       if (!isAuthenticated || !user) {
-        console.log('useUserSync: Not authenticated or user not loaded');
         return;
       }
 
       try {
         const token = await getAccessTokenSilently();
 
-        const res = await fetch('http://localhost:5000/api/user/sync-user', {
+        const res = await fetch(`${API_BASE_URL}/api/user/sync-user`, {
           method: 'POST',
           headers: {
             Authorization: `Bearer ${token}`,
@@ -32,14 +32,13 @@ export const useUserSync = () => {
         }
 
         const data = await res.json();
-        console.log('User synced successfully:', data);
 
         // Store Auth0 ID (sub) as the user ID
         localStorage.setItem('userId', data.auth0_id);
         localStorage.setItem('username', data.username);
 
         if (data.is_new) {
-          console.log('New user created:', data);
+          // New user was created
         }
 
       } catch (error) {

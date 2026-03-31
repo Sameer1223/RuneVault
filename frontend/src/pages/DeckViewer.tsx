@@ -1,25 +1,20 @@
 import MainDeck from "../components/deckbuilder/MainDeck";
 import SideDeck from "../components/deckbuilder/SideDeck";
 import RunesDeck from "../components/deckbuilder/RunesDeck";
-import DeckRequirements from "../components/deckbuilder/DeckRequirements";
-import OptionsPanel from "../components/deckbuilder/OptionsPanel";
-import SearchPanel from "../components/deckbuilder/SearchPanel";
-import CardSearchPanel from "../components/deckbuilder/CardSearchPanel";
 import { Button } from "../components/ui/button";
 import { useLocation } from "react-router-dom";
-
 import { useEffect, useState } from "react";
+import type { FullDeck } from "@/types/deck";
 
 export default function DeckViewer() {
     const location = useLocation();
-    const incomingDeck = location.state?.deck;
 
-    const [deck, setDeck] = useState<DeckData | null>(null);
+    const [deck, setDeck] = useState<FullDeck | null>(null);
     const [loading, setLoading] = useState(true);
     const [hoveredCard, setHoveredCard] = useState<string | null>(null);
 
     useEffect(() => {
-        const incomingDeck = location.state?.deck as DeckData;
+        const incomingDeck = location.state?.deck as FullDeck;
     
         if (incomingDeck) {
           setDeck(incomingDeck);

@@ -5,6 +5,7 @@ import setData from "../data/sets.json";
 import CardTile from "@/components/collection/CardTile";
 import { useUserId } from "@/hooks/useUserId";
 import { useAuthFetch } from "@/hooks/useAuthFetch";
+import { API_BASE_URL, RARITY_TYPES } from "@/lib/constants";
 
 export default function SetCollection() {
     const { setId } = useParams();
@@ -13,14 +14,15 @@ export default function SetCollection() {
     const { name, releaseDate, backgroundImage, totalCards } = setDetails;
     const navigate = useNavigate();
 
-    const { userId, loading: userLoading } = useUserId();
+    const { userId } = useUserId();
     const authFetch = useAuthFetch();
 
     // fallback: if the navigation state didn't provide the set name, try to look it up
     let displayName = name;
     if (!displayName && setId) {
-        const matchKey = Object.keys(setData).find(k => {
-            const s = setData[k];
+        const sData = setData as Record<string, { id: string; name: string; releaseDate: string; backgroundImage: string; totalCards: number }>;
+        const matchKey = Object.keys(sData).find(k => {
+            const s = sData[k];
             if (!s) return false;
             return (
                 (s.id && s.id.toLowerCase() === setId.toLowerCase()) ||
@@ -29,7 +31,7 @@ export default function SetCollection() {
             );
         });
 
-        if (matchKey) displayName = setData[matchKey].name;
+        if (matchKey) displayName = sData[matchKey].name;
     }
     const [search, setSearch] = useState("");
 
@@ -43,7 +45,7 @@ export default function SetCollection() {
             if (!userId) return; // Don't fetch if userId is not loaded yet
             
             try {
-                const res = await authFetch(`http://127.0.0.1:5000/api/collection/${encodeURIComponent(userId)}`);
+                const res = await authFetch(`${API_BASE_URL}/api/collection/${encodeURIComponent(userId)}`);
                 if (res.ok) {
                     const data = await res.json();
                     setUserCollection(data.collection || {});
@@ -90,8 +92,10 @@ export default function SetCollection() {
     }
 
     async function sendUpdate(cardId: string, delta: number, isFoil: boolean = false) {
+        if (!userId) return;
+
         try {
-            const res = await authFetch(`http://127.0.0.1:5000/api/collection/${encodeURIComponent(userId!)}`, {
+            const res = await authFetch(`${API_BASE_URL}/api/collection/${encodeURIComponent(userId)}`, {
                 method: "PATCH",
                 body: JSON.stringify({ card_id: cardId, delta, is_foil: isFoil })
             });
@@ -125,18 +129,34 @@ export default function SetCollection() {
         });
     }, [setCards, userCollection, foilCollection]);
 
-    const rarityTypes = ["Common", "Uncommon", "Rare", "Epic", "Alternate Art"];
+    const rarityTypes = RARITY_TYPES;
+
+    const rarityIconMap: Record<string, string> = {
+        Common: "/Rarities/common.avif",
+        Uncommon: "/Rarities/uncommon.avif",
+        Rare: "/Rarities/rare.avif",
+        Epic: "/Rarities/epic.avif",
+        "Alternate Art": "/Rarities/alternate-art.avif",
+    };
+
+    const normalizeRarity = (rarity?: string) => {
+        if (!rarity) return "Common";
+        if (rarity === "Overnumbered" || rarity === "Signature" || rarity === "Alternate Art") {
+            return "Alternate Art";
+        }
+        return rarity;
+    };
 
     const rarityStats = useMemo(() => {
-        const totals = {};
-        const collectedCounts = {};
+        const totals: Record<string, number> = {};
+        const collectedCounts: Record<string, number> = {};
         rarityTypes.forEach(r => {
             totals[r] = 0;
             collectedCounts[r] = 0;
         });
 
         viewCards.forEach(card => {
-            const r = card.rarity || "Common";
+            const r = normalizeRarity(card.rarity);
             if (totals[r] === undefined) {
                 totals[r] = 0;
                 collectedCounts[r] = 0;
@@ -206,21 +226,18 @@ export default function SetCollection() {
                                         r === "Epic" ? "text-purple-400" :
                                         "text-pink-400";
 
-                                    const emoji =
-                                        r === "Common" ? "⚪" :
-                                        r === "Uncommon" ? "🟢" :
-                                        r === "Rare" ? "🔵" :
-                                        r === "Epic" ? "🟣" :
-                                        "⭐";
-
                                     const collectedNum = rarityStats.collectedCounts[r] ?? 0;
                                     const totalNum = rarityStats.totals[r] ?? 0;
 
                                     return (
                                         <div key={r} className="flex items-center gap-2 bg-black/30 px-3 py-2 rounded-lg border border-white/6">
-                                            <span className={`${colorClass} text-lg`}>{emoji}</span>
+                                            <img
+                                                src={rarityIconMap[r]}
+                                                alt={`${r} rarity icon`}
+                                                className="h-5 w-5 rounded-sm object-cover"
+                                            />
                                             <div className="text-sm text-gray-200">
-                                                <div className="font-semibold">{r}</div>
+                                                <div className={`font-semibold ${colorClass}`}>{r}</div>
                                                 <div className="text-gray-400">{collectedNum}/{totalNum}</div>
                                             </div>
                                         </div>
@@ -238,11 +255,11 @@ export default function SetCollection() {
                             card={card}
                             owned={card.collected}
                             foil={card.foilCollected}
-                            onChangeOwned={delta =>
+                            onChangeOwned={(delta: number) =>
                                 updateCollection(card.cardId, delta)
                             }
-                            onChangeFoil={delta =>
-                                updateCollection(card.cardId, delta, true)
+                            onChangeFoil={(delta: number) =>
+                                updateCollection(card.cardId, delta)
                             }
                         />
                     ))}

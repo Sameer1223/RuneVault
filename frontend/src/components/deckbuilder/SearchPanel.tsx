@@ -6,9 +6,11 @@ import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
 import CardSearchBar from "./CardSearchBar";
 import RangeSlider from "../ui/RangeSlider";
 import cardData from "../../data/cards.json";
+import { RARITY_OPTIONS } from "@/lib/constants";
+import type { CardFilters } from "@/utils/filterCardsUtil";
 
 interface SearchPanelProps {
-  onFilterChange: (filters: any) => void;
+  onFilterChange: (filters: CardFilters) => void;
   selectedLegend?: { legendId: string };
 }
 
@@ -54,7 +56,7 @@ export default function SearchPanel({
   useEffect(() => {
     if (selectedLegend) {
       const legendCard = cardData.find(
-        (card) => card.cardId === selectedLegend
+        (card) => card.cardId === selectedLegend.legendId
       );
       setLegendColors(legendCard?.colors ?? []);
     } else {
@@ -98,7 +100,7 @@ export default function SearchPanel({
                 key={`rarity-${dropdownKeys}`}
                 label="Rarity"
                 icon={Filter}
-                options={["All", "Common", "Uncommon", "Rare", "Epic", "Alternate Art"]}
+                options={[...RARITY_OPTIONS]}
                 defaultValue={isBattlefield ? "Uncommon" : "All"}
                 onChange={(val) => updateFilters({ rarityFilter: val })}
               />

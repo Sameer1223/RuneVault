@@ -1,6 +1,8 @@
+import type { DeckListFilters } from "@/types/deck";
+
 interface Props {
-  onFiltersChange: (filters: any) => void;
-  filters: any;
+  onFiltersChange: (filters: DeckListFilters) => void;
+  filters: DeckListFilters;
 }
 
 export default function DeckFilterSidebar({ onFiltersChange, filters }: Props) {
@@ -35,7 +37,7 @@ export default function DeckFilterSidebar({ onFiltersChange, filters }: Props) {
         <label className="block text-sm text-zinc-400 mb-1">Sort By</label>
         <select
           value={filters.sortBy}
-          onChange={(e) => onFiltersChange({ ...filters, sortBy: e.target.value })}
+          onChange={(e) => onFiltersChange({ ...filters, sortBy: e.target.value as DeckListFilters["sortBy"] })}
           className="w-full bg-zinc-900 border border-zinc-700 rounded px-2 py-1 text-sm"
         >
           <option value="date">Date Modified</option>

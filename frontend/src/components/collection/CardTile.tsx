@@ -1,5 +1,19 @@
-import { memo } from "react";
+import { memo, type MouseEvent } from "react";
 import QuantityControl from "./QuantityControl";
+
+interface CollectionCard {
+    cardId: string;
+    name: string;
+    rarity?: string;
+}
+
+interface CardTileProps {
+    card: CollectionCard;
+    owned: number;
+    foil: number;
+    onChangeOwned?: (delta: number) => void;
+    onChangeFoil?: (delta: number) => void;
+}
 
 function CardTile({
     card,
@@ -7,14 +21,14 @@ function CardTile({
     foil,
     onChangeOwned,
     onChangeFoil
-}) {
+}: CardTileProps) {
     const isOwned = owned > 0;
 
-    const handleLeftClick = (e) => {
+    const handleLeftClick = () => {
         onChangeOwned?.(1);
     };
 
-    const handleRightClick = (e) => {
+    const handleRightClick = (e: MouseEvent<HTMLDivElement>) => {
         e.preventDefault();
         onChangeOwned?.(-1);
     };

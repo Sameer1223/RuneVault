@@ -38,7 +38,7 @@
         "set": "Origins",
         "type": "Spell",
         "rarity": "Common",
-        "energy": 5,
+        "energy": 1,
         "power": 0,
         "colors": ["Red"]
     },
@@ -1115,8 +1115,8 @@
         "type": "Unit",
         "rarity": "Common",
         "energy": 2,
-        "power": 1,
-        "might": 0,
+        "power": 0,
+        "might": 1,
         "colors": ["Blue"]
     },
     {
@@ -3754,6 +3754,7 @@
       "name": "Against the Odds",
       "set": "Spiritforged",
       "type": "Spell",
+      "rarity": "Common",
       "energy": 2,
       "power": 0,
       "colors": [
@@ -3778,6 +3779,7 @@
       "name": "Blood Rush",
       "set": "Spiritforged",
       "type": "Spell",
+      "rarity": "Common",
       "energy": 1,
       "power": 0,
       "colors": [
@@ -3795,6 +3797,7 @@
       "name": "Bushwhack",
       "set": "Spiritforged",
       "type": "Spell",
+      "rarity": "Common",
       "energy": 2,
       "power": 1,
       "colors": [
@@ -3806,6 +3809,7 @@
       "name": "Detonate",
       "set": "Spiritforged",
       "type": "Spell",
+      "rarity": "Common",
       "energy": 1,
       "power": 1,
       "colors": [
@@ -3956,6 +3960,7 @@
       "name": "Sudden Storm",
       "set": "Spiritforged",
       "type": "Spell",
+      "rarity": "Uncommon",
       "energy": 3,
       "power": 0,
       "colors": [
@@ -3980,6 +3985,7 @@
       "name": "Assembly Rig",
       "set": "Spiritforged",
       "type": "Gear",
+      "rarity": "Rare",
       "energy": 4,
       "power": 0,
       "colors": [
@@ -4042,6 +4048,7 @@
       "name": "Piercing Light",
       "set": "Spiritforged",
       "type": "Spell",
+      "rarity": "Rare",
       "energy": 2,
       "power": 1,
       "colors": [
@@ -4182,6 +4189,7 @@
       "name": "Desert's Call",
       "set": "Spiritforged",
       "type": "Spell",
+      "rarity": "Common",
       "energy": 2,
       "power": 0,
       "colors": [
@@ -4218,6 +4226,7 @@
       "name": "Feral Strength",
       "set": "Spiritforged",
       "type": "Spell",
+      "rarity": "Common",
       "energy": 2,
       "power": 0,
       "colors": [
@@ -4294,6 +4303,7 @@
       "name": "Thwonk!",
       "set": "Spiritforged",
       "type": "Spell",
+      "rarity": "Common",
       "energy": 2,
       "power": 0,
       "colors": [
@@ -4330,6 +4340,7 @@
       "name": "Emperor's Divide",
       "set": "Spiritforged",
       "type": "Spell",
+      "rarity": "Uncommon",
       "energy": 2,
       "power": 0,
       "colors": [
@@ -4354,6 +4365,7 @@
       "name": "Not So Fast",
       "set": "Spiritforged",
       "type": "Spell",
+      "rarity": "Uncommon",
       "energy": 2,
       "power": 1,
       "colors": [
@@ -4365,6 +4377,7 @@
       "name": "Poro Snax",
       "set": "Spiritforged",
       "type": "Gear",
+      "rarity": "Uncommon",
       "energy": 1,
       "power": 1,
       "colors": [
@@ -4453,6 +4466,7 @@
       "name": "Heart of Dark Ice",
       "set": "Spiritforged",
       "type": "Gear",
+      "rarity": "Rare",
       "energy": 3,
       "power": 1,
       "colors": [
@@ -4631,6 +4645,7 @@
       "name": "Chemtech Cask",
       "set": "Spiritforged",
       "type": "Gear",
+      "rarity": "Common",
       "energy": 1,
       "power": 0,
       "colors": [
@@ -4667,6 +4682,7 @@
       "name": "Frigid Touch",
       "set": "Spiritforged",
       "type": "Spell",
+      "rarity": "Common",
       "energy": 2,
       "power": 0,
       "colors": [
@@ -4717,6 +4733,7 @@
       "name": "Wages of Pain",
       "set": "Spiritforged",
       "type": "Spell",
+      "rarity": "Common",
       "energy": 3,
       "power": 0,
       "colors": [
@@ -4792,6 +4809,7 @@
       "name": "Production Surge",
       "set": "Spiritforged",
       "type": "Spell",
+      "rarity": "Uncommon",
       "energy": 4,
       "power": 1,
       "colors": [
@@ -4803,6 +4821,7 @@
       "name": "Rocket Barrage",
       "set": "Spiritforged",
       "type": "Spell",
+      "rarity": "Uncommon",
       "energy": 4,
       "power": 1,
       "colors": [
@@ -4814,6 +4833,7 @@
       "name": "Temporal Portal",
       "set": "Spiritforged",
       "type": "Gear",
+      "rarity": "Uncommon",
       "energy": 3,
       "power": 0,
       "colors": [
@@ -4838,6 +4858,7 @@
       "name": "Bellows Breath",
       "set": "Spiritforged",
       "type": "Spell",
+      "rarity": "Rare",
       "energy": 1,
       "power": 1,
       "colors": [
@@ -4888,6 +4909,7 @@
       "name": "Hextech Anomaly",
       "set": "Spiritforged",
       "type": "Gear",
+      "rarity": "Rare",
       "energy": 3,
       "power": 1,
       "colors": [
@@ -4950,6 +4972,7 @@
       "name": "Premonition",
       "set": "Spiritforged",
       "type": "Spell",
+      "rarity": "Epic",
       "energy": 2,
       "power": 3,
       "colors": [
@@ -5102,6 +5125,7 @@
       "name": "Punch First",
       "set": "Spiritforged",
       "type": "Spell",
+      "rarity": "Common",
       "energy": 1,
       "power": 2,
       "colors": [
@@ -5190,6 +5214,7 @@
       "name": "Petricite Monument",
       "set": "Spiritforged",
       "type": "Gear",
+      "rarity": "Uncommon",
       "energy": 2,
       "power": 0,
       "colors": [
@@ -5214,6 +5239,7 @@
       "name": "Show of Strength",
       "set": "Spiritforged",
       "type": "Spell",
+      "rarity": "Uncommon",
       "energy": 2,
       "power": 1,
       "colors": [
@@ -5225,6 +5251,7 @@
       "name": "Strike Down",
       "set": "Spiritforged",
       "type": "Spell",
+      "rarity": "Uncommon",
       "energy": 3,
       "power": 1,
       "colors": [
@@ -5287,6 +5314,7 @@
       "name": "Here to Help",
       "set": "Spiritforged",
       "type": "Spell",
+      "rarity": "Rare",
       "energy": 2,
       "power": 1,
       "colors": [
@@ -5337,6 +5365,7 @@
       "name": "Marching Orders",
       "set": "Spiritforged",
       "type": "Spell",
+      "rarity": "Rare",
       "energy": 3,
       "power": 0,
       "colors": [
@@ -5373,6 +5402,7 @@
       "name": "Ancient Henge",
       "set": "Spiritforged",
       "type": "Gear",
+      "rarity": "Epic",
       "energy": 2,
       "power": 1,
       "colors": [
@@ -5461,6 +5491,7 @@
       "name": "Called Shot",
       "set": "Spiritforged",
       "type": "Spell",
+      "rarity": "Common",
       "energy": 0,
       "power": 1,
       "colors": [
@@ -5549,6 +5580,7 @@
       "name": "Temptation",
       "set": "Spiritforged",
       "type": "Spell",
+      "rarity": "Common",
       "energy": 2,
       "power": 0,
       "colors": [
@@ -5623,6 +5655,7 @@
       "name": "Factory Recall",
       "set": "Spiritforged",
       "type": "Spell",
+      "rarity": "Uncommon",
       "energy": 1,
       "power": 0,
       "colors": [
@@ -5634,6 +5667,7 @@
       "name": "Hard Bargain",
       "set": "Spiritforged",
       "type": "Spell",
+      "rarity": "Uncommon",
       "energy": 2,
       "power": 0,
       "colors": [
@@ -5761,6 +5795,7 @@
       "name": "Spirit Wheel",
       "set": "Spiritforged",
       "type": "Gear",
+      "rarity": "Rare",
       "energy": 2,
       "power": 0,
       "colors": [
@@ -5772,6 +5807,7 @@
       "name": "Switcheroo",
       "set": "Spiritforged",
       "type": "Spell",
+      "rarity": "Rare",
       "energy": 2,
       "power": 2,
       "colors": [
@@ -5796,6 +5832,7 @@
       "name": "Downwell",
       "set": "Spiritforged",
       "type": "Spell",
+      "rarity": "Epic",
       "energy": 8,
       "power": 2,
       "colors": [
@@ -5871,6 +5908,7 @@
       "name": "Bonds of Strength",
       "set": "Spiritforged",
       "type": "Spell",
+      "rarity": "Common",
       "energy": 2,
       "power": 0,
       "colors": [
@@ -5907,6 +5945,7 @@
       "name": "Guards!",
       "set": "Spiritforged",
       "type": "Spell",
+      "rarity": "Common",
       "energy": 3,
       "power": 0,
       "colors": [
@@ -6008,6 +6047,7 @@
       "name": "Blood Money",
       "set": "Spiritforged",
       "type": "Spell",
+      "rarity": "Uncommon",
       "energy": 2,
       "power": 0,
       "colors": [
@@ -6019,6 +6059,7 @@
       "name": "Deathgrip",
       "set": "Spiritforged",
       "type": "Spell",
+      "rarity": "Uncommon",
       "energy": 2,
       "power": 0,
       "colors": [
@@ -6030,6 +6071,7 @@
       "name": "Drag Under",
       "set": "Spiritforged",
       "type": "Spell",
+      "rarity": "Uncommon",
       "energy": 5,
       "power": 1,
       "colors": [
@@ -6054,6 +6096,7 @@
       "name": "Rally the Troops",
       "set": "Spiritforged",
       "type": "Spell",
+      "rarity": "Uncommon",
       "energy": 2,
       "power": 0,
       "colors": [
@@ -6078,6 +6121,7 @@
       "name": "Vanguard Armory",
       "set": "Spiritforged",
       "type": "Gear",
+      "rarity": "Uncommon",
       "energy": 7,
       "power": 1,
       "colors": [
@@ -6089,6 +6133,7 @@
       "name": "Altar of Memories",
       "set": "Spiritforged",
       "type": "Gear",
+      "rarity": "Rare",
       "energy": 2,
       "power": 0,
       "colors": [

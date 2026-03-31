@@ -1,8 +1,6 @@
-import React from "react";
-
 interface ConfirmationModalProps {
   isOpen: boolean;
-  mode: "save" | "confirm" | "alert";
+  mode: "save" | "confirm" | "alert" | "delete";
   title?: string;
   message?: string;
   onConfirm?: () => void;

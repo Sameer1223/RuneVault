@@ -2,21 +2,13 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Tag, Info, X, Pencil } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import cardData from "@/data/cards.json";
-import { useNavigate } from "react-router-dom"; // ✅ ADD THIS
+import { useNavigate } from "react-router-dom";
+import type { FullDeck } from "@/types/deck";
 
 interface DeckDetailsPanelProps {
-  deck: {
-    id?: number;
-    name: string;
-    legend: string;
-    dateModified: string;
-    colors: [string, string];
-    notes?: string;
-    tags?: string[];
-    deckData?: any;
-  } | null;
+  deck: FullDeck | null;
   onClose: () => void;
-  onDeleteClick(): () => void;
+  onDeleteClick: () => void;
 }
 
 export default function DeckDetailsPanel({ deck, onClose, onDeleteClick }: DeckDetailsPanelProps) {
@@ -108,7 +100,7 @@ export default function DeckDetailsPanel({ deck, onClose, onDeleteClick }: DeckD
               {deck.deck_data?.Legend ? (
                 <img
                   src={`/TempCards/${deck.deck_data.Legend}.avif`}
-                  alt={`${deck.legend} card`}
+                  alt={`${legend?.name?.split(',')[0] ?? "Unknown"} card`}
                   className="object-cover object-top w-full h-full"
                 />
               ) : (
@@ -124,7 +116,7 @@ export default function DeckDetailsPanel({ deck, onClose, onDeleteClick }: DeckD
               <div className="flex flex-col gap-4 text-sm text-zinc-300">
                 <div className="flex items-center gap-2">
                   <Info className="w-4 h-4 text-amber-400" />
-                  <span>Last modified: {deck.dateModified}</span>
+                  <span>Last modified: {deck.lastUpdated ?? "Unknown"}</span>
                 </div>
 
                 <div className="flex items-center gap-3">
@@ -140,14 +132,14 @@ export default function DeckDetailsPanel({ deck, onClose, onDeleteClick }: DeckD
                   </div>
                 </div>
 
-                {deck.tags && deck.tags.length > 0 && (
+                {Array.isArray(deck.tags) && deck.tags.length > 0 && (
                   <div>
                     <div className="flex items-center gap-2 mb-2">
                       <Tag className="w-4 h-4 text-amber-400" />
                       <span className="font-medium text-white">Tags</span>
                     </div>
                     <div className="flex flex-wrap gap-2">
-                      {deck.tags.map((tag) => (
+                      {(deck.tags as string[]).map((tag) => (
                         <span
                           key={tag}
                           className="px-2 py-1 text-xs bg-zinc-800 rounded-md text-zinc-300 border border-zinc-700"
@@ -162,7 +154,7 @@ export default function DeckDetailsPanel({ deck, onClose, onDeleteClick }: DeckD
                 <div>
                   <span className="font-medium text-white block mb-2">Notes</span>
                   <div className="bg-zinc-800 border border-zinc-700 rounded-md p-3 text-zinc-400 whitespace-pre-wrap min-h-[100px]">
-                    {deck.notes || "No notes available."}
+                    {typeof deck.notes === "string" ? deck.notes : "No notes available."}
                   </div>
                 </div>
               </div>

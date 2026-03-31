@@ -5,7 +5,7 @@ let cachedToken: string | null = null;
 export function useAuthFetch() {
   const { getAccessTokenSilently } = useAuth0();
 
-  return async (url, options = {}) => {
+  return async (url: string, options: RequestInit = {}) => {
     if (!cachedToken) {
       cachedToken = await getAccessTokenSilently();
     }

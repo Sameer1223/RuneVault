@@ -4,10 +4,11 @@ import Home from "./pages/Home"
 import Decks from "./pages/Decks"
 import DeckBuilder from "./pages/DeckBuilder"
 import DeckViewer from "./pages/DeckViewer"
-import CardsPage from "./pages/CardsPage"
 import SetsPage from "./pages/SetsPage"
+import DailyGamePage from "./pages/DailyGamePage"
 import SetCollection from "./pages/SetCollection"
 import Layout from "./components/layout/Layout"
+import RequireAuth from "./components/auth/RequireAuth"
 
 const AUTH_DOMAIN = import.meta.env.VITE_AUTH0_DOMAIN || "";
 const AUTH_CLIENTID = import.meta.env.VITE_AUTH0_CLIENTID || "";
@@ -27,12 +28,12 @@ function App() {
         <Routes>
           <Route element={<Layout />}>
             <Route path="/" element={<Home/>} />
-            <Route path="/decks" element={<Decks/>} />
+            <Route path="/decks" element={<RequireAuth><Decks/></RequireAuth>} />
             <Route path="/deckbuilder" element={<DeckBuilder/>} />
-            {/* <Route path="/cards" element={<CardsPage/>} /> */}
             <Route path="/deckviewer" element={<DeckViewer/>} />
             <Route path="/collection" element={<SetsPage/>} />
             <Route path="/collection/:setId" element={<SetCollection />} />
+            <Route path="/riftboundle" element={<DailyGamePage/>} />
           </Route>
 
           {/* Fallback for unknown URLs */}

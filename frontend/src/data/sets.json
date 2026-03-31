@@ -10,21 +10,35 @@
     "id": "provingGrounds",
     "name": "Proving Grounds",
     "releaseDate": "2025-10-31",
-    "backgroundImage": "/proving-grounds.webp",
+    "backgroundImage": "/proving-grounds.jpg",
     "totalCards": 24
   },
   "spiritforged": {
     "id": "spiritforged",
     "name": "Spiritforged",
-    "releaseDate": "2026-02-01",
+    "releaseDate": "2026-02-13",
     "backgroundImage": "/spiritforged.avif",
-    "totalCards": 0
+    "totalCards": 221
   },
   "unleashed": {
     "id": "unleashed",
     "name": "Unleashed",
-    "releaseDate": "2026-06-01",
-    "backgroundImage": "/spiritforged.avif",
+    "releaseDate": "2026-05-01",
+    "backgroundImage": "/unleashed.jpg",
+    "totalCards": 0
+  },
+  "vendetta": {
+    "id": "vendetta",
+    "name": "Vendetta",
+    "releaseDate": "2026-8-01",
+    "backgroundImage": "/vendetta.webp",
+    "totalCards": 0
+  },
+  "radiance": {
+    "id": "radiance",
+    "name": "Radiance",
+    "releaseDate": "2026-11-01",
+    "backgroundImage": "/radiance.jpeg",
     "totalCards": 0
   }
 }
