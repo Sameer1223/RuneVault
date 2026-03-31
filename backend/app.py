@@ -10,7 +10,7 @@ def create_app():
     app.config.from_object(Config)
     CORS(app, supports_credentials=True, resources={
         r"/api/*": {
-            "origins": "http://localhost:5173",
+            "origins": "*",
             "allow_headers": ["Authorization", "Content-Type"],
             "methods": ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"]
         }
@@ -23,6 +23,10 @@ def create_app():
 
     # register CLI command
     app.cli.add_command(reset_db)
+
+    # Create database tables if they don't exist
+    with app.app_context():
+        db.create_all()
 
     return app
 

@@ -1,5 +1,5 @@
 /** Base URL for all API requests */
-export const API_BASE_URL = import.meta.env.VITE_API_URL || "http://127.0.0.1:5000";
+export const API_BASE_URL = import.meta.env.VITE_API_URL || "";
 
 /** Card rarity types (without "All") */
 export const RARITY_TYPES = ["Common", "Uncommon", "Rare", "Epic", "Alternate Art"] as const;
