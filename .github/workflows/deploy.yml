@@ -97,7 +97,6 @@ jobs:
           key: ${{ secrets.EC2_SSH_KEY }}
           script: |
             cd RuneVault
-            git fetch origin
-            git reset --hard origin/main
+            git pull origin main
             docker-compose down
             docker-compose up -d --build
