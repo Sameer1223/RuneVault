@@ -57,7 +57,7 @@ export default function Home() {
         
         <div className="relative z-10 flex flex-col items-center gap-10">
             <h1 className="font-raleway text-8xl font-light text-stone-200">
-                R U N E V A U I T
+                R U N E V A U L T
             </h1>
 
             <div className="flex gap-5">
