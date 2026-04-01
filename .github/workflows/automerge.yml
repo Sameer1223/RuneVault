@@ -11,8 +11,13 @@ jobs:
   enable-automerge:
     runs-on: ubuntu-latest
     steps:
-      - name: Enable auto-merge for the current PR
-        run: gh pr merge --auto --squash "$PR_URL"
+      - name: Update branch and enable auto-merge
+        run: |
+          # 1. Pull the latest changes from the base branch (e.g., main) into this PR
+          gh pr edit "$PR_URL" --update
+          
+          # 2. Set the PR to merge automatically once tests pass
+          gh pr merge --auto --squash "$PR_URL"
         env:
           PR_URL: ${{ github.event.pull_request.html_url }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
