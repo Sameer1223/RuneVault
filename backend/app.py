@@ -4,6 +4,7 @@ from database.db import db, migrate
 from routes import register_routes
 from config import Config
 from cli import reset_db
+from prometheus_flask_exporter import PrometheusMetrics
 
 def create_app():
     app = Flask(__name__)
@@ -18,6 +19,7 @@ def create_app():
 
     db.init_app(app)
     migrate.init_app(app, db)
+    metrics = PrometheusMetrics(app)
 
     register_routes(app)
 
