@@ -2,7 +2,8 @@ import { useState, useMemo, useEffect } from "react";
 import cardData from "@/data/cards.json";
 import type { CardData } from "@/types/deck";
 import CardSearch from "@/components/cardle/CardSearch";
-import GuessResult, { GUESS_GRID_TEMPLATE } from "@/components/cardle/GuessResult";
+import GuessResult from "@/components/cardle/GuessResult";
+import { GUESS_GRID_TEMPLATE } from "@/components/cardle/guessResultConstants";
 import VictoryModal from "@/components/cardle/VictoryModal";
 import { compareCards, getDailySeed, getRandomCardBySeed, updateCareerStats, loadCareerStats, loadTodayProgress, saveTodayProgress } from "@/utils/cardleGameUtils";
 

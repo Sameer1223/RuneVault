@@ -1,5 +1,6 @@
 import type { CardData } from "@/types/deck";
 import type { ComparisonResult } from "@/utils/cardleGameUtils";
+import { GUESS_GRID_TEMPLATE } from "./guessResultConstants";
 
 interface GuessResultProps {
   guessCard: CardData;
@@ -14,7 +15,7 @@ type StatusMeta = {
 };
 
 const CELL_BASE = "flex items-center border-r border-white/10 px-2 py-1.5 last:border-r-0";
-export const GUESS_COL_W = {
+const GUESS_COL_W = {
   guess: "",
   card: "",
   energy: "",
@@ -25,9 +26,6 @@ export const GUESS_COL_W = {
   set: "",
   rarity: "",
 };
-
-export const GUESS_GRID_TEMPLATE =
-  "64px minmax(260px,2fr) minmax(72px,0.75fr) minmax(72px,0.75fr) minmax(72px,0.75fr) minmax(118px,0.95fr) minmax(105px,0.95fr) minmax(120px,1fr) minmax(130px,1.1fr)";
 
 function getStatStatus(result: string): StatusMeta {
   if (result === "correct") return { badge: "bg-emerald-500/15 ring-1 ring-emerald-300/35", text: "text-emerald-200", icon: "✓" };
