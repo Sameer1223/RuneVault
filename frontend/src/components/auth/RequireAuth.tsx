@@ -63,7 +63,7 @@ export default function RequireAuth({ children }: RequireAuthProps) {
               {/* Content */}
               <div className="mb-8 text-center">
                 <h2 className="mb-2 text-2xl font-semibold text-white">Access Your Decks</h2>
-                <p className="text-sm text-slate-400">Sign in to view, create, and manage your deck collection</p>
+                <p className="text-sm text-slate-400">Sign in to view, create, and manage your card collection</p>
               </div>
 
               {/* Buttons */}
