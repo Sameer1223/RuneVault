@@ -7,7 +7,7 @@ import { GUESS_GRID_TEMPLATE } from "@/components/cardle/guessResultConstants";
 import VictoryModal from "@/components/cardle/VictoryModal";
 import { compareCards, getDailySeed, getRandomCardBySeed, updateCareerStats, loadCareerStats, loadTodayProgress, saveTodayProgress } from "@/utils/cardleGameUtils";
 
-const EXCLUDED_CARD_TYPES = new Set(["battlefield", "token", "legend", "rune"]);
+const EXCLUDED_CARD_TYPES = new Set(["battlefield", "token", "legend", "rune", "alternate art", "overnumbered", "signature"]);
 
 export default function DailyGamePage() {
   const [answerCard, setAnswerCard] = useState<CardData | null>(null);
