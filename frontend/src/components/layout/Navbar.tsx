@@ -11,7 +11,7 @@ export default function Navbar() {
             <div className="flex gap-7">
             <Link to="/decks">Decks</Link>
             <Link to="/collection">Collection</Link>
-            <Link to="/riftboundle">Games</Link>
+            <Link to="/riftboundle">Riftboundle</Link>
             <LoginButton />
         </div>
       </div>
