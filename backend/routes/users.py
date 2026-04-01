@@ -62,6 +62,5 @@ def get_user(user_id):
     
     return jsonify({
         "user_id": user.id,
-        "username": user.username,
-        "email": user.email
+        "username": user.username
     }), 200

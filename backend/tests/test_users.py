@@ -45,7 +45,7 @@ class TestUserEndpoints:
             # Create user first
             response = client.post(
                 "/api/user/sync-user",
-                json={"email": "test@example.com"}
+                json={}
             )
             assert response.status_code == 201
             
