@@ -25,11 +25,35 @@ services:
     build: 
       context: ./frontend
       args:
-      - VITE_API_URL=https://runevault.app/api
+        - VITE_API_URL=https://runevault.app/api
     ports:
       - "5173:80"
     depends_on:
       - backend
 
+  prometheus:
+    image: prom/prometheus
+    volumes:
+      - ./monitoring/prometheus.yml:/etc/prometheus/prometheus.yml
+    ports:
+      - "9090:9090"
+    depends_on:
+      - node-exporter
+
+  grafana:
+    image: grafana/grafana
+    ports:
+      - "3001:3000"
+    volumes:
+      - grafana_data:/var/lib/grafana
+    depends_on:
+      - prometheus
+
+  node-exporter:
+    image: prom/node-exporter
+    ports:
+      - "9100:9100"
+
 volumes:
   db_data:
+  grafana_data:
