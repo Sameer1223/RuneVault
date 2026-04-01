@@ -11,6 +11,9 @@ jobs:
   enable-automerge:
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      
       - name: Update branch and enable auto-merge
         run: |
           # 1. Pull the latest changes from the base branch (e.g., main) into this PR
