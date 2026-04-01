@@ -7,7 +7,7 @@ import { GUESS_GRID_TEMPLATE } from "@/components/cardle/guessResultConstants";
 import VictoryModal from "@/components/cardle/VictoryModal";
 import { compareCards, getDailySeed, getRandomCardBySeed, updateCareerStats, loadCareerStats, loadTodayProgress, saveTodayProgress } from "@/utils/cardleGameUtils";
 
-const EXCLUDED_CARD_TYPES = new Set(["battlefield", "token", "legend", "rune"]);
+const EXCLUDED_CARD_TYPES = new Set(["battlefield", "token", "legend", "rune", "alternate art", "overnumbered", "signature"]);
 
 export default function DailyGamePage() {
   const [answerCard, setAnswerCard] = useState<CardData | null>(null);
@@ -235,9 +235,9 @@ export default function DailyGamePage() {
             <div className="space-y-2 rounded-lg bg-black/20 p-3 text-xs">
               <div className="font-semibold text-slate-200 text-sm">Column meanings</div>
               <ul className="space-y-1.5 text-slate-300">
-                <li><span className="font-semibold text-slate-100">Energy / Power / Might:</span> numeric hint with direction icons.</li>
-                <li><span className="font-semibold text-slate-100">Color:</span> checks color overlap and exact color set match.</li>
-                <li><span className="font-semibold text-slate-100">Type / Set / Rarity:</span> exact string match against the answer card.</li>
+                <li><span className="font-semibold text-slate-100">Energy / Power / Might:</span> Numbers with icons showing greater, less than, or equal</li>
+                <li><span className="font-semibold text-slate-100">Color:</span> Checks color overlap or match</li>
+                <li><span className="font-semibold text-slate-100">Type / Set / Rarity:</span> Checks if matches exactly</li>
               </ul>
             </div>
           </div>
