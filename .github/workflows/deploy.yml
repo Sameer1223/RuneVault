@@ -2,7 +2,7 @@ name: CD Deployment
 
 on:
   pull_request:
-    types: [closed]
+    types: - closed
 
 jobs:
   deploy:
