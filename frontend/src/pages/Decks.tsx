@@ -49,7 +49,7 @@ export default function Decks() {
         // refresh list
         setDecks((prev) => prev.filter((d) => d.id !== deckToDelete.id));
       } catch (err) {
-        alert("Failed to delete deck.");
+        alert("Failed to delete deck." + (err instanceof Error ? err.message : "Unknown error"));
       }
     };
     

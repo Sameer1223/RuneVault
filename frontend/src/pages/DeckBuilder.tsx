@@ -309,7 +309,7 @@ export default function DeckBuilder() {
           <div id="Card-List" className="flex-[2] bg-stone-900 p-2 overflow-y-auto scroll-inside">
             <CardSearchPanel
               cards={filteredCards}
-              deckCards={Object.entries({ ...deck.deck_data.Main, ...deck.deck_data.Side }).reduce((acc, [id, _count]) => {
+              deckCards={Object.entries({ ...deck.deck_data.Main, ...deck.deck_data.Side }).reduce((acc, [id]) => {
                 acc[id] = (deck.deck_data.Main[id] ?? 0) + (deck.deck_data.Side[id] ?? 0);
                 return acc;
               }, {} as Record<string, number>)}

@@ -55,7 +55,6 @@ export default function SetCollection() {
                 }
             } catch (error) {
                 console.error("Error fetching collection:", error);
-            } finally {
             }
         };
 
