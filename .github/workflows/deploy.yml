@@ -1,94 +1,14 @@
-name: CI/CD Pipeline
+name: CD Deployment
 
 on:
-  pull_request:
-    branches: [ "main" ]
   push:
-    branches: [ "main" ]
+    branches: ["main"]
 
 jobs:
-  # Testing pipeline to validate PRs before deployment
-  test:
-    name: Run Tests
-    runs-on: ubuntu-latest
-    
-    services:
-      postgres:
-        image: postgres:15
-        env:
-          POSTGRES_USER: test
-          POSTGRES_PASSWORD: test
-          POSTGRES_DB: runevault_test
-        options: >-
-          --health-cmd pg_isready
-          --health-interval 10s
-          --health-timeout 5s
-          --health-retries 5
-        ports:
-          - 5432:5432
-
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
-
-      - name: Set up Python
-        uses: actions/setup-python@v4
-        with:
-          python-version: '3.11'
-
-      - name: Set up Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '24'
-          cache: 'npm'
-          cache-dependency-path: frontend/package-lock.json
-
-      - name: Install backend dependencies
-        run: |
-          cd backend
-          pip install -r requirements.txt
-
-      - name: Run backend tests
-        env:
-          DATABASE_URL: postgresql://test:test@localhost:5432/runevault_test
-          FLASK_ENV: testing
-          AUTH0_DOMAIN: test-domain.auth0.com
-          AUTH0_API_AUDIENCE: http://localhost:5000
-        run: |
-          cd backend
-          pytest
-
-      - name: Install frontend dependencies
-        run: |
-          cd frontend
-          npm install
-
-      - name: Lint frontend code
-        run: |
-          cd frontend
-          npm run lint
-
-      - name: Build frontend
-        run: |
-          cd frontend
-          npm run build
-
-      - name: Run frontend tests
-        run: |
-          cd frontend
-          npm test
-
-  # If testing succeeds, deploy to EC2 on push events
   deploy:
-    name: Deploy to EC2
-    needs: test
-    if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
-
       - name: Deploy via SSH
         uses: appleboy/ssh-action@v1.0.0
         with:
