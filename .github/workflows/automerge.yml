@@ -14,10 +14,10 @@ jobs:
       - name: Update branch and enable auto-merge
         run: |
           # 1. Pull the latest changes from the base branch (e.g., main) into this PR
-          gh pr edit "$PR_URL" --update
+          gh pr update "$PR_NUMBER" --update
           
           # 2. Set the PR to merge automatically once tests pass
-          gh pr merge --auto --squash "$PR_URL"
+          gh pr merge --auto --squash "$PR_NUMBER"
         env:
-          PR_URL: ${{ github.event.pull_request.html_url }}
+          PR_NUMBER: ${{ github.event.pull_request.number }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
