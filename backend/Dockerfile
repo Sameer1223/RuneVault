@@ -22,5 +22,5 @@ COPY . .
 # Expose port
 EXPOSE 5000
 
-# Run with Gunicorn (IMPORTANT)
-CMD ["sh", "-c", "sleep 5 && gunicorn -b 0.0.0.0:5000 app:create_app()"]
+# Run with Gunicorn
+CMD ["sh", "-c", "sleep 5 && gunicorn -b 0.0.0.0:5000 'app:create_app()'"]
