@@ -81,7 +81,7 @@ export default function Home() {
                 </div>
             ) : (
                 <div className="flex flex-col justify-center items-center bg-slate-900/50 rounded-lg px-4 py-2 border border-slate-700/50 backdrop-blur-sm">
-                    <p className="font-raleway text-stone-200 text-center mb-1.5 text-sm">Sign in to see your collection progress!</p>
+                    <p className="font-raleway text-stone-200 text-center mb-1.5 text-sm">Sign in to track your collection progress!</p>
                     <Link to="/decks" className="text-blue-400 hover:text-blue-300 text-xs font-medium transition">
                         Login →
                     </Link>
