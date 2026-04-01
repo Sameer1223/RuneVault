@@ -10,7 +10,6 @@ export default function Navbar() {
             </Link>
             <div className="flex gap-7">
             <Link to="/decks">Decks</Link>
-            <Link to="/tournaments">Tournaments</Link>
             <Link to="/collection">Collection</Link>
             <Link to="/riftboundle">Games</Link>
             <LoginButton />
