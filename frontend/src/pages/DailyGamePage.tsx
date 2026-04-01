@@ -211,7 +211,7 @@ export default function DailyGamePage() {
 
           {guesses.length === 0 && (
             <div className="rounded-xl border border-dashed border-white/20 bg-white/[0.03] p-6 text-center text-sm text-slate-400">
-              No guesses yet — start typing a card name below.
+              No guesses yet, start typing a card name below.
             </div>
           )}
         </div>
