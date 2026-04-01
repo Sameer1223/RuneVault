@@ -61,11 +61,11 @@ export default function Home() {
             </h1>
 
             <div className="flex gap-5">
+                <Link to="/riftboundle">
+                    <Holo name="Riftboundle" texture="ON-Ahri.avif" className="w-64 h-64" />
+                </Link>
                 <Link to="/decks">
                     <Holo name="Deck Builder" texture="ON-Volibear.avif" className="w-64 h-64"/>
-                </Link>
-                <Link to="/cards">
-                    <Holo name="Cards" texture="ON-Ahri.avif" className="w-64 h-64" />
                 </Link>
                 <Link to="/collection">
                     <Holo name="Collection" texture="ON-Leesin.avif" className="w-64 h-64" />
