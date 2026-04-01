@@ -1,26 +1,20 @@
-name: Auto-merge PRs
+name: Auto Merge PR
+
 on:
   pull_request:
-    types: [opened, reopened, synchronize]
+    types: [opened, synchronize, reopened]
 
 permissions:
-  pull-requests: write
   contents: write
+  pull-requests: write
 
 jobs:
-  enable-automerge:
+  automerge:
     runs-on: ubuntu-latest
+
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-      
-      - name: Update branch and enable auto-merge
-        run: |
-          # 1. Pull the latest changes from the base branch (e.g., main) into this PR
-          gh pr update-branch "$PR_NUMBER"
-          
-          # 2. Set the PR to merge automatically once tests pass
-          gh pr merge --auto --squash "$PR_NUMBER"
-        env:
-          PR_NUMBER: ${{ github.event.pull_request.number }}
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Enable Auto Merge
+        uses: peter-evans/enable-pull-request-automerge@v3
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          merge-method: squash
