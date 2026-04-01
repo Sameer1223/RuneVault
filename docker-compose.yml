@@ -25,7 +25,7 @@ services:
     build: 
       context: ./frontend
       args:
-      - VITE_API_URL=http://localhost:5000
+      - VITE_API_URL=https://runevault.app/api
     ports:
       - "5173:80"
     depends_on:
