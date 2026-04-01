@@ -62,7 +62,7 @@ export default function Home() {
 
             <div className="flex gap-5">
                 <Link to="/riftboundle">
-                    <Holo name="Games" texture="ON-Ahri.avif" className="w-64 h-64" />
+                    <Holo name="Riftboundle" texture="ON-Ahri.avif" className="w-64 h-64" />
                 </Link>
                 <Link to="/decks">
                     <Holo name="Deck Builder" texture="ON-Volibear.avif" className="w-64 h-64"/>
