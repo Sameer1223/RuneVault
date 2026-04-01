@@ -14,7 +14,7 @@ jobs:
       - name: Update branch and enable auto-merge
         run: |
           # 1. Pull the latest changes from the base branch (e.g., main) into this PR
-          gh pr update "$PR_NUMBER" --update
+          gh pr update-branch "$PR_NUMBER"
           
           # 2. Set the PR to merge automatically once tests pass
           gh pr merge --auto --squash "$PR_NUMBER"
