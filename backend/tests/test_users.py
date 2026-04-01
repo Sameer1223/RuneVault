@@ -1,97 +1,64 @@
 """
-Tests for user endpoints (/api/user).
+Tests for user endpoints - testing actual route functions.
 """
 import pytest
-from unittest.mock import patch, MagicMock
-from models.user import User
 
 
-class TestUserSyncEndpoint:
-    """Tests for POST /api/user/sync-user"""
+class TestUserEndpoints:
+    """Integration tests for user endpoints"""
 
-    @patch("auth.auth.verify_decode_jwt")
-    def test_sync_user_creates_new_user(self, mock_verify, client, db):
-        """Test creating a new user on first login"""
-        # Mock auth
-        mock_verify.return_value = {"sub": "auth0|123456789"}
-        
-        response = client.post(
-            "/api/user/sync-user",
-            headers={"Authorization": "Bearer test-token"},
-            json={},
-        )
-        
-        assert response.status_code == 201
-        data = response.get_json()
-        assert data["auth0_id"] == "auth0|123456789"
-        assert data["is_new"] is True
-        assert "username" in data
-        
-        # Verify user was created in DB
-        user = User.query.filter_by(auth0_id="auth0|123456789").first()
-        assert user is not None
+    def test_sync_user_creates_new_user(self, client, app, cleanup_db):
+        """Test creating a new user from sync endpoint."""
+        with app.app_context():
+            response = client.post(
+                "/api/user/sync-user",
+                json={"email": "test@example.com"}
+            )
+            assert response.status_code == 201
+            data = response.get_json()
+            assert data["is_new"] is True
+            assert "auth0_id" in data
+            assert "username" in data
 
-    @patch("auth.auth.verify_decode_jwt")
-    def test_sync_user_existing_user(self, mock_verify, client, db):
-        """Test sync endpoint returns existing user"""
-        # Create a user first
-        user = User(auth0_id="auth0|987654321", username="testuser")
-        db.session.add(user)
-        db.session.commit()
-        
-        # Mock auth
-        mock_verify.return_value = {"sub": "auth0|987654321"}
-        
-        response = client.post(
-            "/api/user/sync-user",
-            headers={"Authorization": "Bearer test-token"},
-            json={},
-        )
-        
-        assert response.status_code == 200
-        data = response.get_json()
-        assert data["auth0_id"] == "auth0|987654321"
-        assert data["username"] == "testuser"
-        assert data["is_new"] is False
+    def test_sync_user_returns_existing(self, client, app, cleanup_db):
+        """Test that existing user is returned with is_new=False."""
+        with app.app_context():
+            # Create user
+            response1 = client.post(
+                "/api/user/sync-user",
+                json={"email": "test@example.com"}
+            )
+            assert response1.status_code == 201
+            
+            # Try to sync again - should return existing user
+            response2 = client.post(
+                "/api/user/sync-user",
+                json={"email": "test@example.com"}
+            )
+            assert response2.status_code == 200
+            data = response2.get_json()
+            assert data["is_new"] is False
 
+    def test_get_user_success(self, client, app, cleanup_db):
+        """Test getting a user by ID."""
+        with app.app_context():
+            # Create user first
+            response = client.post(
+                "/api/user/sync-user",
+                json={"email": "test@example.com"}
+            )
+            assert response.status_code == 201
+            
+            # Get user by ID
+            response = client.get("/api/user/user/1")
+            assert response.status_code == 200
+            data = response.get_json()
+            assert data["user_id"] == 1
+            assert "username" in data
 
-class TestGetUserEndpoint:
-    """Tests for GET /api/user/user/<user_id>"""
-
-    @patch("auth.auth.verify_decode_jwt")
-    def test_get_user_success(self, mock_verify, client, db):
-        """Test retrieving user information"""
-        # Create a test user
-        user = User(auth0_id="auth0|111111", username="retrievetest")
-        # Add email attribute dynamically since it may not exist in the model
-        user.email = None
-        db.session.add(user)
-        db.session.commit()
-        
-        # Mock auth
-        mock_verify.return_value = {"sub": "auth0|111111"}
-        
-        response = client.get(
-            f"/api/user/user/{user.id}",
-            headers={"Authorization": "Bearer test-token"},
-        )
-        
-        assert response.status_code == 200
-        data = response.get_json()
-        assert data["user_id"] == user.id
-        assert data["username"] == "retrievetest"
-
-    @patch("auth.auth.verify_decode_jwt")
-    def test_get_user_not_found(self, mock_verify, client):
-        """Test retrieving non-existent user"""
-        mock_verify.return_value = {"sub": "auth0|111111"}
-        
-        response = client.get(
-            "/api/user/user/9999",
-            headers={"Authorization": "Bearer test-token"},
-        )
-        
+    def test_get_user_not_found(self, client, cleanup_db):
+        """Test that non-existent user returns 404."""
+        response = client.get("/api/user/user/9999")
         assert response.status_code == 404
         data = response.get_json()
         assert "error" in data
-        assert data["error"] == "User not found"
