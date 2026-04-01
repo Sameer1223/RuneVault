@@ -11,6 +11,8 @@ services:
       - db_data:/var/lib/postgresql/data
     ports:
       - "5432:5432"
+    networks:
+      - app-network
 
   backend:
     build: ./backend
@@ -20,6 +22,8 @@ services:
       - ./backend/.env.production
     depends_on:
       - db
+    networks:
+      - app-network
 
   frontend:
     build: 
@@ -30,6 +34,8 @@ services:
       - "5173:80"
     depends_on:
       - backend
+    networks:
+      - app-network
 
   prometheus:
     image: prom/prometheus
@@ -39,6 +45,9 @@ services:
       - "9090:9090"
     depends_on:
       - node-exporter
+      - backend
+    networks:
+      - app-network
 
   grafana:
     image: grafana/grafana
@@ -48,12 +57,19 @@ services:
       - grafana_data:/var/lib/grafana
     depends_on:
       - prometheus
+    networks:
+      - app-network
 
   node-exporter:
     image: prom/node-exporter
     ports:
       - "9100:9100"
+    networks:
+      - app-network
 
 volumes:
   db_data:
   grafana_data:
+
+networks:
+  app-network:
