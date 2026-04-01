@@ -211,7 +211,7 @@ export default function DailyGamePage() {
 
           {guesses.length === 0 && (
             <div className="rounded-xl border border-dashed border-white/20 bg-white/[0.03] p-6 text-center text-sm text-slate-400">
-              No guesses yet — start typing a card name below.
+              No guesses yet, start typing a card name below.
             </div>
           )}
         </div>
@@ -233,7 +233,7 @@ export default function DailyGamePage() {
             </div>
 
             <div className="space-y-2 rounded-lg bg-black/20 p-3 text-xs">
-              <div className="font-semibold text-slate-200 text-sm">Column meanings</div>
+              <div className="font-semibold text-slate-200 text-sm">Column Details</div>
               <ul className="space-y-1.5 text-slate-300">
                 <li><span className="font-semibold text-slate-100">Energy / Power / Might:</span> Numbers with icons showing greater, less than, or equal</li>
                 <li><span className="font-semibold text-slate-100">Color:</span> Checks color overlap or match</li>
