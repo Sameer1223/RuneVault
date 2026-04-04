@@ -1,5 +1,6 @@
-import { memo, type MouseEvent } from "react";
+import { memo, type MouseEvent, useState, useEffect } from "react";
 import QuantityControl from "./QuantityControl";
+import { getCardImagePath, getCardImageFallback } from "@/utils/imageUtils";
 
 interface CollectionCard {
     cardId: string;
@@ -23,6 +24,19 @@ function CardTile({
     onChangeFoil
 }: CardTileProps) {
     const isOwned = owned > 0;
+    const [imageSrc, setImageSrc] = useState(getCardImagePath(card.cardId));
+
+    // Reset image source when card changes
+    useEffect(() => {
+        setImageSrc(getCardImagePath(card.cardId));
+    }, [card.cardId]);
+
+    const handleImageError = () => {
+        // Try fallback PNG if AVIF fails
+        if (imageSrc.endsWith('.avif')) {
+            setImageSrc(getCardImageFallback(card.cardId));
+        }
+    };
 
     const handleLeftClick = () => {
         onChangeOwned?.(1);
@@ -37,14 +51,16 @@ function CardTile({
         <div
             onClick={handleLeftClick}
             onContextMenu={handleRightClick}
-            className="rounded-xl bg-black/40 border border-white/10 overflow-hidden transition hover:scale-[1.03] cursor-pointer"
+            className="rounded-xl bg-black/40 border border-white/10 overflow-hidden transition hover:scale-[1.03] cursor-pointer flex flex-col"
         >
-            <div
-                className={`aspect-[3/4] bg-cover bg-center ${!isOwned ? "grayscale brightness-75" : ""}`}
-                style={{
-                    backgroundImage: `url(/TempCards/${card.cardId}.avif)`
-                }}
-            />
+            <div className="aspect-[3/4] bg-cover bg-center overflow-hidden">
+                <img
+                    src={imageSrc}
+                    alt={card.name}
+                    onError={handleImageError}
+                    className={`w-full h-full object-cover ${!isOwned ? "grayscale brightness-75" : ""}`}
+                />
+            </div>
 
             <div className="p-3 flex flex-col justify-between">
                 <h3 className="text-sm font-medium truncate min-h-[1.4rem]">

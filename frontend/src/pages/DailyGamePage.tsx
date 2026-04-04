@@ -1,6 +1,7 @@
 import { useState, useMemo, useEffect } from "react";
 import cardData from "@/data/cards.json";
 import type { CardData } from "@/types/deck";
+import CardImage from "@/components/CardImage";
 import CardSearch from "@/components/cardle/CardSearch";
 import GuessResult from "@/components/cardle/GuessResult";
 import { GUESS_GRID_TEMPLATE } from "@/components/cardle/guessResultConstants";
@@ -151,8 +152,8 @@ export default function DailyGamePage() {
         {gameLost && (
           <div className="mb-6 rounded-2xl border border-rose-300/30 bg-rose-500/15 p-5 text-center backdrop-blur-md">
             <p className="text-2xl font-bold text-rose-200">😢 Game Over! {answerCard.name}</p>
-            <img
-              src={`/TempCards/${answerCard.cardId}.avif`}
+            <CardImage
+              cardId={answerCard.cardId}
               alt={answerCard.name}
               className="mx-auto mt-4 h-64 w-48 rounded-xl border border-white/10 object-cover shadow-2xl"
             />
