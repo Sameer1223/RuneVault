@@ -23,9 +23,9 @@
   "unleashed": {
     "id": "unleashed",
     "name": "Unleashed",
-    "releaseDate": "2026-05-01",
+    "releaseDate": "2026-05-08",
     "backgroundImage": "/unleashed.jpg",
-    "totalCards": 0
+    "totalCards": 219
   },
   "vendetta": {
     "id": "vendetta",

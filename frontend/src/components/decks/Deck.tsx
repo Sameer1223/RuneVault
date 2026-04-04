@@ -1,4 +1,5 @@
 import { Pencil } from "lucide-react";
+import { LEGEND_IMAGE_COVER_MAP } from "@/lib/constants";
 
 interface DeckProps {
   name: string;
@@ -23,36 +24,6 @@ export default function Deck({
 }: DeckProps) {
   const [fromColor, toColor] = colors;
 
-  const legendCover: Record<string, number> = {
-    kaisa: 12,
-    ahri: 27,
-    sett: 3,
-    jinx: 3,
-    teemo: 20,
-    volibear: 8,
-    darius: 6,
-    leesin: 12,
-    viktor: 15,
-    leona: 12,
-    missfortune: 20,
-    annie: 25,
-    masteryi: 25,
-    lux: 12,
-    garen: 20,
-    irelia: 18,
-    draven: 5,
-    rumble: 12,
-    lucian: 5,
-    reksai: 45,
-    ornn: 15,
-    jax: 40,
-    azir: 16,
-    ezreal: 25,
-    renata: 6,
-    sivir: 15,
-    fiora: 15
-  };
-
   return (
     <div
       onClick={onClick}
@@ -67,10 +38,10 @@ export default function Deck({
         style={{
           backgroundImage: backgroundImage ? `url(${backgroundImage})` : undefined,
           backgroundSize: "cover",
-          backgroundPosition: `50% ${legendCover[legend.toLowerCase().replace(/[^a-zA-Z]/g, '')] || 12}%`,
+          backgroundPosition: `50% ${LEGEND_IMAGE_COVER_MAP[legend.toLowerCase().replace(/[^a-zA-Z]/g, '')] || 12}%`,
         }}
       >
-        <div className="absolute inset-0 bg-black/40 rounded-md pointer-events-none" />
+        <div className="absolute inset-0 bg-black/20 rounded-md pointer-events-none" />
         <div className="relative flex flex-col">
           <span className="text-white font-medium truncate">{name}</span>
           {legend && <span className="text-sm text-zinc-400">{legend}</span>}

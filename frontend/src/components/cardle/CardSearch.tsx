@@ -1,5 +1,6 @@
 import { useState, useMemo, useRef, useEffect } from "react";
 import type { CardData } from "@/types/deck";
+import CardImage from "../CardImage";
 
 interface CardSearchProps {
   cards: CardData[];
@@ -73,8 +74,8 @@ export default function CardSearch({ cards, onSelect, guessedCardIds, disabled =
               onClick={() => handleSelect(card)}
               className="flex w-full items-center gap-3 rounded-lg px-3 py-2 text-left text-white transition hover:bg-white/10"
             >
-              <img
-                src={`/TempCards/${card.cardId}.avif`}
+              <CardImage
+                cardId={card.cardId}
                 alt={card.name}
                 className="h-12 w-8 rounded border border-white/10 object-cover"
               />

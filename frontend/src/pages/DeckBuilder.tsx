@@ -1,6 +1,7 @@
 import { useEffect, useState, useMemo, useCallback } from "react";
 import { useLocation } from "react-router-dom";
 import cardData from "../data/cards.json";
+import CardImage from "@/components/CardImage";
 import EditableDeckTitle from "../components/deckbuilder/EditableDeckTitle";
 import MainDeck from "../components/deckbuilder/MainDeck";
 import SideDeck from "../components/deckbuilder/SideDeck";
@@ -270,9 +271,8 @@ export default function DeckBuilder() {
                 className="fixed z-50 pointer-events-none"
                 style={{ left: mousePos.x + 15, top: mousePos.y + 15 }}
               >
-                <img
-                  src={`/TempCards/${hoveredCard}.avif`}
-                  alt={hoveredCard}
+                <CardImage
+                  cardId={hoveredCard}
                   className="h-[400px] w-auto object-cover rounded-lg shadow-2xl"
                 />
               </div>
