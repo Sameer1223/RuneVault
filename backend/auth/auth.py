@@ -114,13 +114,3 @@ def requires_auth(f):
         return f(*args, **kwargs)
 
     return wrapper
-
-
-def get_current_user():
-    """Try to get current authenticated user from request. Returns None if not authenticated."""
-    try:
-        token = get_token_auth_header()
-        payload = verify_decode_jwt(token)
-        return payload
-    except:
-        return None

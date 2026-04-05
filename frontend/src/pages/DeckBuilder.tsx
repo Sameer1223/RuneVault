@@ -298,12 +298,7 @@ export default function DeckBuilder() {
           </div>
 
           <div id="Options-Panel" className="bg-[#121212] flex-[1] p-3">
-            <OptionsPanel 
-              onSave={saveDeck} 
-              onClear={clearDeck} 
-              deck={deck.deck_data}
-              fullDeck={deck}
-            />
+            <OptionsPanel onSave={saveDeck} onClear={clearDeck} deck={deck.deck_data} />
           </div>
         </div>
 

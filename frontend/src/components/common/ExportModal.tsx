@@ -1,69 +1,19 @@
 import { motion } from "framer-motion";
 import { Button } from "../ui/button";
-import { useState } from "react";
-import type { DeckInnerData } from "@/types/deck";
 
 interface ExportModalProps {
   isOpen: boolean;
   onClose: () => void;
   onSelectFormat: (format: string) => void;
-  fullDeck?: { id?: string | number; name: string; deck_data: DeckInnerData };
 }
 
 export default function ExportModal({
   isOpen,
   onClose,
   onSelectFormat,
-  fullDeck,
 }: ExportModalProps) {
-  const [statusMessage, setStatusMessage] = useState<{
-    type: "success" | "error" | "info";
-    text: string;
-  } | null>(null);
-  const [isLoading, setIsLoading] = useState(false);
 
   if (!isOpen) return null;
-
-  const handleCopyLink = async () => {
-    try {
-      setIsLoading(true);
-      setStatusMessage(null);
-
-      // If deck has no ID, it needs to be saved first
-      if (!fullDeck?.id) {
-        setStatusMessage({
-          type: "info",
-          text: "Please save your deck first before creating a shareable link.",
-        });
-        setIsLoading(false);
-        return;
-      }
-
-      // Generate shareable link
-      const shareUrl = `${window.location.origin}/deckviewer?id=${fullDeck.id}`;
-
-      // Copy to clipboard
-      await navigator.clipboard.writeText(shareUrl);
-
-      setStatusMessage({
-        type: "success",
-        text: "Link copied to clipboard!",
-      });
-
-      // Auto-close after 2 seconds
-      setTimeout(() => {
-        onClose();
-        setStatusMessage(null);
-      }, 2000);
-    } catch (error) {
-      setStatusMessage({
-        type: "error",
-        text: "Failed to copy link. Please try again.",
-      });
-    } finally {
-      setIsLoading(false);
-    }
-  };
 
   const exportOptions = [
     { label: "Copy Link", value: "link" },
@@ -92,36 +42,16 @@ export default function ExportModal({
           Export Deck
         </h2>
 
-        {statusMessage && (
-          <div
-            className={`mb-4 p-3 rounded-lg text-sm text-center ${
-              statusMessage.type === "success"
-                ? "bg-green-900/30 text-green-300"
-                : statusMessage.type === "error"
-                ? "bg-red-900/30 text-red-300"
-                : "bg-blue-900/30 text-blue-300"
-            }`}
-          >
-            {statusMessage.text}
-          </div>
-        )}
-
         <div className="flex flex-col gap-3">
           {exportOptions.map((opt) => (
             <Button
               key={opt.value}
-              disabled={opt.disabled || isLoading}
+              disabled={opt.disabled}
               onClick={() => {
-                if (!opt.disabled && !isLoading) {
-                  if (opt.value === "link") {
-                    handleCopyLink();
-                  } else {
-                    onSelectFormat(opt.value);
-                  }
-                }
+                if (!opt.disabled) onSelectFormat(opt.value);
               }}
               className={`w-full justify-center rounded-xl py-2 text-base ${
-                opt.disabled || isLoading
+                opt.disabled
                   ? "opacity-40 cursor-not-allowed"
                   : "bg-[#2a2a2a] hover:bg-[#3a3a3a]"
               }`}
@@ -134,7 +64,6 @@ export default function ExportModal({
         <Button
           className="w-full mt-5 bg-[#333333] hover:bg-[#444444]"
           onClick={onClose}
-          disabled={isLoading}
         >
           Close
         </Button>
