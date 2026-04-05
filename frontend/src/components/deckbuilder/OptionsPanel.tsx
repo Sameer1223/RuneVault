@@ -10,14 +10,16 @@ interface OptionsPanelProps {
   onSave: () => void;
   onClear?: () => void;
   deck: DeckData;
+  fullDeck?: { id?: string | number; name: string; deck_data: DeckData };
 }
 
 export default function OptionsPanel({
   onSave,
   onClear,
   deck,
+  fullDeck,
 }: OptionsPanelProps) {
-  // 🔹 Build lookup map once
+  // Build lookup map once
   const cardLookup = useMemo(() => {
     const map: Record<string, CardEntry> = {};
     for (const c of cardData) map[c.cardId] = c;
@@ -190,11 +192,11 @@ const betterColors: Record<string, string> = {
         ))}
       </div>
 
-      {/* NEW → modal */}
       <ExportModal
         isOpen={exportOpen}
         onClose={() => setExportOpen(false)}
         onSelectFormat={handleExport}
+        fullDeck={fullDeck}
       />
     </div>
   );
