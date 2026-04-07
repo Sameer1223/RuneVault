@@ -2,34 +2,70 @@ import MainDeck from "../components/deckbuilder/MainDeck";
 import SideDeck from "../components/deckbuilder/SideDeck";
 import RunesDeck from "../components/deckbuilder/RunesDeck";
 import { Button } from "../components/ui/button";
-import { useLocation } from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import type { FullDeck } from "@/types/deck";
 import CardImage from "@/components/CardImage";
+import { motion, AnimatePresence } from "framer-motion";
+import { API_BASE_URL } from "@/lib/constants";
 
 export default function DeckViewer() {
     const location = useLocation();
+    const { deckId } = useParams();
 
     const [deck, setDeck] = useState<FullDeck | null>(null);
     const [loading, setLoading] = useState(true);
     const [hoveredCard, setHoveredCard] = useState<string | null>(null);
+    const [notification, setNotification] = useState<string | null>(null);
+
+    useEffect(() => {
+        if (notification) {
+            const timer = setTimeout(() => setNotification(null), 3000);
+            return () => clearTimeout(timer);
+        }
+    }, [notification]);
 
     useEffect(() => {
         const incomingDeck = location.state?.deck as FullDeck;
     
         if (incomingDeck) {
           setDeck(incomingDeck);
+          setLoading(false);
+        } else if (deckId) {
+          // Fetch deck from backend if not passed in state
+          fetch(`${API_BASE_URL}/api/decks/${deckId}`)
+            .then(res => res.json())
+            .then(data => {
+                if (data.error) {
+                    console.error(data.error);
+                } else {
+                    setDeck(data);
+                }
+                setLoading(false);
+            })
+            .catch(err => {
+                console.error(err);
+                setLoading(false);
+            });
+        } else {
+          setLoading(false);
         }
-        // After checking for incoming data, loading is complete
-        setLoading(false);
-      }, [location.state]);
+      }, [location.state, deckId]);
+
+    const handleCopyLink = () => {
+        if (deck) {
+            const link = `${window.location.origin}/deckviewer/${deck.id}`;
+            navigator.clipboard.writeText(link);
+            setNotification("Link copied to clipboard!");
+        }
+    };
       
     if (loading) return <div className="text-white p-4">Loading deck...</div>;
     if (!deck) return <div className="text-white p-4">No deck data found.</div>;
 
     return (
         <div className="h-[calc(100vh-4rem)] mt-16 flex flex-col bg-[#121212] text-white gap-3 px-6 py-4">
-            <div className="py-1 text-3xl font-semibold">Deck Title</div>
+            <div className="py-1 text-3xl font-semibold">{deck.name}</div>
 
             <div id="Deck-Builder" className="flex flex-1 gap-3 min-h-0">
                 <div id="Cards-Panel" className="flex flex-col flex-[3] gap-3 min-h-0">
@@ -57,7 +93,7 @@ export default function DeckViewer() {
                         <div className="flex gap-5">
                             <Button>Edit</Button>
                             <Button>Export</Button>
-                            <Button>Copy Link</Button>
+                            <Button onClick={handleCopyLink}>Copy Link</Button>
                             <Button>Delete</Button>
                         </div>
                     </div>
@@ -76,6 +112,19 @@ export default function DeckViewer() {
                     </div>
                 </div>
             </div>
+
+            <AnimatePresence>
+                {notification && (
+                    <motion.div
+                        initial={{ opacity: 0, y: 50, x: "-50%" }}
+                        animate={{ opacity: 1, y: 0, x: "-50%" }}
+                        exit={{ opacity: 0, y: 20, x: "-50%" }}
+                        className="fixed bottom-10 left-1/2 z-[100] bg-white text-black px-6 py-3 rounded-full shadow-2xl font-medium"
+                    >
+                        {notification}
+                    </motion.div>
+                )}
+            </AnimatePresence>
         </div>
     );
 }

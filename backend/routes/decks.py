@@ -33,7 +33,7 @@ def get_decks_by_user(user_id):
 
 
 # Get deck by ID
-@decks_routes.route("/<int:deck_id>", methods=["GET"])
+@decks_routes.route("/<string:deck_id>", methods=["GET"])
 def get_deck(deck_id):
     deck = Deck.query.get(deck_id)
     if not deck:
@@ -42,7 +42,7 @@ def get_deck(deck_id):
 
 
 # Update a deck
-@decks_routes.route("/<int:deck_id>", methods=["PUT"])
+@decks_routes.route("/<string:deck_id>", methods=["PUT"])
 @requires_auth
 def update_deck(deck_id):
     data = request.get_json()
@@ -65,7 +65,7 @@ def update_deck(deck_id):
         return jsonify({"error": str(e)}), 400
     
 # Delete a deck
-@decks_routes.route("/<int:deck_id>", methods=["DELETE"])
+@decks_routes.route("/<string:deck_id>", methods=["DELETE"])
 @requires_auth
 def delete_deck(deck_id):
     deck = Deck.query.get(deck_id)

@@ -1,8 +1,9 @@
-import { useMemo, useState, type ReactNode } from "react";
+import { useMemo, useState, useEffect, type ReactNode } from "react";
 import { Button } from "../ui/button";
 import cardData from "../../data/cards.json";
 import ExportModal from "../common/ExportModal";
 import type { DeckData } from "@/data/emptyDeckTemplate";
+import { motion, AnimatePresence } from "framer-motion";
 
 type CardEntry = (typeof cardData)[number];
 
@@ -10,13 +11,28 @@ interface OptionsPanelProps {
   onSave: () => void;
   onClear?: () => void;
   deck: DeckData;
+  deckId?: string;
 }
 
 export default function OptionsPanel({
   onSave,
   onClear,
   deck,
+  deckId,
 }: OptionsPanelProps) {
+  const [notification, setNotification] = useState<string | null>(null);
+
+  useEffect(() => {
+    if (notification) {
+      const timer = setTimeout(() => setNotification(null), 3000);
+      return () => clearTimeout(timer);
+    }
+  }, [notification]);
+
+  const showNotification = (msg: string) => {
+    setNotification(msg);
+  };
+
   // 🔹 Build lookup map once
   const cardLookup = useMemo(() => {
     const map: Record<string, CardEntry> = {};
@@ -169,8 +185,19 @@ const betterColors: Record<string, string> = {
     navigator.clipboard.writeText(output);
 
     setExportOpen(false);
+    showNotification(`${format.toUpperCase()} export copied to clipboard!`);
   };
 
+  const handleLinkExport = () => {
+    if (!deckId) {
+      showNotification("Please save your deck first to generate a shareable link!");
+      return;
+    }
+    const link = `${window.location.origin}/deckviewer/${deckId}`;
+    navigator.clipboard.writeText(link);
+    showNotification("Shareable link copied to clipboard!");
+    setExportOpen(false);
+  };
 
   return (
     <div className="flex gap-20 items-center">
@@ -194,8 +221,27 @@ const betterColors: Record<string, string> = {
       <ExportModal
         isOpen={exportOpen}
         onClose={() => setExportOpen(false)}
-        onSelectFormat={handleExport}
+        onSelectFormat={(format) => {
+          if (format === "link") {
+            handleLinkExport();
+          } else {
+            handleExport(format);
+          }
+        }}
       />
+
+      <AnimatePresence>
+        {notification && (
+          <motion.div
+            initial={{ opacity: 0, y: 50, x: "-50%" }}
+            animate={{ opacity: 1, y: 0, x: "-50%" }}
+            exit={{ opacity: 0, y: 20, x: "-50%" }}
+            className="fixed bottom-10 left-1/2 z-[100] bg-white text-black px-6 py-3 rounded-full shadow-2xl font-medium"
+          >
+            {notification}
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 }
