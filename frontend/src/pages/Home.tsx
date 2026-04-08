@@ -56,7 +56,8 @@ export default function Home() {
         <img src="leagueworld.jpg" className="absolute inset-0 h-full w-full object-cover opacity-30" />
         
         <div className="relative z-10 flex flex-col items-center gap-10">
-            <h1 className="font-raleway text-8xl font-light text-stone-200">
+            <h1 className="font-raleway text-8xl font-light text-[#caa368]">
+            {/* <h1 className="font-raleway text-8xl font-light text-stone-200"> */}
                 R U N E V A U L T
             </h1>
 
