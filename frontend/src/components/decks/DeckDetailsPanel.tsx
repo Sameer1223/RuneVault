@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import cardData from "@/data/cards.json";
 import { useNavigate } from "react-router-dom";
 import type { FullDeck } from "@/types/deck";
+import CardImage from "../CardImage";
 
 interface DeckDetailsPanelProps {
   deck: FullDeck | null;
@@ -98,8 +99,8 @@ export default function DeckDetailsPanel({ deck, onClose, onDeleteClick }: DeckD
             {/* Legend Image */}
             <div className="relative w-full aspect-[7/5] bg-zinc-800 rounded-lg overflow-hidden mb-5 flex items-center justify-center">
               {deck.deck_data?.Legend ? (
-                <img
-                  src={`/TempCards/${deck.deck_data.Legend}.avif`}
+                <CardImage
+                  cardId={deck.deck_data.Legend}
                   alt={`${legend?.name?.split(',')[0] ?? "Unknown"} card`}
                   className="object-cover object-top w-full h-full"
                 />

@@ -7153,5 +7153,3285 @@
       "type": "Legend",
       "rarity": "Overnumbered",
       "colors": ["Orange", "Yellow"]
+    },
+    {
+      "cardId": "UNL-001",
+      "name": "Arena Kingpin",
+      "set": "Unleashed",
+      "type": "Unit",
+      "rarity": "Common",
+      "energy": 5,
+      "power": 0,
+      "might": 3,
+      "colors": [
+        "Red"
+      ]
+    },
+    {
+      "cardId": "UNL-T01",
+      "name": "Baron Pit",
+      "set": "Unleashed",
+      "type": "Token",
+      "rarity": "Common"
+    },
+    {
+      "cardId": "UNL-T02",
+      "name": "Bird",
+      "set": "Unleashed",
+      "type": "Token",
+      "rarity": "Common",
+      "might": 1
+    },
+    {
+      "cardId": "UNL-002",
+      "name": "Inferna",
+      "set": "Unleashed",
+      "type": "Unit",
+      "rarity": "Common",
+      "energy": 2,
+      "power": 0,
+      "might": 1,
+      "colors": [
+        "Red"
+      ]
+    },
+    {
+      "cardId": "UNL-T03",
+      "name": "Brush",
+      "set": "Unleashed",
+      "type": "Token",
+      "rarity": "Common"
+    },
+    {
+      "cardId": "UNL-003",
+      "name": "Mischievous Marai",
+      "set": "Unleashed",
+      "type": "Unit",
+      "rarity": "Common",
+      "energy": 2,
+      "power": 0,
+      "might": 2,
+      "colors": [
+        "Red"
+      ]
+    },
+    {
+      "cardId": "UNL-004",
+      "name": "Prepared Neophyte",
+      "set": "Unleashed",
+      "type": "Unit",
+      "rarity": "Common",
+      "energy": 3,
+      "power": 0,
+      "might": 1,
+      "colors": [
+        "Red"
+      ]
+    },
+    {
+      "cardId": "UNL-T05",
+      "name": "Gold",
+      "set": "Unleashed",
+      "type": "Token",
+      "rarity": "Common"
+    },
+    {
+      "cardId": "UNL-005",
+      "name": "Revna the Lorekeeper",
+      "set": "Unleashed",
+      "type": "Unit",
+      "rarity": "Common",
+      "energy": 7,
+      "power": 1,
+      "might": 7,
+      "colors": [
+        "Red"
+      ]
+    },
+    {
+      "cardId": "UNL-T06",
+      "name": "Reflection",
+      "set": "Unleashed",
+      "type": "Token",
+      "rarity": "Common",
+      "might": 0
+    },
+    {
+      "cardId": "UNL-006",
+      "name": "Sharkling",
+      "set": "Unleashed",
+      "type": "Unit",
+      "rarity": "Common",
+      "energy": 3,
+      "power": 0,
+      "might": 1,
+      "colors": [
+        "Red"
+      ]
+    },
+    {
+      "cardId": "UNL-007",
+      "name": "Smite",
+      "set": "Unleashed",
+      "type": "Spell",
+      "energy": 2,
+      "power": 1,
+      "colors": [
+        "Red"
+      ]
+    },
+    {
+      "cardId": "UNL-T07",
+      "name": "Sprite",
+      "set": "Unleashed",
+      "type": "Token",
+      "rarity": "Common",
+      "might": 3
+    },
+    {
+      "cardId": "UNL-008",
+      "name": "Towering Pairofant",
+      "set": "Unleashed",
+      "type": "Unit",
+      "rarity": "Common",
+      "energy": 6,
+      "power": 0,
+      "might": 6,
+      "colors": [
+        "Red"
+      ]
+    },
+    {
+      "cardId": "UNL-009",
+      "name": "Upstage Comedy",
+      "set": "Unleashed",
+      "type": "Spell",
+      "energy": 2,
+      "power": 0,
+      "colors": [
+        "Red"
+      ]
+    },
+    {
+      "cardId": "UNL-010",
+      "name": "Vault Breaker",
+      "set": "Unleashed",
+      "type": "Spell",
+      "energy": 1,
+      "power": 1,
+      "colors": [
+        "Red"
+      ]
+    },
+    {
+      "cardId": "UNL-011",
+      "name": "Fresh Beans",
+      "set": "Unleashed",
+      "type": "Gear",
+      "energy": 2,
+      "power": 0,
+      "colors": [
+        "Red"
+      ]
+    },
+    {
+      "cardId": "UNL-012",
+      "name": "Lord Broadmane",
+      "set": "Unleashed",
+      "type": "Unit",
+      "rarity": "Uncommon",
+      "energy": 5,
+      "power": 1,
+      "might": 5,
+      "colors": [
+        "Red"
+      ]
+    },
+    {
+      "cardId": "UNL-013",
+      "name": "Lotus Trap",
+      "set": "Unleashed",
+      "type": "Spell",
+      "energy": 2,
+      "power": 0,
+      "colors": [
+        "Red"
+      ]
+    },
+    {
+      "cardId": "UNL-014",
+      "name": "Monster Harpoon",
+      "set": "Unleashed",
+      "type": "Spell",
+      "energy": 1,
+      "power": 1,
+      "colors": [
+        "Red"
+      ]
+    },
+    {
+      "cardId": "UNL-015",
+      "name": "Right of Conquest",
+      "set": "Unleashed",
+      "type": "Spell",
+      "energy": 3,
+      "power": 1,
+      "colors": [
+        "Red"
+      ]
+    },
+    {
+      "cardId": "UNL-016",
+      "name": "Scorchclaw",
+      "set": "Unleashed",
+      "type": "Unit",
+      "rarity": "Uncommon",
+      "energy": 3,
+      "power": 1,
+      "might": 3,
+      "colors": [
+        "Red"
+      ]
+    },
+    {
+      "cardId": "UNL-017",
+      "name": "Square Up",
+      "set": "Unleashed",
+      "type": "Spell",
+      "energy": 4,
+      "power": 0,
+      "colors": [
+        "Red"
+      ]
+    },
+    {
+      "cardId": "UNL-018",
+      "name": "Yeti Brawler",
+      "set": "Unleashed",
+      "type": "Unit",
+      "rarity": "Uncommon",
+      "energy": 6,
+      "power": 0,
+      "might": 6,
+      "colors": [
+        "Red"
+      ]
+    },
+    {
+      "cardId": "UNL-019",
+      "name": "Blighted Battleaxe",
+      "set": "Unleashed",
+      "type": "Gear",
+      "energy": 4,
+      "power": 0,
+      "colors": [
+        "Red"
+      ]
+    },
+    {
+      "cardId": "UNL-020",
+      "name": "Dancing Grenade",
+      "set": "Unleashed",
+      "type": "Spell",
+      "energy": 2,
+      "power": 1,
+      "colors": [
+        "Red"
+      ]
+    },
+    {
+      "cardId": "UNL-021",
+      "name": "Grim Apothecary",
+      "set": "Unleashed",
+      "type": "Unit",
+      "rarity": "Rare",
+      "energy": 3,
+      "power": 0,
+      "might": 3,
+      "colors": [
+        "Red"
+      ]
+    },
+    {
+      "cardId": "UNL-022a",
+      "name": "Jhin, Murderous Artist",
+      "set": "Unleashed",
+      "type": "Champion",
+      "rarity": "Alternate Art",
+      "energy": 4,
+      "power": 1,
+      "might": 4,
+      "colors": [
+        "Red"
+      ]
+    },
+    {
+      "cardId": "UNL-022",
+      "name": "Jhin, Murderous Artist",
+      "set": "Unleashed",
+      "type": "Champion",
+      "rarity": "Rare",
+      "energy": 4,
+      "power": 1,
+      "might": 4,
+      "colors": [
+        "Red"
+      ]
+    },
+    {
+      "cardId": "UNL-023",
+      "name": "Katarina, Reckless",
+      "set": "Unleashed",
+      "type": "Champion",
+      "rarity": "Rare",
+      "energy": 5,
+      "power": 1,
+      "might": 5,
+      "colors": [
+        "Red"
+      ]
+    },
+    {
+      "cardId": "UNL-024a",
+      "name": "Rengar, Unseen",
+      "set": "Unleashed",
+      "type": "Champion",
+      "rarity": "Alternate Art",
+      "energy": 4,
+      "power": 1,
+      "might": 4,
+      "colors": [
+        "Red"
+      ]
+    },
+    {
+      "cardId": "UNL-024",
+      "name": "Rengar, Unseen",
+      "set": "Unleashed",
+      "type": "Champion",
+      "rarity": "Rare",
+      "energy": 4,
+      "power": 1,
+      "might": 4,
+      "colors": [
+        "Red"
+      ]
+    },
+    {
+      "cardId": "UNL-025",
+      "name": "Undying Legion",
+      "set": "Unleashed",
+      "type": "Unit",
+      "rarity": "Rare",
+      "energy": 3,
+      "power": 0,
+      "might": 3,
+      "colors": [
+        "Red"
+      ]
+    },
+    {
+      "cardId": "UNL-026",
+      "name": "Xerath, Freed",
+      "set": "Unleashed",
+      "type": "Champion",
+      "rarity": "Rare",
+      "energy": 5,
+      "power": 0,
+      "might": 5,
+      "colors": [
+        "Red"
+      ]
+    },
+    {
+      "cardId": "UNL-027",
+      "name": "Inviolus Vox",
+      "set": "Unleashed",
+      "type": "Unit",
+      "rarity": "Epic",
+      "energy": 8,
+      "power": 2,
+      "might": 8,
+      "colors": [
+        "Red"
+      ]
+    },
+    {
+      "cardId": "UNL-028a",
+      "name": "Pyke, Dockside Butcher",
+      "set": "Unleashed",
+      "type": "Champion",
+      "rarity": "Alternate Art",
+      "energy": 3,
+      "power": 0,
+      "might": 2,
+      "colors": [
+        "Red"
+      ]
+    },
+    {
+      "cardId": "UNL-028",
+      "name": "Pyke, Dockside Butcher",
+      "set": "Unleashed",
+      "type": "Champion",
+      "rarity": "Epic",
+      "energy": 3,
+      "power": 0,
+      "might": 2,
+      "colors": [
+        "Red"
+      ]
+    },
+    {
+      "cardId": "UNL-029a",
+      "name": "Red Brambleback",
+      "set": "Unleashed",
+      "type": "Unit",
+      "rarity": "Alternate Art",
+      "energy": 4,
+      "power": 1,
+      "might": 4,
+      "colors": [
+        "Red"
+      ]
+    },
+    {
+      "cardId": "UNL-029",
+      "name": "Red Brambleback",
+      "set": "Unleashed",
+      "type": "Unit",
+      "rarity": "Epic",
+      "energy": 4,
+      "power": 1,
+      "might": 4,
+      "colors": [
+        "Red"
+      ]
+    },
+    {
+      "cardId": "UNL-030",
+      "name": "Vi, Hotheaded",
+      "set": "Unleashed",
+      "type": "Champion",
+      "rarity": "Epic",
+      "energy": 4,
+      "power": 0,
+      "might": 3,
+      "colors": [
+        "Red"
+      ]
+    },
+    {
+      "cardId": "UNL-030a",
+      "name": "Vi, Hotheaded",
+      "set": "Unleashed",
+      "type": "Champion",
+      "rarity": "Alternate Art",
+      "energy": 4,
+      "power": 0,
+      "might": 3,
+      "colors": [
+        "Red"
+      ]
+    },
+    {
+      "cardId": "UNL-031",
+      "name": "Combat Experience",
+      "set": "Unleashed",
+      "type": "Spell",
+      "energy": 1,
+      "power": 0,
+      "colors": [
+        "Green"
+      ]
+    },
+    {
+      "cardId": "UNL-032",
+      "name": "Double Trouble",
+      "set": "Unleashed",
+      "type": "Spell",
+      "energy": 2,
+      "power": 0,
+      "colors": [
+        "Green"
+      ]
+    },
+    {
+      "cardId": "UNL-033",
+      "name": "Frisky Hunter",
+      "set": "Unleashed",
+      "type": "Unit",
+      "rarity": "Common",
+      "energy": 4,
+      "power": 0,
+      "might": 3,
+      "colors": [
+        "Green"
+      ]
+    },
+    {
+      "cardId": "UNL-034",
+      "name": "Herald of Spring",
+      "set": "Unleashed",
+      "type": "Unit",
+      "rarity": "Common",
+      "energy": 4,
+      "power": 1,
+      "might": 4,
+      "colors": [
+        "Green"
+      ]
+    },
+    {
+      "cardId": "UNL-035",
+      "name": "Monch",
+      "set": "Unleashed",
+      "type": "Unit",
+      "rarity": "Common",
+      "energy": 6,
+      "power": 0,
+      "might": 6,
+      "colors": [
+        "Green"
+      ]
+    },
+    {
+      "cardId": "UNL-036",
+      "name": "Mutated Mouser",
+      "set": "Unleashed",
+      "type": "Unit",
+      "rarity": "Common",
+      "energy": 2,
+      "power": 0,
+      "might": 1,
+      "colors": [
+        "Green"
+      ]
+    },
+    {
+      "cardId": "UNL-037",
+      "name": "Shadow Watcher",
+      "set": "Unleashed",
+      "type": "Unit",
+      "rarity": "Common",
+      "energy": 4,
+      "power": 1,
+      "might": 5,
+      "colors": [
+        "Green"
+      ]
+    },
+    {
+      "cardId": "UNL-038",
+      "name": "Skyward Strike",
+      "set": "Unleashed",
+      "type": "Spell",
+      "energy": 2,
+      "power": 1,
+      "colors": [
+        "Green"
+      ]
+    },
+    {
+      "cardId": "UNL-039",
+      "name": "Soul Sword",
+      "set": "Unleashed",
+      "type": "Gear",
+      "energy": 1,
+      "power": 0,
+      "colors": [
+        "Green"
+      ]
+    },
+    {
+      "cardId": "UNL-040",
+      "name": "Wuju Apprentice",
+      "set": "Unleashed",
+      "type": "Unit",
+      "rarity": "Common",
+      "energy": 2,
+      "power": 0,
+      "might": 2,
+      "colors": [
+        "Green"
+      ]
+    },
+    {
+      "cardId": "UNL-041",
+      "name": "Allay, Eager Admirer",
+      "set": "Unleashed",
+      "type": "Unit",
+      "rarity": "Uncommon",
+      "energy": 3,
+      "power": 0,
+      "might": 3,
+      "colors": [
+        "Green"
+      ]
+    },
+    {
+      "cardId": "UNL-042",
+      "name": "Back Off",
+      "set": "Unleashed",
+      "type": "Spell",
+      "energy": 3,
+      "power": 0,
+      "colors": [
+        "Green"
+      ]
+    },
+    {
+      "cardId": "UNL-043",
+      "name": "Enthusiastic Promoter",
+      "set": "Unleashed",
+      "type": "Unit",
+      "rarity": "Uncommon",
+      "energy": 3,
+      "power": 0,
+      "might": 2,
+      "colors": [
+        "Green"
+      ]
+    },
+    {
+      "cardId": "UNL-044",
+      "name": "Flurry of Feathers",
+      "set": "Unleashed",
+      "type": "Spell",
+      "energy": 4,
+      "power": 2,
+      "colors": [
+        "Green"
+      ]
+    },
+    {
+      "cardId": "UNL-045",
+      "name": "Forgotten Signpost",
+      "set": "Unleashed",
+      "type": "Gear",
+      "energy": 2,
+      "power": 0,
+      "colors": [
+        "Green"
+      ]
+    },
+    {
+      "cardId": "UNL-046",
+      "name": "Friendship",
+      "set": "Unleashed",
+      "type": "Spell",
+      "energy": 1,
+      "power": 0,
+      "colors": [
+        "Green"
+      ]
+    },
+    {
+      "cardId": "UNL-047",
+      "name": "Mosstomper",
+      "set": "Unleashed",
+      "type": "Unit",
+      "rarity": "Uncommon",
+      "energy": 3,
+      "power": 1,
+      "might": 3,
+      "colors": [
+        "Green"
+      ]
+    },
+    {
+      "cardId": "UNL-048",
+      "name": "Trevor Snoozebottom",
+      "set": "Unleashed",
+      "type": "Unit",
+      "rarity": "Uncommon",
+      "energy": 3,
+      "power": 0,
+      "might": 3,
+      "colors": [
+        "Green"
+      ]
+    },
+    {
+      "cardId": "UNL-049",
+      "name": "Honeyfruit",
+      "set": "Unleashed",
+      "type": "Gear",
+      "energy": 2,
+      "power": 0,
+      "colors": [
+        "Green"
+      ]
+    },
+    {
+      "cardId": "UNL-050",
+      "name": "Iascylla",
+      "set": "Unleashed",
+      "type": "Unit",
+      "rarity": "Rare",
+      "energy": 7,
+      "power": 1,
+      "might": 6,
+      "colors": [
+        "Green"
+      ]
+    },
+    {
+      "cardId": "UNL-051",
+      "name": "Ivern, Nurturer",
+      "set": "Unleashed",
+      "type": "Champion",
+      "rarity": "Rare",
+      "energy": 5,
+      "power": 1,
+      "might": 4,
+      "colors": [
+        "Green"
+      ]
+    },
+    {
+      "cardId": "UNL-051a",
+      "name": "Ivern, Nurturer",
+      "set": "Unleashed",
+      "type": "Champion",
+      "rarity": "Alternate Art",
+      "energy": 5,
+      "power": 1,
+      "might": 4,
+      "colors": [
+        "Green"
+      ]
+    },
+    {
+      "cardId": "UNL-052",
+      "name": "Nami, Headstrong",
+      "set": "Unleashed",
+      "type": "Champion",
+      "rarity": "Rare",
+      "energy": 3,
+      "power": 0,
+      "might": 3,
+      "colors": [
+        "Green"
+      ]
+    },
+    {
+      "cardId": "UNL-053",
+      "name": "Scuttle Crab",
+      "set": "Unleashed",
+      "type": "Unit",
+      "rarity": "Rare",
+      "energy": 2,
+      "power": 0,
+      "might": 0,
+      "colors": [
+        "Green"
+      ]
+    },
+    {
+      "cardId": "UNL-054",
+      "name": "Tricksy Tentacles",
+      "set": "Unleashed",
+      "type": "Spell",
+      "energy": 4,
+      "power": 1,
+      "colors": [
+        "Green"
+      ]
+    },
+    {
+      "cardId": "UNL-055",
+      "name": "Vex, Mocking",
+      "set": "Unleashed",
+      "type": "Champion",
+      "rarity": "Rare",
+      "energy": 5,
+      "power": 1,
+      "might": 5,
+      "colors": [
+        "Green"
+      ]
+    },
+    {
+      "cardId": "UNL-055a",
+      "name": "Vex, Mocking",
+      "set": "Unleashed",
+      "type": "Champion",
+      "rarity": "Alternate Art",
+      "energy": 5,
+      "power": 1,
+      "might": 5,
+      "colors": [
+        "Green"
+      ]
+    },
+    {
+      "cardId": "UNL-056",
+      "name": "Yuumi, Magical Cat",
+      "set": "Unleashed",
+      "type": "Champion",
+      "rarity": "Rare",
+      "energy": 3,
+      "power": 1,
+      "might": 1,
+      "colors": [
+        "Green"
+      ]
+    },
+    {
+      "cardId": "UNL-057",
+      "name": "Alpha Wildclaw",
+      "set": "Unleashed",
+      "type": "Unit",
+      "rarity": "Epic",
+      "energy": 6,
+      "power": 2,
+      "might": 7,
+      "colors": [
+        "Green"
+      ]
+    },
+    {
+      "cardId": "UNL-058",
+      "name": "Lillia, Protector of Dreams",
+      "set": "Unleashed",
+      "type": "Champion",
+      "rarity": "Epic",
+      "energy": 5,
+      "power": 0,
+      "might": 4,
+      "colors": [
+        "Green"
+      ]
+    },
+    {
+      "cardId": "UNL-058a",
+      "name": "Lillia, Protector of Dreams",
+      "set": "Unleashed",
+      "type": "Champion",
+      "rarity": "Alternate Art",
+      "energy": 5,
+      "power": 0,
+      "might": 4,
+      "colors": [
+        "Green"
+      ]
+    },
+    {
+      "cardId": "UNL-059a",
+      "name": "Master Yi, Unstoppable",
+      "set": "Unleashed",
+      "type": "Champion",
+      "rarity": "Alternate Art",
+      "energy": 12,
+      "power": 3,
+      "might": 12,
+      "colors": [
+        "Green"
+      ]
+    },
+    {
+      "cardId": "UNL-059",
+      "name": "Master Yi, Unstoppable",
+      "set": "Unleashed",
+      "type": "Champion",
+      "rarity": "Epic",
+      "energy": 12,
+      "power": 3,
+      "might": 12,
+      "colors": [
+        "Green"
+      ]
+    },
+    {
+      "cardId": "UNL-060a",
+      "name": "Vilemaw",
+      "set": "Unleashed",
+      "type": "Unit",
+      "rarity": "Alternate Art",
+      "energy": 8,
+      "power": 2,
+      "might": 8,
+      "colors": [
+        "Green"
+      ]
+    },
+    {
+      "cardId": "UNL-060",
+      "name": "Vilemaw",
+      "set": "Unleashed",
+      "type": "Unit",
+      "rarity": "Epic",
+      "energy": 8,
+      "power": 2,
+      "might": 8,
+      "colors": [
+        "Green"
+      ]
+    },
+    {
+      "cardId": "UNL-061",
+      "name": "Downstage Dramatics",
+      "set": "Unleashed",
+      "type": "Spell",
+      "energy": 2,
+      "power": 0,
+      "colors": [
+        "Blue"
+      ]
+    },
+    {
+      "cardId": "UNL-062",
+      "name": "Dramatic Visionary",
+      "set": "Unleashed",
+      "type": "Unit",
+      "rarity": "Common",
+      "energy": 4,
+      "power": 0,
+      "might": 4,
+      "colors": [
+        "Blue"
+      ]
+    },
+    {
+      "cardId": "UNL-063",
+      "name": "Eclipse",
+      "set": "Unleashed",
+      "type": "Spell",
+      "energy": 3,
+      "power": 0,
+      "colors": [
+        "Blue"
+      ]
+    },
+    {
+      "cardId": "UNL-064",
+      "name": "Fate Weaver",
+      "set": "Unleashed",
+      "type": "Unit",
+      "rarity": "Common",
+      "energy": 5,
+      "power": 0,
+      "might": 4,
+      "colors": [
+        "Blue"
+      ]
+    },
+    {
+      "cardId": "UNL-065",
+      "name": "Icevale Archer",
+      "set": "Unleashed",
+      "type": "Unit",
+      "rarity": "Common",
+      "energy": 2,
+      "power": 0,
+      "might": 2,
+      "colors": [
+        "Blue"
+      ]
+    },
+    {
+      "cardId": "UNL-066",
+      "name": "Moonlight Affliction",
+      "set": "Unleashed",
+      "type": "Spell",
+      "energy": 7,
+      "power": 0,
+      "colors": [
+        "Blue"
+      ]
+    },
+    {
+      "cardId": "UNL-067",
+      "name": "Ruined Rex",
+      "set": "Unleashed",
+      "type": "Unit",
+      "rarity": "Common",
+      "energy": 6,
+      "power": 1,
+      "might": 6,
+      "colors": [
+        "Blue"
+      ]
+    },
+    {
+      "cardId": "UNL-068",
+      "name": "Spectral Centaur",
+      "set": "Unleashed",
+      "type": "Unit",
+      "rarity": "Common",
+      "energy": 6,
+      "power": 0,
+      "might": 5,
+      "colors": [
+        "Blue"
+      ]
+    },
+    {
+      "cardId": "UNL-069",
+      "name": "Sprite Burst",
+      "set": "Unleashed",
+      "type": "Spell",
+      "energy": 5,
+      "power": 0,
+      "colors": [
+        "Blue"
+      ]
+    },
+    {
+      "cardId": "UNL-070",
+      "name": "Turn to Dust",
+      "set": "Unleashed",
+      "type": "Spell",
+      "energy": 2,
+      "power": 0,
+      "colors": [
+        "Blue"
+      ]
+    },
+    {
+      "cardId": "UNL-071",
+      "name": "Chakram Dancer",
+      "set": "Unleashed",
+      "type": "Unit",
+      "rarity": "Uncommon",
+      "energy": 3,
+      "power": 0,
+      "might": 3,
+      "colors": [
+        "Blue"
+      ]
+    },
+    {
+      "cardId": "UNL-072",
+      "name": "Crescent Strike",
+      "set": "Unleashed",
+      "type": "Spell",
+      "energy": 3,
+      "power": 1,
+      "colors": [
+        "Blue"
+      ]
+    },
+    {
+      "cardId": "UNL-073",
+      "name": "Deadly Flourish",
+      "set": "Unleashed",
+      "type": "Spell",
+      "energy": 4,
+      "power": 0,
+      "colors": [
+        "Blue"
+      ]
+    },
+    {
+      "cardId": "UNL-074",
+      "name": "Frigid Jewel",
+      "set": "Unleashed",
+      "type": "Gear",
+      "energy": 2,
+      "power": 0,
+      "colors": [
+        "Blue"
+      ]
+    },
+    {
+      "cardId": "UNL-075",
+      "name": "Gustwalker",
+      "set": "Unleashed",
+      "type": "Unit",
+      "rarity": "Uncommon",
+      "energy": 3,
+      "power": 1,
+      "might": 3,
+      "colors": [
+        "Blue"
+      ]
+    },
+    {
+      "cardId": "UNL-076",
+      "name": "Petal Pixie",
+      "set": "Unleashed",
+      "type": "Unit",
+      "rarity": "Uncommon",
+      "energy": 2,
+      "power": 0,
+      "might": 2,
+      "colors": [
+        "Blue"
+      ]
+    },
+    {
+      "cardId": "UNL-077",
+      "name": "Soul Shepherd",
+      "set": "Unleashed",
+      "type": "Unit",
+      "rarity": "Uncommon",
+      "energy": 5,
+      "power": 0,
+      "might": 3,
+      "colors": [
+        "Blue"
+      ]
+    },
+    {
+      "cardId": "UNL-078",
+      "name": "Sprite Fountain",
+      "set": "Unleashed",
+      "type": "Gear",
+      "energy": 2,
+      "power": 1,
+      "colors": [
+        "Blue"
+      ]
+    },
+    {
+      "cardId": "UNL-079a",
+      "name": "Diana, Lunari",
+      "set": "Unleashed",
+      "type": "Champion",
+      "rarity": "Alternate Art",
+      "energy": 3,
+      "power": 0,
+      "might": 3,
+      "colors": [
+        "Blue"
+      ]
+    },
+    {
+      "cardId": "UNL-079",
+      "name": "Diana, Lunari",
+      "set": "Unleashed",
+      "type": "Champion",
+      "rarity": "Rare",
+      "energy": 3,
+      "power": 0,
+      "might": 3,
+      "colors": [
+        "Blue"
+      ]
+    },
+    {
+      "cardId": "UNL-080",
+      "name": "Hwei, Brooding Painter",
+      "set": "Unleashed",
+      "type": "Champion",
+      "rarity": "Rare",
+      "energy": 5,
+      "power": 1,
+      "might": 5,
+      "colors": [
+        "Blue"
+      ]
+    },
+    {
+      "cardId": "UNL-081",
+      "name": "Keeper of Masks",
+      "set": "Unleashed",
+      "type": "Unit",
+      "rarity": "Rare",
+      "energy": 2,
+      "power": 0,
+      "might": 1,
+      "colors": [
+        "Blue"
+      ]
+    },
+    {
+      "cardId": "UNL-082",
+      "name": "Lillia, Fae Fawn",
+      "set": "Unleashed",
+      "type": "Champion",
+      "rarity": "Rare",
+      "energy": 3,
+      "power": 0,
+      "might": 3,
+      "colors": [
+        "Blue"
+      ]
+    },
+    {
+      "cardId": "UNL-082a",
+      "name": "Lillia, Fae Fawn",
+      "set": "Unleashed",
+      "type": "Champion",
+      "rarity": "Alternate Art",
+      "energy": 3,
+      "power": 0,
+      "might": 3,
+      "colors": [
+        "Blue"
+      ]
+    },
+    {
+      "cardId": "UNL-083",
+      "name": "Smoke and Mirrors",
+      "set": "Unleashed",
+      "type": "Spell",
+      "energy": 2,
+      "power": 0,
+      "colors": [
+        "Blue"
+      ]
+    },
+    {
+      "cardId": "UNL-084",
+      "name": "Sprite Queen",
+      "set": "Unleashed",
+      "type": "Unit",
+      "rarity": "Rare",
+      "energy": 7,
+      "power": 1,
+      "might": 6,
+      "colors": [
+        "Blue"
+      ]
+    },
+    {
+      "cardId": "UNL-085",
+      "name": "Sumpworks Map",
+      "set": "Unleashed",
+      "type": "Gear",
+      "energy": 2,
+      "power": 0,
+      "colors": [
+        "Blue"
+      ]
+    },
+    {
+      "cardId": "UNL-086",
+      "name": "Zilean, Time Mage",
+      "set": "Unleashed",
+      "type": "Champion",
+      "rarity": "Rare",
+      "energy": 5,
+      "power": 1,
+      "might": 5,
+      "colors": [
+        "Blue"
+      ]
+    },
+    {
+      "cardId": "UNL-087a",
+      "name": "Blue Sentinel",
+      "set": "Unleashed",
+      "type": "Unit",
+      "rarity": "Alternate Art",
+      "energy": 4,
+      "power": 1,
+      "might": 4,
+      "colors": [
+        "Blue"
+      ]
+    },
+    {
+      "cardId": "UNL-087",
+      "name": "Blue Sentinel",
+      "set": "Unleashed",
+      "type": "Unit",
+      "rarity": "Epic",
+      "energy": 4,
+      "power": 1,
+      "might": 4,
+      "colors": [
+        "Blue"
+      ]
+    },
+    {
+      "cardId": "UNL-088",
+      "name": "Gutter Palace",
+      "set": "Unleashed",
+      "type": "Gear",
+      "energy": 4,
+      "power": 0,
+      "colors": [
+        "Blue"
+      ]
+    },
+    {
+      "cardId": "UNL-089a",
+      "name": "Jhin, Meticulous Killer",
+      "set": "Unleashed",
+      "type": "Champion",
+      "rarity": "Alternate Art",
+      "energy": 4,
+      "power": 0,
+      "might": 4,
+      "colors": [
+        "Blue"
+      ]
+    },
+    {
+      "cardId": "UNL-089",
+      "name": "Jhin, Meticulous Killer",
+      "set": "Unleashed",
+      "type": "Champion",
+      "rarity": "Epic",
+      "energy": 4,
+      "power": 0,
+      "might": 4,
+      "colors": [
+        "Blue"
+      ]
+    },
+    {
+      "cardId": "UNL-090a",
+      "name": "LeBlanc, Everywhere at Once",
+      "set": "Unleashed",
+      "type": "Champion",
+      "rarity": "Alternate Art",
+      "energy": 4,
+      "power": 0,
+      "might": 4,
+      "colors": [
+        "Blue"
+      ]
+    },
+    {
+      "cardId": "UNL-090",
+      "name": "LeBlanc, Everywhere at Once",
+      "set": "Unleashed",
+      "type": "Champion",
+      "rarity": "Epic",
+      "energy": 4,
+      "power": 0,
+      "might": 4,
+      "colors": [
+        "Blue"
+      ]
+    },
+    {
+      "cardId": "UNL-091",
+      "name": "Concentrate",
+      "set": "Unleashed",
+      "type": "Spell",
+      "energy": 5,
+      "power": 0,
+      "colors": [
+        "Orange"
+      ]
+    },
+    {
+      "cardId": "UNL-092",
+      "name": "Demacian Diplomat",
+      "set": "Unleashed",
+      "type": "Unit",
+      "rarity": "Common",
+      "energy": 2,
+      "power": 0,
+      "might": 2,
+      "colors": [
+        "Orange"
+      ]
+    },
+    {
+      "cardId": "UNL-093",
+      "name": "Dragonsoul Sage",
+      "set": "Unleashed",
+      "type": "Unit",
+      "rarity": "Common",
+      "energy": 2,
+      "power": 0,
+      "might": 1,
+      "colors": [
+        "Orange"
+      ]
+    },
+    {
+      "cardId": "UNL-094",
+      "name": "Gemhand Hunter",
+      "set": "Unleashed",
+      "type": "Unit",
+      "rarity": "Common",
+      "energy": 2,
+      "power": 0,
+      "might": 2,
+      "colors": [
+        "Orange"
+      ]
+    },
+    {
+      "cardId": "UNL-095",
+      "name": "Grim Resolve",
+      "set": "Unleashed",
+      "type": "Spell",
+      "energy": 2,
+      "power": 0,
+      "colors": [
+        "Orange"
+      ]
+    },
+    {
+      "cardId": "UNL-096",
+      "name": "Hunter's Machete",
+      "set": "Unleashed",
+      "type": "Gear",
+      "energy": 3,
+      "power": 0,
+      "colors": [
+        "Orange"
+      ]
+    },
+    {
+      "cardId": "UNL-097",
+      "name": "Kinkou Initiate",
+      "set": "Unleashed",
+      "type": "Unit",
+      "rarity": "Common",
+      "energy": 3,
+      "power": 0,
+      "might": 3,
+      "colors": [
+        "Orange"
+      ]
+    },
+    {
+      "cardId": "UNL-098",
+      "name": "Targonian Visionary",
+      "set": "Unleashed",
+      "type": "Unit",
+      "rarity": "Common",
+      "energy": 6,
+      "power": 0,
+      "might": 6,
+      "colors": [
+        "Orange"
+      ]
+    },
+    {
+      "cardId": "UNL-099",
+      "name": "Towering Combatant",
+      "set": "Unleashed",
+      "type": "Unit",
+      "rarity": "Common",
+      "energy": 4,
+      "power": 0,
+      "might": 3,
+      "colors": [
+        "Orange"
+      ]
+    },
+    {
+      "cardId": "UNL-100",
+      "name": "Voracious Gromp",
+      "set": "Unleashed",
+      "type": "Unit",
+      "rarity": "Common",
+      "energy": 5,
+      "power": 0,
+      "might": 5,
+      "colors": [
+        "Orange"
+      ]
+    },
+    {
+      "cardId": "UNL-101",
+      "name": "Call to Battle",
+      "set": "Unleashed",
+      "type": "Spell",
+      "energy": 3,
+      "power": 0,
+      "colors": [
+        "Orange"
+      ]
+    },
+    {
+      "cardId": "UNL-102",
+      "name": "Crowd Favorite",
+      "set": "Unleashed",
+      "type": "Unit",
+      "rarity": "Uncommon",
+      "energy": 3,
+      "power": 0,
+      "might": 3,
+      "colors": [
+        "Orange"
+      ]
+    },
+    {
+      "cardId": "UNL-103",
+      "name": "Disposal Order",
+      "set": "Unleashed",
+      "type": "Spell",
+      "energy": 2,
+      "power": 0,
+      "colors": [
+        "Orange"
+      ]
+    },
+    {
+      "cardId": "UNL-104",
+      "name": "Gentle Gemdragon",
+      "set": "Unleashed",
+      "type": "Unit",
+      "rarity": "Uncommon",
+      "energy": 8,
+      "power": 0,
+      "might": 8,
+      "colors": [
+        "Orange"
+      ]
+    },
+    {
+      "cardId": "UNL-105",
+      "name": "Imposing Challenger",
+      "set": "Unleashed",
+      "type": "Unit",
+      "rarity": "Uncommon",
+      "energy": 5,
+      "power": 0,
+      "might": 5,
+      "colors": [
+        "Orange"
+      ]
+    },
+    {
+      "cardId": "UNL-106",
+      "name": "Repulse",
+      "set": "Unleashed",
+      "type": "Spell",
+      "energy": 1,
+      "power": 1,
+      "colors": [
+        "Orange"
+      ]
+    },
+    {
+      "cardId": "UNL-107",
+      "name": "Stare Down",
+      "set": "Unleashed",
+      "type": "Spell",
+      "energy": 2,
+      "power": 0,
+      "colors": [
+        "Orange"
+      ]
+    },
+    {
+      "cardId": "UNL-108",
+      "name": "Wily Newtfish",
+      "set": "Unleashed",
+      "type": "Unit",
+      "rarity": "Uncommon",
+      "energy": 4,
+      "power": 0,
+      "might": 4,
+      "colors": [
+        "Orange"
+      ]
+    },
+    {
+      "cardId": "UNL-109",
+      "name": "Blood Rose",
+      "set": "Unleashed",
+      "type": "Gear",
+      "energy": 1,
+      "power": 0,
+      "colors": [
+        "Orange"
+      ]
+    },
+    {
+      "cardId": "UNL-110",
+      "name": "Clash of Giants",
+      "set": "Unleashed",
+      "type": "Spell",
+      "energy": 6,
+      "power": 2,
+      "colors": [
+        "Orange"
+      ]
+    },
+    {
+      "cardId": "UNL-111",
+      "name": "Determined Sentry",
+      "set": "Unleashed",
+      "type": "Unit",
+      "rarity": "Rare",
+      "energy": 1,
+      "power": 0,
+      "might": 1,
+      "colors": [
+        "Orange"
+      ]
+    },
+    {
+      "cardId": "UNL-112",
+      "name": "Irresistible Faefolk",
+      "set": "Unleashed",
+      "type": "Unit",
+      "rarity": "Rare",
+      "energy": 2,
+      "power": 0,
+      "might": 1,
+      "colors": [
+        "Orange"
+      ]
+    },
+    {
+      "cardId": "UNL-113",
+      "name": "Master Yi, Tempered",
+      "set": "Unleashed",
+      "type": "Champion",
+      "rarity": "Rare",
+      "energy": 4,
+      "power": 0,
+      "might": 4,
+      "colors": [
+        "Orange"
+      ]
+    },
+    {
+      "cardId": "UNL-113a",
+      "name": "Master Yi, Tempered",
+      "set": "Unleashed",
+      "type": "Champion",
+      "rarity": "Alternate Art",
+      "energy": 4,
+      "power": 0,
+      "might": 4,
+      "colors": [
+        "Orange"
+      ]
+    },
+    {
+      "cardId": "UNL-114",
+      "name": "Nidalee, Cat Form",
+      "set": "Unleashed",
+      "type": "Champion",
+      "rarity": "Rare",
+      "energy": 3,
+      "power": 1,
+      "might": 4,
+      "colors": [
+        "Orange"
+      ]
+    },
+    {
+      "cardId": "UNL-115",
+      "name": "Nilah, Joyful Ascetic",
+      "set": "Unleashed",
+      "type": "Champion",
+      "rarity": "Rare",
+      "energy": 3,
+      "power": 1,
+      "might": 4,
+      "colors": [
+        "Orange"
+      ]
+    },
+    {
+      "cardId": "UNL-116a",
+      "name": "Poppy, Paragon",
+      "set": "Unleashed",
+      "type": "Champion",
+      "rarity": "Alternate Art",
+      "energy": 5,
+      "power": 0,
+      "might": 5,
+      "colors": [
+        "Orange"
+      ]
+    },
+    {
+      "cardId": "UNL-116",
+      "name": "Poppy, Paragon",
+      "set": "Unleashed",
+      "type": "Champion",
+      "rarity": "Rare",
+      "energy": 5,
+      "power": 0,
+      "might": 5,
+      "colors": [
+        "Orange"
+      ]
+    },
+    {
+      "cardId": "UNL-117",
+      "name": "Arachnoid Horror",
+      "set": "Unleashed",
+      "type": "Unit",
+      "rarity": "Epic",
+      "energy": 6,
+      "power": 1,
+      "might": 6,
+      "colors": [
+        "Orange"
+      ]
+    },
+    {
+      "cardId": "UNL-118",
+      "name": "Elder Dragon",
+      "set": "Unleashed",
+      "type": "Unit",
+      "rarity": "Epic",
+      "energy": 12,
+      "power": 4,
+      "might": 10,
+      "colors": [
+        "Orange"
+      ]
+    },
+    {
+      "cardId": "UNL-118a",
+      "name": "Elder Dragon",
+      "set": "Unleashed",
+      "type": "Unit",
+      "rarity": "Alternate Art",
+      "energy": 12,
+      "power": 4,
+      "might": 10,
+      "colors": [
+        "Orange"
+      ]
+    },
+    {
+      "cardId": "UNL-119",
+      "name": "Kha'Zix, Evolving Hunter",
+      "set": "Unleashed",
+      "type": "Champion",
+      "rarity": "Epic",
+      "energy": 5,
+      "power": 1,
+      "might": 5,
+      "colors": [
+        "Orange"
+      ]
+    },
+    {
+      "cardId": "UNL-119a",
+      "name": "Kha'Zix, Evolving Hunter",
+      "set": "Unleashed",
+      "type": "Champion",
+      "rarity": "Alternate Art",
+      "energy": 5,
+      "power": 1,
+      "might": 5,
+      "colors": [
+        "Orange"
+      ]
+    },
+    {
+      "cardId": "UNL-120a",
+      "name": "Rengar, Trophy Hunter",
+      "set": "Unleashed",
+      "type": "Champion",
+      "rarity": "Alternate Art",
+      "energy": 5,
+      "power": 1,
+      "might": 6,
+      "colors": [
+        "Orange"
+      ]
+    },
+    {
+      "cardId": "UNL-120",
+      "name": "Rengar, Trophy Hunter",
+      "set": "Unleashed",
+      "type": "Champion",
+      "rarity": "Epic",
+      "energy": 5,
+      "power": 1,
+      "might": 6,
+      "colors": [
+        "Orange"
+      ]
+    },
+    {
+      "cardId": "UNL-121",
+      "name": "Bewitching Spirit",
+      "set": "Unleashed",
+      "type": "Unit",
+      "rarity": "Common",
+      "energy": 3,
+      "power": 0,
+      "might": 2,
+      "colors": [
+        "Purple"
+      ]
+    },
+    {
+      "cardId": "UNL-122",
+      "name": "Crescent Guardian",
+      "set": "Unleashed",
+      "type": "Unit",
+      "rarity": "Common",
+      "energy": 4,
+      "power": 0,
+      "might": 4,
+      "colors": [
+        "Purple"
+      ]
+    },
+    {
+      "cardId": "UNL-123",
+      "name": "Evershade Stalker",
+      "set": "Unleashed",
+      "type": "Unit",
+      "rarity": "Common",
+      "energy": 3,
+      "power": 0,
+      "might": 3,
+      "colors": [
+        "Purple"
+      ]
+    },
+    {
+      "cardId": "UNL-124",
+      "name": "Isolate",
+      "set": "Unleashed",
+      "type": "Spell",
+      "energy": 2,
+      "power": 0,
+      "colors": [
+        "Purple"
+      ]
+    },
+    {
+      "cardId": "UNL-125",
+      "name": "Lunar Boon",
+      "set": "Unleashed",
+      "type": "Spell",
+      "energy": 3,
+      "power": 0,
+      "colors": [
+        "Purple"
+      ]
+    },
+    {
+      "cardId": "UNL-126",
+      "name": "Megatusk",
+      "set": "Unleashed",
+      "type": "Unit",
+      "rarity": "Common",
+      "energy": 6,
+      "power": 0,
+      "might": 6,
+      "colors": [
+        "Purple"
+      ]
+    },
+    {
+      "cardId": "UNL-127",
+      "name": "Mister Root",
+      "set": "Unleashed",
+      "type": "Unit",
+      "rarity": "Common",
+      "energy": 2,
+      "power": 0,
+      "might": 1,
+      "colors": [
+        "Purple"
+      ]
+    },
+    {
+      "cardId": "UNL-128",
+      "name": "Star-Crossed",
+      "set": "Unleashed",
+      "type": "Spell",
+      "energy": 3,
+      "power": 1,
+      "colors": [
+        "Purple"
+      ]
+    },
+    {
+      "cardId": "UNL-129",
+      "name": "Vicious Snapjaws",
+      "set": "Unleashed",
+      "type": "Unit",
+      "rarity": "Common",
+      "energy": 5,
+      "power": 0,
+      "might": 5,
+      "colors": [
+        "Purple"
+      ]
+    },
+    {
+      "cardId": "UNL-130",
+      "name": "Walking Roost",
+      "set": "Unleashed",
+      "type": "Unit",
+      "rarity": "Common",
+      "energy": 5,
+      "power": 0,
+      "might": 6,
+      "colors": [
+        "Purple"
+      ]
+    },
+    {
+      "cardId": "UNL-131",
+      "name": "Abandon",
+      "set": "Unleashed",
+      "type": "Spell",
+      "energy": 2,
+      "power": 0,
+      "colors": [
+        "Purple"
+      ]
+    },
+    {
+      "cardId": "UNL-132",
+      "name": "Angler Beast",
+      "set": "Unleashed",
+      "type": "Unit",
+      "rarity": "Uncommon",
+      "energy": 5,
+      "power": 1,
+      "might": 5,
+      "colors": [
+        "Purple"
+      ]
+    },
+    {
+      "cardId": "UNL-133",
+      "name": "Blast Cone",
+      "set": "Unleashed",
+      "type": "Gear",
+      "energy": 4,
+      "power": 1,
+      "colors": [
+        "Purple"
+      ]
+    },
+    {
+      "cardId": "UNL-134",
+      "name": "Existential Dread",
+      "set": "Unleashed",
+      "type": "Spell",
+      "energy": 1,
+      "power": 1,
+      "colors": [
+        "Purple"
+      ]
+    },
+    {
+      "cardId": "UNL-135",
+      "name": "Insightful Investigator",
+      "set": "Unleashed",
+      "type": "Unit",
+      "rarity": "Uncommon",
+      "energy": 3,
+      "power": 0,
+      "might": 3,
+      "colors": [
+        "Purple"
+      ]
+    },
+    {
+      "cardId": "UNL-136",
+      "name": "Scryer's Bloom",
+      "set": "Unleashed",
+      "type": "Gear",
+      "energy": 1,
+      "power": 0,
+      "colors": [
+        "Purple"
+      ]
+    },
+    {
+      "cardId": "UNL-137",
+      "name": "Sinister Poro",
+      "set": "Unleashed",
+      "type": "Unit",
+      "rarity": "Uncommon",
+      "energy": 2,
+      "power": 1,
+      "might": 1,
+      "colors": [
+        "Purple"
+      ]
+    },
+    {
+      "cardId": "UNL-138",
+      "name": "The List",
+      "set": "Unleashed",
+      "type": "Gear",
+      "energy": 1,
+      "power": 0,
+      "colors": [
+        "Purple"
+      ]
+    },
+    {
+      "cardId": "UNL-139",
+      "name": "Bone Skewer",
+      "set": "Unleashed",
+      "type": "Spell",
+      "energy": 2,
+      "power": 1,
+      "colors": [
+        "Purple"
+      ]
+    },
+    {
+      "cardId": "UNL-140",
+      "name": "Conscription",
+      "set": "Unleashed",
+      "type": "Spell",
+      "energy": 5,
+      "power": 2,
+      "colors": [
+        "Purple"
+      ]
+    },
+    {
+      "cardId": "UNL-141",
+      "name": "Evelynn, Entrancing",
+      "set": "Unleashed",
+      "type": "Champion",
+      "rarity": "Rare",
+      "energy": 2,
+      "power": 0,
+      "might": 2,
+      "colors": [
+        "Purple"
+      ]
+    },
+    {
+      "cardId": "UNL-142",
+      "name": "Heedless Resurrection",
+      "set": "Unleashed",
+      "type": "Spell",
+      "energy": 2,
+      "power": 1,
+      "colors": [
+        "Purple"
+      ]
+    },
+    {
+      "cardId": "UNL-143",
+      "name": "Kha'Zix, Mutating Horror",
+      "set": "Unleashed",
+      "type": "Champion",
+      "rarity": "Rare",
+      "energy": 4,
+      "power": 1,
+      "might": 4,
+      "colors": [
+        "Purple"
+      ]
+    },
+    {
+      "cardId": "UNL-143a",
+      "name": "Kha'Zix, Mutating Horror",
+      "set": "Unleashed",
+      "type": "Champion",
+      "rarity": "Alternate Art",
+      "energy": 4,
+      "power": 1,
+      "might": 4,
+      "colors": [
+        "Purple"
+      ]
+    },
+    {
+      "cardId": "UNL-144",
+      "name": "Maduli the Gatekeeper",
+      "set": "Unleashed",
+      "type": "Unit",
+      "rarity": "Rare",
+      "energy": 7,
+      "power": 1,
+      "might": 6,
+      "colors": [
+        "Purple"
+      ]
+    },
+    {
+      "cardId": "UNL-145a",
+      "name": "Pyke, Returned",
+      "set": "Unleashed",
+      "type": "Champion",
+      "rarity": "Alternate Art",
+      "energy": 3,
+      "power": 0,
+      "might": 3,
+      "colors": [
+        "Purple"
+      ]
+    },
+    {
+      "cardId": "UNL-145",
+      "name": "Pyke, Returned",
+      "set": "Unleashed",
+      "type": "Champion",
+      "rarity": "Rare",
+      "energy": 3,
+      "power": 0,
+      "might": 3,
+      "colors": [
+        "Purple"
+      ]
+    },
+    {
+      "cardId": "UNL-146",
+      "name": "Syndra, Transcendent",
+      "set": "Unleashed",
+      "type": "Champion",
+      "rarity": "Rare",
+      "energy": 6,
+      "power": 1,
+      "might": 6,
+      "colors": [
+        "Purple"
+      ]
+    },
+    {
+      "cardId": "UNL-147",
+      "name": "Baron Nashor",
+      "set": "Unleashed",
+      "type": "Unit",
+      "rarity": "Epic",
+      "energy": 10,
+      "power": 3,
+      "might": 12,
+      "colors": [
+        "Purple"
+      ]
+    },
+    {
+      "cardId": "UNL-147a",
+      "name": "Baron Nashor",
+      "set": "Unleashed",
+      "type": "Unit",
+      "rarity": "Alternate Art",
+      "energy": 10,
+      "power": 3,
+      "might": 12,
+      "colors": [
+        "Purple"
+      ]
+    },
+    {
+      "cardId": "UNL-148",
+      "name": "Cursed Sarcophagus",
+      "set": "Unleashed",
+      "type": "Gear",
+      "energy": 4,
+      "power": 1,
+      "colors": [
+        "Purple"
+      ]
+    },
+    {
+      "cardId": "UNL-149a",
+      "name": "Diana, No Longer Human",
+      "set": "Unleashed",
+      "type": "Champion",
+      "rarity": "Alternate Art",
+      "energy": 4,
+      "power": 1,
+      "might": 3,
+      "colors": [
+        "Purple"
+      ]
+    },
+    {
+      "cardId": "UNL-149",
+      "name": "Diana, No Longer Human",
+      "set": "Unleashed",
+      "type": "Champion",
+      "rarity": "Epic",
+      "energy": 4,
+      "power": 1,
+      "might": 3,
+      "colors": [
+        "Purple"
+      ]
+    },
+    {
+      "cardId": "UNL-150a",
+      "name": "Vex, Apathetic",
+      "set": "Unleashed",
+      "type": "Champion",
+      "rarity": "Alternate Art",
+      "energy": 4,
+      "power": 0,
+      "might": 4,
+      "colors": [
+        "Purple"
+      ]
+    },
+    {
+      "cardId": "UNL-150",
+      "name": "Vex, Apathetic",
+      "set": "Unleashed",
+      "type": "Champion",
+      "rarity": "Epic",
+      "energy": 4,
+      "power": 0,
+      "might": 4,
+      "colors": [
+        "Purple"
+      ]
+    },
+    {
+      "cardId": "UNL-151",
+      "name": "Bandle Soldier",
+      "set": "Unleashed",
+      "type": "Unit",
+      "rarity": "Common",
+      "energy": 4,
+      "power": 1,
+      "might": 5,
+      "colors": [
+        "Yellow"
+      ]
+    },
+    {
+      "cardId": "UNL-152",
+      "name": "Black Rose Dignitary",
+      "set": "Unleashed",
+      "type": "Unit",
+      "rarity": "Common",
+      "energy": 3,
+      "power": 0,
+      "might": 2,
+      "colors": [
+        "Yellow"
+      ]
+    },
+    {
+      "cardId": "UNL-153",
+      "name": "Carrion Dredger",
+      "set": "Unleashed",
+      "type": "Unit",
+      "rarity": "Common",
+      "energy": 2,
+      "power": 0,
+      "might": 1,
+      "colors": [
+        "Yellow"
+      ]
+    },
+    {
+      "cardId": "UNL-154",
+      "name": "Crimson Pigeons",
+      "set": "Unleashed",
+      "type": "Unit",
+      "rarity": "Common",
+      "energy": 3,
+      "power": 0,
+      "might": 3,
+      "colors": [
+        "Yellow"
+      ]
+    },
+    {
+      "cardId": "UNL-155",
+      "name": "Heroic Charge",
+      "set": "Unleashed",
+      "type": "Spell",
+      "energy": 3,
+      "power": 0,
+      "colors": [
+        "Yellow"
+      ]
+    },
+    {
+      "cardId": "UNL-156",
+      "name": "Loyal Poro",
+      "set": "Unleashed",
+      "type": "Unit",
+      "rarity": "Common",
+      "energy": 3,
+      "power": 0,
+      "might": 3,
+      "colors": [
+        "Yellow"
+      ]
+    },
+    {
+      "cardId": "UNL-157",
+      "name": "Scrutinizing Sergeant",
+      "set": "Unleashed",
+      "type": "Unit",
+      "rarity": "Common",
+      "energy": 6,
+      "power": 0,
+      "might": 6,
+      "colors": [
+        "Yellow"
+      ]
+    },
+    {
+      "cardId": "UNL-158",
+      "name": "Shepherd's Heirloom",
+      "set": "Unleashed",
+      "type": "Gear",
+      "rarity": "Common",
+      "energy": 2,
+      "power": 0,
+      "colors": [
+        "Yellow"
+      ]
+    },
+    {
+      "cardId": "UNL-159",
+      "name": "Soul Harvest",
+      "set": "Unleashed",
+      "type": "Spell",
+      "energy": 2,
+      "power": 1,
+      "colors": [
+        "Yellow"
+      ]
+    },
+    {
+      "cardId": "UNL-160",
+      "name": "Ultrasoft Poro",
+      "set": "Unleashed",
+      "type": "Unit",
+      "rarity": "Common",
+      "energy": 5,
+      "power": 0,
+      "might": 5,
+      "colors": [
+        "Yellow"
+      ]
+    },
+    {
+      "cardId": "UNL-161",
+      "name": "Divining Shells",
+      "set": "Unleashed",
+      "type": "Gear",
+      "energy": 2,
+      "power": 0,
+      "colors": [
+        "Yellow"
+      ]
+    },
+    {
+      "cardId": "UNL-162",
+      "name": "Enthralling Protector",
+      "set": "Unleashed",
+      "type": "Unit",
+      "rarity": "Uncommon",
+      "energy": 2,
+      "power": 0,
+      "might": 2,
+      "colors": [
+        "Yellow"
+      ]
+    },
+    {
+      "cardId": "UNL-163",
+      "name": "Mageseeker Investigator",
+      "set": "Unleashed",
+      "type": "Unit",
+      "rarity": "Uncommon",
+      "energy": 4,
+      "power": 0,
+      "might": 4,
+      "colors": [
+        "Yellow"
+      ]
+    },
+    {
+      "cardId": "UNL-164",
+      "name": "Safety Inspector",
+      "set": "Unleashed",
+      "type": "Unit",
+      "rarity": "Uncommon",
+      "energy": 5,
+      "power": 1,
+      "might": 3,
+      "colors": [
+        "Yellow"
+      ]
+    },
+    {
+      "cardId": "UNL-165",
+      "name": "Shadow's Call",
+      "set": "Unleashed",
+      "type": "Spell",
+      "energy": 2,
+      "power": 0,
+      "colors": [
+        "Yellow"
+      ]
+    },
+    {
+      "cardId": "UNL-166",
+      "name": "Stalking Wolf",
+      "set": "Unleashed",
+      "type": "Unit",
+      "rarity": "Uncommon",
+      "energy": 4,
+      "power": 1,
+      "might": 6,
+      "colors": [
+        "Yellow"
+      ]
+    },
+    {
+      "cardId": "UNL-167",
+      "name": "Starhound",
+      "set": "Unleashed",
+      "type": "Unit",
+      "rarity": "Uncommon",
+      "energy": 5,
+      "power": 1,
+      "might": 6,
+      "colors": [
+        "Yellow"
+      ]
+    },
+    {
+      "cardId": "UNL-168",
+      "name": "Undying Loyalty",
+      "set": "Unleashed",
+      "type": "Spell",
+      "energy": 2,
+      "power": 1,
+      "colors": [
+        "Yellow"
+      ]
+    },
+    {
+      "cardId": "UNL-169",
+      "name": "Ashe, Focused",
+      "set": "Unleashed",
+      "type": "Champion",
+      "rarity": "Rare",
+      "energy": 5,
+      "power": 1,
+      "might": 4,
+      "colors": [
+        "Yellow"
+      ]
+    },
+    {
+      "cardId": "UNL-170",
+      "name": "Atakhan",
+      "set": "Unleashed",
+      "type": "Unit",
+      "rarity": "Rare",
+      "energy": 10,
+      "power": 3,
+      "might": 7,
+      "colors": [
+        "Yellow"
+      ]
+    },
+    {
+      "cardId": "UNL-171",
+      "name": "Galio, Indefatigable",
+      "set": "Unleashed",
+      "type": "Champion",
+      "rarity": "Rare",
+      "energy": 3,
+      "power": 1,
+      "might": 6,
+      "colors": [
+        "Yellow"
+      ]
+    },
+    {
+      "cardId": "UNL-172",
+      "name": "LeBlanc, Fragmented",
+      "set": "Unleashed",
+      "type": "Champion",
+      "rarity": "Rare",
+      "energy": 3,
+      "power": 1,
+      "might": 3,
+      "colors": [
+        "Yellow"
+      ]
+    },
+    {
+      "cardId": "UNL-172a",
+      "name": "LeBlanc, Fragmented",
+      "set": "Unleashed",
+      "type": "Champion",
+      "rarity": "Alternate Art",
+      "energy": 3,
+      "power": 1,
+      "might": 3,
+      "colors": [
+        "Yellow"
+      ]
+    },
+    {
+      "cardId": "UNL-173",
+      "name": "Sacrifice",
+      "set": "Unleashed",
+      "type": "Spell",
+      "energy": 1,
+      "power": 0,
+      "colors": [
+        "Yellow"
+      ]
+    },
+    {
+      "cardId": "UNL-174",
+      "name": "Shard of Undoing",
+      "set": "Unleashed",
+      "type": "Gear",
+      "energy": 6,
+      "power": 0,
+      "colors": [
+        "Yellow"
+      ]
+    },
+    {
+      "cardId": "UNL-175",
+      "name": "Tactical Retreat",
+      "set": "Unleashed",
+      "type": "Spell",
+      "energy": 2,
+      "power": 0,
+      "colors": [
+        "Yellow"
+      ]
+    },
+    {
+      "cardId": "UNL-176a",
+      "name": "Vi, Peacekeeper",
+      "set": "Unleashed",
+      "type": "Champion",
+      "rarity": "Alternate Art",
+      "energy": 5,
+      "power": 1,
+      "might": 5,
+      "colors": [
+        "Yellow"
+      ]
+    },
+    {
+      "cardId": "UNL-176",
+      "name": "Vi, Peacekeeper",
+      "set": "Unleashed",
+      "type": "Champion",
+      "rarity": "Rare",
+      "energy": 5,
+      "power": 1,
+      "might": 5,
+      "colors": [
+        "Yellow"
+      ]
+    },
+    {
+      "cardId": "UNL-177",
+      "name": "Ivern, Friend to All",
+      "set": "Unleashed",
+      "type": "Champion",
+      "rarity": "Epic",
+      "energy": 6,
+      "power": 0,
+      "might": 6,
+      "colors": [
+        "Yellow"
+      ]
+    },
+    {
+      "cardId": "UNL-177a",
+      "name": "Ivern, Friend to All",
+      "set": "Unleashed",
+      "type": "Champion",
+      "rarity": "Alternate Art",
+      "energy": 6,
+      "power": 0,
+      "might": 6,
+      "colors": [
+        "Yellow"
+      ]
+    },
+    {
+      "cardId": "UNL-178a",
+      "name": "Poppy, Defender of the Meek",
+      "set": "Unleashed",
+      "type": "Champion",
+      "rarity": "Alternate Art",
+      "energy": 6,
+      "power": 1,
+      "might": 5,
+      "colors": [
+        "Yellow"
+      ]
+    },
+    {
+      "cardId": "UNL-178",
+      "name": "Poppy, Defender of the Meek",
+      "set": "Unleashed",
+      "type": "Champion",
+      "rarity": "Epic",
+      "energy": 6,
+      "power": 1,
+      "might": 5,
+      "colors": [
+        "Yellow"
+      ]
+    },
+    {
+      "cardId": "UNL-179a",
+      "name": "Rift Herald",
+      "set": "Unleashed",
+      "type": "Unit",
+      "rarity": "Alternate Art",
+      "energy": 8,
+      "power": 1,
+      "might": 7,
+      "colors": [
+        "Yellow"
+      ]
+    },
+    {
+      "cardId": "UNL-179",
+      "name": "Rift Herald",
+      "set": "Unleashed",
+      "type": "Unit",
+      "rarity": "Epic",
+      "energy": 8,
+      "power": 1,
+      "might": 7,
+      "colors": [
+        "Yellow"
+      ]
+    },
+    {
+      "cardId": "UNL-180",
+      "name": "The Ruination",
+      "set": "Unleashed",
+      "type": "Spell",
+      "energy": 9,
+      "power": 3,
+      "colors": [
+        "Yellow"
+      ]
+    },
+    
+    {
+      "cardId": "UNL-181",
+      "name": "Jhin, Virtuoso",
+      "set": "Unleashed",
+      "type": "Legend",
+      "rarity": "Rare",
+      "colors": ["Red", "Blue"]
+    },
+    {
+      "cardId": "UNL-182",
+      "name": "Curtain Call",
+      "set": "Unleashed",
+      "type": "Spell",
+      "rarity": "Epic",
+      "energy": 4,
+      "power": 0,
+      "colors": [
+        "Red", "Blue"
+      ]
+    },
+    {
+      "cardId": "UNL-183",
+      "name": "Rengar, Pridestalker",
+      "set": "Unleashed",
+      "type": "Legend",
+      "rarity": "Rare",
+      "colors": ["Red", "Orange"]
+    },
+    {
+      "cardId": "UNL-184",
+      "name": "Thrill of the Hunt",
+      "set": "Unleashed",
+      "type": "Spell",
+      "rarity": "Epic",
+      "energy": 2,
+      "power": 1,
+      "colors": [
+        "Red", "Orange"
+      ]
+    },
+    {
+      "cardId": "UNL-185",
+      "name": "Pyke, Bloodharbor Ripper",
+      "set": "Unleashed",
+      "type": "Legend",
+      "rarity": "Rare",
+      "colors": ["Red", "Purple"]
+    },
+    {
+      "cardId": "UNL-186",
+      "name": "Death from Below",
+      "set": "Unleashed",
+      "type": "Spell",
+      "rarity": "Epic",
+      "energy": 4,
+      "power": 1,
+      "colors": [
+        "Red", "Purple"
+      ]
+    },
+    {
+      "cardId": "UNL-187",
+      "name": "Vi, Piltover Enforcer",
+      "set": "Unleashed",
+      "type": "Legend",
+      "rarity": "Rare",
+      "colors": ["Red", "Yellow"]
+    },
+    {
+      "cardId": "UNL-188",
+      "name": "Hextech Gauntlets",
+      "set": "Unleashed",
+      "type": "Gear",
+      "energy": 3,
+      "power": 0,
+      "colors": [
+        "Red", "Yellow"
+      ]
+    },
+    {
+      "cardId": "UNL-189",
+      "name": "Lillia, Bashful Bloom",
+      "set": "Unleashed",
+      "type": "Legend",
+      "rarity": "Rare",
+      "colors": ["Green", "Blue"]
+    },
+    {
+      "cardId": "UNL-190",
+      "name": "Lilting Lullaby",
+      "set": "Unleashed",
+      "type": "Spell",
+      "rarity": "Epic",
+      "energy": 2,
+      "power": 2,
+      "colors": [
+        "Green", "Blue"
+      ]
+    },
+    {
+      "cardId": "UNL-191",
+      "name": "Mastery Yi, Wuju Master",
+      "set": "Unleashed",
+      "type": "Legend",
+      "rarity": "Rare",
+      "colors": ["Green", "Orange"]
+    },
+    {
+      "cardId": "UNL-192",
+      "name": "Alpha Strike",
+      "set": "Unleashed",
+      "type": "Spell",
+      "rarity": "Epic",
+      "energy": 3,
+      "power": 1,
+      "colors": [
+        "Green", "Orange"
+      ]
+    },
+    {
+      "cardId": "UNL-193",
+      "name": "Vex, Gloomist",
+      "set": "Unleashed",
+      "type": "Legend",
+      "rarity": "Rare",
+      "colors": ["Green", "Purple"]
+    },
+    {
+      "cardId": "UNL-194",
+      "name": "Shadow",
+      "set": "Unleashed",
+      "type": "Unit",
+      "rarity": "Epic",
+      "energy": 3,
+      "power": 0,
+      "might": 3,
+      "colors": [
+        "Green", "Purple"
+      ]
+    },
+    {
+      "cardId": "UNL-195",
+      "name": "Ivern, Green Father",
+      "set": "Unleashed",
+      "type": "Legend",
+      "rarity": "Rare",
+      "colors": ["Green", "Yellow"]
+    },
+    {
+      "cardId": "UNL-196",
+      "name": "Daisy!",
+      "set": "Unleashed",
+      "type": "Unit",
+      "rarity": "Epic",
+      "energy": 9,
+      "power": 2,
+      "might": 8,
+      "colors": [
+        "Green", "Yellow"
+      ]
+    },
+    {
+      "cardId": "UNL-197",
+      "name": "Diana, Scorn of the Moon",
+      "set": "Unleashed",
+      "type": "Legend",
+      "rarity": "Rare",
+      "colors": ["Blue", "Purple"]
+    },
+    {
+      "cardId": "UNL-198",
+      "name": "Moonfall",
+      "set": "Unleashed",
+      "type": "Spell",
+      "rarity": "Epic",
+      "energy": 3,
+      "power": 1,
+      "colors": [
+        "Blue", "Purple"
+      ]
+    },
+    {
+      "cardId": "UNL-199",
+      "name": "LeBlanc, Deceiver",
+      "set": "Unleashed",
+      "type": "Legend",
+      "rarity": "Rare",
+      "colors": ["Blue", "Yellow"]
+    },
+    {
+      "cardId": "UNL-200",
+      "name": "Mirror Image",
+      "set": "Unleashed",
+      "type": "Spell",
+      "rarity": "Epic",
+      "energy": 3,
+      "power": 2,
+      "colors": [
+        "Blue", "Yellow"
+      ]
+    },
+    {
+      "cardId": "UNL-201",
+      "name": "Kha'Zix, Voidreaver",
+      "set": "Unleashed",
+      "type": "Legend",
+      "rarity": "Rare",
+      "colors": ["Orange", "Purple"]
+    },
+    {
+      "cardId": "UNL-202",
+      "name": "Void Assault",
+      "set": "Unleashed",
+      "type": "Spell",
+      "rarity": "Epic",
+      "energy": 2,
+      "power": 1,
+      "colors": [
+        "Orange", "Purple"
+      ]
+    },
+    {
+      "cardId": "UNL-203",
+      "name": "Poppy, Keeper of the Hammer",
+      "set": "Unleashed",
+      "type": "Legend",
+      "rarity": "Rare",
+      "colors": ["Orange", "Yellow"]
+    },
+    {
+      "cardId": "UNL-204",
+      "name": "Keeper's Verdict",
+      "set": "Unleashed",
+      "type": "Spell",
+      "rarity": "Epic",
+      "energy": 2,
+      "power": 2,
+      "colors": [
+        "Orange", "Yellow"
+      ]
+    },
+    {
+      "cardId": "UNL-205",
+      "name": "Abandoned Hall",
+      "set": "Unleashed",
+      "type": "Battlefield",
+      "rarity": "Uncommon"
+    },
+    {
+      "cardId": "UNL-206",
+      "name": "Altar of Blood",
+      "set": "Unleashed",
+      "type": "Battlefield",
+      "rarity": "Uncommon"
+    },
+    {
+      "cardId": "UNL-207",
+      "name": "Amateur Recital",
+      "set": "Unleashed",
+      "type": "Battlefield",
+      "rarity": "Uncommon"
+    },
+    {
+      "cardId": "UNL-208",
+      "name": "Black Flame Altar",
+      "set": "Unleashed",
+      "type": "Battlefield",
+      "rarity": "Uncommon"
+    },
+    {
+      "cardId": "UNL-209",
+      "name": "Dusk Rose Lab",
+      "set": "Unleashed",
+      "type": "Battlefield",
+      "rarity": "Uncommon"
+    },
+    {
+      "cardId": "UNL-210",
+      "name": "Forbidding Waste",
+      "set": "Unleashed",
+      "type": "Battlefield",
+      "rarity": "Uncommon"
+    },
+    {
+      "cardId": "UNL-211",
+      "name": "Forgotten Library",
+      "set": "Unleashed",
+      "type": "Battlefield",
+      "rarity": "Uncommon"
+    },
+    {
+      "cardId": "UNL-212",
+      "name": "Frozen Fortress",
+      "set": "Unleashed",
+      "type": "Battlefield",
+      "rarity": "Uncommon"
+    },
+    {
+      "cardId": "UNL-213",
+      "name": "Gardens of Becoming",
+      "set": "Unleashed",
+      "type": "Battlefield",
+      "rarity": "Uncommon"
+    },
+    {
+      "cardId": "UNL-214",
+      "name": "Ripper's Bay",
+      "set": "Unleashed",
+      "type": "Battlefield",
+      "rarity": "Uncommon"
+    },
+    {
+      "cardId": "UNL-215",
+      "name": "Star Spring",
+      "set": "Unleashed",
+      "type": "Battlefield",
+      "rarity": "Uncommon"
+    },
+    {
+      "cardId": "UNL-216",
+      "name": "The Academy",
+      "set": "Unleashed",
+      "type": "Battlefield",
+      "rarity": "Uncommon"
+    },
+    {
+      "cardId": "UNL-217",
+      "name": "Trapping Grounds",
+      "set": "Unleashed",
+      "type": "Battlefield",
+      "rarity": "Uncommon"
+    },
+    {
+      "cardId": "UNL-218",
+      "name": "Valley of Idols",
+      "set": "Unleashed",
+      "type": "Battlefield",
+      "rarity": "Uncommon"
+    },
+    {
+      "cardId": "UNL-219",
+      "name": "Vaults of Helia",
+      "set": "Unleashed",
+      "type": "Battlefield",
+      "rarity": "Uncommon"
+    },
+    {
+      "cardId": "UNL-220",
+      "name": "Pouty Poro",
+      "set": "Unleashed",
+      "type": "Unit",
+      "rarity": "Overnumbered",
+      "energy": 2,
+      "power": 0,
+      "might": 2,
+      "colors": [
+        "Red"
+      ]
+    },
+    {
+      "cardId": "UNL-221",
+      "name": "Lonely Poro",
+      "set": "Unleashed",
+      "type": "Unit",
+      "rarity": "Overnumbered",
+      "energy": 2,
+      "power": 0,
+      "might": 2,
+      "colors": [
+        "Green"
+      ]
+    },
+    {
+      "cardId": "UNL-222",
+      "name": "Plundering Poro",
+      "set": "Unleashed",
+      "type": "Unit",
+      "rarity": "Overnumbered",
+      "energy": 2,
+      "power": 0,
+      "might": 2,
+      "colors": [
+        "Blue"
+      ]
+    },
+    {
+      "cardId": "UNL-223",
+      "name": "Veteran Poro",
+      "set": "Unleashed",
+      "type": "Unit",
+      "rarity": "Overnumbered",
+      "energy": 2,
+      "power": 0,
+      "might": 2,
+      "colors": [
+        "Orange"
+      ]
+    },
+    {
+      "cardId": "UNL-224",
+      "name": "Mystic Poro",
+      "set": "Unleashed",
+      "type": "Unit",
+      "rarity": "Overnumbered",
+      "energy": 2,
+      "power": 0,
+      "might": 2,
+      "colors": [
+        "Purple"
+      ]
+    },
+    {
+      "cardId": "UNL-225",
+      "name": "Daring Poro",
+      "set": "Unleashed",
+      "type": "Unit",
+      "rarity": "Overnumbered",
+      "energy": 2,
+      "power": 0,
+      "might": 2,
+      "colors": [
+        "Yellow"
+      ]
+    },
+    {
+      "cardId": "UNL-226",
+      "name": "Jhin, Virtuoso",
+      "set": "Unleashed",
+      "type": "Legend",
+      "rarity": "Overnumbered",
+      "colors": ["Red", "Blue"]
+    },
+    {
+      "cardId": "UNL-226s",
+      "name": "Jhin, Virtuoso",
+      "set": "Unleashed",
+      "type": "Legend",
+      "rarity": "Signature",
+      "colors": ["Red", "Blue"]
+    },
+    {
+      "cardId": "UNL-227",
+      "name": "Rengar, Pridestalker",
+      "set": "Unleashed",
+      "type": "Legend",
+      "rarity": "Overnumbered",
+      "colors": ["Red", "Orange"]
+    },
+    {
+      "cardId": "UNL-227s",
+      "name": "Rengar, Pridestalker",
+      "set": "Unleashed",
+      "type": "Legend",
+      "rarity": "Signature",
+      "colors": ["Red", "Orange"]
+    },
+    {
+      "cardId": "UNL-228",
+      "name": "Pyke, Bloodharbor Ripper",
+      "set": "Unleashed",
+      "type": "Legend",
+      "rarity": "Overnumbered",
+      "colors": ["Red", "Purple"]
+    },
+    {
+      "cardId": "UNL-228s",
+      "name": "Pyke, Bloodharbor Ripper",
+      "set": "Unleashed",
+      "type": "Legend",
+      "rarity": "Signature",
+      "colors": ["Red", "Purple"]
+    },
+    {
+      "cardId": "UNL-229",
+      "name": "Vi, Piltover Enforcer",
+      "set": "Unleashed",
+      "type": "Legend",
+      "rarity": "Overnumbered",
+      "colors": ["Red", "Yellow"]
+    },
+    {
+      "cardId": "UNL-229s",
+      "name": "Vi, Piltover Enforcer",
+      "set": "Unleashed",
+      "type": "Legend",
+      "rarity": "Signature",
+      "colors": ["Red", "Yellow"]
+    },
+    {
+      "cardId": "UNL-230",
+      "name": "Lillia, Bashful Bloom",
+      "set": "Unleashed",
+      "type": "Legend",
+      "rarity": "Overnumbered",
+      "colors": ["Green", "Blue"]
+    },
+    {
+      "cardId": "UNL-230s",
+      "name": "Lillia, Bashful Bloom",
+      "set": "Unleashed",
+      "type": "Legend",
+      "rarity": "Signature",
+      "colors": ["Green", "Blue"]
+    },
+    {
+      "cardId": "UNL-231",
+      "name": "Mastery Yi, Wuju Master",
+      "set": "Unleashed",
+      "type": "Legend",
+      "rarity": "Overnumbered",
+      "colors": ["Green", "Orange"]
+    },
+    {
+      "cardId": "UNL-231s",
+      "name": "Mastery Yi, Wuju Master",
+      "set": "Unleashed",
+      "type": "Legend",
+      "rarity": "Signature",
+      "colors": ["Green", "Orange"]
+    },
+    {
+      "cardId": "UNL-232",
+      "name": "Vex, Gloomist",
+      "set": "Unleashed",
+      "type": "Legend",
+      "rarity": "Overnumbered",
+      "colors": ["Green", "Purple"]
+    },
+    {
+      "cardId": "UNL-232s",
+      "name": "Vex, Gloomist",
+      "set": "Unleashed",
+      "type": "Legend",
+      "rarity": "Signature",
+      "colors": ["Green", "Purple"]
+    },
+    {
+      "cardId": "UNL-233",
+      "name": "Ivern, Green Father",
+      "set": "Unleashed",
+      "type": "Legend",
+      "rarity": "Overnumbered",
+      "colors": ["Green", "Yellow"]
+    },
+    {
+      "cardId": "UNL-233s",
+      "name": "Ivern, Green Father",
+      "set": "Unleashed",
+      "type": "Legend",
+      "rarity": "Signature",
+      "colors": ["Green", "Yellow"]
+    },
+    {
+      "cardId": "UNL-234",
+      "name": "Diana, Scorn of the Moon",
+      "set": "Unleashed",
+      "type": "Legend",
+      "rarity": "Overnumbered",
+      "colors": ["Blue", "Purple"]
+    },
+    {
+      "cardId": "UNL-234s",
+      "name": "Diana, Scorn of the Moon",
+      "set": "Unleashed",
+      "type": "Legend",
+      "rarity": "Signature",
+      "colors": ["Blue", "Purple"]
+    },
+    {
+      "cardId": "UNL-235",
+      "name": "LeBlanc, Deceiver",
+      "set": "Unleashed",
+      "type": "Legend",
+      "rarity": "Overnumbered",
+      "colors": ["Blue", "Yellow"]
+    },
+    {
+      "cardId": "UNL-235s",
+      "name": "LeBlanc, Deceiver",
+      "set": "Unleashed",
+      "type": "Legend",
+      "rarity": "Signature",
+      "colors": ["Blue", "Yellow"]
+    },
+    {
+      "cardId": "UNL-236",
+      "name": "Kha'Zix, Voidreaver",
+      "set": "Unleashed",
+      "type": "Legend",
+      "rarity": "Rare",
+      "colors": ["Orange", "Purple"]
+    },
+    {
+      "cardId": "UNL-236s",
+      "name": "Kha'Zix, Voidreaver",
+      "set": "Unleashed",
+      "type": "Legend",
+      "rarity": "Signature",
+      "colors": ["Orange", "Purple"]
+    },
+    {
+      "cardId": "UNL-237",
+      "name": "Poppy, Keeper of the Hammer",
+      "set": "Unleashed",
+      "type": "Legend",
+      "rarity": "Overnumbered",
+      "colors": ["Orange", "Yellow"]
+    },
+    {
+      "cardId": "UNL-237s",
+      "name": "Poppy, Keeper of the Hammer",
+      "set": "Unleashed",
+      "type": "Legend",
+      "rarity": "Signature",
+      "colors": ["Orange", "Yellow"]
+    },
+    {
+      "cardId": "UNL-238",
+      "name": "Baron Nashor",
+      "set": "Unleashed",
+      "type": "Unit",
+      "rarity": "Ultimate Rare",
+      "energy": 10,
+      "power": 3,
+      "might": 12,
+      "colors": [
+        "Purple"
+      ]
     }
 ]

@@ -77,7 +77,9 @@ export default function CardSearchPanel({
           ? "grid grid-cols-4 gap-2"
           : "grid grid-cols-5 gap-2"}
       >
-      {cards.map((card, index) => {
+      {cards
+        .filter(card => card.type?.toLowerCase() !== 'token')
+        .map((card, index) => {
         const count = deckCards[card.cardId] || 0;
         const isMaxed = count >= 3;
 

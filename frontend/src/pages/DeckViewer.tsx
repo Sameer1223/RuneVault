@@ -5,6 +5,7 @@ import { Button } from "../components/ui/button";
 import { useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
 import type { FullDeck } from "@/types/deck";
+import CardImage from "@/components/CardImage";
 
 export default function DeckViewer() {
     const location = useLocation();
@@ -65,9 +66,8 @@ export default function DeckViewer() {
                 <div id="Card Viewer" className="flex flex-col flex-[1.3] items-center gap-3 min-h-0">
                     <div className="flex items-center justify-center w-[70%] aspect-[1/1.4] bg-zinc-900 rounded-lg shadow-lg">
                         {hoveredCard ? (
-                            <img
-                                src={`TempCards/${hoveredCard}.avif`}
-                                alt={hoveredCard}
+                            <CardImage
+                                cardId={hoveredCard}
                                 className="w-full h-full object-cover rounded-lg"
                             />
                         ) : (

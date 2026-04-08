@@ -1,3 +1,5 @@
+import CardImage from '../CardImage';
+
 interface CardProps {
     cardId?: string;
     className?: string;
@@ -10,8 +12,6 @@ interface CardProps {
 }
   
 export default function Card({ cardId, className = "", isSelected = false, disableHoverScale = false, onHover, onLeave, onClick, onRightClick }: CardProps) {
-    const cardImg = cardId ? `TempCards/${cardId}.avif` : undefined;
-
     const handleContextMenu = (e: React.MouseEvent) => {
         e.preventDefault();
         if (cardId) onRightClick?.(cardId);
@@ -32,7 +32,7 @@ export default function Card({ cardId, className = "", isSelected = false, disab
             onClick={onClick}
             onContextMenu={handleContextMenu}
         >
-            {cardImg && <img src={cardImg} alt={cardId} className="w-full h-full object-cover" />}
+            {cardId && <CardImage cardId={cardId} className="w-full h-full object-cover" />}
             {isSelected && (
                 <div className="absolute inset-0 border-3 border-blue-500 rounded-sm pointer-events-none z-10" />
             )}

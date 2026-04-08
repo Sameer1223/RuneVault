@@ -19,5 +19,9 @@ jobs:
           script: |
             cd RuneVault
             git pull origin main
+
+            docker system prune -a -f
+            docker volume prune -f
+
             docker-compose down
             docker-compose up -d --build

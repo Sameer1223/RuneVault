@@ -1,6 +1,7 @@
 import type { CardData } from "@/types/deck";
 import type { ComparisonResult } from "@/utils/cardleGameUtils";
 import { GUESS_GRID_TEMPLATE } from "./guessResultConstants";
+import CardImage from "../CardImage";
 
 interface GuessResultProps {
   guessCard: CardData;
@@ -117,8 +118,8 @@ export default function GuessResult({ guessCard, result, guessNumber }: GuessRes
 
       <div className={`${CELL_BASE} ${GUESS_COL_W.card}`}>
         <div className="flex items-center gap-2">
-          <img
-            src={`/TempCards/${guessCard.cardId}.avif`}
+          <CardImage
+            cardId={guessCard.cardId}
             alt={guessCard.name}
             className="relative z-10 h-28 w-20 rounded-md object-cover shadow-lg shadow-black/30 ring-1 ring-white/10 transition-transform duration-300 ease-out hover:z-30 hover:scale-[1.9] hover:shadow-2xl hover:shadow-black/60"
           />
