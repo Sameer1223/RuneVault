@@ -8,6 +8,20 @@ import type { FullDeck } from "@/types/deck";
 import CardImage from "@/components/CardImage";
 import { motion, AnimatePresence } from "framer-motion";
 import { API_BASE_URL } from "@/lib/constants";
+import cardData from "../data/cards.json";
+import { useDeckStats } from "@/hooks/useDeckStats";
+import { 
+    BarChart, 
+    Bar, 
+    XAxis, 
+    YAxis, 
+    CartesianGrid, 
+    Tooltip as RechartsTooltip, 
+    ResponsiveContainer,
+    Cell,
+    PieChart,
+    Pie
+} from "recharts";
 
 export default function DeckViewer() {
     const location = useLocation();
@@ -17,6 +31,18 @@ export default function DeckViewer() {
     const [loading, setLoading] = useState(true);
     const [hoveredCard, setHoveredCard] = useState<string | null>(null);
     const [notification, setNotification] = useState<string | null>(null);
+    const [activeTab, setActiveTab] = useState<"viewer" | "stats">("viewer");
+
+    const { stats, energyData, powerData, colorData } = useDeckStats(deck ? deck.deck_data : null);
+
+    const betterColors: Record<string, string> = {
+      "Red": "#ef4444",
+      "Blue": "#3b82f6",
+      "Green": "#22c55e",
+      "Yellow": "#eab308",
+      "Purple": "#a855f7",
+      "Orange": "#f97316"
+    };
 
     useEffect(() => {
         if (notification) {
@@ -99,18 +125,189 @@ export default function DeckViewer() {
                     </div>
                 </div>
 
-                <div id="Card Viewer" className="flex flex-col flex-[1.3] items-center gap-3 min-h-0">
-                    <div className="flex items-center justify-center w-[70%] aspect-[1/1.4] bg-zinc-900 rounded-lg shadow-lg">
-                        {hoveredCard ? (
-                            <CardImage
-                                cardId={hoveredCard}
-                                className="w-full h-full object-cover rounded-lg"
-                            />
+                <div id="Right-Panel" className="flex flex-col flex-[1.3] gap-3 min-h-0">
+                    <div id="Tabs" className="flex gap-2">
+                        <button 
+                            onClick={() => setActiveTab("viewer")}
+                            className={`flex-1 py-2 text-sm font-medium rounded-t-lg transition-colors ${
+                                activeTab === "viewer" 
+                                ? "bg-zinc-800 text-white border-b-2 border-[#caa368]" 
+                                : "bg-zinc-900/50 text-zinc-400 hover:text-zinc-200"
+                            }`}
+                        >
+                            Card Viewer
+                        </button>
+                        <button 
+                            onClick={() => setActiveTab("stats")}
+                            className={`flex-1 py-2 text-sm font-medium rounded-t-lg transition-colors ${
+                                activeTab === "stats" 
+                                ? "bg-zinc-800 text-white border-b-2 border-[#caa368]" 
+                                : "bg-zinc-900/50 text-zinc-400 hover:text-zinc-200"
+                            }`}
+                        >
+                            Detailed Stats
+                        </button>
+                    </div>
+
+                    <div id="Tab-Content" className="flex-1 bg-zinc-900/40 rounded-b-lg p-4 flex flex-col items-center overflow-hidden">
+                        {activeTab === "viewer" ? (
+                            <div id="Card Viewer" className="flex flex-col items-center gap-4 w-full h-full">
+                                <div className="flex items-center justify-center flex-1 w-full min-h-0">
+                                    <div className="h-full aspect-[1/1.4] relative p-1">
+                                        {hoveredCard ? (
+                                            <CardImage
+                                                cardId={hoveredCard}
+                                                className="w-full h-full object-contain rounded-lg shadow-lg"
+                                            />
+                                        ) : (
+                                            <div className="flex items-center justify-center w-full h-full bg-zinc-900 rounded-lg border border-zinc-800 text-zinc-500 text-sm text-center px-4">
+                                                Hover over a card to preview
+                                            </div>
+                                        )}
+                                    </div>
+                                </div>
+                                
+                                {hoveredCard && (
+                                    <div className="text-center shrink-0">
+                                        <div className="text-[#caa368] font-semibold text-xl">
+                                            {cardData.find(c => c.cardId === hoveredCard)?.name}
+                                        </div>
+                                        <div className="text-zinc-500 text-sm uppercase tracking-wider">
+                                            {cardData.find(c => c.cardId === hoveredCard)?.type}
+                                        </div>
+                                    </div>
+                                )}
+
+                                <div className="w-full grid grid-cols-2 gap-x-6 gap-y-4 mt-4 px-6 shrink-0 pb-2">
+                                    {stats.map((stat) => (
+                                        <div key={stat.label} className="flex flex-col gap-1 border-b border-zinc-800 pb-2">
+                                            <span className="text-xs text-[#caa368] uppercase font-bold tracking-tighter">
+                                                {stat.label}
+                                            </span>
+                                            <span className="text-base text-white font-medium">
+                                                {stat.value}
+                                            </span>
+                                        </div>
+                                    ))}
+                                </div>
+                            </div>
                         ) : (
-                            <div className="text-zinc-500 text-sm">Hover over a card to preview</div>
+                            <div id="Detailed Stats" className="w-full h-full flex flex-col gap-6 overflow-y-auto pr-2 custom-scrollbar">
+                                {/* Bar Charts Section */}
+                                <div className="grid grid-cols-1 gap-6">
+                                    <div className="bg-zinc-900/60 p-4 rounded-xl border border-zinc-800/50">
+                                        <h3 className="text-[#caa368] text-sm font-bold uppercase mb-4 flex items-center gap-2">
+                                            <div className="w-1 h-4 bg-[#caa368]/50 rounded-full" />
+                                            Energy Distribution
+                                        </h3>
+                                        <div className="h-48 w-full">
+                                            <ResponsiveContainer width="100%" height="100%">
+                                                <BarChart data={energyData} margin={{ top: 5, right: 5, left: -20, bottom: 0 }}>
+                                                    <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#333" />
+                                                    <XAxis 
+                                                        dataKey="name" 
+                                                        stroke="#666" 
+                                                        fontSize={12}
+                                                        tickLine={false}
+                                                        axisLine={false}
+                                                    />
+                                                    <YAxis 
+                                                        stroke="#666" 
+                                                        fontSize={12}
+                                                        tickLine={false}
+                                                        axisLine={false}
+                                                        allowDecimals={false}
+                                                    />
+                                                    <RechartsTooltip 
+                                                        contentStyle={{ backgroundColor: '#18181b', border: '1px solid #3f3f46', borderRadius: '8px' }}
+                                                        itemStyle={{ color: '#caa368' }}
+                                                        cursor={{ fill: 'rgba(202, 163, 104, 0.05)' }}
+                                                    />
+                                                    <Bar dataKey="value" fill="#caa368" radius={[4, 4, 0, 0]} />
+                                                </BarChart>
+                                            </ResponsiveContainer>
+                                        </div>
+                                    </div>
+
+                                    <div className="bg-zinc-900/60 p-4 rounded-xl border border-zinc-800/50">
+                                        <h3 className="text-[#caa368] text-sm font-bold uppercase mb-4 flex items-center gap-2">
+                                            <div className="w-1 h-4 bg-[#caa368]/50 rounded-full" />
+                                            Power Distribution
+                                        </h3>
+                                        <div className="h-48 w-full">
+                                            <ResponsiveContainer width="100%" height="100%">
+                                                <BarChart data={powerData} margin={{ top: 5, right: 5, left: -20, bottom: 0 }}>
+                                                    <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#333" />
+                                                    <XAxis 
+                                                        dataKey="name" 
+                                                        stroke="#666" 
+                                                        fontSize={12}
+                                                        tickLine={false}
+                                                        axisLine={false}
+                                                    />
+                                                    <YAxis 
+                                                        stroke="#666" 
+                                                        fontSize={12}
+                                                        tickLine={false}
+                                                        axisLine={false}
+                                                        allowDecimals={false}
+                                                    />
+                                                    <RechartsTooltip 
+                                                        contentStyle={{ backgroundColor: '#18181b', border: '1px solid #3f3f46', borderRadius: '8px' }}
+                                                        itemStyle={{ color: '#caa368' }}
+                                                        cursor={{ fill: 'rgba(202, 163, 104, 0.05)' }}
+                                                    />
+                                                    <Bar dataKey="value" fill="#6366f1" radius={[4, 4, 0, 0]} />
+                                                </BarChart>
+                                            </ResponsiveContainer>
+                                        </div>
+                                    </div>
+
+                                    <div className="bg-zinc-900/60 p-4 rounded-xl border border-zinc-800/50">
+                                        <h3 className="text-[#caa368] text-sm font-bold uppercase mb-4 flex items-center gap-2">
+                                            <div className="w-1 h-4 bg-[#caa368]/50 rounded-full" />
+                                            Color Distribution
+                                        </h3>
+                                        <div className="h-48 w-full flex items-center">
+                                            <ResponsiveContainer width="100%" height="100%">
+                                                <PieChart>
+                                                    <Pie
+                                                        data={colorData}
+                                                        cx="50%"
+                                                        cy="50%"
+                                                        innerRadius={40}
+                                                        outerRadius={65}
+                                                        paddingAngle={5}
+                                                        dataKey="value"
+                                                    >
+                                                        {colorData.map((entry, index) => (
+                                                            <Cell key={`cell-${index}`} fill={betterColors[entry.name] || '#888'} />
+                                                        ))}
+                                                    </Pie>
+                                                    <RechartsTooltip 
+                                                        contentStyle={{ backgroundColor: '#18181b', border: '1px solid #3f3f46', borderRadius: '8px' }}
+                                                        itemStyle={{ color: '#fff' }}
+                                                    />
+                                                </PieChart>
+                                            </ResponsiveContainer>
+                                            <div className="flex flex-col gap-2 pr-4">
+                                                {colorData.map((entry) => (
+                                                    <div key={entry.name} className="flex items-center gap-2">
+                                                        <div className="w-2 h-2 rounded-full" style={{ backgroundColor: betterColors[entry.name] || '#888' }} />
+                                                        <span className="text-xs text-zinc-400 font-medium">{entry.name}</span>
+                                                        <span className="text-xs text-white font-bold ml-auto">{entry.value}</span>
+                                                    </div>
+                                                ))}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         )}
                     </div>
                 </div>
+
+                
             </div>
 
             <AnimatePresence>
