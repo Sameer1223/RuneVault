@@ -24,7 +24,7 @@ export default function Home() {
         const fetchCollectionPercentage = async () => {
             try {
                 setLoading(true)
-                const res = await authFetch(`${API_BASE_URL}/api/collection/${encodeURIComponent(userId)}`)
+                const res = await authFetch(`${API_BASE_URL}/collection/${encodeURIComponent(userId)}`)
                 if (!res.ok) throw new Error('Failed to fetch collection')
                 
                 const data = await res.json()

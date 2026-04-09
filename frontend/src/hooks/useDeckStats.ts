@@ -28,7 +28,7 @@ export function useDeckStats(deck: DeckData | null) {
         stats: [] as DeckStat[], 
         energyData: [] as ChartDataPoint[], 
         powerData: [] as ChartDataPoint[], 
-        colorData: [] as ChartDataPoint[] 
+        typeData: [] as ChartDataPoint[] 
       };
     }
 
@@ -39,7 +39,13 @@ export function useDeckStats(deck: DeckData | null) {
     // track totals for charts
     const energyDistribution: Record<number, number> = {};
     const powerDistribution: Record<number, number> = {};
-    const colorDistribution: Record<string, number> = {};
+    
+    // Type distribution: Units (Unit+Champion), Spells, Gear
+    const typeDistribution: Record<string, number> = {
+      "Units": 0,
+      "Spells": 0,
+      "Gear": 0
+    };
 
     // track total power per color
     const colorPower: Record<string, number> = {};
@@ -60,11 +66,19 @@ export function useDeckStats(deck: DeckData | null) {
       energyDistribution[energy] = (energyDistribution[energy] || 0) + count;
       powerDistribution[power] = (powerDistribution[power] || 0) + count;
 
+      // Type data
+      if (card.type === "Unit" || card.type === "Champion") {
+        typeDistribution["Units"] += count;
+      } else if (card.type === "Spell") {
+        typeDistribution["Spells"] += count;
+      } else if (card.type === "Gear") {
+        typeDistribution["Gear"] += count;
+      }
+
       // accumulate power by color
       if (card.colors && card.colors.length > 0) {
         for (const color of card.colors) {
           colorPower[color] = (colorPower[color] || 0) + powerValue / card.colors.length;
-          colorDistribution[color] = (colorDistribution[color] || 0) + (count / card.colors.length);
         }
       }
     }
@@ -92,6 +106,10 @@ export function useDeckStats(deck: DeckData | null) {
       { name: "4", value: powerDistribution[4] || 0 }
     ];
 
+    const typeData: ChartDataPoint[] = ["Units", "Spells", "Gear"]
+      .filter(t => typeDistribution[t] > 0)
+      .map(t => ({ name: t, value: typeDistribution[t] }));
+
     const betterColors: Record<string, string> = {
       "Red": "#ef4444",
       "Blue": "#3b82f6",
@@ -101,10 +119,11 @@ export function useDeckStats(deck: DeckData | null) {
       "Orange": "#f97316"
     };
 
-    const colorData: ChartDataPoint[] = Object.entries(colorDistribution).map(([name, value]) => ({
-      name,
-      value: parseFloat(value.toFixed(1))
-    }));
+    const typeColors: Record<string, string> = {
+      "Units": "#caa368",    // Gold
+      "Spells": "#3b82f6",   // Blue
+      "Gear": "#ef4444"      // Red
+    };
 
     const avgEnergy = totalCards ? (totalEnergy / totalCards).toFixed(2) : "-";
     const avgPower = totalCards ? (totalPower / totalCards).toFixed(2) : "-";
@@ -171,7 +190,7 @@ export function useDeckStats(deck: DeckData | null) {
       { label: "2-Drop Hand", value: prob2Drop },
     ];
 
-    return { stats, energyData, powerData, colorData };
+    return { stats, energyData, powerData, typeData, typeColors };
   }, [deck, cardLookup]);
 
   return result;

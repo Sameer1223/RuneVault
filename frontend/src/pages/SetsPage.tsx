@@ -27,7 +27,7 @@ export default function Sets() {
             if (!userId) return;
 
             try {
-                const res = await authFetch(`${API_BASE_URL}/api/collection/${encodeURIComponent(userId)}`);
+                const res = await authFetch(`${API_BASE_URL}/collection/${encodeURIComponent(userId)}`);
                 if (!res.ok) return;
 
                 const data = await res.json();

@@ -18,7 +18,7 @@ export const useUserSync = () => {
       try {
         const token = await getAccessTokenSilently();
 
-        const res = await fetch(`${API_BASE_URL}/api/user/sync-user`, {
+        const res = await fetch(`${API_BASE_URL}/user/sync-user`, {
           method: 'POST',
           headers: {
             Authorization: `Bearer ${token}`,

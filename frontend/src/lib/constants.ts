@@ -1,5 +1,7 @@
 /** Base URL for all API requests */
-export const API_BASE_URL = import.meta.env.VITE_API_URL || "";
+// Ensure we have a trailing /api but not twice
+const rawApiUrl = import.meta.env.VITE_API_URL || "";
+export const API_BASE_URL = rawApiUrl.endsWith('/api') ? rawApiUrl : `${rawApiUrl}/api`;
 
 /** Card rarity types (without "All") */
 export const RARITY_TYPES = ["Common", "Uncommon", "Rare", "Epic", "Alternate Art"] as const;

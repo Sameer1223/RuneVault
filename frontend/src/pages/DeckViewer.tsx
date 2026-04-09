@@ -33,7 +33,7 @@ export default function DeckViewer() {
     const [notification, setNotification] = useState<string | null>(null);
     const [activeTab, setActiveTab] = useState<"viewer" | "stats">("viewer");
 
-    const { stats, energyData, powerData, colorData } = useDeckStats(deck ? deck.deck_data : null);
+    const { stats, energyData, powerData, typeData, typeColors } = useDeckStats(deck ? deck.deck_data : null);
 
     const betterColors: Record<string, string> = {
       "Red": "#ef4444",
@@ -59,7 +59,7 @@ export default function DeckViewer() {
           setLoading(false);
         } else if (deckId) {
           // Fetch deck from backend if not passed in state
-          fetch(`${API_BASE_URL}/api/decks/${deckId}`)
+          fetch(`${API_BASE_URL}/decks/${deckId}`)
             .then(res => res.json())
             .then(data => {
                 if (data.error) {
@@ -192,110 +192,112 @@ export default function DeckViewer() {
                                 </div>
                             </div>
                         ) : (
-                            <div id="Detailed Stats" className="w-full h-full flex flex-col gap-6 overflow-y-auto pr-2 custom-scrollbar">
+                            <div id="Detailed Stats" className="w-full h-full flex flex-col gap-3 overflow-hidden p-1">
                                 {/* Bar Charts Section */}
-                                <div className="grid grid-cols-1 gap-6">
-                                    <div className="bg-zinc-900/60 p-4 rounded-xl border border-zinc-800/50">
-                                        <h3 className="text-[#caa368] text-sm font-bold uppercase mb-4 flex items-center gap-2">
-                                            <div className="w-1 h-4 bg-[#caa368]/50 rounded-full" />
+                                <div className="flex-1 min-h-0 grid grid-cols-1 gap-3">
+                                    <div className="bg-zinc-900/60 p-3 rounded-xl border border-zinc-800/50 flex flex-col">
+                                        <h3 className="text-[#caa368] text-xs font-bold uppercase mb-2 flex items-center gap-2 shrink-0">
+                                            <div className="w-1 h-3 bg-[#caa368]/50 rounded-full" />
                                             Energy Distribution
                                         </h3>
-                                        <div className="h-48 w-full">
+                                        <div className="flex-1 w-full min-h-0">
                                             <ResponsiveContainer width="100%" height="100%">
-                                                <BarChart data={energyData} margin={{ top: 5, right: 5, left: -20, bottom: 0 }}>
+                                                <BarChart data={energyData} margin={{ top: 5, right: 5, left: -35, bottom: 0 }}>
                                                     <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#333" />
                                                     <XAxis 
                                                         dataKey="name" 
                                                         stroke="#666" 
-                                                        fontSize={12}
+                                                        fontSize={10}
                                                         tickLine={false}
                                                         axisLine={false}
                                                     />
                                                     <YAxis 
                                                         stroke="#666" 
-                                                        fontSize={12}
+                                                        fontSize={10}
                                                         tickLine={false}
                                                         axisLine={false}
                                                         allowDecimals={false}
                                                     />
                                                     <RechartsTooltip 
-                                                        contentStyle={{ backgroundColor: '#18181b', border: '1px solid #3f3f46', borderRadius: '8px' }}
-                                                        itemStyle={{ color: '#caa368' }}
+                                                        contentStyle={{ backgroundColor: '#18181b', border: '1px solid #3f3f46', borderRadius: '4px', fontSize: '10px' }}
+                                                        itemStyle={{ color: '#caa368', padding: 0 }}
                                                         cursor={{ fill: 'rgba(202, 163, 104, 0.05)' }}
                                                     />
-                                                    <Bar dataKey="value" fill="#caa368" radius={[4, 4, 0, 0]} />
+                                                    <Bar dataKey="value" fill="#caa368" radius={[2, 2, 0, 0]} />
                                                 </BarChart>
                                             </ResponsiveContainer>
                                         </div>
                                     </div>
 
-                                    <div className="bg-zinc-900/60 p-4 rounded-xl border border-zinc-800/50">
-                                        <h3 className="text-[#caa368] text-sm font-bold uppercase mb-4 flex items-center gap-2">
-                                            <div className="w-1 h-4 bg-[#caa368]/50 rounded-full" />
+                                    <div className="bg-zinc-900/60 p-3 rounded-xl border border-zinc-800/50 flex flex-col">
+                                        <h3 className="text-[#caa368] text-xs font-bold uppercase mb-2 flex items-center gap-2 shrink-0">
+                                            <div className="w-1 h-3 bg-[#caa368]/50 rounded-full" />
                                             Power Distribution
                                         </h3>
-                                        <div className="h-48 w-full">
+                                        <div className="flex-1 w-full min-h-0">
                                             <ResponsiveContainer width="100%" height="100%">
-                                                <BarChart data={powerData} margin={{ top: 5, right: 5, left: -20, bottom: 0 }}>
+                                                <BarChart data={powerData} margin={{ top: 5, right: 5, left: -35, bottom: 0 }}>
                                                     <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#333" />
                                                     <XAxis 
                                                         dataKey="name" 
                                                         stroke="#666" 
-                                                        fontSize={12}
+                                                        fontSize={10}
                                                         tickLine={false}
                                                         axisLine={false}
                                                     />
                                                     <YAxis 
                                                         stroke="#666" 
-                                                        fontSize={12}
+                                                        fontSize={10}
                                                         tickLine={false}
                                                         axisLine={false}
                                                         allowDecimals={false}
                                                     />
                                                     <RechartsTooltip 
-                                                        contentStyle={{ backgroundColor: '#18181b', border: '1px solid #3f3f46', borderRadius: '8px' }}
-                                                        itemStyle={{ color: '#caa368' }}
+                                                        contentStyle={{ backgroundColor: '#18181b', border: '1px solid #3f3f46', borderRadius: '4px', fontSize: '10px' }}
+                                                        itemStyle={{ color: '#6366f1', padding: 0 }}
                                                         cursor={{ fill: 'rgba(202, 163, 104, 0.05)' }}
                                                     />
-                                                    <Bar dataKey="value" fill="#6366f1" radius={[4, 4, 0, 0]} />
+                                                    <Bar dataKey="value" fill="#6366f1" radius={[2, 2, 0, 0]} />
                                                 </BarChart>
                                             </ResponsiveContainer>
                                         </div>
                                     </div>
 
-                                    <div className="bg-zinc-900/60 p-4 rounded-xl border border-zinc-800/50">
-                                        <h3 className="text-[#caa368] text-sm font-bold uppercase mb-4 flex items-center gap-2">
-                                            <div className="w-1 h-4 bg-[#caa368]/50 rounded-full" />
-                                            Color Distribution
+                                    <div className="bg-zinc-900/60 p-3 rounded-xl border border-zinc-800/50 flex flex-col">
+                                        <h3 className="text-[#caa368] text-xs font-bold uppercase mb-2 flex items-center gap-2 shrink-0">
+                                            <div className="w-1 h-3 bg-[#caa368]/50 rounded-full" />
+                                            Type Distribution
                                         </h3>
-                                        <div className="h-48 w-full flex items-center">
-                                            <ResponsiveContainer width="100%" height="100%">
-                                                <PieChart>
-                                                    <Pie
-                                                        data={colorData}
-                                                        cx="50%"
-                                                        cy="50%"
-                                                        innerRadius={40}
-                                                        outerRadius={65}
-                                                        paddingAngle={5}
-                                                        dataKey="value"
-                                                    >
-                                                        {colorData.map((entry, index) => (
-                                                            <Cell key={`cell-${index}`} fill={betterColors[entry.name] || '#888'} />
-                                                        ))}
-                                                    </Pie>
-                                                    <RechartsTooltip 
-                                                        contentStyle={{ backgroundColor: '#18181b', border: '1px solid #3f3f46', borderRadius: '8px' }}
-                                                        itemStyle={{ color: '#fff' }}
-                                                    />
-                                                </PieChart>
-                                            </ResponsiveContainer>
-                                            <div className="flex flex-col gap-2 pr-4">
-                                                {colorData.map((entry) => (
+                                        <div className="flex-1 w-full flex items-center min-h-0">
+                                            <div className="flex-1 h-full">
+                                                <ResponsiveContainer width="100%" height="100%">
+                                                    <PieChart>
+                                                        <Pie
+                                                            data={typeData}
+                                                            cx="50%"
+                                                            cy="50%"
+                                                            innerRadius="35%"
+                                                            outerRadius="65%"
+                                                            paddingAngle={5}
+                                                            dataKey="value"
+                                                        >
+                                                            {typeData.map((entry, index) => (
+                                                                <Cell key={`cell-${index}`} fill={typeColors[entry.name] || '#888'} />
+                                                            ))}
+                                                        </Pie>
+                                                        <RechartsTooltip 
+                                                            contentStyle={{ backgroundColor: '#18181b', border: '1px solid #3f3f46', borderRadius: '4px', fontSize: '10px' }}
+                                                            itemStyle={{ color: '#fff', padding: 0 }}
+                                                        />
+                                                    </PieChart>
+                                                </ResponsiveContainer>
+                                            </div>
+                                            <div className="flex flex-col gap-2 pr-4 shrink-0">
+                                                {typeData.map((entry) => (
                                                     <div key={entry.name} className="flex items-center gap-2">
-                                                        <div className="w-2 h-2 rounded-full" style={{ backgroundColor: betterColors[entry.name] || '#888' }} />
-                                                        <span className="text-xs text-zinc-400 font-medium">{entry.name}</span>
-                                                        <span className="text-xs text-white font-bold ml-auto">{entry.value}</span>
+                                                        <div className="w-2 h-2 rounded-full" style={{ backgroundColor: typeColors[entry.name] || '#888' }} />
+                                                        <span className="text-xs text-zinc-300 font-semibold">{entry.name}</span>
+                                                        <span className="text-xs text-white font-bold ml-auto pl-3">{entry.value}</span>
                                                     </div>
                                                 ))}
                                             </div>

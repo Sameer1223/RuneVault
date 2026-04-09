@@ -33,7 +33,7 @@ export default function Decks() {
       if (!deckToDelete?.id) return;
     
       try {
-        const res = await authFetch(`${API_BASE_URL}/api/decks/${deckToDelete.id}`, {
+        const res = await authFetch(`${API_BASE_URL}/decks/${deckToDelete.id}`, {
           method: "DELETE",
         });
     
@@ -63,7 +63,7 @@ export default function Decks() {
         setLoading(true);
 
         const res = await authFetch(
-          `${API_BASE_URL}/api/decks/user/${userId}`
+          `${API_BASE_URL}/decks/user/${userId}`
         );
 
         if (!res.ok) throw new Error("Failed to fetch decks");
