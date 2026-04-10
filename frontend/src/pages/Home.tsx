@@ -56,7 +56,8 @@ export default function Home() {
         <img src="leagueworld.jpg" className="absolute inset-0 h-full w-full object-cover opacity-30" />
         
         <div className="relative z-10 flex flex-col items-center gap-10">
-            <h1 className="font-raleway text-8xl font-light text-stone-200">
+            <h1 className="font-raleway text-8xl font-light text-[#caa368]">
+            {/* <h1 className="font-raleway text-8xl font-light text-stone-200"> */}
                 R U N E V A U L T
             </h1>
 
@@ -81,7 +82,7 @@ export default function Home() {
                 </div>
             ) : (
                 <div className="flex flex-col justify-center items-center bg-slate-900/50 rounded-lg px-4 py-2 border border-slate-700/50 backdrop-blur-sm">
-                    <p className="font-raleway text-stone-200 text-center mb-1.5 text-sm">Sign up to track your collection progress!</p>
+                    <p className="font-raleway text-stone-200 text-center mb-1.5 text-sm">Sign in to track your collection progress!</p>
                     <Link to="/decks" className="text-blue-400 hover:text-blue-300 text-xs font-medium transition">
                         Login →
                     </Link>
