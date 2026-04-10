@@ -186,18 +186,32 @@ export default function DeckBuilder() {
     }
 
     try {
+      if (!userId) {
+        openModal({
+          type: "save",
+          title: "Login Required",
+          message: "You must be logged in to save your deck.",
+        });
+        return;
+      }
+
       const isNew = !deck.id;
       const method = isNew ? "POST" : "PUT";
-      const url = `${API_BASE_URL}/api/decks/${isNew ? "" : deck.id}`;
+      const url = `${API_BASE_URL}/decks/${isNew ? "" : deck.id}`;
 
-      const deckToSave = { ...deck, lastUpdated: new Date().toISOString() };
+      // Ensure deck has the latest user_id
+      const deckWithUser = { ...deck, user_id: userId };
+      const deckToSave = { ...deckWithUser, lastUpdated: new Date().toISOString() };
 
       const response = await authFetch(url, {
         method,
         body: JSON.stringify(deckToSave),
       });
 
-      if (!response.ok) throw new Error();
+      if (!response.ok) {
+        const errorData = await response.json().catch(() => ({}));
+        throw new Error(errorData.error || "Save failed");
+      }
 
       const result = await response.json();
 
@@ -205,6 +219,7 @@ export default function DeckBuilder() {
         setDeck((prev: FullDeck) => ({
           ...prev,
           id: result.id,
+          user_id: userId,
           lastUpdated: result.lastUpdated ?? new Date().toISOString(),
         }));
       }
@@ -298,7 +313,12 @@ export default function DeckBuilder() {
           </div>
 
           <div id="Options-Panel" className="bg-[#121212] flex-[1] p-3">
-            <OptionsPanel onSave={saveDeck} onClear={clearDeck} deck={deck.deck_data} />
+            <OptionsPanel 
+              onSave={saveDeck} 
+              onClear={clearDeck} 
+              deck={deck.deck_data} 
+              deckId={deck.id}
+            />
           </div>
         </div>
 

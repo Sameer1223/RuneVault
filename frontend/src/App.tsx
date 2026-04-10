@@ -31,6 +31,7 @@ function App() {
             <Route path="/decks" element={<RequireAuth><Decks/></RequireAuth>} />
             <Route path="/deckbuilder" element={<DeckBuilder/>} />
             <Route path="/deckviewer" element={<DeckViewer/>} />
+            <Route path="/deckviewer/:deckId" element={<DeckViewer/>} />
             <Route path="/collection" element={<SetsPage/>} />
             <Route path="/collection/:setId" element={<SetCollection />} />
             <Route path="/riftboundle" element={<DailyGamePage/>} />

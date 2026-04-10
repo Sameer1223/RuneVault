@@ -23,7 +23,7 @@ export interface DeckInnerData {
 
 /** The full deck object as stored/sent to the API */
 export interface FullDeck {
-    id?: number;
+    id?: string;
     user_id: string | null;
     name: string;
     deck_data: DeckInnerData;

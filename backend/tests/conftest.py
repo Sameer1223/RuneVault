@@ -18,10 +18,43 @@ os.environ["DATABASE_URL"] = "sqlite:///:memory:"
 os.environ["AUTH0_DOMAIN"] = "test.auth0.com"
 os.environ["AUTH0_API_AUDIENCE"] = "http://localhost:5000"
 
-# Register SQLite JSON type handler BEFORE importing any models
-from sqlalchemy import TypeDecorator, JSON, event
+# Register SQLite JSON/UUID type handler BEFORE importing any models
+from sqlalchemy import TypeDecorator, JSON, String, event
 from sqlalchemy.engine import Engine
 from sqlalchemy.dialects.sqlite import JSON as SQLITE_JSON
+import uuid
+
+class UUID(TypeDecorator):
+    """Custom type for UUID that handles PostgreSQL UUID and String for SQLite."""
+    impl = String
+    cache_ok = True
+
+    def __init__(self, *args, **kwargs):
+        # Consume as_uuid so it's not passed to String.__init__
+        kwargs.pop('as_uuid', None)
+        super().__init__(*args, **kwargs)
+
+    def load_dialect_impl(self, dialect):
+        if dialect.name == 'postgresql':
+            from sqlalchemy.dialects.postgresql import UUID as PG_UUID
+            return dialect.type_descriptor(PG_UUID(as_uuid=True))
+        return dialect.type_descriptor(String(36))
+
+    def process_bind_param(self, value, dialect):
+        if value is None:
+            return value
+        elif dialect.name == 'postgresql':
+            return value
+        else:
+            return str(value)
+
+    def process_result_value(self, value, dialect):
+        if value is None:
+            return value
+        else:
+            if not isinstance(value, uuid.UUID):
+                value = uuid.UUID(value)
+            return value
 
 class JSONB(TypeDecorator):
     """Custom type that handles JSONB for PostgreSQL and JSON for SQLite."""
@@ -34,9 +67,10 @@ class JSONB(TypeDecorator):
             return dialect.type_descriptor(PG_JSONB())
         return dialect.type_descriptor(SQLITE_JSON())
 
-# Monkey-patch the PostgreSQL JSONB type to use our custom one
+# Monkey-patch the PostgreSQL types to use our custom ones
 import sqlalchemy.dialects.postgresql
 sqlalchemy.dialects.postgresql.JSONB = JSONB
+sqlalchemy.dialects.postgresql.UUID = UUID
 
 def mock_requires_auth(f):
     """Mock requires_auth decorator that injects test user data."""

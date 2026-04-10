@@ -45,7 +45,7 @@ export default function SetCollection() {
             if (!userId) return; // Don't fetch if userId is not loaded yet
             
             try {
-                const res = await authFetch(`${API_BASE_URL}/api/collection/${encodeURIComponent(userId)}`);
+                const res = await authFetch(`${API_BASE_URL}/collection/${encodeURIComponent(userId)}`);
                 if (res.ok) {
                     const data = await res.json();
                     setUserCollection(data.collection || {});
@@ -94,7 +94,7 @@ export default function SetCollection() {
         if (!userId) return;
 
         try {
-            const res = await authFetch(`${API_BASE_URL}/api/collection/${encodeURIComponent(userId)}`, {
+            const res = await authFetch(`${API_BASE_URL}/collection/${encodeURIComponent(userId)}`, {
                 method: "PATCH",
                 body: JSON.stringify({ card_id: cardId, delta, is_foil: isFoil })
             });

@@ -88,15 +88,15 @@ export default function MainDeck({
 
                 <div className="flex flex-col gap-1">
                     {(["Blind", "First", "Second"] as const).map((label, index) => (
-                        <div key={index} className="relative" onMouseEnter={() => battlefields?.[index] && onHoverCard?.(battlefields[index])} onMouseLeave={onLeaveCard}>
-                            <span className="absolute top-1 left-1 z-10 bg-black/70 text-white text-[10px] font-semibold px-1.5 py-0.5 rounded">
-                                {label}
-                            </span>
+                        <div key={index} className="relative z-0" onMouseEnter={() => battlefields?.[index] && onHoverCard?.(battlefields[index])} onMouseLeave={onLeaveCard}>
                             {battlefields?.[index] ? (
                                 <Card cardId={battlefields[index]} className="h-[93px] w-[130px]" onRightClick={onRemoveCard}/>
                             ) : (
                                 <Card className="h-[93px] w-[130px]"/>
                             )}
+                            <span className="absolute top-1 left-1 z-30 bg-black/70 text-white text-[10px] font-semibold px-1.5 py-0.5 rounded pointer-events-none">
+                                {label}
+                            </span>
                         </div>
                     ))}
                 </div>
