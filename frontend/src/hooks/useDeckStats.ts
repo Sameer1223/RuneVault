@@ -104,7 +104,7 @@ export function useDeckStats(deck: DeckData | null): DeckStatsResult {
         name: "7+", 
         value: Object.entries(energyDistribution)
           .filter(([e]) => Number(e) >= 7)
-          .reduce((acc, [, count]) => acc + count, 0)
+          .reduce((acc, entry) => acc + (entry[1] as number), 0)
       }
     ];
 
