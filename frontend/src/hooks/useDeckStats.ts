@@ -14,7 +14,15 @@ export interface ChartDataPoint {
   value: number;
 }
 
-export function useDeckStats(deck: DeckData | null) {
+export interface DeckStatsResult {
+  stats: DeckStat[];
+  energyData: ChartDataPoint[];
+  powerData: ChartDataPoint[];
+  typeData: ChartDataPoint[];
+  typeColors: Record<string, string>;
+}
+
+export function useDeckStats(deck: DeckData | null): DeckStatsResult {
   // 🔹 Build lookup map once
   const cardLookup = useMemo(() => {
     const map: Record<string, CardEntry> = {};
@@ -22,13 +30,14 @@ export function useDeckStats(deck: DeckData | null) {
     return map;
   }, []);
 
-  const result = useMemo(() => {
+  const result = useMemo<DeckStatsResult>(() => {
     if (!deck) {
       return { 
         stats: [] as DeckStat[], 
         energyData: [] as ChartDataPoint[], 
         powerData: [] as ChartDataPoint[], 
-        typeData: [] as ChartDataPoint[] 
+        typeData: [] as ChartDataPoint[],
+        typeColors: {} as Record<string, string>
       };
     }
 
@@ -95,7 +104,7 @@ export function useDeckStats(deck: DeckData | null) {
         name: "7+", 
         value: Object.entries(energyDistribution)
           .filter(([e]) => Number(e) >= 7)
-          .reduce((acc, [_, count]) => acc + count, 0)
+          .reduce((acc, [, count]) => acc + count, 0)
       }
     ];
 

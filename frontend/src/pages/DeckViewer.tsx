@@ -35,15 +35,6 @@ export default function DeckViewer() {
 
     const { stats, energyData, powerData, typeData, typeColors } = useDeckStats(deck ? deck.deck_data : null);
 
-    const betterColors: Record<string, string> = {
-      "Red": "#ef4444",
-      "Blue": "#3b82f6",
-      "Green": "#22c55e",
-      "Yellow": "#eab308",
-      "Purple": "#a855f7",
-      "Orange": "#f97316"
-    };
-
     useEffect(() => {
         if (notification) {
             const timer = setTimeout(() => setNotification(null), 3000);
