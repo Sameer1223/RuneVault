@@ -70,7 +70,7 @@ class TestDeckEndpoints:
 
     def test_get_deck_not_found(self, client, cleanup_db):
         """Test getting non-existent deck returns 404."""
-        response = client.get("/api/decks/9999")
+        response = client.get(f"/api/decks/00000000-0000-0000-0000-000000000000")
         assert response.status_code == 404
         data = response.get_json()
         assert "error" in data
