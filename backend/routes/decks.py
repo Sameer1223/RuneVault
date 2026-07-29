@@ -5,14 +5,24 @@ from auth.auth import requires_auth
 
 decks_routes = Blueprint("decks", __name__, url_prefix="/api/decks")
 
+MAX_DECKS_PER_USER = 50
+
 # Create a new deck
 @decks_routes.route("/", methods=["POST"])
 @requires_auth
 def create_deck():
     data = request.get_json()
+    # Use the authenticated caller's own id rather than trusting data["user_id"],
+    # otherwise anyone could create decks (and burn the limit) under someone else's account.
+    user_id = request.user["sub"]
+
     try:
+        existing_count = Deck.query.filter_by(user_id=user_id).count()
+        if existing_count >= MAX_DECKS_PER_USER:
+            return jsonify({"error": f"You've reached the limit of {MAX_DECKS_PER_USER} decks. Delete a deck before creating a new one."}), 403
+
         new_deck = Deck(
-            user_id=data["user_id"],
+            user_id=user_id,
             name=data["name"],
             format=data.get("format") or "Competitive",
             deck_data=data["deck_data"],

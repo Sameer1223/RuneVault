@@ -3,6 +3,9 @@
 const rawApiUrl = import.meta.env.VITE_API_URL || "";
 export const API_BASE_URL = rawApiUrl.endsWith('/api') ? rawApiUrl : `${rawApiUrl}/api`;
 
+/** Max decks a single user can own - keep in sync with MAX_DECKS_PER_USER in backend/routes/decks.py */
+export const MAX_DECKS_PER_USER = 50;
+
 /** Card rarity types (without "All") */
 export const RARITY_TYPES = ["Common", "Uncommon", "Rare", "Epic", "Alternate Art"] as const;
 

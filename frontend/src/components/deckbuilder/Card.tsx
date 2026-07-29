@@ -10,7 +10,7 @@ interface CardProps {
     dimmed?: boolean;
     onHover?: (cardId: string) => void;
     onLeave?: () => void;
-    onClick?: () => void;
+    onClick?: (e: React.MouseEvent) => void;
     onRightClick?: (cardId: string) => void;
 }
 

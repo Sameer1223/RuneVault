@@ -11,6 +11,7 @@ interface MainDeckProps {
     onLeaveCard?: () => void;
     onRemoveCard?: (cardId: string) => void;
     onSelectCard?: (index: number, cardId: string) => void;
+    onDuplicateCard?: (cardId: string) => void;
     collectionMode?: boolean;
     ownedCount?: (cardId: string) => number;
 }
@@ -36,6 +37,7 @@ export default function MainDeck({
     onLeaveCard,
     onRemoveCard,
     onSelectCard,
+    onDuplicateCard,
     collectionMode = false,
     ownedCount,
 }: MainDeckProps) {
@@ -84,7 +86,11 @@ export default function MainDeck({
                             dimmed={dimmed}
                             onHover={(id) => onHoverCard?.(id)}
                             onLeave={onLeaveCard}
-                            onClick={() => !isChampion && onSelectCard?.(index, cardId)}
+                            onClick={(e) => {
+                                if (isChampion) return;
+                                if (e.ctrlKey || e.metaKey) onDuplicateCard?.(cardId);
+                                else onSelectCard?.(index, cardId);
+                            }}
                             onRightClick={onRemoveCard}
                         />
                     );

@@ -52,31 +52,30 @@ export default function Home() {
     }, [isAuthenticated, userId])
 
     return (
-    <div className="flex min-h-screen items-center justify-center bg-black">
+    <div className="flex min-h-screen items-center justify-center bg-black px-4 py-10">
         <img src="leagueworld.jpg" className="absolute inset-0 h-full w-full object-cover opacity-30" />
-        
-        <div className="relative z-10 flex flex-col items-center gap-10">
-            <h1 className="font-raleway text-8xl font-light text-[#caa368]">
-            {/* <h1 className="font-raleway text-8xl font-light text-stone-200"> */}
+
+        <div className="relative z-10 flex flex-col items-center gap-6 sm:gap-10">
+            <h1 className="font-raleway text-4xl sm:text-6xl lg:text-8xl font-light text-[#caa368] text-center">
                 R U N E V A U L T
             </h1>
 
-            <div className="flex gap-5">
+            <div className="flex flex-col sm:flex-row gap-4 sm:gap-5">
                 <Link to="/riftboundle">
-                    <Holo name="Riftboundle" texture="ON-Ahri.avif" className="w-64 h-64" />
+                    <Holo name="Riftboundle" texture="ON-Ahri.avif" className="w-40 h-40 sm:w-52 sm:h-52 lg:w-64 lg:h-64" />
                 </Link>
                 <Link to="/decks">
-                    <Holo name="Decks" texture="ON-Volibear.avif" className="w-64 h-64"/>
+                    <Holo name="Decks" texture="ON-Volibear.avif" className="w-40 h-40 sm:w-52 sm:h-52 lg:w-64 lg:h-64"/>
                 </Link>
                 <Link to="/collection">
-                    <Holo name="Collection" texture="ON-Leesin.avif" className="w-64 h-64" />
+                    <Holo name="Collection" texture="ON-Leesin.avif" className="w-40 h-40 sm:w-52 sm:h-52 lg:w-64 lg:h-64" />
                 </Link>
             </div>
 
             {isAuthenticated ? (
-                <div className="flex flex-col justify-center items-center">
-                    <Progress value={percentage} className="w-100 [&>div]:bg-rose-600" />
-                    <p className="font-raleway mt-3 text-stone-200">
+                <div className="flex flex-col justify-center items-center w-full max-w-100">
+                    <Progress value={percentage} className="w-full [&>div]:bg-rose-600" />
+                    <p className="font-raleway mt-3 text-stone-200 text-center text-sm sm:text-base">
                         {loading ? 'Loading...' : `You have collected ${percentage}% of Riftbound cards!`}
                     </p>
                 </div>

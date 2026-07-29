@@ -155,7 +155,7 @@ export default function DailyGamePage() {
             <CardImage
               cardId={answerCard.cardId}
               alt={answerCard.name}
-              className="mx-auto mt-4 h-64 w-48 rounded-xl border border-slate-700/50 object-cover shadow-2xl"
+              className="mx-auto mt-4 h-48 w-36 sm:h-64 sm:w-48 rounded-xl border border-slate-700/50 object-cover shadow-2xl"
             />
           </div>
         )}
@@ -182,31 +182,33 @@ export default function DailyGamePage() {
           </div>
 
           {guesses.length > 0 && (
-            <div className="rounded-xl border border-slate-700/50 bg-slate-900/40 shadow-2xl shadow-black/25">
-              <div className="grid border-b border-slate-700/40 bg-slate-950/60 backdrop-blur-sm" style={{ gridTemplateColumns: GUESS_GRID_TEMPLATE }}>
-                <div className="border-r border-slate-700/40 px-2 py-2 text-[10px] font-semibold uppercase tracking-[0.12em] text-slate-500">Guess</div>
-                <div className="border-r border-slate-700/40 px-2 py-2 text-[10px] font-semibold uppercase tracking-[0.12em] text-slate-500">Card</div>
-                <div className="border-r border-slate-700/40 px-2 py-2 text-[10px] font-semibold uppercase tracking-[0.12em] text-slate-500">Energy</div>
-                <div className="border-r border-slate-700/40 px-2 py-2 text-[10px] font-semibold uppercase tracking-[0.12em] text-slate-500">Power</div>
-                <div className="border-r border-slate-700/40 px-2 py-2 text-[10px] font-semibold uppercase tracking-[0.12em] text-slate-500">Might</div>
-                <div className="border-r border-slate-700/40 px-2 py-2 text-[10px] font-semibold uppercase tracking-[0.12em] text-slate-500">Color</div>
-                <div className="border-r border-slate-700/40 px-2 py-2 text-[10px] font-semibold uppercase tracking-[0.12em] text-slate-500">Type</div>
-                <div className="border-r border-slate-700/40 px-2 py-2 text-[10px] font-semibold uppercase tracking-[0.12em] text-slate-500">Set</div>
-                <div className="px-2 py-2 text-[10px] font-semibold uppercase tracking-[0.12em] text-slate-500">Rarity</div>
+            <div className="rounded-xl border border-slate-700/50 bg-slate-900/40 shadow-2xl shadow-black/25 overflow-x-auto scroll-styled">
+              <div className="min-w-[1013px]">
+                <div className="grid border-b border-slate-700/40 bg-slate-950/60 backdrop-blur-sm" style={{ gridTemplateColumns: GUESS_GRID_TEMPLATE }}>
+                  <div className="border-r border-slate-700/40 px-2 py-2 text-[10px] font-semibold uppercase tracking-[0.12em] text-slate-500">Guess</div>
+                  <div className="border-r border-slate-700/40 px-2 py-2 text-[10px] font-semibold uppercase tracking-[0.12em] text-slate-500">Card</div>
+                  <div className="border-r border-slate-700/40 px-2 py-2 text-[10px] font-semibold uppercase tracking-[0.12em] text-slate-500">Energy</div>
+                  <div className="border-r border-slate-700/40 px-2 py-2 text-[10px] font-semibold uppercase tracking-[0.12em] text-slate-500">Power</div>
+                  <div className="border-r border-slate-700/40 px-2 py-2 text-[10px] font-semibold uppercase tracking-[0.12em] text-slate-500">Might</div>
+                  <div className="border-r border-slate-700/40 px-2 py-2 text-[10px] font-semibold uppercase tracking-[0.12em] text-slate-500">Color</div>
+                  <div className="border-r border-slate-700/40 px-2 py-2 text-[10px] font-semibold uppercase tracking-[0.12em] text-slate-500">Type</div>
+                  <div className="border-r border-slate-700/40 px-2 py-2 text-[10px] font-semibold uppercase tracking-[0.12em] text-slate-500">Set</div>
+                  <div className="px-2 py-2 text-[10px] font-semibold uppercase tracking-[0.12em] text-slate-500">Rarity</div>
+                </div>
+
+                {[...guesses].reverse().map((guess, idx) => {
+                  const guessNumber = guesses.length - idx;
+
+                  return (
+                    <GuessResult
+                      key={guess.cardId}
+                      guessCard={guess}
+                      result={compareCards(guess, answerCard)}
+                      guessNumber={guessNumber}
+                    />
+                  );
+                })}
               </div>
-
-              {[...guesses].reverse().map((guess, idx) => {
-                const guessNumber = guesses.length - idx;
-
-                return (
-                  <GuessResult
-                    key={guess.cardId}
-                    guessCard={guess}
-                    result={compareCards(guess, answerCard)}
-                    guessNumber={guessNumber}
-                  />
-                );
-              })}
             </div>
           )}
 

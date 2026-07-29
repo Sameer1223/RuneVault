@@ -9,7 +9,7 @@ import { emptyDeckTemplate } from "../data/emptyDeckTemplate";
 import ConfirmationModal from "../components/common/ConfirmationModal";
 import { useUserId } from "../hooks/useUserId";
 import { useAuthFetch } from "../hooks/useAuthFetch";
-import { API_BASE_URL, DOMAIN_COLOR_HEX } from "@/lib/constants";
+import { API_BASE_URL, DOMAIN_COLOR_HEX, MAX_DECKS_PER_USER } from "@/lib/constants";
 import type { FullDeck } from "@/types/deck";
 import { formatDate } from "@/utils/formatDate";
 import { isDeckComplete, isDeckIllegal } from "@/utils/deckStatusUtils";
@@ -104,6 +104,7 @@ export default function Decks() {
   });
 
   const [selectedDeck, setSelectedDeck] = useState<typeof decks[0] | null>(null);
+  const atDeckLimit = decks.length >= MAX_DECKS_PER_USER;
 
   const decksWithLegend = decks.map((deck) => {
     const legend = cardData.find((card) => card.cardId === deck.deck_data?.Legend);
@@ -156,13 +157,20 @@ export default function Decks() {
           <div className="flex justify-between items-center mb-2">
             <h2 className="text-lg sm:text-xl font-semibold">My Decks</h2>
             <button
-              className="flex items-center gap-1.5 bg-[#caa368] hover:bg-[#d9b57a] text-zinc-900 font-semibold px-3 py-1.5 rounded-md text-sm transition-colors shadow"
+              disabled={atDeckLimit}
+              title={atDeckLimit ? `You've reached the limit of ${MAX_DECKS_PER_USER} decks. Delete a deck to create a new one.` : undefined}
+              className="flex items-center gap-1.5 bg-[#caa368] hover:bg-[#d9b57a] disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:bg-[#caa368] text-zinc-900 font-semibold px-3 py-1.5 rounded-md text-sm transition-colors shadow"
               onClick={() => navigate("/deckbuilder", { state: { deck: emptyDeckTemplate } })}
             >
               <Plus className="w-4 h-4" />
               Create Deck
             </button>
           </div>
+          {atDeckLimit && (
+            <p className="text-xs text-zinc-500 -mt-1">
+              You've reached the limit of {MAX_DECKS_PER_USER} decks. Delete one to create another.
+            </p>
+          )}
 
           {loading ? (
             <div

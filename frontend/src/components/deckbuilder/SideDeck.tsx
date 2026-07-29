@@ -8,6 +8,7 @@ interface SideDeckProps {
     onLeaveCard?: () => void;
     onRemoveCard?: (cardId: string) => void;
     onSelectCard?: (index: number, cardId: string) => void;
+    onDuplicateCard?: (cardId: string) => void;
     collectionMode?: boolean;
     ownedCount?: (cardId: string) => number;
 }
@@ -23,7 +24,7 @@ function sortCardIds(cardIds: [string, number][]): [string, number][] {
     });
 }
 
-export default function SideDeck ({ side, selectedCards = {}, onHoverCard, onLeaveCard, onRemoveCard, onSelectCard, collectionMode = false, ownedCount }: SideDeckProps) {
+export default function SideDeck ({ side, selectedCards = {}, onHoverCard, onLeaveCard, onRemoveCard, onSelectCard, onDuplicateCard, collectionMode = false, ownedCount }: SideDeckProps) {
     const sideDeck = sortCardIds(Object.entries(side ?? {})).flatMap(([cardId, count]) => Array(count).fill(cardId));
 
     // Tracks how many copies of each cardId have already been counted as "owned"
@@ -56,7 +57,10 @@ export default function SideDeck ({ side, selectedCards = {}, onHoverCard, onLea
                             className={isSelected ? "ring-2 ring-blue-500 rounded-sm" : ""}
                             onMouseEnter={() => onHoverCard?.(cardId)}
                             onMouseLeave={onLeaveCard}
-                            onClick={() => onSelectCard?.(index, cardId)}
+                            onClick={(e) => {
+                                if (e.ctrlKey || e.metaKey) onDuplicateCard?.(cardId);
+                                else onSelectCard?.(index, cardId);
+                            }}
                         >
                             <Card cardId={cardId} className="w-[var(--dc-card-w)] aspect-[93/130]" dimmed={dimmed} onRightClick={onRemoveCard}/>
                         </div>

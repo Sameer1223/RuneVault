@@ -9,11 +9,19 @@ export function buildDeckListText(deck: DeckInnerData, cardLookup: Record<string
   const nameOf = (id: string) => cardLookup[id]?.name ?? id;
   const lines: string[] = [];
 
-  if (deck.Legend) lines.push(`Legend: ${nameOf(deck.Legend)}`);
-  if (deck.ChosenChampion) lines.push(`Chosen Champion: ${nameOf(deck.ChosenChampion)}`);
-  lines.push("");
+  if (deck.Legend) {
+    lines.push("Legend:");
+    lines.push(`1 ${nameOf(deck.Legend)}`);
+    lines.push("");
+  }
 
-  lines.push("Main Deck:");
+  if (deck.ChosenChampion) {
+    lines.push("Champion:");
+    lines.push(`1 ${nameOf(deck.ChosenChampion)}`);
+    lines.push("");
+  }
+
+  lines.push("MainDeck:");
   for (const [id, count] of Object.entries(deck.Main ?? {})) {
     lines.push(`${count} ${nameOf(id)}`);
   }
@@ -21,7 +29,7 @@ export function buildDeckListText(deck: DeckInnerData, cardLookup: Record<string
 
   if (deck.Battlefields?.length) {
     lines.push("Battlefields:");
-    for (const bf of deck.Battlefields) lines.push(nameOf(bf));
+    for (const bf of deck.Battlefields) lines.push(`1 ${nameOf(bf)}`);
     lines.push("");
   }
 

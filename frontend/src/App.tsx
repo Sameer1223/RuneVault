@@ -1,3 +1,4 @@
+import { useEffect } from "react"
 import { BrowserRouter, Routes, Route } from "react-router-dom"
 import { Auth0Provider } from "@auth0/auth0-react";
 import Home from "./pages/Home"
@@ -9,12 +10,17 @@ import DailyGamePage from "./pages/DailyGamePage"
 import SetCollection from "./pages/SetCollection"
 import Layout from "./components/layout/Layout"
 import RequireAuth from "./components/auth/RequireAuth"
+import { initAnalytics } from "./lib/analytics"
 
 const AUTH_DOMAIN = import.meta.env.VITE_AUTH0_DOMAIN || "";
 const AUTH_CLIENTID = import.meta.env.VITE_AUTH0_CLIENTID || "";
 const AUTH_AUDIENCE = import.meta.env.VITE_AUTH0_AUDIENCE || "";
 
 function App() {
+  useEffect(() => {
+    initAnalytics();
+  }, []);
+
   return (
     <Auth0Provider
       domain={AUTH_DOMAIN}

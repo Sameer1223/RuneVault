@@ -17,12 +17,14 @@ import { filterCards, type CardFilters } from "@/utils/filterCardsUtil";
 import ConfirmationModal from "../components/common/ConfirmationModal";
 import SwapBar from "../components/deckbuilder/SwapBar";
 import CollectionModeToggle from "../components/deckbuilder/CollectionModeToggle";
+import HowToModal from "../components/deckbuilder/HowToModal";
 import { useUserId } from "@/hooks/useUserId";
 import { useAuthFetch } from "@/hooks/useAuthFetch";
 import { useCollection } from "@/hooks/useCollection";
 import { API_BASE_URL } from "@/lib/constants";
-import { ClipboardList } from "lucide-react";
+import { ClipboardList, HelpCircle } from "lucide-react";
 import { computeMissingCards, formatMissingCardsList } from "@/utils/missingCardsUtil";
+import { trackEvent } from "@/lib/analytics";
 
 export default function DeckBuilder() {
   const location = useLocation();
@@ -31,6 +33,7 @@ export default function DeckBuilder() {
   const authFetch = useAuthFetch();
   const { ownedCount } = useCollection();
   const [collectionMode, setCollectionMode] = useState(false);
+  const [isHowToOpen, setIsHowToOpen] = useState(false);
 
   const [deck, setDeck] = useState<FullDeck>(() => {
     if (incomingDeck) return incomingDeck;
@@ -196,6 +199,14 @@ export default function DeckBuilder() {
       closeModal();
   };
 
+  // Ctrl/Cmd+click a card already in the deck to add another copy instantly,
+  // without needing to search for it again. Duplicates into the same zone
+  // (main/side) the card is already in - addCardToDeckUtil auto-detects runes
+  // regardless of the target zone passed here.
+  const duplicateCardInDeck = (cardId: string, zone: "main" | "side") => {
+    setDeck((prev: FullDeck) => addCardToDeckUtil(prev, cardId, zone) as FullDeck);
+  };
+
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
       setMousePos({ x: e.clientX, y: e.clientY });
@@ -261,6 +272,7 @@ export default function DeckBuilder() {
           user_id: userId,
           lastUpdated: result.lastUpdated ?? new Date().toISOString(),
         }));
+        trackEvent("deck_created", { deck_id: result.id });
       }
 
       openModal({
@@ -268,11 +280,11 @@ export default function DeckBuilder() {
         title: "Deck Saved",
         message: "Your deck was saved successfully.",
       });
-    } catch {
+    } catch (err) {
       openModal({
         type: "save",
         title: "Save Failed",
-        message: "There was an error saving your deck.",
+        message: err instanceof Error ? err.message : "There was an error saving your deck.",
       });
     }
   };
@@ -349,6 +361,14 @@ export default function DeckBuilder() {
             </button>
           )}
           <CollectionModeToggle enabled={collectionMode} onChange={setCollectionMode} />
+          <button
+            onClick={() => setIsHowToOpen(true)}
+            title="Shortcuts & tips"
+            className="flex items-center gap-1.5 sm:gap-2 px-2 sm:px-3 py-1.5 rounded-md text-xs sm:text-sm font-medium bg-zinc-900 border border-zinc-700 hover:border-[#caa368]/50 hover:bg-zinc-800 text-zinc-300 hover:text-white transition-colors"
+          >
+            <HelpCircle className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
+            <span className="hidden sm:inline whitespace-nowrap">How To</span>
+          </button>
         </div>
       </div>
 
@@ -371,6 +391,7 @@ export default function DeckBuilder() {
               onLeaveCard={handleLeaveCard}
               onRemoveCard={removeCardFromDeck}
               onSelectCard={handleSelectMain}
+              onDuplicateCard={(cardId) => duplicateCardInDeck(cardId, "main")}
               collectionMode={collectionMode}
               ownedCount={ownedCount}
             />
@@ -406,12 +427,17 @@ export default function DeckBuilder() {
                 onLeaveCard={handleLeaveCard}
                 onRemoveCard={removeCardFromDeck}
                 onSelectCard={handleSelectSide}
+                onDuplicateCard={(cardId) => duplicateCardInDeck(cardId, "side")}
                 collectionMode={collectionMode}
                 ownedCount={ownedCount}
               />
             </div>
             <div id="Runes-Deck" className="bg-[#1E1E1E] p-2 overflow-auto w-full sm:w-auto">
-              <RunesDeck runes={deck.deck_data.Runes} onRemoveCard={removeCardFromDeck} />
+              <RunesDeck
+                runes={deck.deck_data.Runes}
+                onRemoveCard={removeCardFromDeck}
+                onDuplicateCard={(cardId) => duplicateCardInDeck(cardId, "main")}
+              />
             </div>
             <div id="Deck-Stats" className="bg-[#1E1E1E] sm:flex-[2] p-2 w-full sm:w-auto sm:min-w-[150px] overflow-auto min-h-0">
               <DeckRequirements deck={deck.deck_data} />
@@ -468,6 +494,8 @@ export default function DeckBuilder() {
         onConfirm={modalState.onConfirm}
         onCancel={modalState.onCancel}
       />
+
+      <HowToModal isOpen={isHowToOpen} onClose={() => setIsHowToOpen(false)} />
     </div>
   );
 }

@@ -1,4 +1,4 @@
-import { useState, useEffect, type ChangeEvent, type KeyboardEvent } from "react";
+import { useState, useEffect, useRef, type ChangeEvent, type KeyboardEvent } from "react";
 
 interface EditableDeckTitleProps {
   initialTitle?: string;
@@ -11,10 +11,17 @@ export default function EditableDeckTitle({
 }: EditableDeckTitleProps) {
   const [isEditing, setIsEditing] = useState(false);
   const [title, setTitle] = useState(initialTitle);
+  const inputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
     setTitle(initialTitle);
   }, [initialTitle]);
+
+  // Auto-select the whole title on entering edit mode so the user can just
+  // start typing to replace it, without needing to double-click first.
+  useEffect(() => {
+    if (isEditing) inputRef.current?.select();
+  }, [isEditing]);
 
   const handleClick = () => {
     setIsEditing(true);
@@ -40,6 +47,7 @@ export default function EditableDeckTitle({
     <div className="py-1 w-full">
       {isEditing ? (
         <input
+          ref={inputRef}
           type="text"
           value={title}
           onChange={handleChange}
