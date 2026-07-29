@@ -1,16 +1,22 @@
 import { useState, useEffect } from "react";
-import { Button } from "../ui/button";
+import { Save, Trash2, Upload, Download, ChevronLeft, ChevronRight } from "lucide-react";
 import cardData from "../../data/cards.json";
 import ExportModal from "../common/ExportModal";
+import ImportModal from "../common/ImportModal";
 import type { DeckData } from "@/data/emptyDeckTemplate";
+import type { DeckInnerData } from "@/types/deck";
 import { motion, AnimatePresence } from "framer-motion";
 import { useDeckStats } from "../../hooks/useDeckStats";
+import { useSwappableStat } from "../../hooks/useSwappableStat";
+import Tooltip from "../ui/Tooltip";
+import { buildDeckListText, resolveDeckListImport } from "@/utils/deckListFormat";
 
 type CardEntry = (typeof cardData)[number];
 
 interface OptionsPanelProps {
   onSave: () => void;
   onClear?: () => void;
+  onImport: (deckData: DeckInnerData, importedCount: number, warnings: string[]) => void;
   deck: DeckData;
   deckId?: string;
 }
@@ -18,6 +24,7 @@ interface OptionsPanelProps {
 export default function OptionsPanel({
   onSave,
   onClear,
+  onImport,
   deck,
   deckId,
 }: OptionsPanelProps) {
@@ -34,9 +41,11 @@ export default function OptionsPanel({
     setNotification(msg);
   };
 
-  const { stats } = useDeckStats(deck);
+  const { stats, handProbabilities } = useDeckStats(deck);
+  const { current: handStat, next: nextHandStat, prev: prevHandStat, index: handStatIndex, count: handStatCount } = useSwappableStat(handProbabilities);
 
   const [exportOpen, setExportOpen] = useState(false);
+  const [importOpen, setImportOpen] = useState(false);
 
   const handleExport = (format: string) => {
     // 🔹 Build lookup map for export
@@ -46,23 +55,7 @@ export default function OptionsPanel({
     let output = "";
 
     if (format === "text") {
-      output += '1 ' + cardLookup[deck.Legend].name + '\n\n';
-      output += '1 ' + cardLookup[deck.ChosenChampion].name + '\n\n';
-      for (const [id, count] of Object.entries(deck.Main)) {
-        output += count + ' ' + cardLookup[id].name + '\n';
-      }
-      output += '\n';
-      for (const bf of deck.Battlefields || []) {
-        output += '1 ' + cardLookup[bf].name + '\n';
-      }
-      output += '\n';
-      for (const [id, count] of Object.entries(deck.Runes || {})) {
-        output += count + ' ' +  cardLookup[id].name + '\n';
-      }
-      output += '\nSideboard:\n';
-      for (const [id, count] of Object.entries(deck.Side || {})) {
-        output += count + ' ' + cardLookup[id].name + '\n';
-      }
+      output = buildDeckListText(deck, cardLookup);
     }
 
     if (format === "tts") {
@@ -103,22 +96,88 @@ export default function OptionsPanel({
     setExportOpen(false);
   };
 
+  const handleImportSubmit = (text: string) => {
+    setImportOpen(false);
+    const result = resolveDeckListImport(text);
+    onImport(result.deckData, result.importedCount, result.warnings);
+  };
+
   return (
-    <div className="flex gap-20 items-center">
-      <div className="flex gap-5">
-        <Button onClick={onSave}>Save</Button>
-        <Button onClick={onClear}>Clear</Button>
-        <Button>Import</Button>
-        <Button onClick={() => setExportOpen(true)}>Export</Button>
+    <div className="flex flex-wrap gap-4 lg:gap-20 items-center">
+      <div className="flex flex-wrap gap-2 sm:gap-3">
+        <button
+          onClick={onSave}
+          className="flex items-center gap-1.5 bg-[#caa368] hover:bg-[#d9b57a] text-zinc-900 font-semibold px-3 py-1.5 rounded-md text-sm transition-colors"
+        >
+          <Save className="w-3.5 h-3.5" />
+          Save
+        </button>
+        <button
+          onClick={onClear}
+          className="flex items-center gap-1.5 bg-transparent border border-red-500/40 text-red-400 hover:bg-red-500/10 hover:border-red-500/60 font-medium px-3 py-1.5 rounded-md text-sm transition-colors"
+        >
+          <Trash2 className="w-3.5 h-3.5" />
+          Clear
+        </button>
+        <button
+          onClick={() => setImportOpen(true)}
+          className="flex items-center gap-1.5 bg-zinc-900 border border-zinc-700 hover:border-[#caa368]/50 hover:bg-zinc-800 text-zinc-300 hover:text-white font-medium px-3 py-1.5 rounded-md text-sm transition-colors"
+        >
+          <Upload className="w-3.5 h-3.5" />
+          Import
+        </button>
+        <button
+          onClick={() => setExportOpen(true)}
+          className="flex items-center gap-1.5 bg-zinc-900 border border-zinc-700 hover:border-[#caa368]/50 hover:bg-zinc-800 text-zinc-300 hover:text-white font-medium px-3 py-1.5 rounded-md text-sm transition-colors"
+        >
+          <Download className="w-3.5 h-3.5" />
+          Export
+        </button>
       </div>
 
-      <div className="flex gap-10">
+      <div className="flex flex-wrap items-center gap-3 sm:gap-10">
         {stats.map((stat) => (
-          <div key={stat.label} className="flex gap-4">
-            <span className="text-base font-medium text-[#caa368]">{stat.label}</span>
-            <span className="text-base font-semibold text-white">{stat.value}</span>
+          <div key={stat.label} className="flex gap-2 sm:gap-4">
+            <span className="text-sm sm:text-base font-medium text-[#caa368] whitespace-nowrap">{stat.label}</span>
+            <span className="text-sm sm:text-base font-semibold text-white">{stat.value}</span>
           </div>
         ))}
+
+        {handStat && (
+          <div className="flex items-center gap-0.5 bg-zinc-900/60 border border-zinc-700/60 rounded-md py-1 pl-1 pr-2">
+            <button
+              type="button"
+              onClick={prevHandStat}
+              title="Previous stat"
+              className="flex items-center justify-center w-5 h-5 rounded text-zinc-500 hover:text-[#caa368] hover:bg-zinc-800 transition-colors"
+            >
+              <ChevronLeft className="w-3.5 h-3.5" />
+            </button>
+
+            <div className="flex gap-2 sm:gap-3 items-baseline px-1 min-w-0">
+              {handStat.description ? (
+                <Tooltip content={handStat.description}>
+                  <span className="text-sm sm:text-base font-medium text-[#caa368] whitespace-nowrap cursor-help decoration-dotted underline-offset-4 hover:underline">
+                    {handStat.label}
+                  </span>
+                </Tooltip>
+              ) : (
+                <span className="text-sm sm:text-base font-medium text-[#caa368] whitespace-nowrap">{handStat.label}</span>
+              )}
+              <span className="text-sm sm:text-base font-semibold text-white whitespace-nowrap">{handStat.value}</span>
+              <span className="text-[10px] text-zinc-500 whitespace-nowrap">{handStatIndex + 1}/{handStatCount}</span>
+            </div>
+
+            <button
+              type="button"
+              onClick={nextHandStat}
+              title="Next stat"
+              className="flex items-center justify-center w-5 h-5 rounded text-zinc-500 hover:text-[#caa368] hover:bg-zinc-800 transition-colors"
+            >
+              <ChevronRight className="w-3.5 h-3.5" />
+            </button>
+          </div>
+        )}
       </div>
 
       {/* NEW → modal */}
@@ -132,6 +191,12 @@ export default function OptionsPanel({
             handleExport(format);
           }
         }}
+      />
+
+      <ImportModal
+        isOpen={importOpen}
+        onClose={() => setImportOpen(false)}
+        onSubmit={handleImportSubmit}
       />
 
       <AnimatePresence>

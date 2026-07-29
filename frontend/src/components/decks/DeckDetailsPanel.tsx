@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Tag, Info, X, Pencil } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -5,15 +6,41 @@ import cardData from "@/data/cards.json";
 import { useNavigate } from "react-router-dom";
 import type { FullDeck } from "@/types/deck";
 import CardImage from "../CardImage";
+import { DOMAIN_COLOR_HEX } from "@/lib/constants";
+import { formatDate } from "@/utils/formatDate";
+import { isDeckComplete, isDeckIllegal } from "@/utils/deckStatusUtils";
+import StatusTag from "./StatusTag";
 
 interface DeckDetailsPanelProps {
   deck: FullDeck | null;
   onClose: () => void;
   onDeleteClick: () => void;
+  onSaveNotes: (deckId: string, notes: string) => Promise<void>;
 }
 
-export default function DeckDetailsPanel({ deck, onClose, onDeleteClick }: DeckDetailsPanelProps) {
+export default function DeckDetailsPanel({ deck, onClose, onDeleteClick, onSaveNotes }: DeckDetailsPanelProps) {
   const navigate = useNavigate();
+  const [notesDraft, setNotesDraft] = useState(deck?.notes ?? "");
+  const [saveStatus, setSaveStatus] = useState<"idle" | "saving" | "saved" | "error">("idle");
+
+  useEffect(() => {
+    setNotesDraft(deck?.notes ?? "");
+    setSaveStatus("idle");
+    // Only reset the draft when switching to a different deck, not on every
+    // keystroke - deck?.notes updates only come from our own save round-trip.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [deck?.id]);
+
+  const handleNotesBlur = async () => {
+    if (!deck?.id || notesDraft === (deck.notes ?? "")) return;
+    setSaveStatus("saving");
+    try {
+      await onSaveNotes(deck.id, notesDraft);
+      setSaveStatus("saved");
+    } catch {
+      setSaveStatus("error");
+    }
+  };
 
   function getCardNames(section: Record<string, number> | string[] | undefined) {
     if (!section) return [];
@@ -40,6 +67,9 @@ export default function DeckDetailsPanel({ deck, onClose, onDeleteClick }: DeckD
   if (!deck) return null;
 
   const legend = cardData.find((card) => card.cardId === deck.deck_data?.Legend);
+  const legendName = legend ? legend.name.split(",")[0] : null;
+  const deckComplete = isDeckComplete(deck.deck_data);
+  const deckIllegal = isDeckIllegal(deck.deck_data);
   const mainCards = getCardNames(deck.deck_data?.Main);
   const battlefieldCards = getCardNames(deck.deck_data?.Battlefields);
   const sideCards = getCardNames(deck.deck_data?.Side);
@@ -64,20 +94,27 @@ export default function DeckDetailsPanel({ deck, onClose, onDeleteClick }: DeckD
           animate={{ x: 0 }}
           exit={{ x: "100%" }}
           transition={{ type: "spring", stiffness: 100, damping: 20 }}
-          className="relative flex h-full"
+          className="relative flex flex-col lg:flex-row h-full overflow-y-auto lg:overflow-hidden"
         >
           {/* Left: Deck info panel */}
-          <div className="w-[400px] h-full bg-zinc-900 border-l border-zinc-800 p-6 flex flex-col shadow-xl">
+          <div className="w-full lg:w-[400px] shrink-0 lg:h-full bg-zinc-900 border-l border-zinc-800 p-6 flex flex-col shadow-xl">
             {/* Header */}
-            <div className="flex justify-between items-center mb-6">
-              <h2 className="text-lg font-semibold text-white truncate">{deck.name}</h2>
-              <div className="flex gap-2">
+            <div className="flex justify-between items-start mb-6 gap-3">
+              <div className="flex flex-col gap-1.5 min-w-0">
+                <h2 className="text-lg font-semibold text-white truncate">{deck.name}</h2>
+                <div className="flex flex-wrap items-center gap-1.5">
+                  {legendName && <StatusTag label={legendName} color="zinc" />}
+                  {!deckComplete && <StatusTag label="Incomplete" color="orange" />}
+                  {deckIllegal && <StatusTag label="Illegal" color="red" />}
+                </div>
+              </div>
+              <div className="flex gap-2 shrink-0">
                 {/* Edit Button */}
                 <Button
                   variant="secondary"
                   size="sm"
                   onClick={handleEditDeck}
-                  className="flex items-center gap-1 bg-amber-400 hover:bg-amber-500 text-white text-xs"
+                  className="flex items-center gap-1 bg-[#caa368] hover:bg-[#d9b57a] text-zinc-900 text-xs"
                 >
                   <Pencil className="w-3.5 h-3.5" />
                   Edit
@@ -116,8 +153,8 @@ export default function DeckDetailsPanel({ deck, onClose, onDeleteClick }: DeckD
             <div className="flex-1 overflow-y-auto pr-1 scroll-styled">
               <div className="flex flex-col gap-4 text-sm text-zinc-300">
                 <div className="flex items-center gap-2">
-                  <Info className="w-4 h-4 text-amber-400" />
-                  <span>Last modified: {deck.lastUpdated ?? "Unknown"}</span>
+                  <Info className="w-4 h-4 text-[#caa368]" />
+                  <span>Last modified: {formatDate(deck.lastUpdated)}</span>
                 </div>
 
                 <div className="flex items-center gap-3">
@@ -127,7 +164,7 @@ export default function DeckDetailsPanel({ deck, onClose, onDeleteClick }: DeckD
                       <div
                         key={i}
                         className="w-5 h-5 rounded-full border border-zinc-700"
-                        style={{ backgroundColor: c }}
+                        style={{ backgroundColor: DOMAIN_COLOR_HEX[c] ?? c }}
                       />
                     ))}
                   </div>
@@ -136,7 +173,7 @@ export default function DeckDetailsPanel({ deck, onClose, onDeleteClick }: DeckD
                 {Array.isArray(deck.tags) && deck.tags.length > 0 && (
                   <div>
                     <div className="flex items-center gap-2 mb-2">
-                      <Tag className="w-4 h-4 text-amber-400" />
+                      <Tag className="w-4 h-4 text-[#caa368]" />
                       <span className="font-medium text-white">Tags</span>
                     </div>
                     <div className="flex flex-wrap gap-2">
@@ -153,25 +190,40 @@ export default function DeckDetailsPanel({ deck, onClose, onDeleteClick }: DeckD
                 )}
 
                 <div>
-                  <span className="font-medium text-white block mb-2">Notes</span>
-                  <div className="bg-zinc-800 border border-zinc-700 rounded-md p-3 text-zinc-400 whitespace-pre-wrap min-h-[100px]">
-                    {typeof deck.notes === "string" ? deck.notes : "No notes available."}
+                  <div className="flex items-center justify-between mb-2">
+                    <span className="font-medium text-white">Notes</span>
+                    <span className="text-xs text-zinc-500">
+                      {saveStatus === "saving" && "Saving..."}
+                      {saveStatus === "saved" && "Saved"}
+                      {saveStatus === "error" && <span className="text-red-400">Failed to save</span>}
+                    </span>
                   </div>
+                  <textarea
+                    value={notesDraft}
+                    onChange={(e) => {
+                      setNotesDraft(e.target.value);
+                      setSaveStatus("idle");
+                    }}
+                    onBlur={handleNotesBlur}
+                    placeholder="Add notes about this deck..."
+                    className="w-full bg-zinc-800 border border-zinc-700 rounded-md p-3 text-zinc-300 placeholder:text-zinc-600 whitespace-pre-wrap min-h-[100px] resize-none focus:outline-none focus:border-[#caa368] scroll-styled"
+                  />
                 </div>
               </div>
-              <Button
-                  variant="secondary"
-                  size="sm"
-                  onClick={handleViewDeck}
-                  className="flex items-center gap-1 mt-3 w-full bg-emerald-400 hover:bg-emerald-700 text-white text-sm"
-              >
-                View
-              </Button>
             </div>
+
+            <Button
+                variant="secondary"
+                size="sm"
+                onClick={handleViewDeck}
+                className="flex items-center gap-1 mt-3 w-full shrink-0 bg-emerald-400 hover:bg-emerald-700 text-white text-sm"
+            >
+              View
+            </Button>
           </div>
 
           {/* Right: Deck cards panel */}
-          <div className="w-[350px] h-full bg-zinc-900 border-l border-zinc-800 p-6 flex flex-col shadow-lg">
+          <div className="w-full lg:w-[350px] shrink-0 lg:h-full bg-zinc-900 border-l border-zinc-800 p-6 flex flex-col shadow-lg">
             <div className="flex justify-between items-center mb-4">
               <h3 className="text-lg font-semibold text-white">Deck List</h3>
               <Button
@@ -194,14 +246,14 @@ export default function DeckDetailsPanel({ deck, onClose, onDeleteClick }: DeckD
                 (section) =>
                   section.cards.length > 0 && (
                     <div key={section.title}>
-                      <h4 className="text-sm font-semibold text-amber-400 mb-2">
+                      <h4 className="text-sm font-semibold text-[#caa368] mb-2">
                         {section.title}
                       </h4>
                       <ul className="flex flex-col gap-2">
                         {section.cards.map((card, index) => (
                           <li
                             key={index}
-                            className="h-8 flex justify-between items-center bg-zinc-950 rounded-md px-3 py-2 border border-zinc-800 hover:border-amber-400/50 transition"
+                            className="h-8 flex justify-between items-center bg-zinc-950 rounded-md px-3 py-2 border border-zinc-800 hover:border-[#caa368]/50 transition"
                           >
                             <span className="text-zinc-200 text-xs">{card.name}</span>
                             <span className="text-zinc-400 text-sm">x{card.quantity}</span>

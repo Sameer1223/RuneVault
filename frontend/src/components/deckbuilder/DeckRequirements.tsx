@@ -22,7 +22,7 @@ export default function DeckRequirements({ deck }: DeckRequirementProps) {
         { label: "Legend", value: counts.legendCount, requirement: 1},
         { label: "Chosen Champion", value: counts.chosenCount, requirement: 1},
         { label: "Battlefields", value: counts.battlefieldCount, requirement: 3},
-        { label: "Side Deck", value: counts.sideDeckCount, requirement: 8},
+        { label: "Side Deck", value: counts.sideDeckCount, requirement: 10},
         { label: "Runes", value: counts.runesCount, requirement: 12},
     ];
 

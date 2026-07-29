@@ -17,7 +17,10 @@ def get_user_collection(user_id):
 
 @collection_routes.route("/<string:user_id>", methods=["PATCH"])
 def update_user_collection(user_id):
-    user = User.query.filter_by(auth0_id=user_id).first()
+    # Locks the row for the duration of this transaction so concurrent PATCHes
+    # (e.g. rapid clicking) serialize instead of racing on a read-modify-write
+    # of the same JSON column, which would silently lose increments.
+    user = User.query.filter_by(auth0_id=user_id).with_for_update().first()
     if not user:
         return jsonify({"error": "User not found"}), 404
     

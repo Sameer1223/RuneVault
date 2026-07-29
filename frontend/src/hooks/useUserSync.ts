@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import { useAuth0 } from '@auth0/auth0-react';
 import { API_BASE_URL } from '@/lib/constants';
+import { notifyUserIdChanged } from './useUserId';
 
 /**
  * Custom hook to sync user with backend on Auth0 login
@@ -36,6 +37,7 @@ export const useUserSync = () => {
         // Store Auth0 ID (sub) as the user ID
         localStorage.setItem('userId', data.auth0_id);
         localStorage.setItem('username', data.username);
+        notifyUserIdChanged();
 
         if (data.is_new) {
           // New user was created

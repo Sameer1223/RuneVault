@@ -1,4 +1,4 @@
-import { useEffect, useState, useMemo, useCallback } from "react";
+import { useEffect, useState, useMemo, useCallback, useRef } from "react";
 import { useLocation } from "react-router-dom";
 import cardData from "../data/cards.json";
 import CardImage from "@/components/CardImage";
@@ -11,20 +11,26 @@ import OptionsPanel from "../components/deckbuilder/OptionsPanel";
 import SearchPanel from "../components/deckbuilder/SearchPanel";
 import CardSearchPanel from "../components/deckbuilder/CardSearchPanel";
 import { emptyDeckTemplate } from "../data/emptyDeckTemplate";
-import type { FullDeck } from "@/types/deck";
+import type { FullDeck, DeckInnerData } from "@/types/deck";
 import { addCardToDeckUtil, removeCardFromDeckUtil, setDeckNameUtil, swapCardsUtil } from "@/utils/deckBuilderUtils";
 import { filterCards, type CardFilters } from "@/utils/filterCardsUtil";
 import ConfirmationModal from "../components/common/ConfirmationModal";
 import SwapBar from "../components/deckbuilder/SwapBar";
+import CollectionModeToggle from "../components/deckbuilder/CollectionModeToggle";
 import { useUserId } from "@/hooks/useUserId";
 import { useAuthFetch } from "@/hooks/useAuthFetch";
+import { useCollection } from "@/hooks/useCollection";
 import { API_BASE_URL } from "@/lib/constants";
+import { ClipboardList } from "lucide-react";
+import { computeMissingCards, formatMissingCardsList } from "@/utils/missingCardsUtil";
 
 export default function DeckBuilder() {
   const location = useLocation();
   const incomingDeck = location.state?.deck;
   const { userId } = useUserId();
   const authFetch = useAuthFetch();
+  const { ownedCount } = useCollection();
+  const [collectionMode, setCollectionMode] = useState(false);
 
   const [deck, setDeck] = useState<FullDeck>(() => {
     if (incomingDeck) return incomingDeck;
@@ -34,6 +40,39 @@ export default function DeckBuilder() {
 
   const [hoveredCard, setHoveredCard] = useState<string | null>(null);
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
+  const hoverTimeout = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const HOVER_PREVIEW_DELAY = 175; // ms - avoids flicker/flooding on quick mouse passes
+
+  const handleHoverCard = useCallback((cardId: string) => {
+    if (hoverTimeout.current) clearTimeout(hoverTimeout.current);
+    hoverTimeout.current = setTimeout(() => setHoveredCard(cardId), HOVER_PREVIEW_DELAY);
+  }, []);
+
+  const handleLeaveCard = useCallback(() => {
+    if (hoverTimeout.current) clearTimeout(hoverTimeout.current);
+    setHoveredCard(null);
+  }, []);
+
+  // Keeps the floating hover preview fully on-screen by flipping it to the
+  // opposite side of the cursor whenever it would otherwise overflow the viewport.
+  const calcHoverPreviewPosition = (cardId: string, x: number, y: number) => {
+    const isBattlefield = cardData.find((c) => c.cardId === cardId)?.type === "Battlefield";
+    const OFFSET = 15;
+    const previewHeight = Math.min(400, window.innerHeight * 0.45);
+    const ratio = isBattlefield ? 130 / 93 : 93 / 130;
+    const previewWidth = Math.min(previewHeight * ratio, window.innerWidth * 0.7);
+
+    let left = x + OFFSET;
+    let top = y + OFFSET;
+
+    if (left + previewWidth > window.innerWidth) left = x - previewWidth - OFFSET;
+    if (top + previewHeight > window.innerHeight) top = y - previewHeight - OFFSET;
+
+    left = Math.max(4, Math.min(left, window.innerWidth - previewWidth - 4));
+    top = Math.max(4, Math.min(top, window.innerHeight - previewHeight - 4));
+
+    return { left, top };
+  };
   const [filters, setFilters] = useState<CardFilters>({});
   const [activeZone, setActiveZone] = useState<'main' | 'side'>('main');
   const [mainSelections, setMainSelections] = useState<Record<number, string>>({});
@@ -68,11 +107,11 @@ export default function DeckBuilder() {
   const mainTotal = Object.values(deck.deck_data.Main ?? {}).reduce<number>((a, b) => a + (b as number), 0);
   const sideTotal = Object.values(deck.deck_data.Side ?? {}).reduce<number>((a, b) => a + (b as number), 0);
 
-  const canMoveToSide = mainSelCount > 0 && (sideTotal + mainSelCount - sideSelCount) <= 8;
+  const canMoveToSide = mainSelCount > 0 && (sideTotal + mainSelCount - sideSelCount) <= 10;
   const canMoveToMain = sideSelCount > 0 && (mainTotal + sideSelCount - mainSelCount) <= 39;
   const canSwap = mainSelCount > 0 && sideSelCount > 0
     && (mainTotal - mainSelCount + sideSelCount) <= 39
-    && (sideTotal - sideSelCount + mainSelCount) <= 8;
+    && (sideTotal - sideSelCount + mainSelCount) <= 10;
 
   // Convert index-based selections to cardId counts for swap util
   function toCounts(selections: Record<number, string>): Record<string, number> {
@@ -251,20 +290,73 @@ export default function DeckBuilder() {
     });
   };
 
+  // IMPORT DECK (replace)
+  const handleImportDeck = (deckData: DeckInnerData, importedCount: number, warnings: string[]) => {
+    const warningNote = warnings.length
+      ? ` ${warnings.length} card${warnings.length === 1 ? "" : "s"} could not be matched - see console for details.`
+      : "";
+    openModal({
+      type: "confirm",
+      title: "Import & Replace Deck?",
+      message: `This will replace your current deck with ${importedCount} card${importedCount === 1 ? "" : "s"} from the pasted list. This cannot be undone.${warningNote}`,
+      onConfirm: () => {
+        setDeck((prev: FullDeck) => ({ ...prev, deck_data: deckData }));
+        if (warnings.length) console.warn("Deck import warnings:", warnings);
+        closeModal();
+      },
+    });
+  };
+
+  // COPY MISSING CARDS
+  const handleCopyMissing = () => {
+    const missing = computeMissingCards(deck.deck_data, ownedCount);
+    if (missing.length === 0) {
+      openModal({
+        type: "alert",
+        title: "Nothing Missing",
+        message: "You own every card in this deck.",
+      });
+      return;
+    }
+    navigator.clipboard.writeText(formatMissingCardsList(missing));
+    openModal({
+      type: "alert",
+      title: "Copied!",
+      message: `Missing cards list copied to clipboard (${missing.length} card${missing.length === 1 ? "" : "s"}).`,
+    });
+  };
+
   if (!deck.deck_data) return <div>Loading deck data...</div>;
 
   return (
-    <div className="h-[calc(100vh-4rem)] mt-16 flex flex-col bg-[#121418] text-white gap-3 px-6 py-4">
-      <EditableDeckTitle
-        initialTitle={deck.name || "Untitled Deck"}
-        onTitleChange={(t) => setDeck((prev: FullDeck) => setDeckNameUtil(prev, t) as FullDeck)}
-      />
+    <div className="min-h-[calc(100vh-4rem)] lg:h-[calc(100vh-4rem)] lg:overflow-hidden mt-16 flex flex-col bg-[#121418] text-white gap-3 px-3 sm:px-6 py-4">
+      <div className="flex items-center gap-3">
+        <div className="flex-1 min-w-0">
+          <EditableDeckTitle
+            initialTitle={deck.name || "Untitled Deck"}
+            onTitleChange={(t) => setDeck((prev: FullDeck) => setDeckNameUtil(prev, t) as FullDeck)}
+          />
+        </div>
+        <div className="flex items-center gap-2 shrink-0">
+          {collectionMode && (
+            <button
+              onClick={handleCopyMissing}
+              title="Copy a list of the cards you're missing to your clipboard"
+              className="flex items-center gap-1.5 sm:gap-2 px-2 sm:px-3 py-1.5 rounded-md text-xs sm:text-sm font-medium bg-zinc-900 border border-zinc-700 hover:border-[#caa368]/50 hover:bg-zinc-800 text-zinc-300 hover:text-white transition-colors"
+            >
+              <ClipboardList className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
+              <span className="hidden sm:inline whitespace-nowrap">Copy Missing</span>
+            </button>
+          )}
+          <CollectionModeToggle enabled={collectionMode} onChange={setCollectionMode} />
+        </div>
+      </div>
 
-      <div id="Deck-Builder" className="flex flex-1 gap-3 min-h-0 relative">
-        <div id="Cards-Panel" className="flex flex-col flex-[3] gap-3 min-h-0">
+      <div id="Deck-Builder" className="flex flex-col lg:flex-row flex-1 gap-3 min-h-0 relative">
+        <div id="Cards-Panel" className="flex flex-col lg:flex-[3] gap-3 min-h-0">
           <div
             id="Main-Deck"
-            className={`bg-[#1E1E1E] flex-[16] min-h-0 overflow-hidden relative cursor-pointer ring-inset ${
+            className={`bg-[#1E1E1E] min-h-[420px] lg:min-h-0 lg:flex-[16] overflow-y-auto relative cursor-pointer ring-inset ${
               activeZone === 'main' ? 'ring-1 ring-gray-700' : ''
             }`}
             onClick={() => setActiveZone('main')}
@@ -275,58 +367,73 @@ export default function DeckBuilder() {
               chosenChampion={deck.deck_data.ChosenChampion}
               main={deck.deck_data.Main}
               selectedCards={mainSelections}
-              onHoverCard={(id) => setHoveredCard(id)}
-              onLeaveCard={() => setHoveredCard(null)}
+              onHoverCard={handleHoverCard}
+              onLeaveCard={handleLeaveCard}
               onRemoveCard={removeCardFromDeck}
               onSelectCard={handleSelectMain}
+              collectionMode={collectionMode}
+              ownedCount={ownedCount}
             />
 
-            {hoveredCard && (
-              <div
-                className="fixed z-50 pointer-events-none"
-                style={{ left: mousePos.x + 15, top: mousePos.y + 15 }}
-              >
-                <CardImage
-                  cardId={hoveredCard}
-                  className="h-[400px] w-auto object-cover rounded-lg shadow-2xl"
-                />
-              </div>
-            )}
+            {hoveredCard && (() => {
+              const pos = calcHoverPreviewPosition(hoveredCard, mousePos.x, mousePos.y);
+              return (
+                <div
+                  className="fixed z-50 pointer-events-none"
+                  style={{ left: pos.left, top: pos.top }}
+                >
+                  <CardImage
+                    cardId={hoveredCard}
+                    className="h-[min(400px,45vh)] w-auto max-w-[70vw] object-cover rounded-lg shadow-2xl"
+                  />
+                </div>
+              );
+            })()}
           </div>
 
-          <div id="Side-Deck-Stats" className="flex flex-[4] gap-3 min-h-0">
+          <div id="Side-Deck-Stats" className="flex flex-col sm:flex-row sm:flex-wrap lg:flex-nowrap gap-3 min-h-0 lg:flex-[4]">
             <div
               id="Side-Deck"
-              className={`bg-[#1E1E1E] p-2 overflow-auto cursor-pointer ring-inset ${
+              className={`bg-[#1E1E1E] p-2 overflow-auto cursor-pointer ring-inset w-full sm:w-auto ${
                 activeZone === 'side' ? 'ring-1 ring-gray-700' : ''
               }`}
               onClick={() => setActiveZone('side')}
             >
-              <SideDeck side={deck.deck_data.Side} selectedCards={sideSelections} onRemoveCard={removeCardFromDeck} onSelectCard={handleSelectSide} />
+              <SideDeck
+                side={deck.deck_data.Side}
+                selectedCards={sideSelections}
+                onHoverCard={handleHoverCard}
+                onLeaveCard={handleLeaveCard}
+                onRemoveCard={removeCardFromDeck}
+                onSelectCard={handleSelectSide}
+                collectionMode={collectionMode}
+                ownedCount={ownedCount}
+              />
             </div>
-            <div id="Runes-Deck" className="bg-[#1E1E1E] p-2 overflow-auto">
+            <div id="Runes-Deck" className="bg-[#1E1E1E] p-2 overflow-auto w-full sm:w-auto">
               <RunesDeck runes={deck.deck_data.Runes} onRemoveCard={removeCardFromDeck} />
             </div>
-            <div id="Deck-Stats" className="bg-[#1E1E1E] flex-[2] p-2">
+            <div id="Deck-Stats" className="bg-[#1E1E1E] sm:flex-[2] p-2 w-full sm:w-auto sm:min-w-[150px] overflow-auto min-h-0">
               <DeckRequirements deck={deck.deck_data} />
             </div>
           </div>
 
-          <div id="Options-Panel" className="bg-[#121212] flex-[1] p-3">
-            <OptionsPanel 
-              onSave={saveDeck} 
-              onClear={clearDeck} 
-              deck={deck.deck_data} 
+          <div id="Options-Panel" className="bg-[#121418] lg:flex-[1] p-3">
+            <OptionsPanel
+              onSave={saveDeck}
+              onClear={clearDeck}
+              onImport={handleImportDeck}
+              deck={deck.deck_data}
               deckId={deck.id}
             />
           </div>
         </div>
 
-        <div id="Search-Panel" className="flex flex-col flex-[1.3] gap-3 min-h-0">
-          <div id="Filters" className="bg-[#1E1E1E] flex-[1] p-3">
+        <div id="Search-Panel" className="flex flex-col lg:flex-[1.3] gap-3 min-h-0">
+          <div id="Filters" className="bg-[#1E1E1E] lg:flex-none p-3">
             <SearchPanel onFilterChange={setFilters} selectedLegend={deck.deck_data.Legend ? { legendId: deck.deck_data.Legend } : undefined} />
           </div>
-          <div id="Card-List" className="flex-[2] bg-stone-900 p-2 overflow-y-auto scroll-inside">
+          <div id="Card-List" className="min-h-[420px] lg:min-h-0 lg:flex-1 bg-stone-900 p-2 overflow-y-auto scroll-inside">
             <CardSearchPanel
               cards={filteredCards}
               deckCards={Object.entries({ ...deck.deck_data.Main, ...deck.deck_data.Side }).reduce((acc, [id]) => {

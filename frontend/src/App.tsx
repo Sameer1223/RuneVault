@@ -23,6 +23,9 @@ function App() {
         redirect_uri: window.location.origin,
         audience: AUTH_AUDIENCE,
       }}
+      useRefreshTokens={true}
+      useRefreshTokensFallback={true}
+      cacheLocation="localstorage"
     >
       <BrowserRouter>
         <Routes>

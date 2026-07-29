@@ -8,6 +8,8 @@ interface SideDeckProps {
     onLeaveCard?: () => void;
     onRemoveCard?: (cardId: string) => void;
     onSelectCard?: (index: number, cardId: string) => void;
+    collectionMode?: boolean;
+    ownedCount?: (cardId: string) => number;
 }
 
 function sortCardIds(cardIds: [string, number][]): [string, number][] {
@@ -21,18 +23,32 @@ function sortCardIds(cardIds: [string, number][]): [string, number][] {
     });
 }
 
-export default function SideDeck ({ side, selectedCards = {}, onHoverCard, onLeaveCard, onRemoveCard, onSelectCard }: SideDeckProps) {
+export default function SideDeck ({ side, selectedCards = {}, onHoverCard, onLeaveCard, onRemoveCard, onSelectCard, collectionMode = false, ownedCount }: SideDeckProps) {
     const sideDeck = sortCardIds(Object.entries(side ?? {})).flatMap(([cardId, count]) => Array(count).fill(cardId));
-    
-    const deckLength = sideDeck.length;
-    const placeholderCount = Math.max(0, 8 - deckLength);
 
-    return ( 
-        <div className="flex items-center w-full h-full gap-5 overflow-hidden">
+    // Tracks how many copies of each cardId have already been counted as "owned"
+    // so partial ownership colors exactly that many tiles and greys out the rest.
+    const ownedRemaining: Record<string, number> = {};
+    const isTileOwned = (cardId: string) => {
+        if (!collectionMode) return true;
+        if (!(cardId in ownedRemaining)) ownedRemaining[cardId] = ownedCount?.(cardId) ?? 0;
+        if (ownedRemaining[cardId] > 0) {
+            ownedRemaining[cardId] -= 1;
+            return true;
+        }
+        return false;
+    };
+
+    const deckLength = sideDeck.length;
+    const placeholderCount = Math.max(0, 10 - deckLength);
+
+    return (
+        <div className="flex items-center w-full h-full gap-5">
             {/* Side Deck */}
-            <div className="grid grid-cols-8 grid-rows-1 gap-2">
+            <div className="grid grid-cols-5 sm:grid-cols-10 gap-1.5 sm:gap-2">
                 {sideDeck.map((cardId, index) => {
                     const isSelected = index in selectedCards;
+                    const dimmed = !isTileOwned(cardId);
 
                     return (
                         <div
@@ -42,14 +58,14 @@ export default function SideDeck ({ side, selectedCards = {}, onHoverCard, onLea
                             onMouseLeave={onLeaveCard}
                             onClick={() => onSelectCard?.(index, cardId)}
                         >
-                            <Card cardId={cardId} className="h-[130px] w-[93px]" onRightClick={onRemoveCard}/>
+                            <Card cardId={cardId} className="w-[var(--dc-card-w)] aspect-[93/130]" dimmed={dimmed} onRightClick={onRemoveCard}/>
                         </div>
                     );
-                })} 
+                })}
 
                 {/* Placeholders */}
                 {Array.from({ length: placeholderCount }).map((_, i) => (
-                    <Card key={`placeholder-${i}`} className="h-[130px] w-[93px]" />
+                    <Card key={`placeholder-${i}`} className="w-[var(--dc-card-w)] aspect-[93/130]" />
                 ))}
             </div>
         </div>

@@ -55,6 +55,10 @@ export default function CardSearchPanel({
     // Flip vertically if going off-screen bottom
     if (top > maxY) top = mousePos.y - PREVIEW_HEIGHT - OFFSET;
 
+    // Safety clamp in case flipping alone still overflows the opposite edge
+    left = Math.max(4, Math.min(left, window.innerWidth - PREVIEW_WIDTH - 4));
+    top = Math.max(4, Math.min(top, window.innerHeight - PREVIEW_HEIGHT - 4));
+
     return { left, top };
   };
 
@@ -74,8 +78,8 @@ export default function CardSearchPanel({
     >
       <div className={
         isBattlefieldsSelected
-          ? "grid grid-cols-4 gap-2"
-          : "grid grid-cols-5 gap-2"}
+          ? "grid w-full grid-cols-[repeat(auto-fill,minmax(130px,1fr))] gap-2"
+          : "grid w-full grid-cols-[repeat(auto-fill,minmax(93px,1fr))] gap-2"}
       >
       {cards
         .filter(card => card.type?.toLowerCase() !== 'token')
@@ -99,8 +103,8 @@ export default function CardSearchPanel({
               cardId={card.cardId}
               className={
                 isBattlefield(card.cardId)
-                  ? "h-[93px] w-[130px]"
-                  : "h-[130px] w-[93px]"
+                  ? "w-full max-w-[190px] mx-auto aspect-[130/93]"
+                  : "w-full max-w-[140px] mx-auto aspect-[93/130]"
               }
               onRightClick={onRemoveCard}
             />

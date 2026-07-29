@@ -15,7 +15,8 @@ def create_deck():
             user_id=data["user_id"],
             name=data["name"],
             format=data.get("format") or "Competitive",
-            deck_data=data["deck_data"]
+            deck_data=data["deck_data"],
+            notes=data.get("notes")
         )
         db.session.add(new_deck)
         db.session.commit()
@@ -58,6 +59,7 @@ def update_deck(deck_id):
         deck.name = data.get("name", deck.name)
         deck.format = data.get("format", deck.format)
         deck.deck_data = data.get("deck_data", deck.deck_data)
+        deck.notes = data.get("notes", deck.notes)
         db.session.commit()
         return jsonify({"message": "Deck updated."}), 200
     except Exception as e:

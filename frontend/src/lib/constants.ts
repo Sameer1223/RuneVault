@@ -6,8 +6,39 @@ export const API_BASE_URL = rawApiUrl.endsWith('/api') ? rawApiUrl : `${rawApiUr
 /** Card rarity types (without "All") */
 export const RARITY_TYPES = ["Common", "Uncommon", "Rare", "Epic", "Alternate Art"] as const;
 
+/** The 6 Riftbound domain colors, in a fixed display order */
+export const DOMAIN_COLORS = ["Red", "Orange", "Yellow", "Green", "Blue", "Purple"] as const;
+
+/** Domain color name -> curated hex swatch (used for filter chips, deck borders, etc.) */
+export const DOMAIN_COLOR_HEX: Record<string, string> = {
+  Red: "#e0483e",
+  Orange: "#e8843a",
+  Yellow: "#e0c23f",
+  Green: "#4caf6e",
+  Blue: "#4a8fe0",
+  Purple: "#a466d4",
+};
+
 /** Card rarity types with "All" option for dropdowns */
 export const RARITY_OPTIONS = ["All", ...RARITY_TYPES] as const;
+
+/** Rarity name -> Tailwind text color class (used for collection stats and card accents) */
+export const RARITY_COLOR_CLASS: Record<string, string> = {
+  Common: "text-gray-300",
+  Uncommon: "text-cyan-200",
+  Rare: "text-rose-800",
+  Epic: "text-orange-400",
+  "Alternate Art": "text-amber-300",
+};
+
+/** Rarity name -> hex swatch (matches RARITY_COLOR_CLASS; used for card accent borders/rings) */
+export const RARITY_COLOR_HEX: Record<string, string> = {
+  Common: "#d1d5db",
+  Uncommon: "#a5f3fc",
+  Rare: "#9f1239",
+  Epic: "#fb923c",
+  "Alternate Art": "#fcd34d",
+};
 
 /** Legend image cover position percentages (vertical positioning for legend cards in deck backgrounds) */
 export const LEGEND_IMAGE_COVER_MAP: Record<string, number> = {
@@ -48,7 +79,16 @@ export const LEGEND_IMAGE_COVER_MAP: Record<string, number> = {
   diana: 10,
   leblanc: 12,
   khazix: 52,
-  poppy: 19
+  poppy: 19,
+  akali: 20,
+  renekton: 15,
+  zed: 50,
+  nasus: 27,
+  shen: 5,
+  jayce: 10,
+  mel: 10,
+  ambessa: 14,
+  kennen: 30
 };
 
 /** Legend name → signature spell card IDs */
@@ -91,5 +131,14 @@ export const LEGEND_SIGNATURE_MAP: Record<string, string[]> = {
     "Diana": ["UNL-198"],
     "LeBlanc": ["UNL-200"],
     "Kha'Zix": ["UNL-202"],
-    "Poppy": ["UNL-204"]
+    "Poppy": ["UNL-204"],
+    "Akali": ["VEN-140"],
+    "Renekton": ["VEN-142"],
+    "Zed": ["VEN-144"],
+    "Nasus": ["VEN-146"],
+    "Shen": ["VEN-148"],
+    "Jayce": ["VEN-150"],
+    "Mel": ["VEN-152"],
+    "Ambessa": ["VEN-154"],
+    "Kennen": ["VEN-156"]
 };

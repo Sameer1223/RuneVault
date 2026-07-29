@@ -2189,7 +2189,7 @@
     },
     {
         "cardId": "OGN-189",
-        "name": "Kayn, Unleashed",
+        "name": "Kayn, Vendetta",
         "set": "Origins",
         "type": "Champion",
         "rarity": "Rare",
@@ -10433,5 +10433,2654 @@
       "colors": [
         "Purple"
       ]
+    },
+    {
+      "cardId": "VEN-001",
+      "name": "Baccai Sandspinner",
+      "set": "Vendetta",
+      "type": "Unit",
+      "rarity": "Common",
+      "energy": 6,
+      "power": 0,
+      "might": 6,
+      "colors": [
+        "Red"
+      ]
+    },
+    {
+      "cardId": "VEN-SP1",
+      "name": "Kai'Sa, Survivor",
+      "set": "Vendetta",
+      "type": "Champion",
+      "rarity": "Alternate Art",
+      "energy": 4,
+      "power": 0,
+      "might": 4,
+      "colors": [
+        "Red"
+      ]
+    },
+    {
+      "cardId": "VEN-002",
+      "name": "Blade Twirler",
+      "set": "Vendetta",
+      "type": "Unit",
+      "rarity": "Common",
+      "energy": 4,
+      "power": 0,
+      "might": 4,
+      "colors": [
+        "Red"
+      ]
+    },
+    {
+      "cardId": "VEN-SP2",
+      "name": "Sona, Harmonious",
+      "set": "Vendetta",
+      "type": "Champion",
+      "rarity": "Alternate Art",
+      "energy": 4,
+      "power": 1,
+      "might": 4,
+      "colors": [
+        "Green"
+      ]
+    },
+    {
+      "cardId": "VEN-SP3",
+      "name": "Ahri, Inquisitive",
+      "set": "Vendetta",
+      "type": "Champion",
+      "rarity": "Alternate Art",
+      "energy": 3,
+      "power": 1,
+      "might": 3,
+      "colors": [
+        "Blue"
+      ]
+    },
+    {
+      "cardId": "VEN-003",
+      "name": "Brittle Steel",
+      "set": "Vendetta",
+      "type": "Spell",
+      "rarity": "Common",
+      "energy": 2,
+      "power": 1,
+      "colors": [
+        "Red"
+      ]
+    },
+    {
+      "cardId": "VEN-004",
+      "name": "Dune Surfer",
+      "set": "Vendetta",
+      "type": "Unit",
+      "rarity": "Common",
+      "energy": 3,
+      "power": 0,
+      "might": 3,
+      "colors": [
+        "Red"
+      ]
+    },
+    {
+      "cardId": "VEN-SP4",
+      "name": "Sett, Brawler",
+      "set": "Vendetta",
+      "type": "Champion",
+      "rarity": "Alternate Art",
+      "energy": 5,
+      "power": 1,
+      "might": 4,
+      "colors": [
+        "Orange"
+      ]
+    },
+    {
+      "cardId": "VEN-SP5",
+      "name": "Ezreal, Prodigy",
+      "set": "Vendetta",
+      "type": "Champion",
+      "rarity": "Alternate Art",
+      "energy": 3,
+      "power": 1,
+      "might": 3,
+      "colors": [
+        "Purple"
+      ]
+    },
+    {
+      "cardId": "VEN-005",
+      "name": "Forsaken Baccai",
+      "set": "Vendetta",
+      "type": "Unit",
+      "rarity": "Common",
+      "energy": 2,
+      "power": 0,
+      "might": 2,
+      "colors": [
+        "Red"
+      ]
+    },
+    {
+      "cardId": "VEN-SP6",
+      "name": "Lux, Crownguard",
+      "set": "Vendetta",
+      "type": "Champion",
+      "rarity": "Alternate Art",
+      "energy": 4,
+      "power": 0,
+      "might": 2,
+      "colors": [
+        "Yellow"
+      ]
+    },
+    {
+      "cardId": "VEN-006",
+      "name": "Oasis Raider",
+      "set": "Vendetta",
+      "type": "Unit",
+      "rarity": "Common",
+      "energy": 4,
+      "power": 0,
+      "might": 4,
+      "colors": [
+        "Red"
+      ]
+    },
+    {
+      "cardId": "VEN-007",
+      "name": "Punching Poro",
+      "set": "Vendetta",
+      "type": "Unit",
+      "rarity": "Common",
+      "energy": 2,
+      "power": 0,
+      "might": 2,
+      "colors": [
+        "Red"
+      ]
+    },
+    {
+      "cardId": "VEN-008",
+      "name": "Ruthless Strike",
+      "set": "Vendetta",
+      "type": "Spell",
+      "rarity": "Common",
+      "energy": 3,
+      "power": 0,
+      "colors": [
+        "Red"
+      ]
+    },
+    {
+      "cardId": "VEN-009",
+      "name": "Baccai Reaper",
+      "set": "Vendetta",
+      "type": "Unit",
+      "rarity": "Uncommon",
+      "energy": 3,
+      "power": 1,
+      "might": 4,
+      "colors": [
+        "Red"
+      ]
+    },
+    {
+      "cardId": "VEN-010",
+      "name": "Consuming Curse",
+      "set": "Vendetta",
+      "type": "Spell",
+      "rarity": "Uncommon",
+      "energy": 2,
+      "power": 0,
+      "colors": [
+        "Red"
+      ]
+    },
+    {
+      "cardId": "VEN-011",
+      "name": "Pendulum Blade",
+      "set": "Vendetta",
+      "type": "Gear",
+      "rarity": "Uncommon",
+      "energy": 3,
+      "power": 0,
+      "colors": [
+        "Red"
+      ]
+    },
+    {
+      "cardId": "VEN-012",
+      "name": "Perfect Execution",
+      "set": "Vendetta",
+      "type": "Spell",
+      "rarity": "Uncommon",
+      "energy": 3,
+      "power": 1,
+      "colors": [
+        "Red"
+      ]
+    },
+    {
+      "cardId": "VEN-013",
+      "name": "Shadow Assassin",
+      "set": "Vendetta",
+      "type": "Unit",
+      "rarity": "Uncommon",
+      "energy": 5,
+      "power": 0,
+      "might": 5,
+      "colors": [
+        "Red"
+      ]
+    },
+    {
+      "cardId": "VEN-014",
+      "name": "Shadow Fiend",
+      "set": "Vendetta",
+      "type": "Unit",
+      "rarity": "Uncommon",
+      "energy": 2,
+      "power": 0,
+      "might": 2,
+      "colors": [
+        "Red"
+      ]
+    },
+    {
+      "cardId": "VEN-015",
+      "name": "Decree of Rage",
+      "set": "Vendetta",
+      "type": "Spell",
+      "rarity": "Rare",
+      "energy": 1,
+      "power": 1,
+      "colors": [
+        "Red"
+      ]
+    },
+    {
+      "cardId": "VEN-016",
+      "name": "Eclipse Dragon",
+      "set": "Vendetta",
+      "type": "Unit",
+      "rarity": "Rare",
+      "energy": 8,
+      "power": 0,
+      "might": 8,
+      "colors": [
+        "Red"
+      ]
+    },
+    {
+      "cardId": "VEN-017",
+      "name": "Morgana, Vindictive",
+      "set": "Vendetta",
+      "type": "Champion",
+      "rarity": "Rare",
+      "energy": 5,
+      "power": 1,
+      "might": 5,
+      "colors": [
+        "Red"
+      ]
+    },
+    {
+      "cardId": "VEN-018",
+      "name": "Rage Amplifier",
+      "set": "Vendetta",
+      "type": "Gear",
+      "rarity": "Rare",
+      "energy": 4,
+      "power": 1,
+      "colors": [
+        "Red"
+      ]
+    },
+    {
+      "cardId": "VEN-019",
+      "name": "Renekton, Rage Fueled",
+      "set": "Vendetta",
+      "type": "Champion",
+      "rarity": "Rare",
+      "energy": 6,
+      "power": 0,
+      "might": 6,
+      "colors": [
+        "Red"
+      ]
+    },
+    {
+      "cardId": "VEN-019a",
+      "name": "Renekton, Rage Fueled",
+      "set": "Vendetta",
+      "type": "Champion",
+      "rarity": "Alternate Art",
+      "energy": 6,
+      "power": 0,
+      "might": 6,
+      "colors": [
+        "Red"
+      ]
+    },
+    {
+      "cardId": "VEN-020",
+      "name": "Twilight Reveler",
+      "set": "Vendetta",
+      "type": "Unit",
+      "rarity": "Rare",
+      "energy": 3,
+      "power": 0,
+      "might": 3,
+      "colors": [
+        "Red"
+      ]
+    },
+    {
+      "cardId": "VEN-021",
+      "name": "Akali, Deadly Weapon",
+      "set": "Vendetta",
+      "type": "Champion",
+      "rarity": "Epic",
+      "energy": 3,
+      "power": 0,
+      "might": 3,
+      "colors": [
+        "Red"
+      ]
+    },
+    {
+      "cardId": "VEN-021a",
+      "name": "Akali, Deadly Weapon",
+      "set": "Vendetta",
+      "type": "Champion",
+      "rarity": "Alternate Art",
+      "energy": 3,
+      "power": 0,
+      "might": 3,
+      "colors": [
+        "Red"
+      ]
+    },
+    {
+      "cardId": "VEN-022",
+      "name": "Endless Riches",
+      "set": "Vendetta",
+      "type": "Gear",
+      "rarity": "Epic",
+      "energy": 5,
+      "power": 1,
+      "colors": [
+        "Red"
+      ]
+    },
+    {
+      "cardId": "VEN-023",
+      "name": "Zed, From the Shadows",
+      "set": "Vendetta",
+      "type": "Champion",
+      "rarity": "Epic",
+      "energy": 4,
+      "power": 1,
+      "might": 4,
+      "colors": [
+        "Red"
+      ]
+    },
+    {
+      "cardId": "VEN-023a",
+      "name": "Zed, From the Shadows",
+      "set": "Vendetta",
+      "type": "Champion",
+      "rarity": "Alternate Art",
+      "energy": 4,
+      "power": 1,
+      "might": 4,
+      "colors": [
+        "Red"
+      ]
+    },
+    {
+      "cardId": "VEN-024",
+      "name": "Affectionate Poro",
+      "set": "Vendetta",
+      "type": "Unit",
+      "rarity": "Common",
+      "energy": 3,
+      "power": 0,
+      "might": 3,
+      "colors": [
+        "Green"
+      ]
+    },
+    {
+      "cardId": "VEN-025",
+      "name": "Esteemed Hierophant",
+      "set": "Vendetta",
+      "type": "Unit",
+      "rarity": "Common",
+      "energy": 5,
+      "power": 0,
+      "might": 5,
+      "colors": [
+        "Green"
+      ]
+    },
+    {
+      "cardId": "VEN-026",
+      "name": "Field Musicians",
+      "set": "Vendetta",
+      "type": "Unit",
+      "rarity": "Common",
+      "energy": 4,
+      "power": 0,
+      "might": 3,
+      "colors": [
+        "Green"
+      ]
+    },
+    {
+      "cardId": "VEN-027",
+      "name": "Hand Hammer",
+      "set": "Vendetta",
+      "type": "Gear",
+      "rarity": "Common",
+      "energy": 2,
+      "power": 0,
+      "colors": [
+        "Green"
+      ]
+    },
+    {
+      "cardId": "VEN-028",
+      "name": "Mournful Witness",
+      "set": "Vendetta",
+      "type": "Unit",
+      "rarity": "Common",
+      "energy": 2,
+      "power": 0,
+      "might": 2,
+      "colors": [
+        "Green"
+      ]
+    },
+    {
+      "cardId": "VEN-029",
+      "name": "Ol' Poro",
+      "set": "Vendetta",
+      "type": "Unit",
+      "rarity": "Common",
+      "energy": 2,
+      "power": 0,
+      "might": 4,
+      "colors": [
+        "Green"
+      ]
+    },
+    {
+      "cardId": "VEN-030",
+      "name": "Serene Ascetic",
+      "set": "Vendetta",
+      "type": "Unit",
+      "rarity": "Common",
+      "energy": 3,
+      "power": 0,
+      "might": 3,
+      "colors": [
+        "Green"
+      ]
+    },
+    {
+      "cardId": "VEN-031",
+      "name": "Twilight Shroud",
+      "set": "Vendetta",
+      "type": "Spell",
+      "rarity": "Common",
+      "energy": 1,
+      "power": 0,
+      "colors": [
+        "Green"
+      ]
+    },
+    {
+      "cardId": "VEN-032",
+      "name": "Frostcoat Mother",
+      "set": "Vendetta",
+      "type": "Unit",
+      "rarity": "Uncommon",
+      "energy": 3,
+      "power": 0,
+      "might": 3,
+      "colors": [
+        "Green"
+      ]
+    },
+    {
+      "cardId": "VEN-033",
+      "name": "Pakaa Protector",
+      "set": "Vendetta",
+      "type": "Unit",
+      "rarity": "Uncommon",
+      "energy": 5,
+      "power": 0,
+      "might": 4,
+      "colors": [
+        "Green"
+      ]
+    },
+    {
+      "cardId": "VEN-034",
+      "name": "Resonating Strike",
+      "set": "Vendetta",
+      "type": "Spell",
+      "rarity": "Uncommon",
+      "energy": 2,
+      "power": 1,
+      "colors": [
+        "Green"
+      ]
+    },
+    {
+      "cardId": "VEN-035",
+      "name": "Sanction",
+      "set": "Vendetta",
+      "type": "Spell",
+      "rarity": "Uncommon",
+      "energy": 3,
+      "power": 1,
+      "colors": [
+        "Green"
+      ]
+    },
+    {
+      "cardId": "VEN-036",
+      "name": "Sandstone Chimera",
+      "set": "Vendetta",
+      "type": "Unit",
+      "rarity": "Uncommon",
+      "energy": 7,
+      "power": 2,
+      "might": 8,
+      "colors": [
+        "Green"
+      ]
+    },
+    {
+      "cardId": "VEN-037",
+      "name": "Tomb-Raider Barbara",
+      "set": "Vendetta",
+      "type": "Unit",
+      "rarity": "Uncommon",
+      "energy": 4,
+      "power": 0,
+      "might": 4,
+      "colors": [
+        "Green"
+      ]
+    },
+    {
+      "cardId": "VEN-038",
+      "name": "Akali, Silent",
+      "set": "Vendetta",
+      "type": "Champion",
+      "rarity": "Rare",
+      "energy": 4,
+      "power": 1,
+      "might": 4,
+      "colors": [
+        "Green"
+      ]
+    },
+    {
+      "cardId": "VEN-038a",
+      "name": "Akali, Silent",
+      "set": "Vendetta",
+      "type": "Champion",
+      "rarity": "Alternate Art",
+      "energy": 4,
+      "power": 1,
+      "might": 4,
+      "colors": [
+        "Green"
+      ]
+    },
+    {
+      "cardId": "VEN-039",
+      "name": "Crumbling Sands",
+      "set": "Vendetta",
+      "type": "Spell",
+      "rarity": "Rare",
+      "energy": 1,
+      "power": 1,
+      "colors": [
+        "Green"
+      ]
+    },
+    {
+      "cardId": "VEN-040",
+      "name": "Decree of Focus",
+      "set": "Vendetta",
+      "type": "Spell",
+      "rarity": "Rare",
+      "energy": 1,
+      "power": 0,
+      "colors": [
+        "Green"
+      ]
+    },
+    {
+      "cardId": "VEN-041",
+      "name": "Riven, Shattered",
+      "set": "Vendetta",
+      "type": "Champion",
+      "rarity": "Rare",
+      "energy": 3,
+      "power": 1,
+      "might": 3,
+      "colors": [
+        "Green"
+      ]
+    },
+    {
+      "cardId": "VEN-042",
+      "name": "Shen, Scourge of Shadows",
+      "set": "Vendetta",
+      "type": "Champion",
+      "rarity": "Rare",
+      "energy": 5,
+      "power": 1,
+      "might": 6,
+      "colors": [
+        "Green"
+      ]
+    },
+    {
+      "cardId": "VEN-042a",
+      "name": "Shen, Scourge of Shadows",
+      "set": "Vendetta",
+      "type": "Champion",
+      "rarity": "Alternate Art",
+      "energy": 5,
+      "power": 1,
+      "might": 6,
+      "colors": [
+        "Green"
+      ]
+    },
+    {
+      "cardId": "VEN-043",
+      "name": "Steel Paws",
+      "set": "Vendetta",
+      "type": "Unit",
+      "rarity": "Rare",
+      "energy": 1,
+      "power": 0,
+      "might": 0,
+      "colors": [
+        "Green"
+      ]
+    },
+    {
+      "cardId": "VEN-044",
+      "name": "Astral Heron",
+      "set": "Vendetta",
+      "type": "Unit",
+      "rarity": "Epic",
+      "energy": 7,
+      "power": 0,
+      "might": 7,
+      "colors": [
+        "Green"
+      ]
+    },
+    {
+      "cardId": "VEN-045",
+      "name": "Helm of Suppression",
+      "set": "Vendetta",
+      "type": "Gear",
+      "rarity": "Epic",
+      "energy": 4,
+      "power": 1,
+      "colors": [
+        "Green"
+      ]
+    },
+    {
+      "cardId": "VEN-046",
+      "name": "Nasus, Ascended",
+      "set": "Vendetta",
+      "type": "Champion",
+      "rarity": "Epic",
+      "energy": 8,
+      "power": 1,
+      "might": 8,
+      "colors": [
+        "Green"
+      ]
+    },
+    {
+      "cardId": "VEN-046a",
+      "name": "Nasus, Ascended",
+      "set": "Vendetta",
+      "type": "Champion",
+      "rarity": "Alternate Art",
+      "energy": 8,
+      "power": 1,
+      "might": 8,
+      "colors": [
+        "Green"
+      ]
+    },
+    {
+      "cardId": "VEN-047",
+      "name": "Apprentice Mage",
+      "set": "Vendetta",
+      "type": "Unit",
+      "rarity": "Common",
+      "energy": 3,
+      "power": 0,
+      "might": 3,
+      "colors": [
+        "Blue"
+      ]
+    },
+    {
+      "cardId": "VEN-048",
+      "name": "Cloud Drake",
+      "set": "Vendetta",
+      "type": "Unit",
+      "rarity": "Common",
+      "energy": 6,
+      "power": 0,
+      "might": 5,
+      "colors": [
+        "Blue"
+      ]
+    },
+    {
+      "cardId": "VEN-049",
+      "name": "Dredge Up",
+      "set": "Vendetta",
+      "type": "Spell",
+      "rarity": "Common",
+      "energy": 2,
+      "power": 0,
+      "colors": [
+        "Blue"
+      ]
+    },
+    {
+      "cardId": "VEN-050",
+      "name": "Grumpy Rockbear",
+      "set": "Vendetta",
+      "type": "Unit",
+      "rarity": "Common",
+      "energy": 4,
+      "power": 0,
+      "might": 4,
+      "colors": [
+        "Blue"
+      ]
+    },
+    {
+      "cardId": "VEN-051",
+      "name": "Iterative Design",
+      "set": "Vendetta",
+      "type": "Spell",
+      "rarity": "Common",
+      "energy": 4,
+      "power": 0,
+      "colors": [
+        "Blue"
+      ]
+    },
+    {
+      "cardId": "VEN-052",
+      "name": "Mesmerize",
+      "set": "Vendetta",
+      "type": "Spell",
+      "rarity": "Common",
+      "energy": 1,
+      "power": 1,
+      "colors": [
+        "Blue"
+      ]
+    },
+    {
+      "cardId": "VEN-053",
+      "name": "Otterpus",
+      "set": "Vendetta",
+      "type": "Unit",
+      "rarity": "Uncommon",
+      "energy": 2,
+      "power": 0,
+      "might": 2,
+      "colors": [
+        "Blue"
+      ]
+    },
+    {
+      "cardId": "VEN-054",
+      "name": "Questionable Tome",
+      "set": "Vendetta",
+      "type": "Gear",
+      "rarity": "Common",
+      "energy": 3,
+      "power": 0,
+      "colors": [
+        "Blue"
+      ]
+    },
+    {
+      "cardId": "VEN-055",
+      "name": "Applied Researchers",
+      "set": "Vendetta",
+      "type": "Unit",
+      "rarity": "Uncommon",
+      "energy": 4,
+      "power": 0,
+      "might": 4,
+      "colors": [
+        "Blue"
+      ]
+    },
+    {
+      "cardId": "VEN-056",
+      "name": "Clairvoyance",
+      "set": "Vendetta",
+      "type": "Spell",
+      "rarity": "Uncommon",
+      "energy": 7,
+      "power": 0,
+      "colors": [
+        "Blue"
+      ]
+    },
+    {
+      "cardId": "VEN-057",
+      "name": "Covert Informant",
+      "set": "Vendetta",
+      "type": "Unit",
+      "rarity": "Uncommon",
+      "energy": 3,
+      "power": 1,
+      "might": 4,
+      "colors": [
+        "Blue"
+      ]
+    },
+    {
+      "cardId": "VEN-058",
+      "name": "Patched Porobot",
+      "set": "Vendetta",
+      "type": "Unit",
+      "rarity": "Common",
+      "energy": 2,
+      "power": 0,
+      "might": 2,
+      "colors": [
+        "Blue"
+      ]
+    },
+    {
+      "cardId": "VEN-059",
+      "name": "Shock Blast",
+      "set": "Vendetta",
+      "type": "Spell",
+      "rarity": "Uncommon",
+      "energy": 3,
+      "power": 1,
+      "colors": [
+        "Blue"
+      ]
+    },
+    {
+      "cardId": "VEN-060",
+      "name": "Sky Cruiser",
+      "set": "Vendetta",
+      "type": "Unit",
+      "rarity": "Uncommon",
+      "energy": 4,
+      "power": 1,
+      "might": 3,
+      "colors": [
+        "Blue"
+      ]
+    },
+    {
+      "cardId": "VEN-061",
+      "name": "Decree of Insight",
+      "set": "Vendetta",
+      "type": "Spell",
+      "rarity": "Rare",
+      "energy": 1,
+      "power": 0,
+      "colors": [
+        "Blue"
+      ]
+    },
+    {
+      "cardId": "VEN-062",
+      "name": "Hextech Formula",
+      "set": "Vendetta",
+      "type": "Gear",
+      "rarity": "Rare",
+      "energy": 2,
+      "power": 0,
+      "colors": [
+        "Blue"
+      ]
+    },
+    {
+      "cardId": "VEN-063",
+      "name": "Nasus, Guardian of Knowledge",
+      "set": "Vendetta",
+      "type": "Champion",
+      "rarity": "Rare",
+      "energy": 5,
+      "power": 1,
+      "might": 6,
+      "colors": [
+        "Blue"
+      ]
+    },
+    {
+      "cardId": "VEN-063a",
+      "name": "Nasus, Guardian of Knowledge",
+      "set": "Vendetta",
+      "type": "Champion",
+      "rarity": "Alternate Art",
+      "energy": 5,
+      "power": 1,
+      "might": 6,
+      "colors": [
+        "Blue"
+      ]
+    },
+    {
+      "cardId": "VEN-064",
+      "name": "Plaza Guardian",
+      "set": "Vendetta",
+      "type": "Unit",
+      "rarity": "Rare",
+      "energy": 10,
+      "power": 0,
+      "might": 8,
+      "colors": [
+        "Blue"
+      ]
+    },
+    {
+      "cardId": "VEN-065",
+      "name": "Swain, Visionary",
+      "set": "Vendetta",
+      "type": "Champion",
+      "rarity": "Rare",
+      "energy": 6,
+      "power": 1,
+      "might": 6,
+      "colors": [
+        "Blue"
+      ]
+    },
+    {
+      "cardId": "VEN-066",
+      "name": "Temporal Breach",
+      "set": "Vendetta",
+      "type": "Spell",
+      "rarity": "Rare",
+      "energy": 2,
+      "power": 1,
+      "colors": [
+        "Blue"
+      ]
+    },
+    {
+      "cardId": "VEN-067",
+      "name": "Bottled Constellation",
+      "set": "Vendetta",
+      "type": "Gear",
+      "rarity": "Epic",
+      "energy": 10,
+      "power": 2,
+      "colors": [
+        "Blue"
+      ]
+    },
+    {
+      "cardId": "VEN-068",
+      "name": "Jayce, Brilliant Inventor",
+      "set": "Vendetta",
+      "type": "Champion",
+      "rarity": "Epic",
+      "energy": 6,
+      "power": 1,
+      "might": 6,
+      "colors": [
+        "Blue"
+      ]
+    },
+    {
+      "cardId": "VEN-068a",
+      "name": "Jayce, Brilliant Inventor",
+      "set": "Vendetta",
+      "type": "Champion",
+      "rarity": "Alternate Art",
+      "energy": 6,
+      "power": 1,
+      "might": 6,
+      "colors": [
+        "Blue"
+      ]
+    },
+    {
+      "cardId": "VEN-069",
+      "name": "Mel, Newly Awakened",
+      "set": "Vendetta",
+      "type": "Champion",
+      "rarity": "Epic",
+      "energy": 4,
+      "power": 1,
+      "might": 4,
+      "colors": [
+        "Blue"
+      ]
+    },
+    {
+      "cardId": "VEN-069a",
+      "name": "Mel, Newly Awakened",
+      "set": "Vendetta",
+      "type": "Champion",
+      "rarity": "Alternate Art",
+      "energy": 4,
+      "power": 1,
+      "might": 4,
+      "colors": [
+        "Blue"
+      ]
+    },
+    {
+      "cardId": "VEN-070",
+      "name": "Brutal Hunter",
+      "set": "Vendetta",
+      "type": "Unit",
+      "rarity": "Common",
+      "energy": 3,
+      "power": 1,
+      "might": 4,
+      "colors": [
+        "Orange"
+      ]
+    },
+    {
+      "cardId": "VEN-071",
+      "name": "Fretful Feline",
+      "set": "Vendetta",
+      "type": "Unit",
+      "rarity": "Common",
+      "energy": 6,
+      "power": 0,
+      "might": 5,
+      "colors": [
+        "Orange"
+      ]
+    },
+    {
+      "cardId": "VEN-072",
+      "name": "Guttural Roar",
+      "set": "Vendetta",
+      "type": "Spell",
+      "rarity": "Common",
+      "energy": 2,
+      "power": 0,
+      "colors": [
+        "Orange"
+      ]
+    },
+    {
+      "cardId": "VEN-073",
+      "name": "Jagged Cutlass",
+      "set": "Vendetta",
+      "type": "Gear",
+      "rarity": "Common",
+      "energy": 3,
+      "power": 0,
+      "colors": [
+        "Orange"
+      ]
+    },
+    {
+      "cardId": "VEN-074",
+      "name": "Legion Marauder",
+      "set": "Vendetta",
+      "type": "Unit",
+      "rarity": "Common",
+      "energy": 2,
+      "power": 0,
+      "might": 2,
+      "colors": [
+        "Orange"
+      ]
+    },
+    {
+      "cardId": "VEN-075",
+      "name": "Platewyrm Egg",
+      "set": "Vendetta",
+      "type": "Gear",
+      "rarity": "Common",
+      "energy": 3,
+      "power": 0,
+      "colors": [
+        "Orange"
+      ]
+    },
+    {
+      "cardId": "VEN-076",
+      "name": "Repair Specialist",
+      "set": "Vendetta",
+      "type": "Unit",
+      "rarity": "Common",
+      "energy": 3,
+      "power": 0,
+      "might": 3,
+      "colors": [
+        "Orange"
+      ]
+    },
+    {
+      "cardId": "VEN-077",
+      "name": "Tools of Empire",
+      "set": "Vendetta",
+      "type": "Gear",
+      "rarity": "Common",
+      "energy": 4,
+      "power": 0,
+      "colors": [
+        "Orange"
+      ]
+    },
+    {
+      "cardId": "VEN-078",
+      "name": "Baccai Witherclaw",
+      "set": "Vendetta",
+      "type": "Unit",
+      "rarity": "Uncommon",
+      "energy": 4,
+      "power": 0,
+      "might": 4,
+      "colors": [
+        "Orange"
+      ]
+    },
+    {
+      "cardId": "VEN-079",
+      "name": "Dame the Despoiler",
+      "set": "Vendetta",
+      "type": "Unit",
+      "rarity": "Uncommon",
+      "energy": 5,
+      "power": 0,
+      "might": 5,
+      "colors": [
+        "Orange"
+      ]
+    },
+    {
+      "cardId": "VEN-080",
+      "name": "Noxian Demolitionist",
+      "set": "Vendetta",
+      "type": "Unit",
+      "rarity": "Uncommon",
+      "energy": 2,
+      "power": 0,
+      "might": 1,
+      "colors": [
+        "Orange"
+      ]
+    },
+    {
+      "cardId": "VEN-081",
+      "name": "Onslaught",
+      "set": "Vendetta",
+      "type": "Spell",
+      "rarity": "Uncommon",
+      "energy": 4,
+      "power": 0,
+      "colors": [
+        "Orange"
+      ]
+    },
+    {
+      "cardId": "VEN-082",
+      "name": "Profiteer",
+      "set": "Vendetta",
+      "type": "Unit",
+      "rarity": "Uncommon",
+      "energy": 4,
+      "power": 0,
+      "might": 4,
+      "colors": [
+        "Orange"
+      ]
+    },
+    {
+      "cardId": "VEN-083",
+      "name": "Rampage",
+      "set": "Vendetta",
+      "type": "Spell",
+      "rarity": "Uncommon",
+      "energy": 3,
+      "power": 0,
+      "colors": [
+        "Orange"
+      ]
+    },
+    {
+      "cardId": "VEN-084",
+      "name": "Ambessa, The Wolf",
+      "set": "Vendetta",
+      "type": "Champion",
+      "rarity": "Rare",
+      "energy": 4,
+      "power": 0,
+      "might": 4,
+      "colors": [
+        "Orange"
+      ]
+    },
+    {
+      "cardId": "VEN-084a",
+      "name": "Ambessa, The Wolf",
+      "set": "Vendetta",
+      "type": "Champion",
+      "rarity": "Alternate Art",
+      "energy": 4,
+      "power": 0,
+      "might": 4,
+      "colors": [
+        "Orange"
+      ]
+    },
+    {
+      "cardId": "VEN-085",
+      "name": "Decree of Strength",
+      "set": "Vendetta",
+      "type": "Spell",
+      "rarity": "Rare",
+      "energy": 1,
+      "power": 0,
+      "colors": [
+        "Orange"
+      ]
+    },
+    {
+      "cardId": "VEN-086",
+      "name": "Gangplank, Naval",
+      "set": "Vendetta",
+      "type": "Champion",
+      "rarity": "Rare",
+      "energy": 6,
+      "power": 0,
+      "might": 6,
+      "colors": [
+        "Orange"
+      ]
+    },
+    {
+      "cardId": "VEN-087",
+      "name": "Hextech Disc",
+      "set": "Vendetta",
+      "type": "Gear",
+      "rarity": "Rare",
+      "energy": 4,
+      "power": 1,
+      "colors": [
+        "Orange"
+      ]
+    },
+    {
+      "cardId": "VEN-088",
+      "name": "Jayce, Hammer in Hand",
+      "set": "Vendetta",
+      "type": "Champion",
+      "rarity": "Rare",
+      "energy": 4,
+      "power": 1,
+      "might": 5,
+      "colors": [
+        "Orange"
+      ]
+    },
+    {
+      "cardId": "VEN-088a",
+      "name": "Jayce, Hammer in Hand",
+      "set": "Vendetta",
+      "type": "Champion",
+      "rarity": "Alternate Art",
+      "energy": 4,
+      "power": 1,
+      "might": 5,
+      "colors": [
+        "Orange"
+      ]
+    },
+    {
+      "cardId": "VEN-089",
+      "name": "Wild Claw",
+      "set": "Vendetta",
+      "type": "Spell",
+      "rarity": "Rare",
+      "energy": 7,
+      "power": 1,
+      "colors": [
+        "Orange"
+      ]
+    },
+    {
+      "cardId": "VEN-090",
+      "name": "Cataclysmic Duel",
+      "set": "Vendetta",
+      "type": "Spell",
+      "rarity": "Epic",
+      "energy": 8,
+      "power": 3,
+      "colors": [
+        "Orange"
+      ]
+    },
+    {
+      "cardId": "VEN-091",
+      "name": "Corrupted Dragon",
+      "set": "Vendetta",
+      "type": "Unit",
+      "rarity": "Epic",
+      "energy": 10,
+      "power": 2,
+      "might": 10,
+      "colors": [
+        "Orange"
+      ]
+    },
+    {
+      "cardId": "VEN-092",
+      "name": "Renekton, Brute",
+      "set": "Vendetta",
+      "type": "Champion",
+      "rarity": "Epic",
+      "energy": 5,
+      "power": 0,
+      "might": 4,
+      "colors": [
+        "Orange"
+      ]
+    },
+    {
+      "cardId": "VEN-092a",
+      "name": "Renekton, Brute",
+      "set": "Vendetta",
+      "type": "Champion",
+      "rarity": "Alternate Art",
+      "energy": 5,
+      "power": 0,
+      "might": 4,
+      "colors": [
+        "Orange"
+      ]
+    },
+    {
+      "cardId": "VEN-093",
+      "name": "Kinkou Lifeblade",
+      "set": "Vendetta",
+      "type": "Unit",
+      "rarity": "Common",
+      "energy": 4,
+      "power": 0,
+      "might": 4,
+      "colors": [
+        "Purple"
+      ]
+    },
+    {
+      "cardId": "VEN-094",
+      "name": "Mask Mother",
+      "set": "Vendetta",
+      "type": "Unit",
+      "rarity": "Uncommon",
+      "energy": 3,
+      "power": 0,
+      "might": 3,
+      "colors": [
+        "Purple"
+      ]
+    },
+    {
+      "cardId": "VEN-095",
+      "name": "Shadow Order Disciple",
+      "set": "Vendetta",
+      "type": "Unit",
+      "rarity": "Common",
+      "energy": 2,
+      "power": 0,
+      "might": 2,
+      "colors": [
+        "Purple"
+      ]
+    },
+    {
+      "cardId": "VEN-096",
+      "name": "Shadowblade Lurker",
+      "set": "Vendetta",
+      "type": "Unit",
+      "rarity": "Common",
+      "energy": 5,
+      "power": 0,
+      "might": 5,
+      "colors": [
+        "Purple"
+      ]
+    },
+    {
+      "cardId": "VEN-097",
+      "name": "Spiderling",
+      "set": "Vendetta",
+      "type": "Unit",
+      "rarity": "Common",
+      "energy": 3,
+      "power": 0,
+      "might": 1,
+      "colors": [
+        "Purple"
+      ]
+    },
+    {
+      "cardId": "VEN-098",
+      "name": "Stargazer",
+      "set": "Vendetta",
+      "type": "Unit",
+      "rarity": "Common",
+      "energy": 5,
+      "power": 0,
+      "might": 4,
+      "colors": [
+        "Purple"
+      ]
+    },
+    {
+      "cardId": "VEN-099",
+      "name": "Tornado Warrior",
+      "set": "Vendetta",
+      "type": "Unit",
+      "rarity": "Common",
+      "energy": 3,
+      "power": 0,
+      "might": 3,
+      "colors": [
+        "Purple"
+      ]
+    },
+    {
+      "cardId": "VEN-100",
+      "name": "Up from the Deep",
+      "set": "Vendetta",
+      "type": "Spell",
+      "rarity": "Common",
+      "energy": 3,
+      "power": 0,
+      "colors": [
+        "Purple"
+      ]
+    },
+    {
+      "cardId": "VEN-101",
+      "name": "Gust Monk",
+      "set": "Vendetta",
+      "type": "Unit",
+      "rarity": "Uncommon",
+      "energy": 2,
+      "power": 0,
+      "might": 2,
+      "colors": [
+        "Purple"
+      ]
+    },
+    {
+      "cardId": "VEN-102",
+      "name": "Ravenbloom Prefect",
+      "set": "Vendetta",
+      "type": "Unit",
+      "rarity": "Common",
+      "energy": 3,
+      "power": 0,
+      "might": 3,
+      "colors": [
+        "Purple"
+      ]
+    },
+    {
+      "cardId": "VEN-103",
+      "name": "Shadows of the Past",
+      "set": "Vendetta",
+      "type": "Spell",
+      "rarity": "Uncommon",
+      "energy": 3,
+      "power": 1,
+      "colors": [
+        "Purple"
+      ]
+    },
+    {
+      "cardId": "VEN-104",
+      "name": "Tail-Cloaked Matriarch",
+      "set": "Vendetta",
+      "type": "Unit",
+      "rarity": "Uncommon",
+      "energy": 4,
+      "power": 0,
+      "might": 4,
+      "colors": [
+        "Purple"
+      ]
+    },
+    {
+      "cardId": "VEN-105",
+      "name": "Twilight Step",
+      "set": "Vendetta",
+      "type": "Spell",
+      "rarity": "Uncommon",
+      "energy": 2,
+      "power": 1,
+      "colors": [
+        "Purple"
+      ]
+    },
+    {
+      "cardId": "VEN-106",
+      "name": "Wind and Ghosts",
+      "set": "Vendetta",
+      "type": "Spell",
+      "rarity": "Uncommon",
+      "energy": 3,
+      "power": 1,
+      "colors": [
+        "Purple"
+      ]
+    },
+    {
+      "cardId": "VEN-107",
+      "name": "Decree of Discord",
+      "set": "Vendetta",
+      "type": "Spell",
+      "rarity": "Rare",
+      "energy": 1,
+      "power": 1,
+      "colors": [
+        "Purple"
+      ]
+    },
+    {
+      "cardId": "VEN-108",
+      "name": "Forgotten Relic",
+      "set": "Vendetta",
+      "type": "Gear",
+      "rarity": "Rare",
+      "energy": 5,
+      "power": 0,
+      "colors": [
+        "Purple"
+      ]
+    },
+    {
+      "cardId": "VEN-109",
+      "name": "Illaoi, Prophet of the Great Kraken",
+      "set": "Vendetta",
+      "type": "Champion",
+      "rarity": "Rare",
+      "energy": 6,
+      "power": 0,
+      "might": 4,
+      "colors": [
+        "Purple"
+      ]
+    },
+    {
+      "cardId": "VEN-110",
+      "name": "Mel, Defiant Soul",
+      "set": "Vendetta",
+      "type": "Champion",
+      "rarity": "Rare",
+      "energy": 5,
+      "power": 0,
+      "might": 4,
+      "colors": [
+        "Purple"
+      ]
+    },
+    {
+      "cardId": "VEN-110a",
+      "name": "Mel, Defiant Soul",
+      "set": "Vendetta",
+      "type": "Champion",
+      "rarity": "Alternate Art",
+      "energy": 5,
+      "power": 0,
+      "might": 4,
+      "colors": [
+        "Purple"
+      ]
+    },
+    {
+      "cardId": "VEN-111",
+      "name": "Minah Swiftfoot",
+      "set": "Vendetta",
+      "type": "Unit",
+      "rarity": "Rare",
+      "energy": 6,
+      "power": 1,
+      "might": 6,
+      "colors": [
+        "Purple"
+      ]
+    },
+    {
+      "cardId": "VEN-112",
+      "name": "Zed, Without a Sound",
+      "set": "Vendetta",
+      "type": "Champion",
+      "rarity": "Rare",
+      "energy": 5,
+      "power": 0,
+      "might": 5,
+      "colors": [
+        "Purple"
+      ]
+    },
+    {
+      "cardId": "VEN-112a",
+      "name": "Zed, Without a Sound",
+      "set": "Vendetta",
+      "type": "Champion",
+      "rarity": "Alternate Art",
+      "energy": 5,
+      "power": 0,
+      "might": 5,
+      "colors": [
+        "Purple"
+      ]
+    },
+    {
+      "cardId": "VEN-113",
+      "name": "Kennen, Storm of Shuriken",
+      "set": "Vendetta",
+      "type": "Champion",
+      "rarity": "Epic",
+      "energy": 3,
+      "power": 1,
+      "might": 4,
+      "colors": [
+        "Purple"
+      ]
+    },
+    {
+      "cardId": "VEN-113a",
+      "name": "Kennen, Storm of Shuriken",
+      "set": "Vendetta",
+      "type": "Champion",
+      "rarity": "Alternate Art",
+      "energy": 3,
+      "power": 1,
+      "might": 4,
+      "colors": [
+        "Purple"
+      ]
+    },
+    {
+      "cardId": "VEN-114",
+      "name": "Kharox",
+      "set": "Vendetta",
+      "type": "Unit",
+      "rarity": "Epic",
+      "energy": 6,
+      "power": 0,
+      "might": 5,
+      "colors": [
+        "Purple"
+      ]
+    },
+    {
+      "cardId": "VEN-115",
+      "name": "Ocean Drake",
+      "set": "Vendetta",
+      "type": "Unit",
+      "rarity": "Epic",
+      "energy": 8,
+      "power": 2,
+      "might": 7,
+      "colors": [
+        "Purple"
+      ]
+    },
+    {
+      "cardId": "VEN-116",
+      "name": "Dragon Form",
+      "set": "Vendetta",
+      "type": "Spell",
+      "rarity": "Uncommon",
+      "energy": 3,
+      "power": 0,
+      "colors": [
+        "Yellow"
+      ]
+    },
+    {
+      "cardId": "VEN-117",
+      "name": "Disciple of Shen",
+      "set": "Vendetta",
+      "type": "Unit",
+      "rarity": "Common",
+      "energy": 2,
+      "power": 0,
+      "might": 1,
+      "colors": [
+        "Yellow"
+      ]
+    },
+    {
+      "cardId": "VEN-118",
+      "name": "Horns of the Dragon",
+      "set": "Vendetta",
+      "type": "Unit",
+      "rarity": "Common",
+      "energy": 6,
+      "power": 0,
+      "might": 6,
+      "colors": [
+        "Yellow"
+      ]
+    },
+    {
+      "cardId": "VEN-119",
+      "name": "Keeper of Law",
+      "set": "Vendetta",
+      "type": "Unit",
+      "rarity": "Common",
+      "energy": 5,
+      "power": 1,
+      "might": 5,
+      "colors": [
+        "Yellow"
+      ]
+    },
+    {
+      "cardId": "VEN-120",
+      "name": "Masa, Crashing Thunder",
+      "set": "Vendetta",
+      "type": "Unit",
+      "rarity": "Common",
+      "energy": 4,
+      "power": 0,
+      "might": 4,
+      "colors": [
+        "Yellow"
+      ]
+    },
+    {
+      "cardId": "VEN-121",
+      "name": "Reluctant Leader",
+      "set": "Vendetta",
+      "type": "Unit",
+      "rarity": "Common",
+      "energy": 4,
+      "power": 1,
+      "might": 3,
+      "colors": [
+        "Yellow"
+      ]
+    },
+    {
+      "cardId": "VEN-122",
+      "name": "Solari Sunhawk",
+      "set": "Vendetta",
+      "type": "Unit",
+      "rarity": "Common",
+      "energy": 3,
+      "power": 0,
+      "might": 3,
+      "colors": [
+        "Yellow"
+      ]
+    },
+    {
+      "cardId": "VEN-123",
+      "name": "Soulspinner",
+      "set": "Vendetta",
+      "type": "Unit",
+      "rarity": "Common",
+      "energy": 3,
+      "power": 0,
+      "might": 3,
+      "colors": [
+        "Yellow"
+      ]
+    },
+    {
+      "cardId": "VEN-124",
+      "name": "Escaped Grayback",
+      "set": "Vendetta",
+      "type": "Unit",
+      "rarity": "Uncommon",
+      "energy": 3,
+      "power": 0,
+      "might": 3,
+      "colors": [
+        "Yellow"
+      ]
+    },
+    {
+      "cardId": "VEN-125",
+      "name": "Hungry Wolf",
+      "set": "Vendetta",
+      "type": "Unit",
+      "rarity": "Uncommon",
+      "energy": 4,
+      "power": 0,
+      "might": 4,
+      "colors": [
+        "Yellow"
+      ]
+    },
+    {
+      "cardId": "VEN-126",
+      "name": "Ki Barrier",
+      "set": "Vendetta",
+      "type": "Spell",
+      "rarity": "Uncommon",
+      "energy": 2,
+      "power": 1,
+      "colors": [
+        "Yellow"
+      ]
+    },
+    {
+      "cardId": "VEN-127",
+      "name": "Lacerate",
+      "set": "Vendetta",
+      "type": "Spell",
+      "rarity": "Common",
+      "energy": 2,
+      "power": 1,
+      "colors": [
+        "Yellow"
+      ]
+    },
+    {
+      "cardId": "VEN-128",
+      "name": "Noxian Emissary",
+      "set": "Vendetta",
+      "type": "Unit",
+      "rarity": "Uncommon",
+      "energy": 2,
+      "power": 0,
+      "might": 2,
+      "colors": [
+        "Yellow"
+      ]
+    },
+    {
+      "cardId": "VEN-129",
+      "name": "Sacred Protector",
+      "set": "Vendetta",
+      "type": "Unit",
+      "rarity": "Uncommon",
+      "energy": 4,
+      "power": 1,
+      "might": 6,
+      "colors": [
+        "Yellow"
+      ]
+    },
+    {
+      "cardId": "VEN-130",
+      "name": "Aurok General",
+      "set": "Vendetta",
+      "type": "Unit",
+      "rarity": "Rare",
+      "energy": 5,
+      "power": 0,
+      "might": 5,
+      "colors": [
+        "Yellow"
+      ]
+    },
+    {
+      "cardId": "VEN-131",
+      "name": "Decree of Unity",
+      "set": "Vendetta",
+      "type": "Spell",
+      "rarity": "Rare",
+      "energy": 2,
+      "power": 1,
+      "colors": [
+        "Yellow"
+      ]
+    },
+    {
+      "cardId": "VEN-132",
+      "name": "Fallen Feline",
+      "set": "Vendetta",
+      "type": "Unit",
+      "rarity": "Rare",
+      "energy": 2,
+      "power": 1,
+      "might": 3,
+      "colors": [
+        "Yellow"
+      ]
+    },
+    {
+      "cardId": "VEN-133",
+      "name": "Glowstone",
+      "set": "Vendetta",
+      "type": "Gear",
+      "rarity": "Rare",
+      "energy": 2,
+      "power": 0,
+      "colors": [
+        "Yellow"
+      ]
+    },
+    {
+      "cardId": "VEN-134",
+      "name": "Kayle, Justified",
+      "set": "Vendetta",
+      "type": "Champion",
+      "rarity": "Rare",
+      "energy": 3,
+      "power": 0,
+      "might": 3,
+      "colors": [
+        "Yellow"
+      ]
+    },
+    {
+      "cardId": "VEN-135",
+      "name": "Kennen, Keeper of Balance",
+      "set": "Vendetta",
+      "type": "Champion",
+      "rarity": "Rare",
+      "energy": 3,
+      "power": 0,
+      "might": 2,
+      "colors": [
+        "Yellow"
+      ]
+    },
+    {
+      "cardId": "VEN-135a",
+      "name": "Kennen, Keeper of Balance",
+      "set": "Vendetta",
+      "type": "Champion",
+      "rarity": "Alternate Art",
+      "energy": 3,
+      "power": 0,
+      "might": 2,
+      "colors": [
+        "Yellow"
+      ]
+    },
+    {
+      "cardId": "VEN-136",
+      "name": "Ambessa, Respected and Feared",
+      "set": "Vendetta",
+      "type": "Champion",
+      "rarity": "Epic",
+      "energy": 5,
+      "power": 0,
+      "might": 5,
+      "colors": [
+        "Yellow"
+      ]
+    },
+    {
+      "cardId": "VEN-136a",
+      "name": "Ambessa, Respected and Feared",
+      "set": "Vendetta",
+      "type": "Champion",
+      "rarity": "Alternate Art",
+      "energy": 5,
+      "power": 0,
+      "might": 5,
+      "colors": [
+        "Yellow"
+      ]
+    },
+    {
+      "cardId": "VEN-137",
+      "name": "Shady Spectacles",
+      "set": "Vendetta",
+      "type": "Gear",
+      "rarity": "Epic",
+      "energy": 4,
+      "power": 0,
+      "colors": [
+        "Yellow"
+      ]
+    },
+    {
+      "cardId": "VEN-138",
+      "name": "Shen, Leader of the Kinkou Order",
+      "set": "Vendetta",
+      "type": "Champion",
+      "rarity": "Epic",
+      "energy": 6,
+      "power": 2,
+      "might": 7,
+      "colors": [
+        "Yellow"
+      ]
+    },
+    {
+      "cardId": "VEN-138a",
+      "name": "Shen, Leader of the Kinkou Order",
+      "set": "Vendetta",
+      "type": "Champion",
+      "rarity": "Alternate Art",
+      "energy": 6,
+      "power": 2,
+      "might": 7,
+      "colors": [
+        "Yellow"
+      ]
+    },
+    {
+      "cardId": "VEN-139",
+      "name": "Akali, Rogue Assassin",
+      "set": "Vendetta",
+      "type": "Legend",
+      "rarity": "Rare",
+      "colors": ["Red", "Green"]
+    },
+    {
+      "cardId": "VEN-140",
+      "name": "Shuriken Flip",
+      "set": "Vendetta",
+      "type": "Spell",
+      "rarity": "Epic",
+      "energy": 1,
+      "power": 1,
+      "colors": ["Red","Green"]
+    },
+    {
+      "cardId": "VEN-141",
+      "name": "Renekton, Butcher of the Sands",
+      "set": "Vendetta",
+      "type": "Legend",
+      "rarity": "Rare",
+      "colors": ["Red","Orange"]
+    },
+    {
+      "cardId": "VEN-142",
+      "name": "Dominus",
+      "set": "Vendetta",
+      "type": "Spell",
+      "rarity": "Epic",
+      "energy": 4,
+      "power": 0,
+      "colors": ["Red","Orange"]
+    },
+    {
+      "cardId": "VEN-143",
+      "name": "Zed, Master of Shadows",
+      "set": "Vendetta",
+      "type": "Legend",
+      "rarity": "Rare",
+      "colors": ["Red","Purple"]
+    },
+    {
+      "cardId": "VEN-144",
+      "name": "Death Mark",
+      "set": "Vendetta",
+      "type": "Spell",
+      "rarity": "Epic",
+      "energy": 2,
+      "power": 1,
+      "colors": ["Red","Purple"]
+    },
+    {
+      "cardId": "VEN-145",
+      "name": "Nasus, Curator of the Sands",
+      "set": "Vendetta",
+      "type": "Legend",
+      "rarity": "Rare",
+      "colors": ["Green","Blue"]
+    },
+    {
+      "cardId": "VEN-146",
+      "name": "Siphoning Strike",
+      "set": "Vendetta",
+      "type": "Spell",
+      "rarity": "Epic",
+      "energy": 4,
+      "power": 0,
+      "colors": [ "Green","Blue"]
+    },
+    {
+      "cardId": "VEN-147",
+      "name": "Shen, Eye of Twilight",
+      "set": "Vendetta",
+      "type": "Legend",
+      "rarity": "Rare",
+      "colors": ["Green","Yellow"]
+    },
+    {
+      "cardId": "VEN-148",
+      "name": "Shadow Dash",
+      "set": "Vendetta",
+      "type": "Spell",
+      "rarity": "Epic",
+      "energy": 2,
+      "power": 1,
+      "colors": ["Green","Yellow"]
+    },
+    {
+      "cardId": "VEN-149",
+      "name": "Jayce, Defender of Tomorrow",
+      "set": "Vendetta",
+      "type": "Legend",
+      "rarity": "Rare",
+      "colors": ["Blue","Orange"]
+    },
+    {
+      "cardId": "VEN-150",
+      "name": "Acceleration Gate",
+      "set": "Vendetta",
+      "type": "Spell",
+      "rarity": "Epic",
+      "energy": 3,
+      "power": 1,
+      "colors": ["Blue","Orange"]
+    },
+    {
+      "cardId": "VEN-151",
+      "name": "Mel, Soul's Reflection",
+      "set": "Vendetta",
+      "type": "Legend",
+      "rarity": "Rare",
+      "colors": ["Blue","Purple"]
+    },
+    {
+      "cardId": "VEN-152",
+      "name": "Rebuttal",
+      "set": "Vendetta",
+      "type": "Spell",
+      "rarity": "Epic",
+      "energy": 1,
+      "power": 1,
+      "colors": ["Blue","Purple"]
+    },
+    {
+      "cardId": "VEN-153",
+      "name": "Ambessa, Matriarch of War",
+      "set": "Vendetta",
+      "type": "Legend",
+      "rarity": "Rare",
+      "colors": ["Orange","Yellow"]
+    },
+    {
+      "cardId": "VEN-154",
+      "name": "Public Execution",
+      "set": "Vendetta",
+      "type": "Spell",
+      "rarity": "Epic",
+      "energy": 2,
+      "power": 1,
+      "colors": ["Orange","Yellow"]
+    },
+    {
+      "cardId": "VEN-155",
+      "name": "Kennen, Heart of the Tempest",
+      "set": "Vendetta",
+      "type": "Legend",
+      "rarity": "Rare",
+      "colors": ["Yellow", "Purple"]
+    },
+    {
+      "cardId": "VEN-156",
+      "name": "Lightning Rush",
+      "set": "Vendetta",
+      "type": "Spell",
+      "rarity": "Epic",
+      "energy": 1,
+      "power": 0,
+      "colors": ["Yellow", "Purple"]
+    },
+    {
+      "cardId": "VEN-157",
+      "name": "Dragon Roost",
+      "set": "Vendetta",
+      "type": "Battlefield",
+      "rarity": "Uncommon"
+    },
+    {
+      "cardId": "VEN-158",
+      "name": "Heisho, Shell of the World",
+      "set": "Vendetta",
+      "type": "Battlefield",
+      "rarity": "Uncommon"
+    },
+    {
+      "cardId": "VEN-159",
+      "name": "Kinkou Temple",
+      "set": "Vendetta",
+      "type": "Battlefield",
+      "rarity": "Uncommon"
+    },
+    {
+      "cardId": "VEN-160",
+      "name": "Mystic Vortex",
+      "set": "Vendetta",
+      "type": "Battlefield",
+      "rarity": "Uncommon"
+    },
+    {
+      "cardId": "VEN-161",
+      "name": "Piltovan Forge",
+      "set": "Vendetta",
+      "type": "Battlefield",
+      "rarity": "Uncommon"
+    },
+    {
+      "cardId": "VEN-162",
+      "name": "Protective Sands",
+      "set": "Vendetta",
+      "type": "Battlefield",
+      "rarity": "Uncommon"
+    },
+    {
+      "cardId": "VEN-163",
+      "name": "Risen Altar",
+      "set": "Vendetta",
+      "type": "Battlefield",
+      "rarity": "Uncommon"
+    },
+    {
+      "cardId": "VEN-164",
+      "name": "Sandswept Tomb",
+      "set": "Vendetta",
+      "type": "Battlefield",
+      "rarity": "Uncommon"
+    },
+    {
+      "cardId": "VEN-165",
+      "name": "Shadow Temple",
+      "set": "Vendetta",
+      "type": "Battlefield",
+      "rarity": "Uncommon"
+    },
+    {
+      "cardId": "VEN-166",
+      "name": "Threshold of the Gray",
+      "set": "Vendetta",
+      "type": "Battlefield",
+      "rarity": "Uncommon"
+    },
+    {
+      "cardId": "VEN-167",
+      "name": "Vi, Destructive",
+      "set": "Vendetta",
+      "type": "Unit",
+      "rarity": "Overnumbered",
+      "energy": 2,
+      "power": 1,
+      "might": 3,
+      "colors": [
+        "Red"
+      ]
+    },
+    {
+      "cardId": "VEN-168",
+      "name": "Jinx, Demolitionist",
+      "set": "Vendetta",
+      "type": "Unit",
+      "rarity": "Overnumbered",
+      "energy": 3,
+      "power": 1,
+      "might": 4,
+      "colors": [
+        "Red"
+      ]
+    },
+    {
+      "cardId": "VEN-169",
+      "name": "Zed, From the Shadows",
+      "set": "Vendetta",
+      "type": "Unit",
+      "rarity": "Overnumbered",
+      "energy": 4,
+      "power": 1,
+      "might": 4,
+      "colors": [
+        "Red"
+      ]
+    },
+    {
+      "cardId": "VEN-170",
+      "name": "Shen, Scourge of Shadows",
+      "set": "Vendetta",
+      "type": "Unit",
+      "rarity": "Overnumbered",
+      "energy": 5,
+      "power": 1,
+      "might": 6,
+      "colors": [
+        "Green"
+      ]
+    },
+    {
+      "cardId": "VEN-171",
+      "name": "Riven, Shattered",
+      "set": "Vendetta",
+      "type": "Unit",
+      "rarity": "Overnumbered",
+      "energy": 3,
+      "power": 1,
+      "might": 3,
+      "colors": [
+        "Green"
+      ]
+    },
+    {
+      "cardId": "VEN-172",
+      "name": "Draven, Showboat",
+      "set": "Vendetta",
+      "type": "Unit",
+      "rarity": "Overnumbered",
+      "energy": 5,
+      "power": 1,
+      "might": 3,
+      "colors": [
+        "Red"
+      ]
+    },
+    {
+      "cardId": "VEN-173",
+      "name": "Swain, Visionary",
+      "set": "Vendetta",
+      "type": "Unit",
+      "rarity": "Overnumbered",
+      "energy": 6,
+      "power": 1,
+      "might": 6,
+      "colors": [
+        "Blue"
+      ]
+    },
+    {
+      "cardId": "VEN-174",
+      "name": "Irelia, Fervent",
+      "set": "Vendetta",
+      "type": "Unit",
+      "rarity": "Overnumbered",
+      "energy": 5,
+      "power": 0,
+      "might": 4,
+      "colors": [
+        "Green"
+      ]
+    },
+    {
+      "cardId": "VEN-175",
+      "name": "Jayce, Man of Progress",
+      "set": "Vendetta",
+      "type": "Unit",
+      "rarity": "Overnumbered",
+      "energy": 4,
+      "power": 0,
+      "might": 4,
+      "colors": [
+        "Blue"
+      ]
+    },
+    {
+      "cardId": "VEN-176",
+      "name": "Viktor, Innovator",
+      "set": "Vendetta",
+      "type": "Unit",
+      "rarity": "Overnumbered",
+      "energy": 4,
+      "power": 1,
+      "might": 3,
+      "colors": [
+        "Blue"
+      ]
+    },
+    {
+      "cardId": "VEN-177",
+      "name": "Renekton, Brute",
+      "set": "Vendetta",
+      "type": "Unit",
+      "rarity": "Overnumbered",
+      "energy": 5,
+      "power": 0,
+      "might": 4,
+      "colors": [
+        "Orange"
+      ]
+    },
+    {
+      "cardId": "VEN-178",
+      "name": "Nasus, Guardian of Knowledge",
+      "set": "Vendetta",
+      "type": "Unit",
+      "rarity": "Overnumbered",
+      "energy": 5,
+      "power": 1,
+      "might": 6,
+      "colors": [
+        "Blue"
+      ]
+    },
+    {
+      "cardId": "VEN-179",
+      "name": "Rengar, Trophy Hunter",
+      "set": "Vendetta",
+      "type": "Unit",
+      "rarity": "Overnumbered",
+      "energy": 5,
+      "power": 1,
+      "might": 6,
+      "colors": [
+        "Orange"
+      ]
+    },
+    {
+      "cardId": "VEN-180",
+      "name": "Kha'Zix, Evolving Hunter",
+      "set": "Vendetta",
+      "type": "Unit",
+      "rarity": "Overnumbered",
+      "energy": 5,
+      "power": 1,
+      "might": 5,
+      "colors": [
+        "Orange"
+      ]
+    },
+    {
+      "cardId": "VEN-181",
+      "name": "Gangplank, Naval",
+      "set": "Vendetta",
+      "type": "Unit",
+      "rarity": "Overnumbered",
+      "energy": 6,
+      "power": 0,
+      "might": 6,
+      "colors": [
+        "Orange"
+      ]
+    },
+    {
+      "cardId": "VEN-182",
+      "name": "Illaoi, Prophet of the Great Kraken",
+      "set": "Vendetta",
+      "type": "Unit",
+      "rarity": "Overnumbered",
+      "energy": 6,
+      "power": 0,
+      "might": 4,
+      "colors": [
+        "Purple"
+      ]
+    },
+    {
+      "cardId": "VEN-183",
+      "name": "Diana, No Longer Human",
+      "set": "Vendetta",
+      "type": "Unit",
+      "rarity": "Overnumbered",
+      "energy": 4,
+      "power": 1,
+      "might": 3,
+      "colors": [
+        "Purple"
+      ]
+    },
+    {
+      "cardId": "VEN-184",
+      "name": "Leona, Determined",
+      "set": "Vendetta",
+      "type": "Unit",
+      "rarity": "Overnumbered",
+      "energy": 4,
+      "power": 1,
+      "might": 4,
+      "colors": [
+        "Yellow"
+      ]
+    },
+    {
+      "cardId": "VEN-185",
+      "name": "Kayle, Justified",
+      "set": "Vendetta",
+      "type": "Unit",
+      "rarity": "Overnumbered",
+      "energy": 3,
+      "power": 0,
+      "might": 3,
+      "colors": [
+        "Yellow"
+      ]
+    },
+    {
+      "cardId": "VEN-186",
+      "name": "Morgana, Vindictive",
+      "set": "Vendetta",
+      "type": "Unit",
+      "rarity": "Overnumbered",
+      "energy": 5,
+      "power": 1,
+      "might": 5,
+      "colors": [
+        "Red"
+      ]
+    },
+    {
+      "cardId": "VEN-187",
+      "name": "Ambessa, Respected and Feared",
+      "set": "Vendetta",
+      "type": "Unit",
+      "rarity": "Overnumbered",
+      "energy": 5,
+      "power": 0,
+      "might": 5,
+      "colors": [
+        "Yellow"
+      ]
+    },
+    {
+      "cardId": "VEN-188",
+      "name": "Mel, Defiant Soul",
+      "set": "Vendetta",
+      "type": "Unit",
+      "rarity": "Overnumbered",
+      "energy": 5,
+      "power": 0,
+      "might": 4,
+      "colors": [
+        "Purple"
+      ]
+    },
+    {
+      "cardId": "VEN-189",
+      "name": "Akali, Rogue Assassin",
+      "set": "Vendetta",
+      "type": "Legend",
+      "rarity": "Overnumbered",
+      "colors": ["Red","Green"]
+    },
+    {
+      "cardId": "VEN-190",
+      "name": "Renekton, Butcher of the Sands",
+      "set": "Vendetta",
+      "type": "Legend",
+      "rarity": "Overnumbered",
+      "colors": ["Red","Orange"]
+    },
+    {
+      "cardId": "VEN-191",
+      "name": "Zed, Master of Shadows",
+      "set": "Vendetta",
+      "type": "Legend",
+      "rarity": "Overnumbered",
+      "colors": ["Red","Purple"]
+    },
+    {
+      "cardId": "VEN-192",
+      "name": "Nasus, Curator of the Sands",
+      "set": "Vendetta",
+      "type": "Legend",
+      "rarity": "Overnumbered",
+      "colors": ["Green","Blue"]
+    },
+    {
+      "cardId": "VEN-193",
+      "name": "Shen, Eye of Twilight",
+      "set": "Vendetta",
+      "type": "Legend",
+      "rarity": "Overnumbered",
+      "colors": ["Green","Yellow"]
+    },
+    {
+      "cardId": "VEN-194",
+      "name": "Jayce, Defender of Tomorrow",
+      "set": "Vendetta",
+      "type": "Legend",
+      "rarity": "Overnumbered",
+      "colors": ["Blue","Orange"]
+    },
+    {
+      "cardId": "VEN-195",
+      "name": "Mel, Soul's Reflection",
+      "set": "Vendetta",
+      "type": "Legend",
+      "rarity": "Overnumbered",
+      "colors": ["Blue","Purple"]
+    },
+    {
+      "cardId": "VEN-196",
+      "name": "Ambessa, Matriarch of War",
+      "set": "Vendetta",
+      "type": "Legend",
+      "rarity": "Overnumbered",
+      "colors": ["Orange","Yellow"]
+    },
+    {
+      "cardId": "VEN-197",
+      "name": "Kennen, Heart of the Tempest",
+      "set": "Vendetta",
+      "type": "Legend",
+      "rarity": "Overnumbered",
+      "colors": ["Yellow","Purple"]
     }
 ]

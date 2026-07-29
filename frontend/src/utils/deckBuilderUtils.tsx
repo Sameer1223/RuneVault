@@ -105,8 +105,8 @@ export function addCardToDeckUtil(deck: FullDeck, cardId: string, target: 'main'
 
     // Try target zone first, then overflow to the other (only from main → side)
     const zones = target === 'side'
-        ? [{ deck: sideDeck, key: 'Side' as const, max: 8 }]
-        : [{ deck: mainDeck, key: 'Main' as const, max: 39 }, { deck: sideDeck, key: 'Side' as const, max: 8 }];
+        ? [{ deck: sideDeck, key: 'Side' as const, max: 10 }]
+        : [{ deck: mainDeck, key: 'Main' as const, max: 39 }, { deck: sideDeck, key: 'Side' as const, max: 10 }];
 
     for (const zone of zones) {
         if (Object.values(zone.deck).reduce((a: number, b: number) => a + b, 0) < zone.max) {

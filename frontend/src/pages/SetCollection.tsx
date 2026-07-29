@@ -1,11 +1,22 @@
 import { useParams, useLocation, useNavigate } from "react-router-dom";
-import { useMemo, useState, useEffect } from "react";
+import { useMemo, useState, useEffect, useRef } from "react";
+import { Minus, Plus, LayoutGrid } from "lucide-react";
 import cards from "@/data/cards.json";
 import setData from "../data/sets.json";
 import CardTile from "@/components/collection/CardTile";
 import { useUserId } from "@/hooks/useUserId";
 import { useAuthFetch } from "@/hooks/useAuthFetch";
-import { API_BASE_URL, RARITY_TYPES } from "@/lib/constants";
+import { API_BASE_URL, RARITY_TYPES, RARITY_COLOR_CLASS } from "@/lib/constants";
+
+const MIN_COLUMNS = 3;
+const MAX_COLUMNS = 10;
+const DEFAULT_COLUMNS = 6;
+
+function readStoredColumns(): number {
+    const stored = Number(localStorage.getItem("collectionColumns"));
+    if (Number.isFinite(stored) && stored >= MIN_COLUMNS && stored <= MAX_COLUMNS) return stored;
+    return DEFAULT_COLUMNS;
+}
 
 export default function SetCollection() {
     const { setId } = useParams();
@@ -34,10 +45,19 @@ export default function SetCollection() {
         if (matchKey) displayName = sData[matchKey].name;
     }
     const [search, setSearch] = useState("");
+    const [columns, setColumns] = useState(readStoredColumns);
+
+    useEffect(() => {
+        localStorage.setItem("collectionColumns", String(columns));
+    }, [columns]);
 
     // User collection from API
     const [userCollection, setUserCollection] = useState<Record<string, number>>({});
     const [foilCollection, setFoilCollection] = useState<Record<string, number>>({});
+
+    // Tracks the latest in-flight request per card+type so a slow/out-of-order
+    // response can't clobber a newer optimistic update when clicking fast.
+    const requestSeqRef = useRef<Record<string, number>>({});
 
     // Fetch initial user collection
     useEffect(() => {
@@ -93,6 +113,10 @@ export default function SetCollection() {
     async function sendUpdate(cardId: string, delta: number, isFoil: boolean = false) {
         if (!userId) return;
 
+        const key = `${isFoil ? "foil" : "normal"}:${cardId}`;
+        const seq = (requestSeqRef.current[key] ?? 0) + 1;
+        requestSeqRef.current[key] = seq;
+
         try {
             const res = await authFetch(`${API_BASE_URL}/collection/${encodeURIComponent(userId)}`, {
                 method: "PATCH",
@@ -103,10 +127,23 @@ export default function SetCollection() {
                 throw new Error("Failed to sync collection");
             }
 
-            // Reconcile with server
             const serverData = await res.json();
-            setUserCollection(serverData.collection || {});
-            setFoilCollection(serverData.foil_collection || {});
+
+            // A newer request for this same card has since been fired - its own
+            // response will reconcile the count, so applying this stale one now
+            // would clobber the newer optimistic update and cause a visible flicker.
+            if (requestSeqRef.current[key] !== seq) return;
+
+            // Reconcile only this card's count (not the whole map) so a response
+            // for one card can't stomp on optimistic edits made to other cards.
+            const authoritative = isFoil ? serverData.foil_collection?.[cardId] : serverData.collection?.[cardId];
+            const setter = isFoil ? setFoilCollection : setUserCollection;
+            setter(prev => {
+                const next = { ...prev };
+                if (!authoritative) delete next[cardId];
+                else next[cardId] = authoritative;
+                return next;
+            });
 
         } catch (err) {
             console.error(err);
@@ -166,7 +203,10 @@ export default function SetCollection() {
             }
         });
 
-        return { totals, collectedCounts };
+        const totalAll = Object.values(totals).reduce((a, b) => a + b, 0);
+        const collectedAll = Object.values(collectedCounts).reduce((a, b) => a + b, 0);
+
+        return { totals, collectedCounts, totalAll, collectedAll };
     }, [viewCards]);
 
     const filtered = viewCards.filter(card =>
@@ -197,6 +237,22 @@ export default function SetCollection() {
                         {releaseDate && <span className="text-sm text-gray-200/80">Release: {releaseDate}</span>}
                         {totalCards != null && <span className="text-sm text-gray-200/80">Total Cards: {totalCards}</span>}
                     </div>
+                    {rarityStats.totalAll > 0 && (
+                        <div className="mt-4 max-w-md">
+                            <div className="flex justify-between text-xs text-gray-300 mb-1">
+                                <span>Collection progress</span>
+                                <span className="font-semibold text-[#caa368]">
+                                    {rarityStats.collectedAll}/{rarityStats.totalAll}
+                                </span>
+                            </div>
+                            <div className="h-1.5 w-full bg-black/40 rounded-full overflow-hidden border border-white/10">
+                                <div
+                                    className="h-full bg-gradient-to-r from-[#caa368] to-[#e8c98a] rounded-full transition-all duration-500"
+                                    style={{ width: `${(rarityStats.collectedAll / rarityStats.totalAll) * 100}%` }}
+                                />
+                            </div>
+                        </div>
+                    )}
                 </div>
             </header>
 
@@ -204,7 +260,7 @@ export default function SetCollection() {
                 <div className="bg-transparent mb-6">
                     <div className="w-full max-w-6xl mx-auto px-6">
                         <div className="flex flex-col md:flex-row items-center gap-4 bg-gradient-to-r from-white/3 via-white/2 to-white/3 border border-white/8 rounded-3xl p-4 shadow-md">
-                            <div className="flex items-center gap-3 flex-1">
+                            <div className="flex items-center gap-3 flex-1 w-full md:w-auto">
                                 <div className="p-2 bg-black/40 rounded-lg">
                                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#ddd" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="opacity-90"><circle cx="11" cy="11" r="7"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
                                 </div>
@@ -216,15 +272,29 @@ export default function SetCollection() {
                                 />
                             </div>
 
+                            <div className="flex items-center gap-2 bg-black/30 px-2 py-2 rounded-lg border border-white/6 shrink-0">
+                                <LayoutGrid className="w-4 h-4 text-gray-400 ml-1" />
+                                <button
+                                    onClick={() => setColumns(c => Math.max(MIN_COLUMNS, c - 1))}
+                                    disabled={columns <= MIN_COLUMNS}
+                                    title="Fewer columns (bigger cards)"
+                                    className="w-6 h-6 flex items-center justify-center bg-zinc-800 hover:bg-zinc-700 text-zinc-300 hover:text-white rounded disabled:opacity-30 disabled:hover:bg-zinc-800 transition-colors"
+                                >
+                                    <Minus className="w-3.5 h-3.5" />
+                                </button>
+                                <span className="text-sm text-gray-200 w-4 text-center font-medium">{columns}</span>
+                                <button
+                                    onClick={() => setColumns(c => Math.min(MAX_COLUMNS, c + 1))}
+                                    disabled={columns >= MAX_COLUMNS}
+                                    title="More columns (smaller cards)"
+                                    className="w-6 h-6 flex items-center justify-center bg-zinc-800 hover:bg-[#caa368] text-zinc-300 hover:text-zinc-900 rounded disabled:opacity-30 disabled:hover:bg-zinc-800 disabled:hover:text-zinc-300 transition-colors"
+                                >
+                                    <Plus className="w-3.5 h-3.5" />
+                                </button>
+                            </div>
+
                             <div className="flex gap-3 flex-wrap justify-end">
                                 {rarityTypes.map((r) => {
-                                    const colorClass =
-                                        r === "Common" ? "text-gray-300" :
-                                        r === "Uncommon" ? "text-green-400" :
-                                        r === "Rare" ? "text-blue-400" :
-                                        r === "Epic" ? "text-purple-400" :
-                                        "text-pink-400";
-
                                     const collectedNum = rarityStats.collectedCounts[r] ?? 0;
                                     const totalNum = rarityStats.totals[r] ?? 0;
 
@@ -236,7 +306,7 @@ export default function SetCollection() {
                                                 className="h-5 w-5 rounded-sm object-cover"
                                             />
                                             <div className="text-sm text-gray-200">
-                                                <div className={`font-semibold ${colorClass}`}>{r}</div>
+                                                <div className={`font-semibold ${RARITY_COLOR_CLASS[r] ?? "text-gray-300"}`}>{r}</div>
                                                 <div className="text-gray-400">{collectedNum}/{totalNum}</div>
                                             </div>
                                         </div>
@@ -247,7 +317,7 @@ export default function SetCollection() {
                     </div>
                 </div>
 
-                <div className="grid sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
+                <div className="grid gap-4" style={{ gridTemplateColumns: `repeat(${columns}, minmax(0, 1fr))` }}>
                     {filtered.map(card => (
                         <CardTile
                             key={card.cardId}
@@ -258,8 +328,9 @@ export default function SetCollection() {
                                 updateCollection(card.cardId, delta)
                             }
                             onChangeFoil={(delta: number) =>
-                                updateCollection(card.cardId, delta)
+                                updateCollection(card.cardId, delta, true)
                             }
+                            compact={columns >= 8}
                         />
                     ))}
                 </div>
