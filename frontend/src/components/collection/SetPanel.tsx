@@ -42,6 +42,8 @@ export default function SetPanel({
             <img
                 src={backgroundImage}
                 alt={name}
+                loading="lazy"
+                decoding="async"
                 className="absolute inset-0 h-full w-full object-cover opacity-30 blur-[2px] scale-110"
             />
 
@@ -49,6 +51,8 @@ export default function SetPanel({
             <img
                 src={backgroundImage}
                 alt={`${name} set art`}
+                loading="lazy"
+                decoding="async"
                 className="absolute inset-0 h-full w-full object-cover scale-[1.08] saturate-[1.12] contrast-[1.08] brightness-[0.96] transition-transform duration-500 group-hover:scale-[1.16]"
             />
 

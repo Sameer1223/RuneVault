@@ -14,6 +14,7 @@ interface DropdownSelectProps {
   options: string[];
   defaultValue?: string;
   onChange?: (value: string) => void; // ✅ Renamed to match your parent component usage
+  fullWidth?: boolean;
 }
 
 export default function DropdownSelect({
@@ -22,6 +23,7 @@ export default function DropdownSelect({
   options,
   defaultValue,
   onChange,
+  fullWidth = false,
 }: DropdownSelectProps) {
   const [selected, setSelected] = useState(defaultValue || options[0]);
 
@@ -31,30 +33,34 @@ export default function DropdownSelect({
   };
 
   return (
-    <div className="flex flex-col gap-0.5 w-fit">
-      <label className="text-xs font-medium text-neutral-50">{label}</label>
+    <div className={`flex flex-col gap-0.5 ${fullWidth ? "w-full" : "w-fit"}`}>
+      {label && (
+        <label className="text-xs font-semibold uppercase tracking-wide text-zinc-500">
+          {label}
+        </label>
+      )}
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
           <Button
             variant="outline"
-            className="flex items-center justify-between w-40 h-7 px-2 text-xs bg-zinc-900 border-zinc-700 text-gray-200 hover:bg-zinc-800"
+            className={`flex items-center justify-between ${fullWidth ? "w-full" : "w-40"} h-7 px-2 text-xs bg-zinc-900 border-zinc-700 text-zinc-200 hover:border-[#caa368]/50 hover:bg-zinc-800 hover:text-white transition-colors`}
           >
             <span className="flex items-center gap-1.5 truncate">
-              {Icon && <Icon className="w-3 h-3 text-amber-400 shrink-0" />}
+              {Icon && <Icon className="w-3 h-3 text-[#caa368] shrink-0" />}
               <span className="truncate">{selected}</span>
             </span>
           </Button>
         </DropdownMenuTrigger>
         <DropdownMenuContent
-          className="w-40 bg-zinc-900 border border-zinc-700 text-gray-200 text-xs"
+          className={`${fullWidth ? "w-[var(--radix-dropdown-menu-trigger-width)]" : "w-40"} bg-zinc-900 border border-zinc-700 text-zinc-200 text-xs scroll-styled`}
           align="start"
         >
           {options.map((option) => (
             <DropdownMenuItem
               key={option}
               onClick={() => handleSelect(option)}
-              className={`${
-                option === selected ? "bg-zinc-800 text-amber-400" : ""
+              className={`hover:bg-zinc-800 hover:text-white transition-colors ${
+                option === selected ? "bg-zinc-800 text-[#caa368]" : ""
               }`}
             >
               {option}

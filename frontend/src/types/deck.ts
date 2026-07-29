@@ -28,6 +28,7 @@ export interface FullDeck {
     name: string;
     deck_data: DeckInnerData;
     lastUpdated?: string;
+    notes?: string | null;
     [key: string]: unknown;
 }
 
@@ -35,7 +36,6 @@ export interface FullDeck {
 export interface DeckListFilters {
     sortBy: "name" | "date";
     sortOrder: "asc" | "desc";
-    showFavourites: boolean;
     selectedColors: string[];
     selectedLegend: string | null;
 }

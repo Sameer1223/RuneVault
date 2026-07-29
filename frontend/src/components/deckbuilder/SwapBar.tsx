@@ -16,7 +16,7 @@ export default function SwapBar({ mainCount, sideCount, onMoveToSide, onMoveToMa
     if (mainCount === 0 && sideCount === 0) return null;
 
     return (
-        <div className="absolute bottom-4 left-1/2 -translate-x-1/2 z-50 flex items-center gap-3 bg-[#1a1a2e] border border-zinc-700 rounded-lg px-5 py-3 shadow-2xl">
+        <div className="fixed lg:absolute bottom-4 left-1/2 -translate-x-1/2 z-50 flex flex-wrap items-center justify-center gap-2 sm:gap-3 bg-[#1a1a2e] border border-zinc-700 rounded-lg px-3 sm:px-5 py-2 sm:py-3 shadow-2xl max-w-[95vw]">
             {/* Main selections label */}
             {mainCount > 0 && (
                 <span className="text-sm text-blue-400 font-medium">
@@ -32,7 +32,7 @@ export default function SwapBar({ mainCount, sideCount, onMoveToSide, onMoveToMa
                     className={`flex items-center gap-1.5 text-white text-sm font-medium px-3 py-1.5 rounded transition-colors ${
                         canMoveToSide ? 'bg-blue-600 hover:bg-blue-500' : 'bg-zinc-600 opacity-50 cursor-not-allowed'
                     }`}
-                    title={!canMoveToSide ? 'Side deck is full (max 8)' : undefined}
+                    title={!canMoveToSide ? 'Side deck is full (max 10)' : undefined}
                 >
                     Move to Side <ArrowRight size={14} />
                 </button>

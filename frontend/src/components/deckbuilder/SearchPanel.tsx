@@ -1,5 +1,4 @@
 import { useState, useEffect, useCallback } from "react";
-import { Button } from "../ui/button";
 import { Filter, Layers, RotateCcw } from "lucide-react";
 import DropdownSelect from "../ui/DropdownSelect";
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
@@ -85,107 +84,93 @@ export default function SearchPanel({
 
 
   return (
-    <div>
+    <div className="flex flex-col gap-2">
       <CardSearchBar
         onSearch={(value) => updateFilters({ query: value })}
       />
 
       {/* Dropdowns + Sliders */}
-      <div className="flex gap-6">
-        <div className="flex items-center gap-2">
-          <div className="flex flex-col gap-2">
-            {/* Rarity Dropdown */}
-            <div className={isBattlefield ? "opacity-50 pointer-events-none" : ""}>
-              <DropdownSelect
-                key={`rarity-${dropdownKeys}`}
-                label="Rarity"
-                icon={Filter}
-                options={[...RARITY_OPTIONS]}
-                defaultValue={isBattlefield ? "Uncommon" : "All"}
-                onChange={(val) => updateFilters({ rarityFilter: val })}
-              />
+      <div className="flex flex-col sm:flex-row gap-2">
+        {/* Dropdowns + Colors */}
+        <div className="flex flex-col gap-1.5">
+          {/* Rarity Dropdown */}
+          <div className={isBattlefield ? "opacity-50 pointer-events-none" : ""}>
+            <DropdownSelect
+              key={`rarity-${dropdownKeys}`}
+              label="Rarity"
+              icon={Filter}
+              options={[...RARITY_OPTIONS]}
+              defaultValue={isBattlefield ? "Uncommon" : "All"}
+              onChange={(val) => updateFilters({ rarityFilter: val })}
+            />
+          </div>
+
+          {/* Set Dropdown */}
+          <div>
+            <DropdownSelect
+              key={`set-${dropdownKeys}`}
+              label="Set"
+              icon={Filter}
+              options={availableSets}
+              defaultValue="All"
+              onChange={(val) => updateFilters({ setFilter: val })}
+            />
+          </div>
+
+          {/* Type Dropdown */}
+          <div className={isNonCardType ? "opacity-50 pointer-events-none" : ""}>
+            <DropdownSelect
+              key={`type-${dropdownKeys}`}
+              label="Type"
+              icon={Layers}
+              options={["All", "Champion", "Unit", "Spell", "Gear"]}
+              defaultValue="All"
+              onChange={(val) => updateFilters({ cardType: val })}
+            />
+          </div>
+
+          {/* Color Buttons + Reset */}
+          <div className="flex items-center justify-between w-full gap-2 flex-wrap">
+            <div className="flex gap-2 flex-wrap">
+              {legendColors.map((color, i) => {
+                const disabled = isBattlefield;
+                const active = filters.colorFilter.includes(color);
+                return (
+                  <button
+                    key={i}
+                    onClick={() => !disabled && handleColorClick(color)}
+                    aria-pressed={active}
+                    className={`rounded-full w-7 h-7 border-2 transition-all duration-150 ${
+                      active
+                        ? "border-white scale-110 shadow-[0_0_0_2px_rgba(202,163,104,0.5)]"
+                        : "border-zinc-700 opacity-80 hover:opacity-100 hover:border-zinc-500"
+                    } ${disabled ? "opacity-30 cursor-not-allowed pointer-events-none" : ""}`}
+                    style={{ backgroundColor: color }}
+                  />
+                );
+              })}
+
+              {!legendColors.length && (
+                <>
+                  <div className="rounded-full w-7 h-7 bg-zinc-800 border border-zinc-700" />
+                  <div className="rounded-full w-7 h-7 bg-zinc-800 border border-zinc-700" />
+                </>
+              )}
             </div>
 
-            {/* Set Dropdown */}
-            <div>
-              <DropdownSelect
-                key={`set-${dropdownKeys}`}
-                label="Set"
-                icon={Filter}
-                options={availableSets}
-                defaultValue="All"
-                onChange={(val) => updateFilters({ setFilter: val })}
-              />
-            </div>
-
-            {/* Type Dropdown */}
-            <div className={isNonCardType ? "opacity-50 pointer-events-none" : ""}>
-              <DropdownSelect
-                key={`type-${dropdownKeys}`}
-                label="Type"
-                icon={Layers}
-                options={["All", "Champion", "Unit", "Spell", "Gear"]}
-                defaultValue="All"
-                onChange={(val) => updateFilters({ cardType: val })}
-              />
-            </div>
-
-            {/* Color Buttons + Reset */}
-            <div className="flex items-center justify-between w-full gap-2 mt-2">
-              <div className="flex gap-2">
-                {legendColors.map((color, i) => {
-                  const disabled = isBattlefield;
-                  return (
-                    <Button
-                      key={i}
-                      variant="outline"
-                      size="icon"
-                      onClick={() => !disabled && handleColorClick(color)}
-                      className={`rounded-full w-8 h-8 border-2 transition-all ${
-                        filters.colorFilter.includes(color)
-                          ? "scale-110 border-white"
-                          : "opacity-80 hover:opacity-100"
-                      } ${disabled ? "opacity-30 cursor-not-allowed pointer-events-none" : ""}`}
-                      style={{
-                        backgroundColor: color,
-                      }}
-                    />
-                  );
-                })}
-
-                {!legendColors.length && (
-                  <>
-                    <Button
-                      variant="outline"
-                      size="icon"
-                      disabled
-                      className="rounded-full w-8 h-8 bg-zinc-800 border-zinc-700"
-                    />
-                    <Button
-                      variant="outline"
-                      size="icon"
-                      disabled
-                      className="rounded-full w-8 h-8 bg-zinc-800 border-zinc-700"
-                    />
-                  </>
-                )}
-              </div>
-
-              <Button
-                variant="outline"
-                size="icon"
-                onClick={handleResetFilters}
-                className="rounded-full w-8 h-8 border-2 border-zinc-700 bg-zinc-900 hover:bg-zinc-800"
-              >
-                <RotateCcw className="w-4 h-4 text-gray-300" />
-              </Button>
-            </div>
+            <button
+              onClick={handleResetFilters}
+              title="Reset filters"
+              className="flex items-center justify-center w-7 h-7 rounded-md border border-zinc-700 bg-zinc-900 hover:border-[#caa368]/50 hover:bg-zinc-800 transition-colors"
+            >
+              <RotateCcw className="w-3.5 h-3.5 text-zinc-400" />
+            </button>
           </div>
         </div>
 
         {/* Sliders */}
         <div
-          className={`flex flex-col p-4 rounded-md w-full space-y-2 transition-opacity ${
+          className={`flex flex-col gap-1.5 w-full transition-opacity ${
             isNonCardType ? "opacity-40 pointer-events-none" : ""
           }`}
         >
@@ -225,18 +210,18 @@ export default function SearchPanel({
           onValueChange={(value) => {
             if (value) updateFilters({ selectedType: value });
           }}
-          className="flex gap-2 justify-center items-center"
+          className="flex flex-wrap gap-2 justify-center items-center"
         >
           {["Legends", "Battlefields", "Cards", "Runes"].map((label) => (
             <ToggleGroupItem
               key={label}
               value={label}
-              className="flex-1 min-w-[110px] text-center
-                bg-zinc-900 text-white border border-zinc-700
-                hover:bg-zinc-800 py-0 h-[24px] text-xs
-                rounded-xl transition-colors
-                data-[state=on]:bg-amber-400 data-[state=on]:text-gray-900 
-                data-[state=on]:hover:bg-amber-300"
+              className="flex-1 min-w-[90px] sm:min-w-[110px] text-center
+                bg-zinc-900 text-zinc-200 border border-zinc-700
+                hover:bg-zinc-800 hover:border-[#caa368]/40 hover:text-white py-0 h-6 text-xs font-medium
+                rounded-md transition-colors
+                data-[state=on]:bg-[#caa368] data-[state=on]:text-zinc-900 data-[state=on]:border-[#caa368] data-[state=on]:font-semibold
+                data-[state=on]:hover:bg-[#d9b57a]"
             >
               {label}
             </ToggleGroupItem>

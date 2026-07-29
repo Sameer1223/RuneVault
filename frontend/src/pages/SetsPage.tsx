@@ -132,11 +132,11 @@ export default function Sets() {
     }, [search, sortBy, sortOrder, userSetProgress]);
 
     return (
-        <div className="h-[calc(100vh-4rem)] mt-16 flex flex-col bg-[#121212] text-white">
+        <div className="h-[calc(100vh-4rem)] mt-16 flex flex-col bg-[#121418] text-white">
             {/* Header */}
-            <div className="relative flex items-center justify-center h-64 bg-[url('/leagueworld.jpg')] bg-cover bg-center">
-                <div className="absolute inset-0 bg-black/50" />
-                <h1 className="relative text-8xl font-semibold z-10">
+            <div className="relative flex items-center justify-center h-40 sm:h-52 lg:h-64 w-full bg-[url('/leagueworld.jpg')] bg-cover bg-center shrink-0">
+                <div className="absolute inset-0 bg-gradient-to-t from-[#121418] via-black/60 to-black/40" />
+                <h1 className="relative z-10 text-white text-4xl sm:text-6xl lg:text-8xl font-semibold">
                     Collection
                 </h1>
             </div>

@@ -44,6 +44,13 @@
 }
 
 :root {
+  /* Deck builder card widths: scale with min(vw, vh) so cards shrink to fit
+     whichever viewport dimension is tighter, floored/ceilinged for readability.
+     Coefficients are calibrated so each equals its legacy fixed px size at 1920x1080. */
+  --dc-card-w: clamp(52px, min(4.84vw, 8.61vh), 140px);   /* 93x130 baseline */
+  --dc-legend-w: clamp(100px, min(9.38vw, 16.67vh), 260px); /* 180x251 baseline */
+  --dc-bf-w: clamp(70px, min(6.77vw, 12.04vh), 190px);      /* 130x93 baseline (landscape) */
+
   --radius: 0.625rem;
   --background: oklch(1 0 0);
   --foreground: oklch(0.145 0 0);

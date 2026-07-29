@@ -1,7 +1,8 @@
 import MainDeck from "../components/deckbuilder/MainDeck";
 import SideDeck from "../components/deckbuilder/SideDeck";
 import RunesDeck from "../components/deckbuilder/RunesDeck";
-import { Button } from "../components/ui/button";
+import CollectionModeToggle from "../components/deckbuilder/CollectionModeToggle";
+import { Pencil, Download, Link2, Trash2, ChevronLeft, ChevronRight, ClipboardList } from "lucide-react";
 import { useLocation, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import type { FullDeck } from "@/types/deck";
@@ -10,6 +11,12 @@ import { motion, AnimatePresence } from "framer-motion";
 import { API_BASE_URL } from "@/lib/constants";
 import cardData from "../data/cards.json";
 import { useDeckStats } from "@/hooks/useDeckStats";
+import { useSwappableStat } from "@/hooks/useSwappableStat";
+import { useCollection } from "@/hooks/useCollection";
+import { isDeckIllegal } from "@/utils/deckStatusUtils";
+import { computeMissingCards, formatMissingCardsList } from "@/utils/missingCardsUtil";
+import StatusTag from "@/components/decks/StatusTag";
+import Tooltip from "@/components/ui/Tooltip";
 import { 
     BarChart, 
     Bar, 
@@ -32,8 +39,11 @@ export default function DeckViewer() {
     const [hoveredCard, setHoveredCard] = useState<string | null>(null);
     const [notification, setNotification] = useState<string | null>(null);
     const [activeTab, setActiveTab] = useState<"viewer" | "stats">("viewer");
+    const [collectionMode, setCollectionMode] = useState(false);
+    const { ownedCount } = useCollection();
 
-    const { stats, energyData, powerData, typeData, typeColors } = useDeckStats(deck ? deck.deck_data : null);
+    const { stats, handProbabilities, energyData, powerData, typeData, typeColors } = useDeckStats(deck ? deck.deck_data : null);
+    const { current: handStat, next: nextHandStat, prev: prevHandStat, index: handStatIndex, count: handStatCount } = useSwappableStat(handProbabilities);
 
     useEffect(() => {
         if (notification) {
@@ -76,47 +86,97 @@ export default function DeckViewer() {
             setNotification("Link copied to clipboard!");
         }
     };
-      
+
+    const handleCopyMissing = () => {
+        if (!deck) return;
+        const missing = computeMissingCards(deck.deck_data, ownedCount);
+        if (missing.length === 0) {
+            setNotification("You own every card in this deck!");
+            return;
+        }
+        navigator.clipboard.writeText(formatMissingCardsList(missing));
+        setNotification(`Missing cards list copied to clipboard (${missing.length} card${missing.length === 1 ? "" : "s"}).`);
+    };
+
     if (loading) return <div className="text-white p-4">Loading deck...</div>;
     if (!deck) return <div className="text-white p-4">No deck data found.</div>;
 
     return (
-        <div className="h-[calc(100vh-4rem)] mt-16 flex flex-col bg-[#121212] text-white gap-3 px-6 py-4">
-            <div className="py-1 text-3xl font-semibold">{deck.name}</div>
+        <div className="min-h-[calc(100vh-4rem)] lg:h-[calc(100vh-4rem)] lg:overflow-hidden mt-16 flex flex-col bg-[#121212] text-white gap-3 px-3 sm:px-6 py-4">
+            <div className="py-1 flex flex-wrap items-center gap-3">
+                <span className="text-xl sm:text-2xl lg:text-3xl font-semibold truncate">{deck.name}</span>
+                {isDeckIllegal(deck.deck_data) && <StatusTag label="Illegal" color="red" />}
+                <div className="flex items-center gap-2 ml-auto shrink-0">
+                    {collectionMode && (
+                        <button
+                            onClick={handleCopyMissing}
+                            title="Copy a list of the cards you're missing to your clipboard"
+                            className="flex items-center gap-1.5 sm:gap-2 px-2 sm:px-3 py-1.5 rounded-md text-xs sm:text-sm font-medium bg-zinc-900 border border-zinc-700 hover:border-[#caa368]/50 hover:bg-zinc-800 text-zinc-300 hover:text-white transition-colors"
+                        >
+                            <ClipboardList className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
+                            <span className="hidden sm:inline whitespace-nowrap">Copy Missing</span>
+                        </button>
+                    )}
+                    <CollectionModeToggle enabled={collectionMode} onChange={setCollectionMode} />
+                </div>
+            </div>
 
-            <div id="Deck-Builder" className="flex flex-1 gap-3 min-h-0">
-                <div id="Cards-Panel" className="flex flex-col flex-[3] gap-3 min-h-0">
-                    <div id="Main-Deck" className="bg-[#1E1E1E] flex-[16] min-h-0 overflow-hidden">
-                        <MainDeck 
-                            legend={deck.deck_data.Legend} 
-                            battlefields={deck.deck_data.Battlefields} 
-                            chosenChampion={deck.deck_data.ChosenChampion} 
+            <div id="Deck-Builder" className="flex flex-col lg:flex-row flex-1 gap-3 min-h-0">
+                <div id="Cards-Panel" className="flex flex-col lg:flex-[3] gap-3 min-h-0">
+                    <div id="Main-Deck" className="bg-[#1E1E1E] min-h-[420px] lg:min-h-0 lg:flex-[16] overflow-y-auto">
+                        <MainDeck
+                            legend={deck.deck_data.Legend}
+                            battlefields={deck.deck_data.Battlefields}
+                            chosenChampion={deck.deck_data.ChosenChampion}
                             main={deck.deck_data.Main}
                             onHoverCard={setHoveredCard}
                             onLeaveCard={() => {}}
+                            collectionMode={collectionMode}
+                            ownedCount={ownedCount}
                         />
                     </div>
 
-                    <div id="Side-Deck-Stats" className="flex flex-[4] gap-3 min-h-0">
-                        <div id="Side-Deck" className="bg-[#1E1E1E] p-2 overflow-auto">
-                            <SideDeck side={deck.deck_data.Side} onHoverCard={setHoveredCard} onLeaveCard={() => {}}/>
+                    <div id="Side-Deck-Stats" className="flex flex-col sm:flex-row gap-3 min-h-0 lg:flex-[4]">
+                        <div id="Side-Deck" className="bg-[#1E1E1E] p-2 overflow-auto w-full sm:w-auto">
+                            <SideDeck
+                                side={deck.deck_data.Side}
+                                onHoverCard={setHoveredCard}
+                                onLeaveCard={() => {}}
+                                collectionMode={collectionMode}
+                                ownedCount={ownedCount}
+                            />
                         </div>
-                        <div id="Runes-Deck" className="bg-[#1E1E1E] p-2 overflow-auto">
+                        <div id="Runes-Deck" className="bg-[#1E1E1E] p-2 overflow-auto w-full sm:w-auto">
                             <RunesDeck runes={deck.deck_data.Runes}/>
                         </div>
                     </div>
 
-                    <div id="Options-Panel" className="bg-[#121212] flex-[1] p-3">
-                        <div className="flex gap-5">
-                            <Button>Edit</Button>
-                            <Button>Export</Button>
-                            <Button onClick={handleCopyLink}>Copy Link</Button>
-                            <Button>Delete</Button>
+                    <div id="Options-Panel" className="bg-[#121212] lg:flex-[1] p-3">
+                        <div className="flex flex-wrap gap-2 sm:gap-3">
+                            <button className="flex items-center gap-1.5 bg-[#caa368] hover:bg-[#d9b57a] text-zinc-900 font-semibold px-3 py-1.5 rounded-md text-sm transition-colors">
+                                <Pencil className="w-3.5 h-3.5" />
+                                Edit
+                            </button>
+                            <button className="flex items-center gap-1.5 bg-zinc-900 border border-zinc-700 hover:border-[#caa368]/50 hover:bg-zinc-800 text-zinc-300 hover:text-white font-medium px-3 py-1.5 rounded-md text-sm transition-colors">
+                                <Download className="w-3.5 h-3.5" />
+                                Export
+                            </button>
+                            <button
+                                onClick={handleCopyLink}
+                                className="flex items-center gap-1.5 bg-zinc-900 border border-zinc-700 hover:border-[#caa368]/50 hover:bg-zinc-800 text-zinc-300 hover:text-white font-medium px-3 py-1.5 rounded-md text-sm transition-colors"
+                            >
+                                <Link2 className="w-3.5 h-3.5" />
+                                Copy Link
+                            </button>
+                            <button className="flex items-center gap-1.5 bg-transparent border border-red-500/40 text-red-400 hover:bg-red-500/10 hover:border-red-500/60 font-medium px-3 py-1.5 rounded-md text-sm transition-colors">
+                                <Trash2 className="w-3.5 h-3.5" />
+                                Delete
+                            </button>
                         </div>
                     </div>
                 </div>
 
-                <div id="Right-Panel" className="flex flex-col flex-[1.3] gap-3 min-h-0">
+                <div id="Right-Panel" className="flex flex-col lg:flex-[1.3] gap-3 min-h-[520px] lg:min-h-0">
                     <div id="Tabs" className="flex gap-2">
                         <button 
                             onClick={() => setActiveTab("viewer")}
@@ -140,7 +200,7 @@ export default function DeckViewer() {
                         </button>
                     </div>
 
-                    <div id="Tab-Content" className="flex-1 bg-zinc-900/40 rounded-b-lg p-4 flex flex-col items-center overflow-hidden">
+                    <div id="Tab-Content" className="flex-1 min-h-0 bg-zinc-900/40 rounded-b-lg p-4 flex flex-col items-center overflow-y-auto">
                         {activeTab === "viewer" ? (
                             <div id="Card Viewer" className="flex flex-col items-center gap-4 w-full h-full">
                                 <div className="flex items-center justify-center flex-1 w-full min-h-0">
@@ -180,12 +240,50 @@ export default function DeckViewer() {
                                             </span>
                                         </div>
                                     ))}
+
+                                    {handStat && (
+                                        <div className="flex flex-col gap-1 border-b border-zinc-800 pb-2">
+                                            <div className="flex items-center gap-1">
+                                                <button
+                                                    type="button"
+                                                    onClick={prevHandStat}
+                                                    title="Previous stat"
+                                                    className="flex items-center justify-center w-4 h-4 rounded text-zinc-500 hover:text-[#caa368] hover:bg-zinc-800 transition-colors shrink-0"
+                                                >
+                                                    <ChevronLeft className="w-3 h-3" />
+                                                </button>
+                                                {handStat.description ? (
+                                                    <Tooltip content={handStat.description} className="min-w-0 truncate">
+                                                        <span className="text-xs text-[#caa368] uppercase font-bold tracking-tighter truncate cursor-help decoration-dotted underline-offset-4 hover:underline">
+                                                            {handStat.label}
+                                                        </span>
+                                                    </Tooltip>
+                                                ) : (
+                                                    <span className="text-xs text-[#caa368] uppercase font-bold tracking-tighter truncate">
+                                                        {handStat.label}
+                                                    </span>
+                                                )}
+                                                <button
+                                                    type="button"
+                                                    onClick={nextHandStat}
+                                                    title="Next stat"
+                                                    className="flex items-center justify-center w-4 h-4 rounded text-zinc-500 hover:text-[#caa368] hover:bg-zinc-800 transition-colors shrink-0"
+                                                >
+                                                    <ChevronRight className="w-3 h-3" />
+                                                </button>
+                                                <span className="text-[10px] text-zinc-500 ml-auto shrink-0">{handStatIndex + 1}/{handStatCount}</span>
+                                            </div>
+                                            <span className="text-base text-white font-medium">
+                                                {handStat.value}
+                                            </span>
+                                        </div>
+                                    )}
                                 </div>
                             </div>
                         ) : (
-                            <div id="Detailed Stats" className="w-full h-full flex flex-col gap-3 overflow-hidden p-1">
+                            <div id="Detailed Stats" className="w-full h-full flex flex-col gap-3 overflow-y-auto p-1">
                                 {/* Bar Charts Section */}
-                                <div className="flex-1 min-h-0 grid grid-cols-1 gap-3">
+                                <div className="flex-1 min-h-0 grid grid-cols-1 auto-rows-[minmax(160px,1fr)] gap-3">
                                     <div className="bg-zinc-900/60 p-3 rounded-xl border border-zinc-800/50 flex flex-col">
                                         <h3 className="text-[#caa368] text-xs font-bold uppercase mb-2 flex items-center gap-2 shrink-0">
                                             <div className="w-1 h-3 bg-[#caa368]/50 rounded-full" />

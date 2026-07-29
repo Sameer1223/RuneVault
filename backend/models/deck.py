@@ -13,8 +13,9 @@ class Deck(db.Model):
     format = db.Column(db.String(50))
 
     last_updated = db.Column(db.DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
-    
+
     deck_data = db.Column(JSONB, nullable=False)
+    notes = db.Column(db.Text, nullable=True)
 
     def to_dict(self):
         return {
@@ -24,4 +25,5 @@ class Deck(db.Model):
             "format": self.format,
             "lastUpdated": self.last_updated.isoformat() if self.last_updated else None,
             "deck_data": self.deck_data,
+            "notes": self.notes,
         }

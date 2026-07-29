@@ -55,19 +55,19 @@ export default function CardSearchBar({ onSearch }: CardSearchBarProps) {
           }}
           onBlur={() => setTimeout(() => setIsFocused(false), 150)}
           onKeyDown={handleKeyDown}
-          className="pl-9 bg-zinc-900 border border-zinc-700 text-white 
-                     placeholder:text-gray-500 focus:border-amber-400 focus:ring-amber-400 w-full"
+          className="pl-9 bg-zinc-900 border border-zinc-700 text-white
+                     placeholder:text-gray-500 focus:border-[#caa368] focus:ring-[#caa368] w-full"
         />
       </div>
 
       {/* Suggestions dropdown */}
       {isFocused && filtered.length > 0 && (
-        <div className="absolute z-10 mt-2 w-full bg-zinc-900 border border-zinc-700 rounded-md shadow-lg max-h-60 overflow-y-auto scrollbar-thin scrollbar-thumb-zinc-700 scrollbar-track-zinc-900">
+        <div className="absolute z-10 mt-2 w-full bg-zinc-900 border border-zinc-700 rounded-md shadow-lg max-h-60 overflow-y-auto scroll-styled">
           {filtered.map((card) => (
             <div
               key={card.cardId}
               onMouseDown={() => handleSelect(card.name)}
-              className="px-3 py-2 cursor-pointer hover:bg-amber-500/20 text-sm text-gray-200"
+              className="px-3 py-2 cursor-pointer hover:bg-[#caa368]/10 hover:text-white text-sm text-gray-200 transition-colors"
             >
               {card.name}
             </div>

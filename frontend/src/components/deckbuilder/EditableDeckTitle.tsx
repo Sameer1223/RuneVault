@@ -46,13 +46,13 @@ export default function EditableDeckTitle({
           onBlur={handleBlur}
           onKeyDown={handleKeyDown}
           autoFocus
-          className="text-3xl font-semibold bg-transparent border-b border-gray-500
+          className="text-xl sm:text-2xl lg:text-3xl font-semibold bg-transparent border-b border-gray-500
                      focus:outline-none focus:border-[#caa368] caret-[#caa368]
                      w-full transition-colors"
         />
       ) : (
         <div
-          className="text-3xl font-semibold cursor-text hover:text-gray-400 transition-colors"
+          className="text-xl sm:text-2xl lg:text-3xl font-semibold cursor-text hover:text-gray-400 transition-colors truncate"
           onClick={handleClick}
           title="Click to rename"
         >
