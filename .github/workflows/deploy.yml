@@ -23,5 +23,12 @@ jobs:
             docker system prune -a -f
             docker volume prune -f
 
+            # Apply any pending DB migrations using the new image, while the
+            # previous stack (and its db service) is still up - db.create_all()
+            # on app startup only creates missing tables, it never alters
+            # existing ones, so schema changes need this explicit step.
+            docker-compose build backend
+            docker-compose run --rm backend flask db upgrade
+
             docker-compose down
             docker-compose up -d --build
