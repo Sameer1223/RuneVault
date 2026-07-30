@@ -105,10 +105,10 @@ export default function Holo({
       />
 
       {/* ✍️ Centered name */}
-      <div className="relative z-10 flex h-full w-full items-center justify-center select-none">
-        <span className="flex items-center gap-2 font-raleway text-2xl font-normal tracking-wide">
+      <div className="relative z-10 flex h-full w-full items-center justify-center select-none px-2">
+        <span className="flex items-center justify-center gap-1 sm:gap-2 font-raleway text-sm sm:text-lg lg:text-2xl font-normal tracking-wide text-center">
           {name}
-          <ArrowRight className="size-5 opacity-70" />
+          <ArrowRight className="size-3.5 sm:size-4 lg:size-5 opacity-70 shrink-0" />
         </span>
       </div>
 
