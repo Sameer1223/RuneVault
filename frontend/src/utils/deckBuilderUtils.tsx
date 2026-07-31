@@ -140,18 +140,26 @@ export function swapCardsUtil(
     return newDeck;
 }
 
-export function removeCardFromDeckUtil(deck: FullDeck, cardId: string) {
+export function removeCardFromDeckUtil(deck: FullDeck, cardId: string, zone?: 'main' | 'side') {
     // Don't remove if card not in deck
-    if (deck.deck_data.Side[cardId] === undefined && deck.deck_data.Main[cardId] === undefined 
-        && deck.deck_data.Runes[cardId] === undefined 
-        && deck.deck_data.ChosenChampion !== cardId 
+    if (deck.deck_data.Side[cardId] === undefined && deck.deck_data.Main[cardId] === undefined
+        && deck.deck_data.Runes[cardId] === undefined
+        && deck.deck_data.ChosenChampion !== cardId
         && deck.deck_data.Legend !== cardId
         && !deck.deck_data.Battlefields.includes(cardId)) {
         return deck;
     }
 
     const newDeck: FullDeck = JSON.parse(JSON.stringify(deck));
-    if (deck.deck_data.Side[cardId]) {
+
+    // A card can exist in both Main and Side at once, so which copy to remove
+    // is ambiguous without knowing which tile the user actually clicked -
+    // honor that zone hint first before falling back to the old guess order.
+    if (zone === 'main' && deck.deck_data.Main[cardId]) {
+        newDeck.deck_data.Main = removeCard(newDeck.deck_data, cardId, 'Main');
+    } else if (zone === 'side' && deck.deck_data.Side[cardId]) {
+        newDeck.deck_data.Side = removeCard(newDeck.deck_data, cardId, 'Side');
+    } else if (deck.deck_data.Side[cardId]) {
         newDeck.deck_data.Side = removeCard(newDeck.deck_data, cardId, 'Side');
     } else if (deck.deck_data.Main[cardId]) {
         newDeck.deck_data.Main = removeCard(newDeck.deck_data, cardId, 'Main');
@@ -164,7 +172,7 @@ export function removeCardFromDeckUtil(deck: FullDeck, cardId: string) {
     } else if (deck.deck_data.Legend === cardId) {
         newDeck.deck_data.Legend = '';
     }
-    
+
     return newDeck;
 }
 

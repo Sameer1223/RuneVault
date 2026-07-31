@@ -193,8 +193,8 @@ export default function DeckBuilder() {
     setDeck((prev: FullDeck) => addCardToDeckUtil(prev, cardId, activeZone) as FullDeck);
   };
 
-  const removeCardFromDeck = (cardId: string) => {
-      setDeck((prev: FullDeck) => removeCardFromDeckUtil(prev, cardId) as FullDeck);
+  const removeCardFromDeck = (cardId: string, zone?: "main" | "side") => {
+      setDeck((prev: FullDeck) => removeCardFromDeckUtil(prev, cardId, zone) as FullDeck);
       setHoveredCard((prev) => (prev === cardId ? null : prev));
       closeModal();
   };
@@ -389,7 +389,7 @@ export default function DeckBuilder() {
               selectedCards={mainSelections}
               onHoverCard={handleHoverCard}
               onLeaveCard={handleLeaveCard}
-              onRemoveCard={removeCardFromDeck}
+              onRemoveCard={(cardId) => removeCardFromDeck(cardId, "main")}
               onSelectCard={handleSelectMain}
               onDuplicateCard={(cardId) => duplicateCardInDeck(cardId, "main")}
               collectionMode={collectionMode}
@@ -425,7 +425,7 @@ export default function DeckBuilder() {
                 selectedCards={sideSelections}
                 onHoverCard={handleHoverCard}
                 onLeaveCard={handleLeaveCard}
-                onRemoveCard={removeCardFromDeck}
+                onRemoveCard={(cardId) => removeCardFromDeck(cardId, "side")}
                 onSelectCard={handleSelectSide}
                 onDuplicateCard={(cardId) => duplicateCardInDeck(cardId, "side")}
                 collectionMode={collectionMode}
