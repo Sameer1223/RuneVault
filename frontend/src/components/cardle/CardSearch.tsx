@@ -1,4 +1,5 @@
 import { useState, useMemo, useRef, useEffect } from "react";
+import { Search, X } from "lucide-react";
 import type { CardData } from "@/types/deck";
 import CardImage from "../CardImage";
 
@@ -40,7 +41,7 @@ export default function CardSearch({ cards, onSelect, guessedCardIds, disabled =
   return (
     <div ref={containerRef} className="relative w-full">
       <div className="relative">
-        <span className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-slate-400">⌕</span>
+        <Search className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-zinc-500" />
         <input
           type="text"
           value={search}
@@ -51,7 +52,7 @@ export default function CardSearch({ cards, onSelect, guessedCardIds, disabled =
           onFocus={() => setIsOpen(true)}
           disabled={disabled}
           placeholder="Search and select a card..."
-          className="w-full rounded-xl border border-white/15 bg-slate-900/80 py-3 pl-10 pr-10 text-white placeholder:text-slate-400 shadow-lg shadow-black/20 outline-none transition focus:border-cyan-400/70 focus:ring-2 focus:ring-cyan-400/30 disabled:opacity-50"
+          className="w-full rounded-md border border-zinc-700 bg-zinc-900 py-2.5 pl-10 pr-10 text-white placeholder:text-zinc-500 outline-none transition-colors focus:border-[#caa368] disabled:opacity-50"
         />
         {search && (
           <button
@@ -59,38 +60,39 @@ export default function CardSearch({ cards, onSelect, guessedCardIds, disabled =
               setSearch("");
               setIsOpen(false);
             }}
-            className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 transition hover:text-white"
+            aria-label="Clear search"
+            className="absolute right-3 top-1/2 -translate-y-1/2 text-zinc-500 transition-colors hover:text-white"
           >
-            ✕
+            <X className="h-4 w-4" />
           </button>
         )}
       </div>
 
       {isOpen && availableCards.length > 0 && (
-        <div className="absolute left-0 right-0 top-full z-[90] mt-2 max-h-80 overflow-y-auto rounded-xl border border-white/15 bg-slate-900/95 p-1 shadow-2xl shadow-black/40 backdrop-blur-xl">
+        <div className="scroll-styled absolute left-0 right-0 top-full z-[90] mt-2 max-h-80 overflow-y-auto rounded-md border border-zinc-700 bg-[#1a1a1a] p-1 shadow-2xl shadow-black/40">
           {availableCards.slice(0, 15).map((card) => (
             <button
               key={card.cardId}
               onClick={() => handleSelect(card)}
-              className="flex w-full items-center gap-3 rounded-lg px-3 py-2 text-left text-white transition hover:bg-white/10"
+              className="flex w-full items-center gap-3 rounded-md px-3 py-2 text-left text-white transition-colors hover:bg-[#caa368]/10"
             >
               <CardImage
                 cardId={card.cardId}
                 alt={card.name}
-                className="h-12 w-8 rounded border border-white/10 object-cover"
+                className="h-12 w-8 rounded border border-zinc-800 object-cover"
               />
               <div className="min-w-0">
-                <div className="truncate font-semibold">{card.name}</div>
-                <div className="truncate text-xs text-slate-400">{card.type} • {card.colors?.join(", ") || "No Color"}</div>
+                <div className="truncate text-sm font-medium">{card.name}</div>
+                <div className="truncate text-xs text-zinc-500">{card.type} · {card.colors?.join(", ") || "No Color"}</div>
               </div>
-              <div className="ml-auto text-[10px] font-medium tracking-wide text-slate-500">{card.cardId}</div>
+              <div className="ml-auto text-[10px] font-medium tracking-wide text-zinc-600">{card.cardId}</div>
             </button>
           ))}
         </div>
       )}
 
       {isOpen && search.trim().length > 0 && availableCards.length === 0 && (
-        <div className="absolute left-0 right-0 top-full z-[90] mt-2 rounded-xl border border-white/15 bg-slate-900/95 px-4 py-3 text-sm text-slate-400 shadow-2xl shadow-black/40 backdrop-blur-xl">
+        <div className="absolute left-0 right-0 top-full z-[90] mt-2 rounded-md border border-zinc-700 bg-[#1a1a1a] px-4 py-3 text-sm text-zinc-500 shadow-2xl shadow-black/40">
           No matching cards.
         </div>
       )}

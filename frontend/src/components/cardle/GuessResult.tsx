@@ -1,6 +1,6 @@
 import type { CardData } from "@/types/deck";
 import type { ComparisonResult } from "@/utils/cardleGameUtils";
-import { GUESS_GRID_TEMPLATE } from "./guessResultConstants";
+import { GUESS_GRID_TEMPLATE, STATUS, type StatusMeta } from "./guessResultConstants";
 import CardImage from "../CardImage";
 
 interface GuessResultProps {
@@ -9,38 +9,23 @@ interface GuessResultProps {
   guessNumber: number;
 }
 
-type StatusMeta = {
-  badge: string;
-  text: string;
-  icon: string;
-};
-
-const CELL_BASE = "flex items-center border-r border-white/10 px-2 py-1.5 last:border-r-0";
-const GUESS_COL_W = {
-  guess: "",
-  card: "",
-  energy: "",
-  power: "",
-  might: "",
-  color: "",
-  type: "",
-  set: "",
-  rarity: "",
-};
+const CELL_BASE = "flex items-center border-r border-zinc-800 px-2 py-1.5 last:border-r-0";
 
 function getStatStatus(result: string): StatusMeta {
-  if (result === "correct") return { badge: "bg-emerald-500/15 ring-1 ring-emerald-300/35", text: "text-emerald-200", icon: "✓" };
-  if (result === "higher") return { badge: "bg-sky-500/15 ring-1 ring-sky-300/35", text: "text-sky-200", icon: "↑" };
-  if (result === "lower") return { badge: "bg-amber-500/15 ring-1 ring-amber-300/35", text: "text-amber-200", icon: "↓" };
-  if (result === "incorrect") return { badge: "bg-rose-500/15 ring-1 ring-rose-300/35", text: "text-rose-200", icon: "✗" };
-  return { badge: "bg-slate-500/15 ring-1 ring-slate-300/25", text: "text-slate-300", icon: "—" };
+  if (result === "correct") return STATUS.correct;
+  if (result === "higher") return STATUS.higher;
+  if (result === "lower") return STATUS.lower;
+  if (result === "incorrect") return STATUS.incorrect;
+  return STATUS.unknown;
 }
 
 function StatusBadge({ status }: { status: StatusMeta }) {
+  const { Icon } = status;
   return (
-    <span className={`${status.badge} ${status.text} relative flex h-5 w-5 shrink-0 items-center justify-center overflow-hidden rounded-md text-[10px] font-bold`}>
-      <span className="pointer-events-none absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/35 to-transparent transition-transform duration-700 group-hover:translate-x-full" />
-      <span className="relative z-10">{status.icon}</span>
+    <span
+      className={`${status.badge} ${status.text} flex h-5 w-5 shrink-0 items-center justify-center rounded-md`}
+    >
+      <Icon className="h-3 w-3" strokeWidth={2.5} />
     </span>
   );
 }
@@ -48,18 +33,18 @@ function StatusBadge({ status }: { status: StatusMeta }) {
 function DataCell({
   value,
   status,
-  widthClass,
   allowWrap = false,
 }: {
   value: string | number;
   status: StatusMeta;
-  widthClass: string;
   allowWrap?: boolean;
 }) {
   return (
-    <div className={`${CELL_BASE} ${widthClass}`}>
+    <div className={CELL_BASE}>
       <div className="flex w-full items-center justify-between gap-2 rounded-md bg-white/[0.03] px-2 py-1.5">
-        <span className={`${allowWrap ? "whitespace-normal leading-tight" : "truncate"} text-xs font-medium text-slate-100`}>
+        <span
+          className={`${allowWrap ? "whitespace-normal leading-tight" : "truncate"} text-xs font-medium text-zinc-100`}
+        >
           {value}
         </span>
         <StatusBadge status={status} />
@@ -70,7 +55,7 @@ function DataCell({
 
 function ColorDataCell({ value, status, swatches }: { value: string; status: StatusMeta; swatches: string[] }) {
   return (
-    <div className={`${CELL_BASE} ${GUESS_COL_W.color}`}>
+    <div className={CELL_BASE}>
       <div className="flex w-full items-center justify-between gap-2 rounded-md bg-white/[0.03] px-2 py-1.5">
         <div className="flex min-w-0 items-center gap-2">
           <div className="flex items-center gap-1">
@@ -78,16 +63,16 @@ function ColorDataCell({ value, status, swatches }: { value: string; status: Sta
               swatches.map((swatch) => (
                 <span
                   key={swatch}
-                  className="h-2.5 w-2.5 rounded-full border border-white/50"
+                  className="h-2.5 w-2.5 rounded-full border border-white/40"
                   style={{ backgroundColor: swatch }}
                   title={swatch}
                 />
               ))
             ) : (
-              <span className="text-[10px] text-slate-500">No color</span>
+              <span className="text-[10px] text-zinc-500">No color</span>
             )}
           </div>
-          <span className="truncate text-xs font-medium text-slate-100">{value}</span>
+          <span className="truncate text-xs font-medium text-zinc-100">{value}</span>
         </div>
 
         <StatusBadge status={status} />
@@ -101,22 +86,29 @@ export default function GuessResult({ guessCard, result, guessNumber }: GuessRes
 
   const colorBadge =
     result.color === "correct"
-      ? { badge: "bg-emerald-500/15 ring-1 ring-emerald-300/35", text: "text-emerald-200", icon: "✓" }
+      ? STATUS.correct
       : result.color === "partial"
-        ? { badge: "bg-yellow-500/15 ring-1 ring-yellow-300/35", text: "text-yellow-200", icon: "◐" }
+        ? STATUS.partial
         : result.color === "incorrect"
-          ? { badge: "bg-rose-500/15 ring-1 ring-rose-300/35", text: "text-rose-200", icon: "✗" }
-          : { badge: "bg-slate-500/15 ring-1 ring-slate-300/25", text: "text-slate-300", icon: "—" };
+          ? STATUS.incorrect
+          : STATUS.unknown;
 
-  const rowTone = guessNumber % 2 === 0 ? "bg-white/[0.03]" : "bg-white/[0.015]";
+  const boolStatus = (matches: boolean) => (matches ? STATUS.correct : STATUS.incorrect);
+
+  const rowTone = guessNumber % 2 === 0 ? "bg-white/[0.02]" : "bg-transparent";
 
   return (
-    <div className={`group grid border-b border-white/10 ${rowTone} last:border-b-0 hover:bg-white/[0.05] transition-colors`} style={{ gridTemplateColumns: GUESS_GRID_TEMPLATE }}>
-      <div className={`${CELL_BASE} ${GUESS_COL_W.guess}`}>
-        <span className="inline-flex rounded-md bg-cyan-500/10 px-2 py-1 text-xs font-semibold text-cyan-200 ring-1 ring-cyan-300/20">#{guessNumber}</span>
+    <div
+      className={`grid border-b border-zinc-800 ${rowTone} transition-colors last:border-b-0 hover:bg-white/[0.04]`}
+      style={{ gridTemplateColumns: GUESS_GRID_TEMPLATE }}
+    >
+      <div className={CELL_BASE}>
+        <span className="inline-flex rounded-md bg-[#caa368]/10 px-2 py-1 text-xs font-semibold text-[#caa368] ring-1 ring-[#caa368]/25">
+          #{guessNumber}
+        </span>
       </div>
 
-      <div className={`${CELL_BASE} ${GUESS_COL_W.card}`}>
+      <div className={CELL_BASE}>
         <div className="flex items-center gap-2">
           <CardImage
             cardId={guessCard.cardId}
@@ -125,31 +117,20 @@ export default function GuessResult({ guessCard, result, guessNumber }: GuessRes
           />
           <div className="min-w-0">
             <div className="truncate text-sm font-semibold leading-tight text-white">{guessCard.name}</div>
-            <div className="mt-0.5 inline-flex rounded bg-white/5 px-1.5 py-0.5 text-[10px] text-slate-300 ring-1 ring-white/10">{guessCard.cardId}</div>
+            <div className="mt-0.5 inline-flex rounded bg-white/5 px-1.5 py-0.5 text-[10px] text-zinc-400 ring-1 ring-white/10">
+              {guessCard.cardId}
+            </div>
           </div>
         </div>
       </div>
 
-      <DataCell value={guessCard.energy ?? "—"} status={getStatStatus(result.energy)} widthClass={GUESS_COL_W.energy} />
-      <DataCell value={guessCard.power ?? "—"} status={getStatStatus(result.power)} widthClass={GUESS_COL_W.power} />
-      <DataCell value={guessCard.might ?? "—"} status={getStatStatus(result.might)} widthClass={GUESS_COL_W.might} />
+      <DataCell value={guessCard.energy ?? "—"} status={getStatStatus(result.energy)} />
+      <DataCell value={guessCard.power ?? "—"} status={getStatStatus(result.power)} />
+      <DataCell value={guessCard.might ?? "—"} status={getStatStatus(result.might)} />
       <ColorDataCell value={colorValue} status={colorBadge} swatches={guessCard.colors ?? []} />
-      <DataCell
-        value={guessCard.type}
-        status={result.type ? { badge: "bg-emerald-500/15 ring-1 ring-emerald-300/35", text: "text-emerald-200", icon: "✓" } : { badge: "bg-rose-500/15 ring-1 ring-rose-300/35", text: "text-rose-200", icon: "✗" }}
-        widthClass={GUESS_COL_W.type}
-      />
-      <DataCell
-        value={guessCard.set}
-        status={result.set ? { badge: "bg-emerald-500/15 ring-1 ring-emerald-300/35", text: "text-emerald-200", icon: "✓" } : { badge: "bg-rose-500/15 ring-1 ring-rose-300/35", text: "text-rose-200", icon: "✗" }}
-        widthClass={GUESS_COL_W.set}
-        allowWrap
-      />
-      <DataCell
-        value={guessCard.rarity}
-        status={result.rarity ? { badge: "bg-emerald-500/15 ring-1 ring-emerald-300/35", text: "text-emerald-200", icon: "✓" } : { badge: "bg-rose-500/15 ring-1 ring-rose-300/35", text: "text-rose-200", icon: "✗" }}
-        widthClass={GUESS_COL_W.rarity}
-      />
+      <DataCell value={guessCard.type} status={boolStatus(result.type)} />
+      <DataCell value={guessCard.set} status={boolStatus(result.set)} allowWrap />
+      <DataCell value={guessCard.rarity} status={boolStatus(result.rarity)} />
     </div>
   );
 }
