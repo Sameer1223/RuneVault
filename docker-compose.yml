@@ -30,7 +30,6 @@ services:
       context: ./frontend
       args:
         - VITE_API_URL=https://runevault.app/api
-        - VITE_GA_MEASUREMENT_ID=G-762VDPD0F3
     ports:
       - "5173:80"
     depends_on:
