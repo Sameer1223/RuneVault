@@ -3,6 +3,7 @@ import { Outlet, useLocation } from "react-router-dom"
 import Navbar from "./Navbar"
 import { useUserSync } from "../../hooks/useUserSync"
 import { trackPageView } from "@/lib/analytics"
+import { getPageTitle } from "@/lib/pageTitles"
 
 export default function Layout() {
   // Sync user with backend on login
@@ -11,6 +12,9 @@ export default function Layout() {
   const location = useLocation();
 
   useEffect(() => {
+    // Set the title first - trackPageView reports document.title to GA, so
+    // updating it afterwards would report the *previous* route's title.
+    document.title = getPageTitle(location.pathname);
     trackPageView(location.pathname + location.search);
   }, [location.pathname, location.search]);
 
